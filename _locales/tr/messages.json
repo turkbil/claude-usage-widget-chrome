@@ -1,0 +1,66 @@
+{
+  "app_name":        { "message": "Claude Kullanım Widget'ı" },
+  "app_description": { "message": "Claude haftalık kullanımını araç çubuğunda gör — claude.ai/settings/usage'daki veriyle aynı. Tahmin, trend grafiği, eşik bildirimleri." },
+
+  "section_weekly":     { "message": "BU HAFTA" },
+  "section_five_hour":  { "message": "5 SAATLİK PENCERE" },
+
+  "label_all_models": { "message": "Tüm modeller" },
+  "label_sonnet":     { "message": "Sonnet" },
+  "label_usage":      { "message": "Kullanım" },
+
+  "value_percent":    { "message": "%$1", "placeholders": { "1": { "content": "$1" } } },
+  "remaining_suffix": { "message": "$1 kaldı", "placeholders": { "1": { "content": "$1" } } },
+  "time_days_hours":  { "message": "$1g $2s", "placeholders": { "1": { "content": "$1" }, "2": { "content": "$2" } } },
+  "time_hours_minutes": { "message": "$1s $2dk", "placeholders": { "1": { "content": "$1" }, "2": { "content": "$2" } } },
+  "time_minutes":     { "message": "$1dk", "placeholders": { "1": { "content": "$1" } } },
+  "time_reset":       { "message": "sıfırlandı" },
+
+  "footer_updated":   { "message": "Güncelleme: $1", "placeholders": { "1": { "content": "$1" } } },
+
+  "menu_refresh":     { "message": "Şimdi yenile" },
+  "menu_open_usage":  { "message": "Kullanım sayfasını aç" },
+
+  "settings_title":   { "message": "Claude Usage Widget — Ayarlar" },
+
+  "menu_title_content":   { "message": "Başlık içeriği" },
+  "menu_icon":            { "message": "Simge" },
+  "menu_refresh_interval":{ "message": "Yenileme aralığı" },
+  "menu_notifications":   { "message": "Bildirimler" },
+
+  "metric_weekly_pct":  { "message": "Haftalık %" },
+  "metric_weekly_time": { "message": "Haftalık kalan süre" },
+  "metric_five_pct":    { "message": "5 saatlik %" },
+  "metric_five_time":   { "message": "5 saatlik kalan süre" },
+
+  "mode_hidden": { "message": "Gizle" },
+  "mode_text":   { "message": "Yazı" },
+  "mode_donut":  { "message": "Donut" },
+
+  "icon_custom": { "message": "Özel emoji" },
+  "icon_donut":  { "message": "Donut özet" },
+  "icon_none":   { "message": "Simge yok" },
+
+  "refresh_30s": { "message": "30 saniye" },
+  "refresh_1m":  { "message": "1 dakika" },
+  "refresh_5m":  { "message": "5 dakika" },
+  "refresh_10m": { "message": "10 dakika" },
+
+  "notifications_enable":   { "message": "Eşik bildirimlerini etkinleştir" },
+  "notifications_warn":     { "message": "Uyarı" },
+  "notifications_alert":    { "message": "Alarm" },
+  "notifications_critical": { "message": "Kritik" },
+  "notification_warn":      { "message": "Haftalık kullanım %$1'e ulaştı — yavaşla.", "placeholders": { "1": { "content": "$1" } } },
+  "notification_alert":     { "message": "Haftalık kullanım %$1 — yaklaşık 3 gün kaldı.", "placeholders": { "1": { "content": "$1" } } },
+  "notification_critical":  { "message": "Haftalık kullanım kritik %$1 — yoğun oturumları ertele.", "placeholders": { "1": { "content": "$1" } } },
+
+  "forecast_under":    { "message": "↗ Hafta sonu tahmini: %$1", "placeholders": { "1": { "content": "$1" } } },
+  "forecast_over":     { "message": "⚠ Bu hızla yaklaşık $1 sonra limit", "placeholders": { "1": { "content": "$1" } } },
+  "forecast_exceeded": { "message": "⚠ Limit aşıldı" },
+
+  "sparkline_empty":   { "message": "trend verisi birikiyor…" },
+
+  "error_no_session":   { "message": "claude.ai oturumu yok — tarayıcında giriş yap" },
+  "error_api_parse":    { "message": "Kullanım JSON ayrıştırma hatası" },
+  "error_org_not_found":{ "message": "Organizasyon ID bulunamadı" }
+}

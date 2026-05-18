@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Claude Usage Widget — Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main>
+    <h1 id="title"></h1>
+
+    <section>
+      <h2 id="titleContentLabel"></h2>
+      <div id="titleRows"></div>
+    </section>
+
+    <section>
+      <h2 id="iconLabel"></h2>
+      <div class="emoji-grid" id="emojiGrid"></div>
+      <div class="custom-row">
+        <label><input type="radio" name="iconType" value="custom"> <span id="iconCustomLabel"></span></label>
+        <input type="text" id="customEmoji" maxlength="4" placeholder="🪐">
+      </div>
+      <label><input type="radio" name="iconType" value="donut"> <span id="iconDonutLabel"></span></label>
+      <label><input type="radio" name="iconType" value="none"> <span id="iconNoneLabel"></span></label>
+    </section>
+
+    <section>
+      <h2 id="refreshLabel"></h2>
+      <div class="radio-row" id="refreshRadios"></div>
+    </section>
+
+    <section>
+      <h2 id="notificationsLabel"></h2>
+      <label><input type="checkbox" id="notifEnabled"> <span id="notifEnableLabel"></span></label>
+      <div class="slider-row">
+        <span class="dot dot-warn">●</span>
+        <span id="warnLabel" class="slider-name"></span>
+        <input type="range" id="warnSlider" min="20" max="80" value="50">
+        <span id="warnValue" class="slider-value"></span>
+      </div>
+      <div class="slider-row">
+        <span class="dot dot-alert">●</span>
+        <span id="alertLabel" class="slider-name"></span>
+        <input type="range" id="alertSlider" min="50" max="95" value="75">
+        <span id="alertValue" class="slider-value"></span>
+      </div>
+      <div class="slider-row">
+        <span class="dot dot-critical">●</span>
+        <span id="criticalLabel" class="slider-name"></span>
+        <input type="range" id="criticalSlider" min="70" max="99" value="90">
+        <span id="criticalValue" class="slider-value"></span>
+      </div>
+    </section>
+
+    <footer>
+      <span>Claude Usage Widget</span>
+      <a href="https://www.nurullah.net" target="_blank">nurullah.net ↗</a>
+      <a href="https://x.com/nurullah" target="_blank">@nurullah ↗</a>
+      <a href="https://github.com/turkbil/claude-usage-widget-chrome" target="_blank">github ↗</a>
+    </footer>
+  </main>
+
+  <script type="module" src="options.js"></script>
+</body>
+</html>

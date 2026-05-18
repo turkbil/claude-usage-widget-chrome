@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="header" id="header" hidden>
+    <span class="name" id="name"></span>
+    <span class="pill" id="planPill" hidden></span>
+  </div>
+
+  <div class="section-head">
+    <span class="section-title" id="weeklyTitle"></span>
+    <span class="section-trailing" id="weeklyTrailing"></span>
+  </div>
+  <div class="row" id="allModelsRow" hidden>
+    <span class="row-label" id="allModelsLabel"></span>
+    <div class="bar"><div class="bar-fill" id="allModelsBar"></div></div>
+    <span class="row-value" id="allModelsValue"></span>
+  </div>
+  <div class="row" id="sonnetRow" hidden>
+    <span class="row-label" id="sonnetLabel"></span>
+    <div class="bar"><div class="bar-fill" id="sonnetBar"></div></div>
+    <span class="row-value" id="sonnetValue"></span>
+  </div>
+
+  <div class="forecast" id="forecast" hidden></div>
+
+  <canvas class="sparkline" id="sparkline" width="296" height="44"></canvas>
+
+  <div class="section-head" id="fiveHead" hidden>
+    <span class="section-title" id="fiveTitle"></span>
+    <span class="section-trailing" id="fiveTrailing"></span>
+  </div>
+  <div class="row" id="fiveRow" hidden>
+    <span class="row-label" id="fiveLabel"></span>
+    <div class="bar"><div class="bar-fill" id="fiveBar"></div></div>
+    <span class="row-value" id="fiveValue"></span>
+  </div>
+
+  <div class="footer" id="footer"></div>
+
+  <div class="actions">
+    <button id="refreshBtn">⟳</button>
+    <button id="openUsageBtn">claude.ai/settings/usage</button>
+    <button id="optionsBtn">⚙</button>
+  </div>
+
+  <div class="credit">
+    <a href="https://www.nurullah.net" id="siteLink">nurullah.net ↗</a>
+    <span>·</span>
+    <a href="https://x.com/nurullah" id="xLink">@nurullah ↗</a>
+  </div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
