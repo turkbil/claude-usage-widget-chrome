@@ -5,8 +5,9 @@ export const defaultPrefs = {
   weeklyPctMode:    'text',
   weeklyPctColor:    '#d68c45',
 
-  // §02 icon
-  iconType:  'emoji',   // 'emoji' | 'custom' | 'donut' | 'none'
+  // §02 icon — default to the donut ring: always renders in the MV3 worker
+  // and shows the % at a glance. Emoji stays selectable in Settings.
+  iconType:  'donut',   // 'emoji' | 'custom' | 'donut' | 'none'
   iconValue: '🤖',
 
   // §06 refresh interval

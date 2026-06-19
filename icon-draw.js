@@ -35,8 +35,14 @@ export function drawIcon(snapshot, prefs, isError) {
   } else if (prefs.weeklyPctMode === 'text' || prefs.iconType === 'none') {
     drawText(ctx, String(pct), colorFor(pct), pct >= 100 ? 16 : 18);
   } else if (prefs.iconType === 'emoji' || prefs.iconType === 'custom') {
-    // Show just the emoji (no number)
+    // Show just the emoji (no number). Color-emoji fonts are frequently
+    // unavailable inside an MV3 service-worker OffscreenCanvas, which would
+    // leave the toolbar icon blank. Detect that and fall back to the number.
     drawEmoji(ctx, prefs.iconValue || '🤖');
+    if (isBlank(ctx)) {
+      ctx.clearRect(0, 0, SIZE, SIZE);
+      drawText(ctx, String(pct), colorFor(pct), pct >= 100 ? 16 : 18);
+    }
   } else {
     drawText(ctx, String(pct), colorFor(pct), 18);
   }
@@ -85,6 +91,15 @@ function drawDonut(ctx, fill, rgb) {
   ctx.lineCap = 'round';
   ctx.strokeStyle = rgb;
   ctx.stroke();
+}
+
+// True when the canvas has almost no painted pixels — used to detect when an
+// emoji glyph failed to rasterize (e.g. no color-emoji font in the worker).
+function isBlank(ctx) {
+  const { data } = ctx.getImageData(0, 0, SIZE, SIZE);
+  let painted = 0;
+  for (let i = 3; i < data.length; i += 4) if (data[i] > 10) painted++;
+  return painted < 8;
 }
 
 function colorFor(pct) {

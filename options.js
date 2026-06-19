@@ -102,8 +102,9 @@ function renderIconSection(prefs) {
     btn.addEventListener('click', async () => {
       grid.querySelectorAll('button').forEach(b => b.classList.remove('selected'));
       btn.classList.add('selected');
+      // Picking an emoji clears the other (radio-based) icon choices.
+      document.querySelectorAll('input[name="iconType"]').forEach(r => r.checked = false);
       await commit({ iconType: 'emoji', iconValue: e });
-      document.querySelector('input[name="iconType"][value="emoji"]')?.click?.();
     });
     grid.appendChild(btn);
   }
@@ -126,6 +127,8 @@ function renderIconSection(prefs) {
 
   document.querySelectorAll('input[name="iconType"]').forEach(r => {
     r.addEventListener('change', async () => {
+      // Choosing a radio option clears any highlighted preset emoji.
+      grid.querySelectorAll('button').forEach(b => b.classList.remove('selected'));
       if (r.value === 'donut') await commit({ iconType: 'donut', iconValue: '' });
       else if (r.value === 'none') await commit({ iconType: 'none', iconValue: '' });
       else if (r.value === 'custom') await commit({ iconType: 'custom', iconValue: customField.value.trim() || '🪐' });
