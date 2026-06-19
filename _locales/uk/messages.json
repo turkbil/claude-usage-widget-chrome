@@ -1,0 +1,210 @@
+{
+  "app_name": {
+    "message": "Claude Usage Widget"
+  },
+  "app_description": {
+    "message": "Ваше тижневе використання Claude на панелі інструментів — те саме число, що й на claude.ai/settings/usage, з прогнозом і сповіщеннями про пороги."
+  },
+  "section_weekly": {
+    "message": "ЗА ТИЖДЕНЬ"
+  },
+  "section_five_hour": {
+    "message": "5-ГОДИННЕ ВІКНО"
+  },
+  "label_all_models": {
+    "message": "Усі моделі"
+  },
+  "label_sonnet": {
+    "message": "Sonnet"
+  },
+  "label_usage": {
+    "message": "Використання"
+  },
+  "value_percent": {
+    "message": "$1%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "remaining_suffix": {
+    "message": "залишилось $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_days_hours": {
+    "message": "$1д $2год",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "time_hours_minutes": {
+    "message": "$1год $2хв",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "time_minutes": {
+    "message": "$1хв",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_reset": {
+    "message": "скидання"
+  },
+  "footer_updated": {
+    "message": "Оновлено: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "menu_refresh": {
+    "message": "Оновити зараз"
+  },
+  "menu_open_usage": {
+    "message": "Відкрити сторінку використання"
+  },
+  "settings_title": {
+    "message": "Claude Usage Widget — Налаштування"
+  },
+  "menu_title_content": {
+    "message": "Вміст заголовка"
+  },
+  "menu_icon": {
+    "message": "Іконка"
+  },
+  "menu_refresh_interval": {
+    "message": "Інтервал оновлення"
+  },
+  "menu_notifications": {
+    "message": "Сповіщення"
+  },
+  "metric_weekly_pct": {
+    "message": "% за тиждень"
+  },
+  "metric_weekly_time": {
+    "message": "Залишок за тиждень"
+  },
+  "metric_five_pct": {
+    "message": "% за 5 годин"
+  },
+  "metric_five_time": {
+    "message": "Залишок за 5 годин"
+  },
+  "mode_hidden": {
+    "message": "Сховати"
+  },
+  "mode_text": {
+    "message": "Текст"
+  },
+  "mode_donut": {
+    "message": "Кільце"
+  },
+  "icon_custom": {
+    "message": "Власний емодзі"
+  },
+  "icon_donut": {
+    "message": "Кільцевий підсумок"
+  },
+  "icon_none": {
+    "message": "Без іконки"
+  },
+  "refresh_30s": {
+    "message": "30 секунд"
+  },
+  "refresh_1m": {
+    "message": "1 хвилина"
+  },
+  "refresh_5m": {
+    "message": "5 хвилин"
+  },
+  "refresh_10m": {
+    "message": "10 хвилин"
+  },
+  "notifications_enable": {
+    "message": "Увімкнути порогові сповіщення"
+  },
+  "notifications_warn": {
+    "message": "Попередження"
+  },
+  "notifications_alert": {
+    "message": "Тривога"
+  },
+  "notifications_critical": {
+    "message": "Критично"
+  },
+  "notification_warn": {
+    "message": "Тижневе використання сягнуло $1% — стримуйте темп.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_alert": {
+    "message": "Тижневе використання $1% — лишилось близько 3 днів.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_critical": {
+    "message": "Тижневе використання критичне — $1% — варто призупинити важкі сесії.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "forecast_under": {
+    "message": "↗ Прогноз на кінець тижня: $1%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "forecast_over": {
+    "message": "⚠ За такого темпу ліміт через ~$1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "forecast_exceeded": {
+    "message": "⚠ Ліміт перевищено"
+  },
+  "sparkline_empty": {
+    "message": "накопичення даних тренду…"
+  },
+  "error_no_session": {
+    "message": "Немає сесії claude.ai — увійдіть у браузері"
+  },
+  "error_api_parse": {
+    "message": "Помилка розбору JSON використання"
+  },
+  "error_org_not_found": {
+    "message": "ID організації не знайдено"
+  }
+}

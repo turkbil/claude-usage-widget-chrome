@@ -3,22 +3,22 @@
     "message": "Claude Usage Widget"
   },
   "app_description": {
-    "message": "Tu uso semanal de Claude en la barra de herramientas — el mismo dato que claude.ai/settings/usage, con previsión y alertas de umbral."
+    "message": "주간 Claude 사용량을 도구 모음에 표시 — claude.ai/settings/usage와 동일한 수치, 예측 및 임계값 알림 포함."
   },
   "section_weekly": {
-    "message": "SEMANAL"
+    "message": "주간"
   },
   "section_five_hour": {
-    "message": "VENTANA DE 5 HORAS"
+    "message": "5시간 창"
   },
   "label_all_models": {
-    "message": "Todos los modelos"
+    "message": "모든 모델"
   },
   "label_sonnet": {
     "message": "Sonnet"
   },
   "label_usage": {
-    "message": "Uso"
+    "message": "사용량"
   },
   "value_percent": {
     "message": "$1%",
@@ -29,7 +29,7 @@
     }
   },
   "remaining_suffix": {
-    "message": "$1 restante",
+    "message": "$1 남음",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -37,7 +37,7 @@
     }
   },
   "time_days_hours": {
-    "message": "$1d $2h",
+    "message": "$1일 $2시간",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -48,7 +48,7 @@
     }
   },
   "time_hours_minutes": {
-    "message": "$1h $2min",
+    "message": "$1시간 $2분",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -59,7 +59,7 @@
     }
   },
   "time_minutes": {
-    "message": "$1min",
+    "message": "$1분",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -67,10 +67,10 @@
     }
   },
   "time_reset": {
-    "message": "reinicio"
+    "message": "초기화"
   },
   "footer_updated": {
-    "message": "Actualizado: $1",
+    "message": "업데이트: $1",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -78,82 +78,82 @@
     }
   },
   "menu_refresh": {
-    "message": "Actualizar ahora"
+    "message": "지금 새로고침"
   },
   "menu_open_usage": {
-    "message": "Abrir página de uso"
+    "message": "사용량 페이지 열기"
   },
   "settings_title": {
-    "message": "Claude Usage Widget — Ajustes"
+    "message": "Claude Usage Widget — 설정"
   },
   "menu_title_content": {
-    "message": "Contenido del título"
+    "message": "제목 내용"
   },
   "menu_icon": {
-    "message": "Icono"
+    "message": "아이콘"
   },
   "menu_refresh_interval": {
-    "message": "Intervalo de actualización"
+    "message": "새로고침 간격"
   },
   "menu_notifications": {
-    "message": "Notificaciones"
+    "message": "알림"
   },
   "metric_weekly_pct": {
-    "message": "% semanal"
+    "message": "주간 %"
   },
   "metric_weekly_time": {
-    "message": "Restante semanal"
+    "message": "주간 잔여"
   },
   "metric_five_pct": {
-    "message": "% de 5 horas"
+    "message": "5시간 %"
   },
   "metric_five_time": {
-    "message": "Restante de 5 horas"
+    "message": "5시간 잔여"
   },
   "mode_hidden": {
-    "message": "Ocultar"
+    "message": "숨기기"
   },
   "mode_text": {
-    "message": "Texto"
+    "message": "텍스트"
   },
   "mode_donut": {
-    "message": "Anillo"
+    "message": "도넛"
   },
   "icon_custom": {
-    "message": "Emoji personalizado"
+    "message": "사용자 이모지"
   },
   "icon_donut": {
-    "message": "Resumen en anillo"
+    "message": "도넛 요약"
   },
   "icon_none": {
-    "message": "Sin icono"
+    "message": "아이콘 없음"
   },
   "refresh_30s": {
-    "message": "30 segundos"
+    "message": "30초"
   },
   "refresh_1m": {
-    "message": "1 minuto"
+    "message": "1분"
   },
   "refresh_5m": {
-    "message": "5 minutos"
+    "message": "5분"
   },
   "refresh_10m": {
-    "message": "10 minutos"
+    "message": "10분"
   },
   "notifications_enable": {
-    "message": "Activar alertas de umbral"
+    "message": "임계값 알림 켜기"
   },
   "notifications_warn": {
-    "message": "Aviso"
+    "message": "경고"
   },
   "notifications_alert": {
-    "message": "Alerta"
+    "message": "알림"
   },
   "notifications_critical": {
-    "message": "Crítico"
+    "message": "위험"
   },
   "notification_warn": {
-    "message": "El uso semanal llegó al $1% — modera el ritmo.",
+    "message": "주간 사용량이 $1%에 도달 — 속도를 조절하세요.",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -161,7 +161,7 @@
     }
   },
   "notification_alert": {
-    "message": "Uso semanal al $1% — quedan unos 3 días.",
+    "message": "주간 사용량 $1% — 약 3일 남았습니다.",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -169,7 +169,7 @@
     }
   },
   "notification_critical": {
-    "message": "Uso semanal crítico al $1% — considera pausar las sesiones intensas.",
+    "message": "주간 사용량이 $1%로 위험 — 무거운 작업을 잠시 멈추는 것을 고려하세요.",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -177,7 +177,7 @@
     }
   },
   "forecast_under": {
-    "message": "↗ Previsión a fin de semana: $1%",
+    "message": "↗ 주말 예상: $1%",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -185,7 +185,7 @@
     }
   },
   "forecast_over": {
-    "message": "⚠ A este ritmo, límite en ~$1",
+    "message": "⚠ 이 속도면 약 $1 후 한도 도달",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -193,18 +193,18 @@
     }
   },
   "forecast_exceeded": {
-    "message": "⚠ Límite superado"
+    "message": "⚠ 한도 초과"
   },
   "sparkline_empty": {
-    "message": "acumulando datos de tendencia…"
+    "message": "추세 데이터 수집 중…"
   },
   "error_no_session": {
-    "message": "Sin sesión de claude.ai — inicia sesión en tu navegador"
+    "message": "claude.ai 세션 없음 — 브라우저에서 로그인하세요"
   },
   "error_api_parse": {
-    "message": "Error al analizar el JSON de uso"
+    "message": "사용량 JSON 구문 분석 오류"
   },
   "error_org_not_found": {
-    "message": "No se encontró el ID de la organización"
+    "message": "조직 ID를 찾을 수 없음"
   }
 }

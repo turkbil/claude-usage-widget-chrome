@@ -20,7 +20,7 @@ Because the extension runs inside Chrome with cookie access already granted, thi
 - **Popup** with the full breakdown: weekly progress bars, 5-hour window, forecast, sparkline trend, account name + plan badge
 - **Threshold notifications** when you cross configurable warn / alert / critical levels (Chrome native notifications)
 - **Settings page** for per-metric display modes + colors, icon picker, refresh interval, notification thresholds
-- **5 languages** auto-detected from your Chrome locale: English, Türkçe, Deutsch, Español, Français
+- **15 languages** auto-detected from your Chrome locale: English, Türkçe, Español, Français, Deutsch, Italiano, Русский, 日本語, 한국어, 繁體中文, ไทย, Nederlands, Čeština, Українська, Română
 - **No telemetry, no third-party services.** Cookies are sent automatically by Chrome on every request — the extension never reads or stores them.
 
 ---

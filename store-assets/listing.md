@@ -18,7 +18,7 @@ A tiny donut (or just the number) sits next to your URL bar — 32 %, 3 days lef
 • 7-day trend chart in the popup, with projected future as a dashed line
 • Threshold notifications (warn / alert / critical) — fire once per week per level, no spam
 • Settings page: each metric (weekly %, weekly remaining, 5-hour %, 5-hour remaining) can be hidden, shown as text, or drawn as a colored donut ring in the toolbar
-• 5 languages: English, Türkçe, Deutsch, Español, Français — auto-detected
+• 15 languages: English, Türkçe, Español, Français, Deutsch, Italiano, Русский, 日本語, 한국어, 繁體中文, ไทย, Nederlands, Čeština, Українська, Română — auto-detected
 • 30 s / 1 min / 5 min / 10 min refresh intervals
 
 ▸ PRIVACY

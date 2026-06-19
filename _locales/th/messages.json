@@ -1,0 +1,210 @@
+{
+  "app_name": {
+    "message": "Claude Usage Widget"
+  },
+  "app_description": {
+    "message": "การใช้งาน Claude รายสัปดาห์บนแถบเครื่องมือ — ตัวเลขเดียวกับ claude.ai/settings/usage พร้อมการคาดการณ์และการแจ้งเตือนตามเกณฑ์"
+  },
+  "section_weekly": {
+    "message": "รายสัปดาห์"
+  },
+  "section_five_hour": {
+    "message": "หน้าต่าง 5 ชั่วโมง"
+  },
+  "label_all_models": {
+    "message": "ทุกโมเดล"
+  },
+  "label_sonnet": {
+    "message": "Sonnet"
+  },
+  "label_usage": {
+    "message": "การใช้งาน"
+  },
+  "value_percent": {
+    "message": "$1%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "remaining_suffix": {
+    "message": "เหลือ $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_days_hours": {
+    "message": "$1วัน $2ชม.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "time_hours_minutes": {
+    "message": "$1ชม. $2น.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "time_minutes": {
+    "message": "$1น.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_reset": {
+    "message": "รีเซ็ต"
+  },
+  "footer_updated": {
+    "message": "อัปเดต: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "menu_refresh": {
+    "message": "รีเฟรชเดี๋ยวนี้"
+  },
+  "menu_open_usage": {
+    "message": "เปิดหน้าการใช้งาน"
+  },
+  "settings_title": {
+    "message": "Claude Usage Widget — การตั้งค่า"
+  },
+  "menu_title_content": {
+    "message": "เนื้อหาหัวข้อ"
+  },
+  "menu_icon": {
+    "message": "ไอคอน"
+  },
+  "menu_refresh_interval": {
+    "message": "ช่วงเวลารีเฟรช"
+  },
+  "menu_notifications": {
+    "message": "การแจ้งเตือน"
+  },
+  "metric_weekly_pct": {
+    "message": "% รายสัปดาห์"
+  },
+  "metric_weekly_time": {
+    "message": "คงเหลือรายสัปดาห์"
+  },
+  "metric_five_pct": {
+    "message": "% 5 ชั่วโมง"
+  },
+  "metric_five_time": {
+    "message": "คงเหลือ 5 ชั่วโมง"
+  },
+  "mode_hidden": {
+    "message": "ซ่อน"
+  },
+  "mode_text": {
+    "message": "ข้อความ"
+  },
+  "mode_donut": {
+    "message": "วงแหวน"
+  },
+  "icon_custom": {
+    "message": "อิโมจิที่กำหนดเอง"
+  },
+  "icon_donut": {
+    "message": "สรุปแบบวงแหวน"
+  },
+  "icon_none": {
+    "message": "ไม่มีไอคอน"
+  },
+  "refresh_30s": {
+    "message": "30 วินาที"
+  },
+  "refresh_1m": {
+    "message": "1 นาที"
+  },
+  "refresh_5m": {
+    "message": "5 นาที"
+  },
+  "refresh_10m": {
+    "message": "10 นาที"
+  },
+  "notifications_enable": {
+    "message": "เปิดการแจ้งเตือนตามเกณฑ์"
+  },
+  "notifications_warn": {
+    "message": "เตือน"
+  },
+  "notifications_alert": {
+    "message": "แจ้งเตือน"
+  },
+  "notifications_critical": {
+    "message": "วิกฤต"
+  },
+  "notification_warn": {
+    "message": "การใช้งานรายสัปดาห์ถึง $1% — ควบคุมจังหวะหน่อยนะ",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_alert": {
+    "message": "การใช้งานรายสัปดาห์ $1% — เหลือประมาณ 3 วัน",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_critical": {
+    "message": "การใช้งานรายสัปดาห์วิกฤตที่ $1% — พิจารณาหยุดงานที่หนักไว้ก่อน",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "forecast_under": {
+    "message": "↗ คาดการณ์สิ้นสัปดาห์: $1%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "forecast_over": {
+    "message": "⚠ ด้วยจังหวะนี้ จะถึงขีดจำกัดใน ~$1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "forecast_exceeded": {
+    "message": "⚠ เกินขีดจำกัดแล้ว"
+  },
+  "sparkline_empty": {
+    "message": "กำลังสะสมข้อมูลแนวโน้ม…"
+  },
+  "error_no_session": {
+    "message": "ไม่มีเซสชัน claude.ai — โปรดเข้าสู่ระบบผ่านเบราว์เซอร์"
+  },
+  "error_api_parse": {
+    "message": "ข้อผิดพลาดในการแยก JSON การใช้งาน"
+  },
+  "error_org_not_found": {
+    "message": "ไม่พบรหัสองค์กร"
+  }
+}

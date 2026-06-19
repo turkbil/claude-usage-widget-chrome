@@ -1,66 +1,210 @@
 {
-  "app_name":        { "message": "Claude Usage Widget" },
-  "app_description": { "message": "Votre usage hebdo de Claude dans la barre — mêmes chiffres que claude.ai/settings/usage, avec prévision et alertes." },
-
-  "section_weekly":     { "message": "WEEKLY" },
-  "section_five_hour":  { "message": "5-HOUR WINDOW" },
-
-  "label_all_models": { "message": "All models" },
-  "label_sonnet":     { "message": "Sonnet" },
-  "label_usage":      { "message": "Usage" },
-
-  "value_percent":    { "message": "$1%", "placeholders": { "1": { "content": "$1" } } },
-  "remaining_suffix": { "message": "$1 left", "placeholders": { "1": { "content": "$1" } } },
-  "time_days_hours":  { "message": "$1d $2h", "placeholders": { "1": { "content": "$1" }, "2": { "content": "$2" } } },
-  "time_hours_minutes": { "message": "$1h $2m", "placeholders": { "1": { "content": "$1" }, "2": { "content": "$2" } } },
-  "time_minutes":     { "message": "$1m", "placeholders": { "1": { "content": "$1" } } },
-  "time_reset":       { "message": "reset" },
-
-  "footer_updated":   { "message": "Updated: $1", "placeholders": { "1": { "content": "$1" } } },
-
-  "menu_refresh":     { "message": "Refresh now" },
-  "menu_open_usage":  { "message": "Open usage page" },
-
-  "settings_title":   { "message": "Claude Usage Widget — Settings" },
-
-  "menu_title_content":   { "message": "Title content" },
-  "menu_icon":            { "message": "Icon" },
-  "menu_refresh_interval":{ "message": "Refresh interval" },
-  "menu_notifications":   { "message": "Notifications" },
-
-  "metric_weekly_pct":  { "message": "Weekly %" },
-  "metric_weekly_time": { "message": "Weekly remaining" },
-  "metric_five_pct":    { "message": "5-hour %" },
-  "metric_five_time":   { "message": "5-hour remaining" },
-
-  "mode_hidden": { "message": "Hide" },
-  "mode_text":   { "message": "Text" },
-  "mode_donut":  { "message": "Donut" },
-
-  "icon_custom": { "message": "Custom emoji" },
-  "icon_donut":  { "message": "Donut summary" },
-  "icon_none":   { "message": "No icon" },
-
-  "refresh_30s": { "message": "30 seconds" },
-  "refresh_1m":  { "message": "1 minute" },
-  "refresh_5m":  { "message": "5 minutes" },
-  "refresh_10m": { "message": "10 minutes" },
-
-  "notifications_enable":   { "message": "Enable threshold alerts" },
-  "notifications_warn":     { "message": "Warning" },
-  "notifications_alert":    { "message": "Alert" },
-  "notifications_critical": { "message": "Critical" },
-  "notification_warn":      { "message": "Weekly usage hit $1% — pace yourself.", "placeholders": { "1": { "content": "$1" } } },
-  "notification_alert":     { "message": "Weekly usage at $1% — about 3 days left.", "placeholders": { "1": { "content": "$1" } } },
-  "notification_critical":  { "message": "Weekly usage critical at $1% — consider pausing heavy sessions.", "placeholders": { "1": { "content": "$1" } } },
-
-  "forecast_under":    { "message": "↗ Projected end-of-week: $1%", "placeholders": { "1": { "content": "$1" } } },
-  "forecast_over":     { "message": "⚠ At this pace, limit in ~$1", "placeholders": { "1": { "content": "$1" } } },
-  "forecast_exceeded": { "message": "⚠ Limit exceeded" },
-
-  "sparkline_empty":   { "message": "trend data accumulating…" },
-
-  "error_no_session":   { "message": "No claude.ai session — please log in via your browser" },
-  "error_api_parse":    { "message": "Usage JSON parse error" },
-  "error_org_not_found":{ "message": "Organization ID not found" }
+  "app_name": {
+    "message": "Claude Usage Widget"
+  },
+  "app_description": {
+    "message": "Votre consommation hebdomadaire de Claude dans la barre d’outils — la même donnée que claude.ai/settings/usage, avec prévision et alertes de seuil."
+  },
+  "section_weekly": {
+    "message": "HEBDOMADAIRE"
+  },
+  "section_five_hour": {
+    "message": "FENÊTRE DE 5 HEURES"
+  },
+  "label_all_models": {
+    "message": "Tous les modèles"
+  },
+  "label_sonnet": {
+    "message": "Sonnet"
+  },
+  "label_usage": {
+    "message": "Utilisation"
+  },
+  "value_percent": {
+    "message": "$1%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "remaining_suffix": {
+    "message": "$1 restant",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_days_hours": {
+    "message": "$1j $2h",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "time_hours_minutes": {
+    "message": "$1h $2min",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "time_minutes": {
+    "message": "$1min",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_reset": {
+    "message": "réinit."
+  },
+  "footer_updated": {
+    "message": "Mis à jour : $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "menu_refresh": {
+    "message": "Actualiser maintenant"
+  },
+  "menu_open_usage": {
+    "message": "Ouvrir la page d’utilisation"
+  },
+  "settings_title": {
+    "message": "Claude Usage Widget — Paramètres"
+  },
+  "menu_title_content": {
+    "message": "Contenu du titre"
+  },
+  "menu_icon": {
+    "message": "Icône"
+  },
+  "menu_refresh_interval": {
+    "message": "Intervalle d’actualisation"
+  },
+  "menu_notifications": {
+    "message": "Notifications"
+  },
+  "metric_weekly_pct": {
+    "message": "% hebdo"
+  },
+  "metric_weekly_time": {
+    "message": "Restant hebdo"
+  },
+  "metric_five_pct": {
+    "message": "% sur 5 h"
+  },
+  "metric_five_time": {
+    "message": "Restant sur 5 h"
+  },
+  "mode_hidden": {
+    "message": "Masquer"
+  },
+  "mode_text": {
+    "message": "Texte"
+  },
+  "mode_donut": {
+    "message": "Anneau"
+  },
+  "icon_custom": {
+    "message": "Emoji personnalisé"
+  },
+  "icon_donut": {
+    "message": "Résumé en anneau"
+  },
+  "icon_none": {
+    "message": "Aucune icône"
+  },
+  "refresh_30s": {
+    "message": "30 secondes"
+  },
+  "refresh_1m": {
+    "message": "1 minute"
+  },
+  "refresh_5m": {
+    "message": "5 minutes"
+  },
+  "refresh_10m": {
+    "message": "10 minutes"
+  },
+  "notifications_enable": {
+    "message": "Activer les alertes de seuil"
+  },
+  "notifications_warn": {
+    "message": "Avertissement"
+  },
+  "notifications_alert": {
+    "message": "Alerte"
+  },
+  "notifications_critical": {
+    "message": "Critique"
+  },
+  "notification_warn": {
+    "message": "Utilisation hebdomadaire à $1% — gérez votre rythme.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_alert": {
+    "message": "Utilisation hebdomadaire à $1% — environ 3 jours restants.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_critical": {
+    "message": "Utilisation hebdomadaire critique à $1% — envisagez de suspendre les sessions intensives.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "forecast_under": {
+    "message": "↗ Prévision en fin de semaine : $1%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "forecast_over": {
+    "message": "⚠ À ce rythme, limite dans ~$1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "forecast_exceeded": {
+    "message": "⚠ Limite dépassée"
+  },
+  "sparkline_empty": {
+    "message": "accumulation des données de tendance…"
+  },
+  "error_no_session": {
+    "message": "Aucune session claude.ai — veuillez vous connecter via votre navigateur"
+  },
+  "error_api_parse": {
+    "message": "Erreur d’analyse du JSON d’utilisation"
+  },
+  "error_org_not_found": {
+    "message": "ID d’organisation introuvable"
+  }
 }

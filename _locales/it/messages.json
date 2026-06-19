@@ -3,22 +3,22 @@
     "message": "Claude Usage Widget"
   },
   "app_description": {
-    "message": "Tu uso semanal de Claude en la barra de herramientas — el mismo dato que claude.ai/settings/usage, con previsión y alertas de umbral."
+    "message": "Il tuo utilizzo settimanale di Claude nella barra degli strumenti — lo stesso dato di claude.ai/settings/usage, con previsione e avvisi di soglia."
   },
   "section_weekly": {
-    "message": "SEMANAL"
+    "message": "SETTIMANALE"
   },
   "section_five_hour": {
-    "message": "VENTANA DE 5 HORAS"
+    "message": "FINESTRA DI 5 ORE"
   },
   "label_all_models": {
-    "message": "Todos los modelos"
+    "message": "Tutti i modelli"
   },
   "label_sonnet": {
     "message": "Sonnet"
   },
   "label_usage": {
-    "message": "Uso"
+    "message": "Utilizzo"
   },
   "value_percent": {
     "message": "$1%",
@@ -29,7 +29,7 @@
     }
   },
   "remaining_suffix": {
-    "message": "$1 restante",
+    "message": "$1 rimasto",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -37,7 +37,7 @@
     }
   },
   "time_days_hours": {
-    "message": "$1d $2h",
+    "message": "$1g $2h",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -67,10 +67,10 @@
     }
   },
   "time_reset": {
-    "message": "reinicio"
+    "message": "reset"
   },
   "footer_updated": {
-    "message": "Actualizado: $1",
+    "message": "Aggiornato: $1",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -78,82 +78,82 @@
     }
   },
   "menu_refresh": {
-    "message": "Actualizar ahora"
+    "message": "Aggiorna ora"
   },
   "menu_open_usage": {
-    "message": "Abrir página de uso"
+    "message": "Apri pagina di utilizzo"
   },
   "settings_title": {
-    "message": "Claude Usage Widget — Ajustes"
+    "message": "Claude Usage Widget — Impostazioni"
   },
   "menu_title_content": {
-    "message": "Contenido del título"
+    "message": "Contenuto del titolo"
   },
   "menu_icon": {
-    "message": "Icono"
+    "message": "Icona"
   },
   "menu_refresh_interval": {
-    "message": "Intervalo de actualización"
+    "message": "Intervallo di aggiornamento"
   },
   "menu_notifications": {
-    "message": "Notificaciones"
+    "message": "Notifiche"
   },
   "metric_weekly_pct": {
-    "message": "% semanal"
+    "message": "% settimanale"
   },
   "metric_weekly_time": {
-    "message": "Restante semanal"
+    "message": "Rimanente settimanale"
   },
   "metric_five_pct": {
-    "message": "% de 5 horas"
+    "message": "% su 5 ore"
   },
   "metric_five_time": {
-    "message": "Restante de 5 horas"
+    "message": "Rimanente su 5 ore"
   },
   "mode_hidden": {
-    "message": "Ocultar"
+    "message": "Nascondi"
   },
   "mode_text": {
-    "message": "Texto"
+    "message": "Testo"
   },
   "mode_donut": {
-    "message": "Anillo"
+    "message": "Anello"
   },
   "icon_custom": {
-    "message": "Emoji personalizado"
+    "message": "Emoji personalizzata"
   },
   "icon_donut": {
-    "message": "Resumen en anillo"
+    "message": "Riepilogo ad anello"
   },
   "icon_none": {
-    "message": "Sin icono"
+    "message": "Nessuna icona"
   },
   "refresh_30s": {
-    "message": "30 segundos"
+    "message": "30 secondi"
   },
   "refresh_1m": {
     "message": "1 minuto"
   },
   "refresh_5m": {
-    "message": "5 minutos"
+    "message": "5 minuti"
   },
   "refresh_10m": {
-    "message": "10 minutos"
+    "message": "10 minuti"
   },
   "notifications_enable": {
-    "message": "Activar alertas de umbral"
+    "message": "Attiva avvisi di soglia"
   },
   "notifications_warn": {
-    "message": "Aviso"
+    "message": "Avviso"
   },
   "notifications_alert": {
-    "message": "Alerta"
+    "message": "Allerta"
   },
   "notifications_critical": {
-    "message": "Crítico"
+    "message": "Critico"
   },
   "notification_warn": {
-    "message": "El uso semanal llegó al $1% — modera el ritmo.",
+    "message": "Utilizzo settimanale al $1% — modera il ritmo.",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -161,7 +161,7 @@
     }
   },
   "notification_alert": {
-    "message": "Uso semanal al $1% — quedan unos 3 días.",
+    "message": "Utilizzo settimanale al $1% — restano circa 3 giorni.",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -169,7 +169,7 @@
     }
   },
   "notification_critical": {
-    "message": "Uso semanal crítico al $1% — considera pausar las sesiones intensas.",
+    "message": "Utilizzo settimanale critico al $1% — valuta di sospendere le sessioni intense.",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -177,7 +177,7 @@
     }
   },
   "forecast_under": {
-    "message": "↗ Previsión a fin de semana: $1%",
+    "message": "↗ Previsione a fine settimana: $1%",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -185,7 +185,7 @@
     }
   },
   "forecast_over": {
-    "message": "⚠ A este ritmo, límite en ~$1",
+    "message": "⚠ A questo ritmo, limite tra ~$1",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -193,18 +193,18 @@
     }
   },
   "forecast_exceeded": {
-    "message": "⚠ Límite superado"
+    "message": "⚠ Limite superato"
   },
   "sparkline_empty": {
-    "message": "acumulando datos de tendencia…"
+    "message": "raccolta dei dati di tendenza…"
   },
   "error_no_session": {
-    "message": "Sin sesión de claude.ai — inicia sesión en tu navegador"
+    "message": "Nessuna sessione claude.ai — accedi dal browser"
   },
   "error_api_parse": {
-    "message": "Error al analizar el JSON de uso"
+    "message": "Errore di analisi del JSON di utilizzo"
   },
   "error_org_not_found": {
-    "message": "No se encontró el ID de la organización"
+    "message": "ID organizzazione non trovato"
   }
 }

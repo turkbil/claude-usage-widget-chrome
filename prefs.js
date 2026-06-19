@@ -1,17 +1,9 @@
 // Thin wrapper around chrome.storage.local for preferences + cached snapshot.
 
 export const defaultPrefs = {
-  // §01 title content modes: 'hidden' | 'text' | 'donut'
+  // §01 toolbar weekly-% display mode: 'hidden' | 'text' | 'donut'
   weeklyPctMode:    'text',
-  weeklyTimeMode:   'hidden',
-  fiveHourPctMode:  'hidden',
-  fiveHourTimeMode: 'hidden',
-
-  // colors
   weeklyPctColor:    '#d68c45',
-  weeklyTimeColor:   '#d68c45',
-  fiveHourPctColor:  '#5dc97f',
-  fiveHourTimeColor: '#5dc97f',
 
   // §02 icon
   iconType:  'emoji',   // 'emoji' | 'custom' | 'donut' | 'none'

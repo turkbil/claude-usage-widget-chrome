@@ -2,11 +2,12 @@ import { defaultPrefs, getPrefs, setPrefs } from './prefs.js';
 
 const i18n = (k) => chrome.i18n.getMessage(k) || k;
 
+// Only the weekly-% metric actually drives the toolbar icon (see icon-draw.js,
+// which reads just weeklyPctMode + weeklyPctColor). The other three metric rows
+// wrote prefs that nothing ever read — clicking them did nothing visible — so
+// they were removed.
 const METRICS = [
   { key: 'weeklyPctMode',    label: 'metric_weekly_pct',  colorKey: 'weeklyPctColor'    },
-  { key: 'weeklyTimeMode',   label: 'metric_weekly_time', colorKey: 'weeklyTimeColor'   },
-  { key: 'fiveHourPctMode',  label: 'metric_five_pct',    colorKey: 'fiveHourPctColor'  },
-  { key: 'fiveHourTimeMode', label: 'metric_five_time',   colorKey: 'fiveHourTimeColor' },
 ];
 const PALETTE = ['#d68c45','#5dc97f','#d4c25a','#d6645a','#a87fd6','#7fb8b8','#f4eee3','#8a8378'];
 const PRESET_EMOJIS = ['🤖','🧠','⚡','✨','◉','●','▲','◐'];

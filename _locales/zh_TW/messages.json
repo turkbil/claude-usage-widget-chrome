@@ -3,22 +3,22 @@
     "message": "Claude Usage Widget"
   },
   "app_description": {
-    "message": "Tu uso semanal de Claude en la barra de herramientas — el mismo dato que claude.ai/settings/usage, con previsión y alertas de umbral."
+    "message": "在工具列顯示你的每週 Claude 用量 — 與 claude.ai/settings/usage 相同的數字，含預測與門檻提醒。"
   },
   "section_weekly": {
-    "message": "SEMANAL"
+    "message": "每週"
   },
   "section_five_hour": {
-    "message": "VENTANA DE 5 HORAS"
+    "message": "5 小時視窗"
   },
   "label_all_models": {
-    "message": "Todos los modelos"
+    "message": "所有模型"
   },
   "label_sonnet": {
     "message": "Sonnet"
   },
   "label_usage": {
-    "message": "Uso"
+    "message": "用量"
   },
   "value_percent": {
     "message": "$1%",
@@ -29,7 +29,7 @@
     }
   },
   "remaining_suffix": {
-    "message": "$1 restante",
+    "message": "剩餘 $1",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -37,7 +37,7 @@
     }
   },
   "time_days_hours": {
-    "message": "$1d $2h",
+    "message": "$1天$2時",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -48,7 +48,7 @@
     }
   },
   "time_hours_minutes": {
-    "message": "$1h $2min",
+    "message": "$1時$2分",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -59,7 +59,7 @@
     }
   },
   "time_minutes": {
-    "message": "$1min",
+    "message": "$1分",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -67,10 +67,10 @@
     }
   },
   "time_reset": {
-    "message": "reinicio"
+    "message": "重設"
   },
   "footer_updated": {
-    "message": "Actualizado: $1",
+    "message": "更新時間：$1",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -78,82 +78,82 @@
     }
   },
   "menu_refresh": {
-    "message": "Actualizar ahora"
+    "message": "立即重新整理"
   },
   "menu_open_usage": {
-    "message": "Abrir página de uso"
+    "message": "開啟用量頁面"
   },
   "settings_title": {
-    "message": "Claude Usage Widget — Ajustes"
+    "message": "Claude Usage Widget — 設定"
   },
   "menu_title_content": {
-    "message": "Contenido del título"
+    "message": "標題內容"
   },
   "menu_icon": {
-    "message": "Icono"
+    "message": "圖示"
   },
   "menu_refresh_interval": {
-    "message": "Intervalo de actualización"
+    "message": "重新整理間隔"
   },
   "menu_notifications": {
-    "message": "Notificaciones"
+    "message": "通知"
   },
   "metric_weekly_pct": {
-    "message": "% semanal"
+    "message": "每週 %"
   },
   "metric_weekly_time": {
-    "message": "Restante semanal"
+    "message": "每週剩餘"
   },
   "metric_five_pct": {
-    "message": "% de 5 horas"
+    "message": "5 小時 %"
   },
   "metric_five_time": {
-    "message": "Restante de 5 horas"
+    "message": "5 小時剩餘"
   },
   "mode_hidden": {
-    "message": "Ocultar"
+    "message": "隱藏"
   },
   "mode_text": {
-    "message": "Texto"
+    "message": "文字"
   },
   "mode_donut": {
-    "message": "Anillo"
+    "message": "環形"
   },
   "icon_custom": {
-    "message": "Emoji personalizado"
+    "message": "自訂表情符號"
   },
   "icon_donut": {
-    "message": "Resumen en anillo"
+    "message": "環形摘要"
   },
   "icon_none": {
-    "message": "Sin icono"
+    "message": "無圖示"
   },
   "refresh_30s": {
-    "message": "30 segundos"
+    "message": "30 秒"
   },
   "refresh_1m": {
-    "message": "1 minuto"
+    "message": "1 分鐘"
   },
   "refresh_5m": {
-    "message": "5 minutos"
+    "message": "5 分鐘"
   },
   "refresh_10m": {
-    "message": "10 minutos"
+    "message": "10 分鐘"
   },
   "notifications_enable": {
-    "message": "Activar alertas de umbral"
+    "message": "啟用門檻提醒"
   },
   "notifications_warn": {
-    "message": "Aviso"
+    "message": "提醒"
   },
   "notifications_alert": {
-    "message": "Alerta"
+    "message": "警示"
   },
   "notifications_critical": {
-    "message": "Crítico"
+    "message": "嚴重"
   },
   "notification_warn": {
-    "message": "El uso semanal llegó al $1% — modera el ritmo.",
+    "message": "每週用量已達 $1% — 請放慢步調。",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -161,7 +161,7 @@
     }
   },
   "notification_alert": {
-    "message": "Uso semanal al $1% — quedan unos 3 días.",
+    "message": "每週用量 $1% — 約剩 3 天。",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -169,7 +169,7 @@
     }
   },
   "notification_critical": {
-    "message": "Uso semanal crítico al $1% — considera pausar las sesiones intensas.",
+    "message": "每週用量嚴重達 $1% — 建議暫停高負載工作。",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -177,7 +177,7 @@
     }
   },
   "forecast_under": {
-    "message": "↗ Previsión a fin de semana: $1%",
+    "message": "↗ 週末預測：$1%",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -185,7 +185,7 @@
     }
   },
   "forecast_over": {
-    "message": "⚠ A este ritmo, límite en ~$1",
+    "message": "⚠ 依此步調，約 $1 後達上限",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -193,18 +193,18 @@
     }
   },
   "forecast_exceeded": {
-    "message": "⚠ Límite superado"
+    "message": "⚠ 已超過上限"
   },
   "sparkline_empty": {
-    "message": "acumulando datos de tendencia…"
+    "message": "正在累積趨勢資料…"
   },
   "error_no_session": {
-    "message": "Sin sesión de claude.ai — inicia sesión en tu navegador"
+    "message": "沒有 claude.ai 工作階段 — 請在瀏覽器登入"
   },
   "error_api_parse": {
-    "message": "Error al analizar el JSON de uso"
+    "message": "用量 JSON 解析錯誤"
   },
   "error_org_not_found": {
-    "message": "No se encontró el ID de la organización"
+    "message": "找不到組織 ID"
   }
 }

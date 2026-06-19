@@ -3,22 +3,22 @@
     "message": "Claude Usage Widget"
   },
   "app_description": {
-    "message": "Tu uso semanal de Claude en la barra de herramientas — el mismo dato que claude.ai/settings/usage, con previsión y alertas de umbral."
+    "message": "Utilizarea ta săptămânală Claude în bara de instrumente — același număr ca pe claude.ai/settings/usage, cu prognoză și alerte de prag."
   },
   "section_weekly": {
-    "message": "SEMANAL"
+    "message": "SĂPTĂMÂNAL"
   },
   "section_five_hour": {
-    "message": "VENTANA DE 5 HORAS"
+    "message": "FEREASTRĂ DE 5 ORE"
   },
   "label_all_models": {
-    "message": "Todos los modelos"
+    "message": "Toate modelele"
   },
   "label_sonnet": {
     "message": "Sonnet"
   },
   "label_usage": {
-    "message": "Uso"
+    "message": "Utilizare"
   },
   "value_percent": {
     "message": "$1%",
@@ -29,7 +29,7 @@
     }
   },
   "remaining_suffix": {
-    "message": "$1 restante",
+    "message": "$1 rămas",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -37,7 +37,7 @@
     }
   },
   "time_days_hours": {
-    "message": "$1d $2h",
+    "message": "$1z $2h",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -48,7 +48,7 @@
     }
   },
   "time_hours_minutes": {
-    "message": "$1h $2min",
+    "message": "$1h $2m",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -59,7 +59,7 @@
     }
   },
   "time_minutes": {
-    "message": "$1min",
+    "message": "$1m",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -67,10 +67,10 @@
     }
   },
   "time_reset": {
-    "message": "reinicio"
+    "message": "resetare"
   },
   "footer_updated": {
-    "message": "Actualizado: $1",
+    "message": "Actualizat: $1",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -78,82 +78,82 @@
     }
   },
   "menu_refresh": {
-    "message": "Actualizar ahora"
+    "message": "Reîmprospătează acum"
   },
   "menu_open_usage": {
-    "message": "Abrir página de uso"
+    "message": "Deschide pagina de utilizare"
   },
   "settings_title": {
-    "message": "Claude Usage Widget — Ajustes"
+    "message": "Claude Usage Widget — Setări"
   },
   "menu_title_content": {
-    "message": "Contenido del título"
+    "message": "Conținutul titlului"
   },
   "menu_icon": {
-    "message": "Icono"
+    "message": "Pictogramă"
   },
   "menu_refresh_interval": {
-    "message": "Intervalo de actualización"
+    "message": "Interval de reîmprospătare"
   },
   "menu_notifications": {
-    "message": "Notificaciones"
+    "message": "Notificări"
   },
   "metric_weekly_pct": {
-    "message": "% semanal"
+    "message": "% săptămânal"
   },
   "metric_weekly_time": {
-    "message": "Restante semanal"
+    "message": "Rămas săptămânal"
   },
   "metric_five_pct": {
-    "message": "% de 5 horas"
+    "message": "% pe 5 ore"
   },
   "metric_five_time": {
-    "message": "Restante de 5 horas"
+    "message": "Rămas pe 5 ore"
   },
   "mode_hidden": {
-    "message": "Ocultar"
+    "message": "Ascunde"
   },
   "mode_text": {
-    "message": "Texto"
+    "message": "Text"
   },
   "mode_donut": {
-    "message": "Anillo"
+    "message": "Inel"
   },
   "icon_custom": {
-    "message": "Emoji personalizado"
+    "message": "Emoji personalizat"
   },
   "icon_donut": {
-    "message": "Resumen en anillo"
+    "message": "Rezumat inel"
   },
   "icon_none": {
-    "message": "Sin icono"
+    "message": "Fără pictogramă"
   },
   "refresh_30s": {
-    "message": "30 segundos"
+    "message": "30 de secunde"
   },
   "refresh_1m": {
-    "message": "1 minuto"
+    "message": "1 minut"
   },
   "refresh_5m": {
-    "message": "5 minutos"
+    "message": "5 minute"
   },
   "refresh_10m": {
-    "message": "10 minutos"
+    "message": "10 minute"
   },
   "notifications_enable": {
-    "message": "Activar alertas de umbral"
+    "message": "Activează alertele de prag"
   },
   "notifications_warn": {
-    "message": "Aviso"
+    "message": "Avertisment"
   },
   "notifications_alert": {
-    "message": "Alerta"
+    "message": "Alertă"
   },
   "notifications_critical": {
-    "message": "Crítico"
+    "message": "Critic"
   },
   "notification_warn": {
-    "message": "El uso semanal llegó al $1% — modera el ritmo.",
+    "message": "Utilizarea săptămânală a atins $1% — păstrează ritmul.",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -161,7 +161,7 @@
     }
   },
   "notification_alert": {
-    "message": "Uso semanal al $1% — quedan unos 3 días.",
+    "message": "Utilizare săptămânală la $1% — mai sunt cam 3 zile.",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -169,7 +169,7 @@
     }
   },
   "notification_critical": {
-    "message": "Uso semanal crítico al $1% — considera pausar las sesiones intensas.",
+    "message": "Utilizare săptămânală critică la $1% — ia în calcul oprirea sesiunilor intense.",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -177,7 +177,7 @@
     }
   },
   "forecast_under": {
-    "message": "↗ Previsión a fin de semana: $1%",
+    "message": "↗ Prognoză la final de săptămână: $1%",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -185,7 +185,7 @@
     }
   },
   "forecast_over": {
-    "message": "⚠ A este ritmo, límite en ~$1",
+    "message": "⚠ În acest ritm, limită în ~$1",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -193,18 +193,18 @@
     }
   },
   "forecast_exceeded": {
-    "message": "⚠ Límite superado"
+    "message": "⚠ Limită depășită"
   },
   "sparkline_empty": {
-    "message": "acumulando datos de tendencia…"
+    "message": "se acumulează date de tendință…"
   },
   "error_no_session": {
-    "message": "Sin sesión de claude.ai — inicia sesión en tu navegador"
+    "message": "Nicio sesiune claude.ai — autentifică-te în browser"
   },
   "error_api_parse": {
-    "message": "Error al analizar el JSON de uso"
+    "message": "Eroare la analizarea JSON-ului de utilizare"
   },
   "error_org_not_found": {
-    "message": "No se encontró el ID de la organización"
+    "message": "ID-ul organizației nu a fost găsit"
   }
 }

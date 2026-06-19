@@ -1,0 +1,210 @@
+{
+  "app_name": {
+    "message": "Claude Usage Widget"
+  },
+  "app_description": {
+    "message": "Ваше недельное использование Claude на панели инструментов — те же данные, что на claude.ai/settings/usage, с прогнозом и оповещениями о порогах."
+  },
+  "section_weekly": {
+    "message": "ЗА НЕДЕЛЮ"
+  },
+  "section_five_hour": {
+    "message": "5-ЧАСОВОЕ ОКНО"
+  },
+  "label_all_models": {
+    "message": "Все модели"
+  },
+  "label_sonnet": {
+    "message": "Sonnet"
+  },
+  "label_usage": {
+    "message": "Использование"
+  },
+  "value_percent": {
+    "message": "$1%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "remaining_suffix": {
+    "message": "осталось $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_days_hours": {
+    "message": "$1д $2ч",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "time_hours_minutes": {
+    "message": "$1ч $2м",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "time_minutes": {
+    "message": "$1м",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_reset": {
+    "message": "сброс"
+  },
+  "footer_updated": {
+    "message": "Обновлено: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "menu_refresh": {
+    "message": "Обновить сейчас"
+  },
+  "menu_open_usage": {
+    "message": "Открыть страницу использования"
+  },
+  "settings_title": {
+    "message": "Claude Usage Widget — Настройки"
+  },
+  "menu_title_content": {
+    "message": "Содержимое значка"
+  },
+  "menu_icon": {
+    "message": "Иконка"
+  },
+  "menu_refresh_interval": {
+    "message": "Интервал обновления"
+  },
+  "menu_notifications": {
+    "message": "Уведомления"
+  },
+  "metric_weekly_pct": {
+    "message": "% за неделю"
+  },
+  "metric_weekly_time": {
+    "message": "Остаток за неделю"
+  },
+  "metric_five_pct": {
+    "message": "% за 5 часов"
+  },
+  "metric_five_time": {
+    "message": "Остаток за 5 часов"
+  },
+  "mode_hidden": {
+    "message": "Скрыть"
+  },
+  "mode_text": {
+    "message": "Текст"
+  },
+  "mode_donut": {
+    "message": "Кольцо"
+  },
+  "icon_custom": {
+    "message": "Свой эмодзи"
+  },
+  "icon_donut": {
+    "message": "Кольцевая сводка"
+  },
+  "icon_none": {
+    "message": "Без иконки"
+  },
+  "refresh_30s": {
+    "message": "30 секунд"
+  },
+  "refresh_1m": {
+    "message": "1 минута"
+  },
+  "refresh_5m": {
+    "message": "5 минут"
+  },
+  "refresh_10m": {
+    "message": "10 минут"
+  },
+  "notifications_enable": {
+    "message": "Включить пороговые оповещения"
+  },
+  "notifications_warn": {
+    "message": "Предупреждение"
+  },
+  "notifications_alert": {
+    "message": "Тревога"
+  },
+  "notifications_critical": {
+    "message": "Критично"
+  },
+  "notification_warn": {
+    "message": "Недельное использование достигло $1% — снизьте темп.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_alert": {
+    "message": "Недельное использование $1% — осталось около 3 дней.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_critical": {
+    "message": "Недельное использование критично — $1% — стоит приостановить тяжёлые сессии.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "forecast_under": {
+    "message": "↗ Прогноз к концу недели: $1%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "forecast_over": {
+    "message": "⚠ При таком темпе лимит через ~$1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "forecast_exceeded": {
+    "message": "⚠ Лимит превышен"
+  },
+  "sparkline_empty": {
+    "message": "накопление данных тренда…"
+  },
+  "error_no_session": {
+    "message": "Нет сессии claude.ai — войдите в браузере"
+  },
+  "error_api_parse": {
+    "message": "Ошибка разбора JSON использования"
+  },
+  "error_org_not_found": {
+    "message": "ID организации не найден"
+  }
+}

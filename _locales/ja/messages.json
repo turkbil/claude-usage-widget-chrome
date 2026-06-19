@@ -3,22 +3,22 @@
     "message": "Claude Usage Widget"
   },
   "app_description": {
-    "message": "Tu uso semanal de Claude en la barra de herramientas — el mismo dato que claude.ai/settings/usage, con previsión y alertas de umbral."
+    "message": "今週のClaude使用量をツールバーに表示 — claude.ai/settings/usage と同じ数値、予測としきい値アラート付き。"
   },
   "section_weekly": {
-    "message": "SEMANAL"
+    "message": "週間"
   },
   "section_five_hour": {
-    "message": "VENTANA DE 5 HORAS"
+    "message": "5時間ウィンドウ"
   },
   "label_all_models": {
-    "message": "Todos los modelos"
+    "message": "すべてのモデル"
   },
   "label_sonnet": {
     "message": "Sonnet"
   },
   "label_usage": {
-    "message": "Uso"
+    "message": "使用量"
   },
   "value_percent": {
     "message": "$1%",
@@ -29,7 +29,7 @@
     }
   },
   "remaining_suffix": {
-    "message": "$1 restante",
+    "message": "残り $1",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -37,7 +37,7 @@
     }
   },
   "time_days_hours": {
-    "message": "$1d $2h",
+    "message": "$1日$2時間",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -48,7 +48,7 @@
     }
   },
   "time_hours_minutes": {
-    "message": "$1h $2min",
+    "message": "$1時間$2分",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -59,7 +59,7 @@
     }
   },
   "time_minutes": {
-    "message": "$1min",
+    "message": "$1分",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -67,10 +67,10 @@
     }
   },
   "time_reset": {
-    "message": "reinicio"
+    "message": "リセット"
   },
   "footer_updated": {
-    "message": "Actualizado: $1",
+    "message": "更新: $1",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -78,82 +78,82 @@
     }
   },
   "menu_refresh": {
-    "message": "Actualizar ahora"
+    "message": "今すぐ更新"
   },
   "menu_open_usage": {
-    "message": "Abrir página de uso"
+    "message": "使用状況ページを開く"
   },
   "settings_title": {
-    "message": "Claude Usage Widget — Ajustes"
+    "message": "Claude Usage Widget — 設定"
   },
   "menu_title_content": {
-    "message": "Contenido del título"
+    "message": "タイトルの内容"
   },
   "menu_icon": {
-    "message": "Icono"
+    "message": "アイコン"
   },
   "menu_refresh_interval": {
-    "message": "Intervalo de actualización"
+    "message": "更新間隔"
   },
   "menu_notifications": {
-    "message": "Notificaciones"
+    "message": "通知"
   },
   "metric_weekly_pct": {
-    "message": "% semanal"
+    "message": "週間 %"
   },
   "metric_weekly_time": {
-    "message": "Restante semanal"
+    "message": "週間の残り"
   },
   "metric_five_pct": {
-    "message": "% de 5 horas"
+    "message": "5時間 %"
   },
   "metric_five_time": {
-    "message": "Restante de 5 horas"
+    "message": "5時間の残り"
   },
   "mode_hidden": {
-    "message": "Ocultar"
+    "message": "非表示"
   },
   "mode_text": {
-    "message": "Texto"
+    "message": "テキスト"
   },
   "mode_donut": {
-    "message": "Anillo"
+    "message": "ドーナツ"
   },
   "icon_custom": {
-    "message": "Emoji personalizado"
+    "message": "カスタム絵文字"
   },
   "icon_donut": {
-    "message": "Resumen en anillo"
+    "message": "ドーナツ表示"
   },
   "icon_none": {
-    "message": "Sin icono"
+    "message": "アイコンなし"
   },
   "refresh_30s": {
-    "message": "30 segundos"
+    "message": "30秒"
   },
   "refresh_1m": {
-    "message": "1 minuto"
+    "message": "1分"
   },
   "refresh_5m": {
-    "message": "5 minutos"
+    "message": "5分"
   },
   "refresh_10m": {
-    "message": "10 minutos"
+    "message": "10分"
   },
   "notifications_enable": {
-    "message": "Activar alertas de umbral"
+    "message": "しきい値アラートを有効化"
   },
   "notifications_warn": {
-    "message": "Aviso"
+    "message": "警告"
   },
   "notifications_alert": {
-    "message": "Alerta"
+    "message": "アラート"
   },
   "notifications_critical": {
-    "message": "Crítico"
+    "message": "重大"
   },
   "notification_warn": {
-    "message": "El uso semanal llegó al $1% — modera el ritmo.",
+    "message": "週間使用量が $1% に到達 — ペースを抑えましょう。",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -161,7 +161,7 @@
     }
   },
   "notification_alert": {
-    "message": "Uso semanal al $1% — quedan unos 3 días.",
+    "message": "週間使用量 $1% — 残り約3日です。",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -169,7 +169,7 @@
     }
   },
   "notification_critical": {
-    "message": "Uso semanal crítico al $1% — considera pausar las sesiones intensas.",
+    "message": "週間使用量が $1% で危険域 — 重い作業の一時停止を検討してください。",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -177,7 +177,7 @@
     }
   },
   "forecast_under": {
-    "message": "↗ Previsión a fin de semana: $1%",
+    "message": "↗ 週末の予測: $1%",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -185,7 +185,7 @@
     }
   },
   "forecast_over": {
-    "message": "⚠ A este ritmo, límite en ~$1",
+    "message": "⚠ このペースでは約 $1 で上限到達",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -193,18 +193,18 @@
     }
   },
   "forecast_exceeded": {
-    "message": "⚠ Límite superado"
+    "message": "⚠ 上限を超過"
   },
   "sparkline_empty": {
-    "message": "acumulando datos de tendencia…"
+    "message": "トレンドデータを収集中…"
   },
   "error_no_session": {
-    "message": "Sin sesión de claude.ai — inicia sesión en tu navegador"
+    "message": "claude.ai セッションがありません — ブラウザでログインしてください"
   },
   "error_api_parse": {
-    "message": "Error al analizar el JSON de uso"
+    "message": "使用量JSONの解析エラー"
   },
   "error_org_not_found": {
-    "message": "No se encontró el ID de la organización"
+    "message": "組織IDが見つかりません"
   }
 }
