@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Marquee 1400x560</title>
+<style>
+  html,body{margin:0;width:1400px;height:560px;overflow:hidden}
+  body{
+    background:radial-gradient(120% 130% at 72% 38%, #3a2a1d 0%, #1a1410 58%, #100a06 100%);
+    display:grid;grid-template-columns:1.15fr 1fr;align-items:center;
+    padding:0 78px;box-sizing:border-box;
+    font:16px -apple-system,"Segoe UI","Helvetica Neue",sans-serif;color:#f4eee3;
+  }
+  .brand{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+  .brand .mark{width:46px;height:46px}
+  .brand .nm{font:700 22px -apple-system,"Segoe UI",sans-serif;letter-spacing:-0.01em}
+  .brand .nm small{display:block;font:600 12px "SF Mono",monospace;letter-spacing:.16em;color:#8a8378;text-transform:uppercase;margin-top:3px}
+  h1{font:800 60px -apple-system,"Segoe UI",sans-serif;letter-spacing:-0.025em;line-height:1.03;margin:0 0 20px}
+  h1 em{color:#d68c45;font-style:normal}
+  p.sub{font-size:20px;line-height:1.5;color:#d4cfc4;margin:0 0 28px;max-width:520px}
+  ul{list-style:none;padding:0;margin:0;font-size:16px;color:#cfc9bd;display:grid;grid-template-columns:1fr 1fr;gap:9px 26px;max-width:560px}
+  ul li{display:flex;align-items:baseline;gap:10px}
+  ul li::before{content:"";width:7px;height:7px;border-radius:50%;background:#d68c45;flex:0 0 7px;transform:translateY(-2px)}
+  .stage{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px}
+  .bar{display:flex;align-items:center;gap:10px;background:#26211c;border:1px solid rgba(255,255,255,.08);border-radius:13px;padding:9px 12px;box-shadow:0 18px 50px rgba(0,0,0,.5)}
+  .bar .dot{width:11px;height:11px;border-radius:50%}
+  .bar .urlbox{display:flex;align-items:center;gap:9px;background:#1a1611;border-radius:9px;padding:8px 14px;color:#b7b0a4;font-size:14px;min-width:230px}
+  .bar .pin{width:36px;height:36px;border-radius:9px;background:rgba(214,140,69,.16);display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 1.5px rgba(214,140,69,.55)}
+  .hero-donut{position:relative;filter:drop-shadow(0 26px 60px rgba(0,0,0,.55))}
+  .hero-donut .pct{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .hero-donut .pct b{font:800 56px -apple-system,"Segoe UI",sans-serif;color:#f4eee3;line-height:1}
+  .hero-donut .pct span{font:600 13px "SF Mono",monospace;letter-spacing:.1em;color:#8a8378;margin-top:6px}
+  .legend{font-size:15px;color:#b7b0a4}
+  .legend b{color:#5dc97f}
+</style>
+</head>
+<body>
+  <div class="copy">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 44 44">
+        <circle cx="22" cy="22" r="17" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="6"/>
+        <circle cx="22" cy="22" r="17" fill="none" stroke="#d68c45" stroke-width="6" stroke-linecap="round"
+                stroke-dasharray="106.8" stroke-dashoffset="39.5" transform="rotate(-90 22 22)"/>
+      </svg>
+      <div class="nm">Claude Usage Widget<small>Weekly limit · in your toolbar</small></div>
+    </div>
+    <h1>Your weekly Claude usage,<br><em>right in the toolbar.</em></h1>
+    <p class="sub">The same number you see on claude.ai/settings/usage — at a glance, with forecast and threshold alerts. No tab-switching.</p>
+    <ul>
+      <li>Weekly % donut by the URL bar</li>
+      <li>Burn-rate forecast</li>
+      <li>7-day trend chart</li>
+      <li>Warn / alert / critical alerts</li>
+      <li>15 languages, auto-detected</li>
+      <li>Open-source · no telemetry</li>
+    </ul>
+  </div>
+
+  <div class="stage">
+    <div class="bar">
+      <span class="dot" style="background:#ff5f57"></span>
+      <span class="dot" style="background:#febc2e"></span>
+      <span class="dot" style="background:#28c840"></span>
+      <div class="urlbox">🔒 claude.ai</div>
+      <div class="pin">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="8.5" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="3.2"/>
+          <circle cx="12" cy="12" r="8.5" fill="none" stroke="#d68c45" stroke-width="3.2" stroke-linecap="round"
+                  stroke-dasharray="53.4" stroke-dashoffset="19.7" transform="rotate(-90 12 12)"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="hero-donut">
+      <svg width="240" height="240" viewBox="0 0 240 240">
+        <circle cx="120" cy="120" r="96" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="20"/>
+        <circle cx="120" cy="120" r="96" fill="none" stroke="#d68c45" stroke-width="20" stroke-linecap="round"
+                stroke-dasharray="603.2" stroke-dashoffset="223.2" transform="rotate(-90 120 120)"/>
+      </svg>
+      <div class="pct"><b>63%</b><span>THIS WEEK</span></div>
+    </div>
+    <div class="legend">↗ Week-end forecast <b>64%</b> · 3 days left</div>
+  </div>
+</body>
+</html>
