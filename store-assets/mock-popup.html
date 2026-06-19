@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Popup mock</title>
+  <link rel="stylesheet" href="../popup.css">
+  <style>
+    /* Center the popup on a dark backdrop matching macOS Sequoia desktop. */
+    html, body { width: 100%; height: 100%; margin: 0; }
+    body {
+      background: linear-gradient(135deg, #2a1e14 0%, #1a1410 100%);
+      display: grid;
+      place-items: center;
+      padding: 40px;
+    }
+    .frame {
+      width: 320px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #1c1c1e;
+      padding: 8px 0 4px;
+      color: #f4eee3;
+      font: 13px -apple-system, "Segoe UI", "Helvetica Neue", sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div class="frame" id="frame">
+    <div class="header">
+      <span class="name">Nurullah</span>
+      <span class="pill">Max 20x</span>
+    </div>
+
+    <div class="section-head">
+      <span class="section-title">BU HAFTA</span>
+      <span class="section-trailing">3g 18s kaldı</span>
+    </div>
+    <div class="row">
+      <span class="row-label">Tüm modeller</span>
+      <div class="bar"><div class="bar-fill" style="width: 32%; background: #d4c25a"></div></div>
+      <span class="row-value" style="color: #d4c25a">%32</span>
+    </div>
+    <div class="row">
+      <span class="row-label">Sonnet</span>
+      <div class="bar"><div class="bar-fill" style="width: 2%; background: #5dc97f"></div></div>
+      <span class="row-value" style="color: #5dc97f">%2</span>
+    </div>
+
+    <div class="forecast">↗ Hafta sonu tahmini: %64</div>
+
+    <canvas id="spark" width="296" height="44"></canvas>
+
+    <div class="section-head">
+      <span class="section-title">5 SAATLİK PENCERE</span>
+      <span class="section-trailing">2s 38dk kaldı</span>
+    </div>
+    <div class="row">
+      <span class="row-label">Kullanım</span>
+      <div class="bar"><div class="bar-fill" style="width: 7%; background: #5dc97f"></div></div>
+      <span class="row-value" style="color: #5dc97f">%7</span>
+    </div>
+
+    <div class="footer">Güncelleme: 13:11</div>
+
+    <div class="actions">
+      <button>⟳</button>
+      <button>claude.ai/settings/usage</button>
+      <button>⚙</button>
+    </div>
+
+    <div class="credit">
+      <a>nurullah.net ↗</a>
+      <span>·</span>
+      <a>@nurullah ↗</a>
+    </div>
+  </div>
+
+  <script>
+    // Synthetic 7-day trend with a believable shape
+    const cv = document.getElementById('spark');
+    const ctx = cv.getContext('2d');
+    const W = cv.width, H = cv.height;
+    const margin = 18;
+    const left = margin, right = W - margin, top = 6, bottom = H - 6;
+    const w = right - left, h = bottom - top;
+
+    // baseline
+    ctx.strokeStyle = 'rgba(255,255,255,0.10)';
+    ctx.lineWidth = 0.5;
+    ctx.beginPath(); ctx.moveTo(left, top); ctx.lineTo(right, top); ctx.stroke();
+
+    // Past: from (0%) to (32%) along ~75% of width, with bumps
+    const past = [];
+    const xs = [0, 0.06, 0.13, 0.22, 0.35, 0.46, 0.58, 0.65, 0.72, 0.78];
+    const ys = [0,  3,    7,    12,   16,   22,   25,   28,   30,   32];
+    for (let i = 0; i < xs.length; i++) {
+      past.push([left + w * xs[i], top + h * (1 - ys[i] / 100)]);
+    }
+
+    // Fill
+    const ember = '#d68c45';
+    const grad = ctx.createLinearGradient(0, top, 0, bottom);
+    grad.addColorStop(0, 'rgba(214,140,69,0.32)');
+    grad.addColorStop(1, 'rgba(214,140,69,0.00)');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.moveTo(past[0][0], past[0][1]);
+    for (const p of past) ctx.lineTo(p[0], p[1]);
+    ctx.lineTo(past[past.length - 1][0], bottom);
+    ctx.lineTo(past[0][0], bottom);
+    ctx.closePath();
+    ctx.fill();
+
+    // Line
+    ctx.strokeStyle = ember;
+    ctx.lineWidth = 1.5;
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(past[0][0], past[0][1]);
+    for (const p of past) ctx.lineTo(p[0], p[1]);
+    ctx.stroke();
+
+    // Now guide
+    ctx.strokeStyle = 'rgba(255,255,255,0.10)';
+    ctx.lineWidth = 0.5;
+    ctx.beginPath(); ctx.moveTo(past[past.length-1][0], top); ctx.lineTo(past[past.length-1][0], bottom); ctx.stroke();
+
+    // Future (dashed) → projected 64 at week end
+    const future = [left + w * 1.0, top + h * (1 - 64 / 100)];
+    ctx.setLineDash([3, 3]);
+    ctx.strokeStyle = 'rgba(214,140,69,0.55)';
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.moveTo(past[past.length-1][0], past[past.length-1][1]);
+    ctx.lineTo(future[0], future[1]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Dots
+    ctx.fillStyle = ember;
+    ctx.beginPath();
+    ctx.arc(past[past.length-1][0], past[past.length-1][1], 2.8, 0, Math.PI*2);
+    ctx.fill();
+    ctx.fillStyle = 'rgba(214,140,69,0.55)';
+    ctx.beginPath();
+    ctx.arc(future[0], future[1], 2.0, 0, Math.PI*2);
+    ctx.fill();
+  </script>
+</body>
+</html>

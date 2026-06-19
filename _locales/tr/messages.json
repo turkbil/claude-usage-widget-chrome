@@ -1,6 +1,6 @@
 {
   "app_name":        { "message": "Claude Kullanım Widget'ı" },
-  "app_description": { "message": "Claude haftalık kullanımını araç çubuğunda gör — claude.ai/settings/usage'daki veriyle aynı. Tahmin, trend grafiği, eşik bildirimleri." },
+  "app_description": { "message": "Claude haftalık kullanımı araç çubuğunda — claude.ai/settings/usage ile aynı veri, tahmin ve eşik bildirimleriyle." },
 
   "section_weekly":     { "message": "BU HAFTA" },
   "section_five_hour":  { "message": "5 SAATLİK PENCERE" },

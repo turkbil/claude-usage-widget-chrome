@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Options preview</title>
+  <link rel="stylesheet" href="../options.css">
+  <style>
+    html, body { width: 1280px; height: 800px; margin: 0; }
+    body {
+      background: linear-gradient(180deg, #0e0a06 0%, #1a1410 100%);
+      font: 16px -apple-system, "Segoe UI", "Helvetica Neue", sans-serif;
+      color: #f4eee3;
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 60px;
+      align-items: center;
+      padding: 60px 80px;
+      box-sizing: border-box;
+    }
+    .copy h1 {
+      font: 700 44px -apple-system, "Segoe UI", sans-serif;
+      letter-spacing: -0.02em;
+      margin: 0 0 18px;
+    }
+    .copy h1 em { color: #d68c45; font-style: normal; }
+    .copy p { font-size: 17px; color: #d4cfc4; line-height: 1.55; margin: 0 0 18px; }
+    .copy ul { padding-left: 18px; color: #d4cfc4; font-size: 15px; line-height: 1.7; }
+    .copy ul li::marker { color: #d68c45; }
+
+    .options-wrap {
+      background: #1c1c1e;
+      border-radius: 14px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04);
+      max-height: 640px;
+      overflow: hidden;
+      padding: 24px 28px;
+      font: 13px -apple-system, "Segoe UI", sans-serif;
+    }
+    .options-wrap h2 { font: 700 18px -apple-system; margin: 0 0 14px; }
+    .options-wrap .section {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 14px 0;
+    }
+    .options-wrap .section:first-of-type { border-top: 0; padding-top: 0; }
+    .options-wrap .section h3 {
+      font: 700 10px -apple-system;
+      letter-spacing: 0.12em;
+      color: #8a8378;
+      margin: 0 0 10px;
+      text-transform: uppercase;
+    }
+    .row-opt {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 0;
+    }
+    .row-opt label { color: #d4cfc4; }
+    .row-opt .seg {
+      display: flex;
+      background: rgba(255,255,255,0.06);
+      border-radius: 6px;
+      padding: 2px;
+    }
+    .row-opt .seg span {
+      padding: 4px 10px;
+      font-size: 11px;
+      border-radius: 4px;
+      color: #8a8378;
+    }
+    .row-opt .seg span.on {
+      background: #d68c45;
+      color: #1c1c1e;
+      font-weight: 600;
+    }
+    .swatch { width: 18px; height: 18px; border-radius: 4px; margin-left: 10px; }
+    .swatch.sun  { background: #d4c25a; }
+    .swatch.grass { background: #5dc97f; }
+    .swatch.ember { background: #d68c45; }
+  </style>
+</head>
+<body>
+  <div class="copy">
+    <h1>Make it <em>yours.</em></h1>
+    <p>Each metric can be hidden, shown as text, or drawn as a colored donut ring in the toolbar — pick the colors yourself.</p>
+    <ul>
+      <li>Per-metric Hide / Text / Donut mode</li>
+      <li>Color picker per metric</li>
+      <li>Refresh: 30 s / 1 min / 5 min / 10 min</li>
+      <li>Threshold notifications: warn / alert / critical</li>
+      <li>Auto-detected language (EN / TR / DE / ES / FR)</li>
+    </ul>
+  </div>
+
+  <div class="options-wrap">
+    <h2>Claude Usage Widget — Settings</h2>
+
+    <div class="section">
+      <h3>Toolbar metrics</h3>
+      <div class="row-opt">
+        <label>Weekly %</label>
+        <div>
+          <span class="seg">
+            <span>Hide</span><span>Text</span><span class="on">Donut</span>
+          </span>
+          <span class="swatch sun" style="display:inline-block;vertical-align:middle"></span>
+        </div>
+      </div>
+      <div class="row-opt">
+        <label>Weekly remaining</label>
+        <div>
+          <span class="seg">
+            <span class="on">Hide</span><span>Text</span><span>Donut</span>
+          </span>
+        </div>
+      </div>
+      <div class="row-opt">
+        <label>5-hour %</label>
+        <div>
+          <span class="seg">
+            <span>Hide</span><span class="on">Text</span><span>Donut</span>
+          </span>
+          <span class="swatch grass" style="display:inline-block;vertical-align:middle"></span>
+        </div>
+      </div>
+      <div class="row-opt">
+        <label>5-hour remaining</label>
+        <div>
+          <span class="seg">
+            <span class="on">Hide</span><span>Text</span><span>Donut</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Refresh interval</h3>
+      <div class="row-opt">
+        <label>How often to fetch</label>
+        <span class="seg">
+          <span>30 s</span><span class="on">1 min</span><span>5 min</span><span>10 min</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Notifications</h3>
+      <div class="row-opt">
+        <label>Warn at</label><span style="color:#d4c25a; font-weight:600">50%</span>
+      </div>
+      <div class="row-opt">
+        <label>Alert at</label><span style="color:#d68c45; font-weight:600">75%</span>
+      </div>
+      <div class="row-opt">
+        <label>Critical at</label><span style="color:#d6645a; font-weight:600">90%</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

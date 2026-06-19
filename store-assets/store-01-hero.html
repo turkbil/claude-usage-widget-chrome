@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Hero</title>
+  <link rel="stylesheet" href="../popup.css">
+  <style>
+    html, body { width: 1280px; height: 800px; margin: 0; }
+    body {
+      background: radial-gradient(120% 100% at 70% 40%, #3a2a1d 0%, #1a1410 60%, #100a06 100%);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 80px;
+      box-sizing: border-box;
+      font: 16px -apple-system, "Segoe UI", "Helvetica Neue", sans-serif;
+      color: #f4eee3;
+    }
+    .copy h1 {
+      font: 700 56px -apple-system, "Segoe UI", sans-serif;
+      letter-spacing: -0.02em;
+      margin: 0 0 18px;
+      line-height: 1.05;
+    }
+    .copy h1 em { color: #d68c45; font-style: normal; }
+    .copy p {
+      font-size: 19px;
+      line-height: 1.55;
+      color: #d4cfc4;
+      margin: 0 0 26px;
+      max-width: 460px;
+    }
+    .copy ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 15px;
+      color: #d4cfc4;
+    }
+    .copy ul li {
+      padding: 6px 0;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .copy ul li::before {
+      content: "•";
+      color: #d68c45;
+      font-size: 20px;
+    }
+    .stage {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .frame {
+      width: 320px;
+      transform: scale(1.55);
+      transform-origin: center;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #1c1c1e;
+      padding: 8px 0 4px;
+      color: #f4eee3;
+      font: 13px -apple-system, "Segoe UI", sans-serif;
+    }
+    .frame .header,
+    .frame .section-head,
+    .frame .row,
+    .frame .forecast,
+    .frame .footer,
+    .frame .actions,
+    .frame .credit { color: inherit; }
+  </style>
+</head>
+<body>
+  <div class="copy">
+    <h1>Your Claude weekly limit<br><em>right in the toolbar.</em></h1>
+    <p>Same number you see on claude.ai/settings/usage — one glance, no tab-switching.</p>
+    <ul>
+      <li>Weekly % donut next to the URL bar</li>
+      <li>Burn-rate forecast in the dropdown</li>
+      <li>7-day trend chart with projected future</li>
+      <li>Threshold alerts at warn / alert / critical</li>
+      <li>5 languages, fully open-source</li>
+    </ul>
+  </div>
+
+  <div class="stage">
+    <div class="frame" id="frame">
+      <div class="header">
+        <span class="name">Nurullah</span>
+        <span class="pill">Max 20x</span>
+      </div>
+
+      <div class="section-head">
+        <span class="section-title">THIS WEEK</span>
+        <span class="section-trailing">3d 18h left</span>
+      </div>
+      <div class="row">
+        <span class="row-label">All models</span>
+        <div class="bar"><div class="bar-fill" style="width: 32%; background: #d4c25a"></div></div>
+        <span class="row-value" style="color: #d4c25a">32%</span>
+      </div>
+      <div class="row">
+        <span class="row-label">Sonnet</span>
+        <div class="bar"><div class="bar-fill" style="width: 2%; background: #5dc97f"></div></div>
+        <span class="row-value" style="color: #5dc97f">2%</span>
+      </div>
+
+      <div class="forecast">↗ Week-end forecast: 64%</div>
+
+      <canvas id="spark" width="296" height="44" class="sparkline"></canvas>
+
+      <div class="section-head">
+        <span class="section-title">5-HOUR WINDOW</span>
+        <span class="section-trailing">2h 38m left</span>
+      </div>
+      <div class="row">
+        <span class="row-label">Usage</span>
+        <div class="bar"><div class="bar-fill" style="width: 7%; background: #5dc97f"></div></div>
+        <span class="row-value" style="color: #5dc97f">7%</span>
+      </div>
+
+      <div class="footer">Updated 13:11</div>
+
+      <div class="actions">
+        <button>⟳</button>
+        <button>claude.ai/settings/usage</button>
+        <button>⚙</button>
+      </div>
+
+      <div class="credit">
+        <a>nurullah.net ↗</a>
+        <span>·</span>
+        <a>@nurullah ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Draw inline (no DOMContentLoaded race in headless)
+    (function () {
+      const cv = document.getElementById('spark');
+      const ctx = cv.getContext('2d');
+      const W = cv.width, H = cv.height;
+      const margin = 18;
+      const left = margin, right = W - margin, top = 6, bottom = H - 6;
+      const w = right - left, h = bottom - top;
+
+      ctx.strokeStyle = 'rgba(255,255,255,0.10)';
+      ctx.lineWidth = 0.5;
+      ctx.beginPath(); ctx.moveTo(left, top); ctx.lineTo(right, top); ctx.stroke();
+
+      const past = [];
+      const xs = [0, 0.06, 0.13, 0.22, 0.35, 0.46, 0.58, 0.65, 0.72, 0.78];
+      const ys = [0,  3,    7,    12,   16,   22,   25,   28,   30,   32];
+      for (let i = 0; i < xs.length; i++) {
+        past.push([left + w * xs[i], top + h * (1 - ys[i] / 100)]);
+      }
+
+      const ember = '#d68c45';
+      const grad = ctx.createLinearGradient(0, top, 0, bottom);
+      grad.addColorStop(0, 'rgba(214,140,69,0.32)');
+      grad.addColorStop(1, 'rgba(214,140,69,0.00)');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.moveTo(past[0][0], past[0][1]);
+      for (const p of past) ctx.lineTo(p[0], p[1]);
+      ctx.lineTo(past[past.length - 1][0], bottom);
+      ctx.lineTo(past[0][0], bottom);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.strokeStyle = ember;
+      ctx.lineWidth = 1.5;
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(past[0][0], past[0][1]);
+      for (const p of past) ctx.lineTo(p[0], p[1]);
+      ctx.stroke();
+
+      ctx.strokeStyle = 'rgba(255,255,255,0.10)';
+      ctx.lineWidth = 0.5;
+      ctx.beginPath(); ctx.moveTo(past[past.length-1][0], top); ctx.lineTo(past[past.length-1][0], bottom); ctx.stroke();
+
+      const future = [left + w * 1.0, top + h * (1 - 64 / 100)];
+      ctx.setLineDash([3, 3]);
+      ctx.strokeStyle = 'rgba(214,140,69,0.55)';
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(past[past.length-1][0], past[past.length-1][1]);
+      ctx.lineTo(future[0], future[1]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.fillStyle = ember;
+      ctx.beginPath();
+      ctx.arc(past[past.length-1][0], past[past.length-1][1], 2.8, 0, Math.PI*2);
+      ctx.fill();
+      ctx.fillStyle = 'rgba(214,140,69,0.55)';
+      ctx.beginPath();
+      ctx.arc(future[0], future[1], 2.0, 0, Math.PI*2);
+      ctx.fill();
+    })();
+  </script>
+</body>
+</html>

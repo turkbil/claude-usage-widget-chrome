@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Toolbar callout</title>
+  <style>
+    html, body { width: 1280px; height: 800px; margin: 0; }
+    body {
+      background: linear-gradient(180deg, #0e0a06 0%, #1a1410 100%);
+      font: 16px -apple-system, "Segoe UI", "Helvetica Neue", sans-serif;
+      color: #f4eee3;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      padding: 60px 80px 80px;
+      box-sizing: border-box;
+    }
+    h1 {
+      font: 700 44px -apple-system, "Segoe UI", sans-serif;
+      letter-spacing: -0.02em;
+      margin: 0 0 14px;
+    }
+    h1 em { color: #d68c45; font-style: normal; }
+    .sub { color: #d4cfc4; font-size: 18px; margin: 0 0 40px; max-width: 720px; }
+
+    .browser {
+      background: #232325;
+      border-radius: 12px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04);
+      overflow: hidden;
+    }
+    .chrome-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: #2e2e30;
+    }
+    .traffic { display: flex; gap: 8px; }
+    .traffic span {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #5f5f60;
+    }
+    .traffic span:nth-child(1) { background: #ed6a5e; }
+    .traffic span:nth-child(2) { background: #f5bf4f; }
+    .traffic span:nth-child(3) { background: #62c554; }
+
+    .tabs { display: flex; gap: 4px; margin-left: 6px; }
+    .tab {
+      background: #232325;
+      padding: 6px 14px;
+      font-size: 13px;
+      color: #d4cfc4;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px 14px;
+      background: #2e2e30;
+    }
+    .url-pill {
+      flex: 1;
+      background: #1c1c1e;
+      border-radius: 16px;
+      padding: 7px 14px;
+      font-size: 13px;
+      color: #8a8378;
+    }
+    .ext-tile {
+      width: 28px; height: 28px;
+      display: grid; place-items: center;
+      border-radius: 6px;
+    }
+    .ext-tile.puzzle { color: #8a8378; font-size: 17px; }
+    .ext-tile.us {
+      box-shadow: 0 0 0 2px rgba(214,140,69,0.7);
+      background: rgba(214,140,69,0.08);
+    }
+    .ext-tile.us svg { display: block; }
+    .avatar {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: linear-gradient(135deg, #d68c45 0%, #b66a30 100%);
+      color: white; font-weight: 700; font-size: 12px;
+      display: grid; place-items: center;
+    }
+
+    .stage {
+      background: linear-gradient(180deg, #16100c 0%, #0c0805 100%);
+      min-height: 280px;
+      display: grid;
+      place-items: center;
+      color: #5a544a;
+      font-size: 13px;
+    }
+
+    .callout {
+      position: absolute;
+      transform: translate(-50%, 8px);
+      background: rgba(214,140,69,0.12);
+      border: 1px solid rgba(214,140,69,0.55);
+      color: #f4eee3;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .callout::before {
+      content: "";
+      position: absolute;
+      left: 50%; top: -7px;
+      width: 12px; height: 12px;
+      background: rgba(214,140,69,0.12);
+      border-left: 1px solid rgba(214,140,69,0.55);
+      border-top: 1px solid rgba(214,140,69,0.55);
+      transform: translateX(-50%) rotate(45deg);
+    }
+    .toolbar-wrap { position: relative; }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>One glance. <em>You know.</em></h1>
+    <p class="sub">A tiny donut next to the URL bar — color-coded by how close you are to the weekly limit. No tab switching, no surprises.</p>
+  </div>
+
+  <div class="browser">
+    <div class="chrome-bar">
+      <div class="traffic"><span></span><span></span><span></span></div>
+      <div class="tabs">
+        <div class="tab" style="background:#232325; color:#f4eee3;">claude.ai/chat</div>
+        <div class="tab">github.com</div>
+        <div class="tab">linear.app</div>
+      </div>
+    </div>
+
+    <div class="toolbar-wrap">
+      <div class="toolbar">
+        <div class="url-pill">claude.ai/chat</div>
+        <div class="ext-tile puzzle">⊞</div>
+        <!-- Our extension icon -->
+        <div class="ext-tile us">
+          <svg width="22" height="22" viewBox="0 0 22 22">
+            <circle cx="11" cy="11" r="8.5" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="3"/>
+            <circle cx="11" cy="11" r="8.5" fill="none" stroke="#d4c25a" stroke-width="3"
+                    stroke-dasharray="17 53.4" stroke-dashoffset="0"
+                    transform="rotate(-90 11 11)"/>
+            <text x="11" y="14" text-anchor="middle" font-family="-apple-system" font-size="9" font-weight="700" fill="#f4eee3">32</text>
+          </svg>
+        </div>
+        <div class="avatar">N</div>
+      </div>
+      <div class="callout" style="left: calc(100% - 100px); top: 38px;">32% — 3 days left</div>
+    </div>
+
+    <div class="stage">
+      <span>(your browser tab content)</span>
+    </div>
+  </div>
+</body>
+</html>

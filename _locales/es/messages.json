@@ -1,6 +1,6 @@
 {
   "app_name":        { "message": "Claude Usage Widget" },
-  "app_description": { "message": "See your weekly Claude usage in the toolbar — same data as claude.ai/settings/usage. Forecast, trend chart, threshold notifications, multi-account ready." },
+  "app_description": { "message": "Tu uso semanal de Claude en la barra — el mismo dato de claude.ai/settings/usage, con previsión y alertas de umbral." },
 
   "section_weekly":     { "message": "WEEKLY" },
   "section_five_hour":  { "message": "5-HOUR WINDOW" },
