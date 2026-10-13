@@ -12,6 +12,9 @@
 //   2. Otherwise → render the weekly% number, optionally over a colored donut
 
 const SIZE = 32;
+// Thin ring so the number in the middle can stay readable at toolbar size.
+const RING_THICKNESS = 3;
+const INNER_DIAMETER = SIZE - 2 * (RING_THICKNESS + 1);
 
 export function drawIcon(snapshot, prefs, isError) {
   // OffscreenCanvas works in service workers (MV3).
@@ -30,8 +33,11 @@ export function drawIcon(snapshot, prefs, isError) {
 
   if (wantDonut) {
     drawDonut(ctx, pct / 100, hexToRgb(prefs.weeklyPctColor || '#d68c45'));
-    // Overlay number inside the ring if there's room.
-    drawText(ctx, String(pct), '#ffffff', 12, true);
+    // Number inside the ring, as large as the ring's inner hole allows. Taller
+    // 1–2 digit numbers need extra side margin so their corners clear the curve.
+    const label = String(pct);
+    const maxWidth = INNER_DIAMETER - (label.length >= 3 ? 2 : 4);
+    drawText(ctx, label, '#ffffff', fitSize(ctx, label, maxWidth, 20), true);
   } else if (prefs.weeklyPctMode === 'text' || prefs.iconType === 'none') {
     drawText(ctx, String(pct), colorFor(pct), pct >= 100 ? 16 : 18);
   } else if (prefs.iconType === 'emoji' || prefs.iconType === 'custom') {
@@ -50,8 +56,20 @@ export function drawIcon(snapshot, prefs, isError) {
   return ctx.getImageData(0, 0, SIZE, SIZE);
 }
 
+const FONT = '"Segoe UI", -apple-system, "Helvetica Neue", sans-serif';
+
+// Largest bold font size (≤ max) whose text width fits within maxWidth.
+function fitSize(ctx, text, maxWidth, max) {
+  let size = max;
+  for (; size > 8; size--) {
+    ctx.font = `bold ${size}px ${FONT}`;
+    if (ctx.measureText(text).width <= maxWidth) break;
+  }
+  return size;
+}
+
 function drawText(ctx, text, color, size = 18, shadow = false) {
-  ctx.font = `bold ${size}px "Segoe UI", -apple-system, "Helvetica Neue", sans-serif`;
+  ctx.font = `bold ${size}px ${FONT}`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillStyle = color;
@@ -72,7 +90,7 @@ function drawEmoji(ctx, emoji) {
 
 function drawDonut(ctx, fill, rgb) {
   const cx = SIZE / 2, cy = SIZE / 2;
-  const thickness = 5;
+  const thickness = RING_THICKNESS;
   const radius = SIZE / 2 - thickness / 2 - 1;
 
   // Track
