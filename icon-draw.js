@@ -14,6 +14,7 @@
 const SIZE = 32;
 // Thin ring so the number in the middle can stay readable at toolbar size.
 const RING_THICKNESS = 2;
+const ACTIVE_THICKNESS = 3;
 const INNER_DIAMETER = SIZE - 2 * (RING_THICKNESS + 1);
 
 export function drawIcon(snapshot, prefs, isError) {
@@ -90,23 +91,25 @@ function drawEmoji(ctx, emoji) {
 
 function drawDonut(ctx, fill, rgb) {
   const cx = SIZE / 2, cy = SIZE / 2;
-  const thickness = RING_THICKNESS;
-  const radius = SIZE / 2 - thickness / 2 - 1;
+  // Both rings share the same outer edge; the filled arc is thicker and the
+  // track fainter so used vs. remaining reads clearly at toolbar size.
+  const outer = SIZE / 2 - 1;
 
-  // Track
+  // Track (remaining)
   ctx.beginPath();
-  ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-  ctx.lineWidth = thickness;
-  ctx.strokeStyle = 'rgba(255,255,255,0.20)';
+  ctx.arc(cx, cy, outer - RING_THICKNESS / 2, 0, Math.PI * 2);
+  ctx.lineWidth = RING_THICKNESS;
+  ctx.strokeStyle = 'rgba(255,255,255,0.13)';
   ctx.stroke();
 
   if (fill <= 0) return;
-  // Fill arc — start at top, clockwise
+  // Fill arc (used) — start at top, clockwise. Butt caps keep the gap before
+  // 100% visible instead of rounding it shut.
   ctx.beginPath();
   const sweep = Math.min(1, fill) * Math.PI * 2;
-  ctx.arc(cx, cy, radius, -Math.PI / 2, -Math.PI / 2 + sweep);
-  ctx.lineWidth = thickness;
-  ctx.lineCap = 'round';
+  ctx.arc(cx, cy, outer - ACTIVE_THICKNESS / 2, -Math.PI / 2, -Math.PI / 2 + sweep);
+  ctx.lineWidth = ACTIVE_THICKNESS;
+  ctx.lineCap = 'butt';
   ctx.strokeStyle = rgb;
   ctx.stroke();
 }
