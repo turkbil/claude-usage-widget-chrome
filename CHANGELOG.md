@@ -2,6 +2,26 @@
 
 All notable changes to this project are documented here.
 
+## [1.1.1] — 2026-10-14
+
+### Fixed
+- **"No session" error on accounts that also have an API (Console) org.**
+  The usage was read from the first organization in the list; when that was an
+  API-only org, `/usage` answered 403 and the widget reported a missing
+  claude.ai session. It now prefers the organization with the chat capability.
+- Popup showed the raw key `error.no_session` instead of the translated
+  message when cached data was still on screen; the toolbar tooltip too.
+- Popup showed "reset … left" once a window had already reset; it now shows
+  just "reset".
+- An empty, unlabeled bar appeared under *All models* when there was no Sonnet
+  limit — `display:flex` was overriding the `hidden` attribute.
+
+### Changed
+- **Toolbar number is much larger** (two digits: 12 → 20 px on the 32 px
+  canvas) and auto-fits inside the ring.
+- Ring contrast: the used arc is thicker and fully colored, the remaining
+  track thinner and fainter; flat ends keep the last few percent visible.
+
 ## [1.1.0] — 2026-06-19
 
 ### Added
