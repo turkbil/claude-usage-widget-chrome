@@ -13,7 +13,7 @@
 
 const SIZE = 32;
 // Thin ring so the number in the middle can stay readable at toolbar size.
-const RING_THICKNESS = 3;
+const RING_THICKNESS = 2;
 const INNER_DIAMETER = SIZE - 2 * (RING_THICKNESS + 1);
 
 export function drawIcon(snapshot, prefs, isError) {
@@ -36,8 +36,8 @@ export function drawIcon(snapshot, prefs, isError) {
     // Number inside the ring, as large as the ring's inner hole allows. Taller
     // 1–2 digit numbers need extra side margin so their corners clear the curve.
     const label = String(pct);
-    const maxWidth = INNER_DIAMETER - (label.length >= 3 ? 2 : 4);
-    drawText(ctx, label, '#ffffff', fitSize(ctx, label, maxWidth, 20), true);
+    const maxWidth = INNER_DIAMETER - (label.length >= 3 ? 1 : 3);
+    drawText(ctx, label, '#ffffff', fitSize(ctx, label, maxWidth, 24), true);
   } else if (prefs.weeklyPctMode === 'text' || prefs.iconType === 'none') {
     drawText(ctx, String(pct), colorFor(pct), pct >= 100 ? 16 : 18);
   } else if (prefs.iconType === 'emoji' || prefs.iconType === 'custom') {
