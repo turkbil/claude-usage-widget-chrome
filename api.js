@@ -34,6 +34,10 @@ export async function fetchSnapshot() {
 async function findOrgId() {
   const list = await getJson('/api/organizations');
   if (Array.isArray(list)) {
+    // An account can also hold an API-only (Console) org, which answers
+    // /usage with 403 — prefer the org that has the chat capability.
+    const chat = list.find(o => o?.uuid && o.capabilities?.includes('chat'));
+    if (chat) return chat.uuid;
     for (const o of list) if (o?.uuid) return o.uuid;
   }
   throw new Error('error.org_not_found');
