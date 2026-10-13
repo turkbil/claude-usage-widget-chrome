@@ -78,7 +78,8 @@ async function updateBadge() {
     const pct = Math.round(snapshot.weeklyUtilization);
     chrome.action.setTitle({ title: `Claude: ${pct}% this week` });
   } else if (error) {
-    chrome.action.setTitle({ title: `Claude Usage Widget — ${error}` });
+    const msg = error.startsWith('error.') ? (chrome.i18n.getMessage(error.replace(/\./g, '_')) || error) : error;
+    chrome.action.setTitle({ title: `Claude Usage Widget — ${msg}` });
   }
 
   // Render the icon

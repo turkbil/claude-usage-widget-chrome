@@ -45,9 +45,14 @@ async function render() {
     await drawSparkline(snapshot);
     fillFooter(snapshot, error);
   } else if (error) {
-    document.getElementById('footer').textContent = '⚠ ' + (error.startsWith('error.') ? i18n(error.replace(/\./g, '_')) : error);
+    document.getElementById('footer').textContent = '⚠ ' + errorText(error);
     document.getElementById('footer').style.color = 'var(--blood)';
   }
+}
+
+// Background stores error codes like 'error.no_session'; locale keys use underscores.
+function errorText(error) {
+  return error.startsWith('error.') ? i18n(error.replace(/\./g, '_')) : error;
 }
 
 function fillAccountHeader(s) {
@@ -62,7 +67,7 @@ function fillAccountHeader(s) {
 
 function fillWeekly(s) {
   document.getElementById('weeklyTitle').textContent  = i18n('section_weekly');
-  document.getElementById('weeklyTrailing').textContent = i18n('remaining_suffix', [formatRemaining(s.weeklyResetsAt)]);
+  document.getElementById('weeklyTrailing').textContent = remainingText(s.weeklyResetsAt);
 
   const pct = Math.round(s.weeklyUtilization);
   document.getElementById('allModelsRow').hidden = false;
@@ -84,7 +89,7 @@ function fillFiveHour(s) {
   document.getElementById('fiveRow').hidden = !has;
   if (!has) return;
   document.getElementById('fiveTitle').textContent = i18n('section_five_hour');
-  document.getElementById('fiveTrailing').textContent = i18n('remaining_suffix', [formatRemaining(s.fiveHourResetsAt)]);
+  document.getElementById('fiveTrailing').textContent = remainingText(s.fiveHourResetsAt);
   document.getElementById('fiveLabel').textContent = i18n('label_usage');
   setBar('five', Math.round(s.fiveHourUtilization));
 }
@@ -110,7 +115,7 @@ function fillFooter(s, error) {
   const el = document.getElementById('footer');
   const when = new Date(s.fetchedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   if (error) {
-    el.textContent = '⚠ ' + error;
+    el.textContent = '⚠ ' + errorText(error);
     el.style.color = 'var(--blood)';
   } else {
     el.textContent = i18n('footer_updated', [when]);
@@ -133,6 +138,12 @@ function colorFor(p) {
   if (p >= 75) return 'var(--ember)';
   if (p >= 50) return 'var(--sun)';
   return 'var(--grass)';
+}
+
+// "2g 1s kaldı" — but once the reset time has passed, just "sıfırlandı" (no "kaldı" suffix).
+function remainingText(iso) {
+  if (new Date(iso).getTime() <= Date.now()) return i18n('time_reset');
+  return i18n('remaining_suffix', [formatRemaining(iso)]);
 }
 
 function formatRemaining(iso) {
