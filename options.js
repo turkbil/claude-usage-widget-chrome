@@ -35,6 +35,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('alertLabel').textContent      = i18n('notifications_alert');
   document.getElementById('criticalLabel').textContent   = i18n('notifications_critical');
 
+  renderApiPermission();
+  chrome.permissions?.onAdded?.addListener(renderApiPermission);
+  chrome.permissions?.onRemoved?.addListener(renderApiPermission);
+
   const prefs = await getPrefs();
   renderTitleRows(prefs);
   renderIconSection(prefs);
@@ -190,4 +194,29 @@ function bindSlider(name, value) {
 async function commit(patch) {
   await setPrefs(patch);
   try { chrome.runtime.sendMessage({ type: 'prefs-changed' }); } catch {}
+}
+
+// İsteğe bağlı konsol izni (platform.claude.com): API kredisi bakiyesi, hibe son
+// tarihi ve bugünkü API harcaması yalnız izin verilince okunur.
+const CONSOLE_ORIGINS = ['https://platform.claude.com/*'];
+let permWired = false;
+async function renderApiPermission() {
+  document.getElementById('apiLabel').textContent = i18n('grants_row_api');
+  document.getElementById('apiPermNote').textContent = i18n('api_permission_note');
+  const btn = document.getElementById('apiPermOptBtn');
+  const state = document.getElementById('apiPermState');
+  let ok = false;
+  try { ok = await chrome.permissions.contains({ origins: CONSOLE_ORIGINS }); } catch {}
+  btn.textContent = i18n('api_permission_button');
+  btn.hidden = ok;
+  state.textContent = '✓ ' + i18n('api_permission_granted');
+  state.hidden = !ok;
+  if (permWired) return;
+  permWired = true;
+  btn.addEventListener('click', async () => {
+    let granted = false;
+    try { granted = await chrome.permissions.request({ origins: CONSOLE_ORIGINS }); } catch {}
+    if (granted) { try { await chrome.runtime.sendMessage({ type: 'refresh-now' }); } catch {} }
+    await renderApiPermission();
+  });
 }

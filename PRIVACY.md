@@ -1,6 +1,6 @@
 # Privacy Policy — Claude Usage Widget
 
-**Last updated:** 2026-11-12
+**Last updated:** 2026-11-13
 
 This Chrome extension does **not** collect, store, or transmit any personal
 data to any server we operate or any third party. The only outbound network
@@ -10,6 +10,14 @@ traffic is:
    statistics. The extension uses cookies you already have for that domain;
    Chrome attaches them automatically. We never read, copy, or transmit those
    cookies anywhere.
+2. **`https://platform.claude.com/*`** — only if you grant this **optional**
+   permission (*Show API credits — allow access*). Read-only requests to your own
+   developer console: account e-mail, organizations, prepaid credit balance and
+   granted credits (GET), plus one cost report query for today's spend
+   (`cost/query_bucketed`, sent as POST because the query is in the body; it
+   changes nothing). No credit is ever claimed, no limit is reset, nothing is
+   written. Without the permission, no request goes to this domain. You can
+   revoke it any time in Chrome's extension settings.
 
 ### What we store locally
 
@@ -35,6 +43,11 @@ In your browser's local extension storage (`chrome.storage.local`):
   (kind, how many are left, expiry date). The extension only reads them to
   show them; it never uses one. Kept only in `chrome.storage.local` on this
   device and never transmitted.
+- **API credits** — only with the optional permission above: for the account
+  signed in to the developer console, its credit balance, granted credits
+  (name, amount left, amount granted, expiry date), today's API spend and when
+  they were read. Kept only in `chrome.storage.local` on this device and never
+  transmitted.
 - **Notification state** — which one-time reminders were already shown and
   the last threshold level per account e-mail, so nothing is shown twice.
   Kept only locally.

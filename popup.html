@@ -25,7 +25,7 @@
     <span class="row-value" id="sonnetValue"></span>
   </div>
 
-  <canvas class="sparkline" id="sparkline" width="470" height="40"></canvas>
+  <canvas class="sparkline" id="sparkline" width="520" height="40"></canvas>
 
   <div class="forecast" id="forecast" hidden></div>
 
@@ -48,14 +48,16 @@
       <span class="col-name" id="accountsTitle"></span>
       <span class="col-bar"></span>
       <span class="col-pct" id="colLeft"></span>
+      <span class="col-fpct" id="colFable"></span>
       <span class="col-reset" id="colReset"></span>
       <span class="col-plan" id="colPlan"></span>
     </div>
     <div class="note hint" id="accountsHint" hidden></div>
-    <!-- Açıkken: «↺ HAFTALIK HAK» çubuk+KALAN, «↺ FABLE HAKKI» SIFIRLAMA+AYLIK sütunlarının üstünde. -->
+    <!-- Açıkken: bugün harcaması okunmuş hesapların API toplamı («BUGÜN API $1,20 · 2 HESAP»);
+         konsol izni yoksa onun yerine izin düğmesi. Satır etiketleri her hesabın altında. -->
     <div class="acct-grid grant-head" id="grantHead" hidden>
-      <span class="g-weekly" id="grantHeadWeekly"></span>
-      <span class="g-fable" id="grantHeadFable"></span>
+      <span class="g-total" id="grantTotal"></span>
+      <button type="button" class="api-perm" id="apiPermBtn" hidden></button>
     </div>
     <div id="accountRows"></div>
     <!-- «▸ Sıfırlama haklarını göster»: her hesabın altındaki hak satırını açar/kapar. -->

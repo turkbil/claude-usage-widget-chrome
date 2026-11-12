@@ -38,6 +38,13 @@ export function grantsOnHand(grants, now) {
 // Bir kaydın şimdiki anlamı: kayıttan beri geçen haftalık pencereler ileri
 // kaydırılır (limit arada sıfırlanmış olmalı).
 export function accountState(r, now) {
+  // Hiç okunmamış hesap (elle girilmiş not ya da yalnız konsoldan bilinen, verisiz):
+  // hiçbir sayısı doğrulanmadı — sayı gösterilmez, uyarıya ve sıralamada veri gruplarına girmez.
+  const neverSignedIn = r.source === 'note' || (r.weeklyPct == null && r.weeklyResetsAt == null);
+  if (neverSignedIn) {
+    return { record: r, nextReset: null, weeklyLeft: null, scopedLeft: [], rolled: false, scopedRolled: false,
+             neverSignedIn, planEnd: null, weeklyResetsLeft: null, scopedResetsLeft: null, grantsLeft: [] };
+  }
   let next = null, rolled = false;
   const reset = toMs(r.weeklyResetsAt);
   if (reset != null) ({ next, rolled } = roll(reset, now));
@@ -45,14 +52,15 @@ export function accountState(r, now) {
   const weeklyLeft = rolled ? 100 : (typeof r.weeklyPct === 'number' ? Math.max(0, 100 - r.weeklyPct) : null);
 
   const scopedLeft = [];
-  let scopedNext = null;
+  let scopedNext = null, scopedRolled = false;
   (Array.isArray(r.scoped) ? r.scoped : []).forEach((sc, i) => {
     let left = Math.max(0, 100 - (Number(sc.pct) || 0));
-    const ra = toMs(sc.resetsAt);
+    // Fable haftalık pencereyle sıfırlanır; kendi tarihi varsa o kullanılır.
+    const ra = toMs(sc.resetsAt) ?? reset;
     if (ra != null) {
       const x = roll(ra, now);
       if (x.rolled) left = 100;
-      if (i === 0) scopedNext = x.next;
+      if (i === 0) { scopedNext = x.next; scopedRolled = x.rolled; }
     }
     scopedLeft.push({ name: sc.name, left });
   });
@@ -62,11 +70,36 @@ export function accountState(r, now) {
   // «Bitişten önce kalan sıfırlama» yalnız gerçekten biten abonelikte anlamlı.
   const renews = r.planRenews === true;
   return {
-    record: r, nextReset: next, weeklyLeft, scopedLeft, rolled, planEnd,
+    record: r, nextReset: next, weeklyLeft, scopedLeft, rolled, scopedRolled, neverSignedIn, planEnd,
     weeklyResetsLeft: renews ? null : resetsBefore(planEnd, next),
     scopedResetsLeft: renews ? null : resetsBefore(planEnd, scopedNext),
     grantsLeft,
   };
+}
+
+// Süresi dolmamış hibe API kredileri (süresi dolan kredi 0 sayılır).
+export function activeCredits(r, now) {
+  return (Array.isArray(r.apiCredits) ? r.apiCredits : []).filter(c => {
+    if (!c || !(c.remaining > 0)) return false;
+    const end = toMs(c.expiresAt);
+    return end == null || end > now;
+  });
+}
+
+// "2026-11-13" — konsolun maliyet raporu UTC günleriyle çalışır.
+export const utcDayKey = t => new Date(t).toISOString().slice(0, 10);
+
+// Bugün harcaması okunmuş (görünür) hesapların bugünkü API toplamı.
+export function apiTodayTotal(records, now) {
+  const key = utcDayKey(now);
+  const rs = records.filter(r => r.apiTodayKey === key && typeof r.apiToday === 'number');
+  return { sum: rs.reduce((n, r) => n + r.apiToday, 0), accounts: rs.length };
+}
+
+// İsteğe bağlı konsol izni (platform.claude.com) verilmiş mi.
+export const CONSOLE_ORIGINS = ['https://platform.claude.com/*'];
+export async function hasConsolePermission() {
+  try { return await chrome.permissions.contains({ origins: CONSOLE_ORIGINS }); } catch { return false; }
 }
 
 // Gizlenen hesaplar listeden, 48 sa uyarısından, araç çubuğu ipucundan ve
@@ -115,6 +148,21 @@ const toMinute = t => new Date(Math.round(new Date(t).getTime() / 60000) * 60000
 export function weekdayTime(t) {
   return new Intl.DateTimeFormat(uiLocale(), {
     weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+  }).format(toMinute(t));
+}
+
+// "$4,42" — tarayıcı dilinde, USD; 100 ve üstü küsuratsız ("$200").
+export function money(v) {
+  const d = Math.abs(v) >= 100 ? 0 : 2;
+  const opts = { style: 'currency', currency: 'USD', minimumFractionDigits: d, maximumFractionDigits: d };
+  try { return new Intl.NumberFormat(uiLocale(), { ...opts, currencyDisplay: 'narrowSymbol' }).format(v); }
+  catch { return new Intl.NumberFormat(uiLocale(), opts).format(v); }
+}
+
+// "13 Kas 00:36"
+export function dayTime(t) {
+  return new Intl.DateTimeFormat(uiLocale(), {
+    day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
   }).format(toMinute(t));
 }
 

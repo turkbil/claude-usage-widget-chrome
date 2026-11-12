@@ -298,9 +298,6 @@
       }
     }
   },
-  "accounts_sign_in": {
-    "message": "anmelden"
-  },
   "label_scoped_cap": {
     "message": "$1 · max. $2%",
     "placeholders": {
@@ -334,7 +331,7 @@
     "message": "Nutzung"
   },
   "col_left": {
-    "message": "FREI"
+    "message": "WOCHE"
   },
   "col_reset": {
     "message": "RESET"
@@ -499,13 +496,61 @@
   "grants_hide": {
     "message": "Freie Resets ausblenden"
   },
-  "grants_col_weekly": {
-    "message": "WOCHEN-RESETS"
-  },
-  "grants_col_fable": {
-    "message": "FABLE-RESETS"
-  },
   "grants_unknown_short": {
     "message": "unbekannt"
+  },
+  "col_fable": {
+    "message": "FABLE"
+  },
+  "accounts_not_signed_in": {
+    "message": "nicht angemeldet"
+  },
+  "accounts_never_read": {
+    "message": "nicht angemeldet · nie gelesen"
+  },
+  "grants_row_weekly": {
+    "message": "Wochen-Resets"
+  },
+  "grants_row_fable": {
+    "message": "Fable-Resets"
+  },
+  "grants_row_api": {
+    "message": "API-Guthaben"
+  },
+  "grants_row_seen": {
+    "message": "Zuletzt gelesen"
+  },
+  "grants_seen_resets": {
+    "message": "Resets $1"
+  },
+  "grants_seen_api": {
+    "message": "API $1"
+  },
+  "api_unknown": {
+    "message": "unbekannt · nach Konsolen-Anmeldung"
+  },
+  "api_credit": {
+    "message": "$1 / $2 gewährt"
+  },
+  "api_today": {
+    "message": "heute $1"
+  },
+  "api_today_total": {
+    "message": "HEUTE API $1 · $2 KONTEN"
+  },
+  "notification_api_end": {
+    "message": "$1: $2 API-Guthaben verfällt am $3."
+  },
+  "api_no_permission": {
+    "message": "nicht erlaubt · API-Guthaben und heutige Kosten werden nicht gelesen"
+  },
+  "api_permission_button": {
+    "message": "API-Guthaben anzeigen — Zugriff erlauben"
+  },
+  "api_permission_note": {
+    "message": "Ohne diese Berechtigung werden API-Guthaben, Ablaufdatum der Gutschrift und die heutigen API-Kosten nicht angezeigt."
+  },
+  "api_permission_granted": {
+    "message": "Erlaubt — das API-Guthaben wird aus der Konsole gelesen."
   }
 }

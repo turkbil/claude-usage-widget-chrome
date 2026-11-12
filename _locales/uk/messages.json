@@ -298,9 +298,6 @@
       }
     }
   },
-  "accounts_sign_in": {
-    "message": "увійдіть"
-  },
   "label_scoped_cap": {
     "message": "$1 · макс. $2%",
     "placeholders": {
@@ -334,7 +331,7 @@
     "message": "Витрата"
   },
   "col_left": {
-    "message": "ЗАПАС"
+    "message": "ТИЖД."
   },
   "col_reset": {
     "message": "СКИДАННЯ"
@@ -499,13 +496,61 @@
   "grants_hide": {
     "message": "Сховати вільні скидання"
   },
-  "grants_col_weekly": {
-    "message": "СКИД. ТИЖНЯ"
-  },
-  "grants_col_fable": {
-    "message": "СКИДАННЯ FABLE"
-  },
   "grants_unknown_short": {
     "message": "невідомо"
+  },
+  "col_fable": {
+    "message": "FABLE"
+  },
+  "accounts_not_signed_in": {
+    "message": "вхід не виконано"
+  },
+  "accounts_never_read": {
+    "message": "вхід не виконано · дані не читалися"
+  },
+  "grants_row_weekly": {
+    "message": "Тижневі скидання"
+  },
+  "grants_row_fable": {
+    "message": "Скидання Fable"
+  },
+  "grants_row_api": {
+    "message": "Кредит API"
+  },
+  "grants_row_seen": {
+    "message": "Останнє читання"
+  },
+  "grants_seen_resets": {
+    "message": "скидання $1"
+  },
+  "grants_seen_api": {
+    "message": "API $1"
+  },
+  "api_unknown": {
+    "message": "невідомо · після входу в консоль"
+  },
+  "api_credit": {
+    "message": "$1 / $2 надано"
+  },
+  "api_today": {
+    "message": "сьогодні $1"
+  },
+  "api_today_total": {
+    "message": "СЬОГОДНІ API $1 · АКАУНТІВ: $2"
+  },
+  "notification_api_end": {
+    "message": "$1: $2 API-кредиту спливає $3."
+  },
+  "api_no_permission": {
+    "message": "немає дозволу · кредит API і сьогоднішні витрати не читаються"
+  },
+  "api_permission_button": {
+    "message": "Показати кредити API — дозволити"
+  },
+  "api_permission_note": {
+    "message": "Без цього дозволу баланс кредиту API, термін дії наданого кредиту та сьогоднішні витрати на API не показуються."
+  },
+  "api_permission_granted": {
+    "message": "Дозволено — кредит API читається з консолі."
   }
 }

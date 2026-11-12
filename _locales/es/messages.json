@@ -298,9 +298,6 @@
       }
     }
   },
-  "accounts_sign_in": {
-    "message": "inicia sesión"
-  },
   "label_scoped_cap": {
     "message": "$1 · máx. $2%",
     "placeholders": {
@@ -334,7 +331,7 @@
     "message": "Uso"
   },
   "col_left": {
-    "message": "LIBRE"
+    "message": "SEMANA"
   },
   "col_reset": {
     "message": "REINICIO"
@@ -499,13 +496,61 @@
   "grants_hide": {
     "message": "Ocultar reinicios gratis"
   },
-  "grants_col_weekly": {
-    "message": "REINICIOS SEM."
-  },
-  "grants_col_fable": {
-    "message": "REINICIOS FABLE"
-  },
   "grants_unknown_short": {
     "message": "desconocido"
+  },
+  "col_fable": {
+    "message": "FABLE"
+  },
+  "accounts_not_signed_in": {
+    "message": "sin sesión"
+  },
+  "accounts_never_read": {
+    "message": "sin sesión · nunca leída"
+  },
+  "grants_row_weekly": {
+    "message": "Reinicios sem."
+  },
+  "grants_row_fable": {
+    "message": "Reinicios Fable"
+  },
+  "grants_row_api": {
+    "message": "Crédito API"
+  },
+  "grants_row_seen": {
+    "message": "Última lectura"
+  },
+  "grants_seen_resets": {
+    "message": "reinicios $1"
+  },
+  "grants_seen_api": {
+    "message": "API $1"
+  },
+  "api_unknown": {
+    "message": "desconocido · tras entrar en la consola"
+  },
+  "api_credit": {
+    "message": "$1 / $2 otorgado"
+  },
+  "api_today": {
+    "message": "hoy $1"
+  },
+  "api_today_total": {
+    "message": "HOY API $1 · $2 CUENTAS"
+  },
+  "notification_api_end": {
+    "message": "$1: $2 de crédito API vence el $3."
+  },
+  "api_no_permission": {
+    "message": "sin permiso · no se leen el crédito API ni el gasto de hoy"
+  },
+  "api_permission_button": {
+    "message": "Mostrar créditos API — dar permiso"
+  },
+  "api_permission_note": {
+    "message": "Sin este permiso no se muestran el saldo de crédito API, el vencimiento del crédito otorgado ni el gasto de API de hoy."
+  },
+  "api_permission_granted": {
+    "message": "Permitido — el crédito API se lee de la consola."
   }
 }

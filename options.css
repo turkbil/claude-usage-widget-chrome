@@ -198,3 +198,18 @@ footer a {
   text-decoration: none;
 }
 footer a:hover { color: var(--ember); }
+
+/* API kredisi izni: tek cümlelik açıklama + izin düğmesi ya da «izin verildi». */
+.perm-note { margin: 0 0 12px; font-size: 13px; line-height: 1.5; color: var(--haze); }
+.perm-btn {
+  padding: 7px 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--ember);
+  font: 600 13px -apple-system, "Segoe UI", sans-serif;
+  cursor: pointer;
+}
+.perm-btn:hover { background: rgba(255,255,255,0.08); }
+.perm-btn:focus-visible { outline: 1px solid var(--bone); outline-offset: 1px; }
+.perm-state { margin: 0; font-size: 13px; color: var(--grass); }

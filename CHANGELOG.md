@@ -2,6 +2,43 @@
 
 All notable changes to this project are documented here.
 
+## [1.3.0] — 2026-11-13
+
+Popup matches the macOS widget 1.5.7.
+
+### Added
+- **API credits per account** (developer console, platform.claude.com) behind an
+  **optional permission**: nothing is requested from the console until the user
+  allows it (*Show API credits — allow access*, in the popup and in Settings).
+  Shows the balance, granted credits and their expiry (`$4.42 / $200 granted ·
+  until Nov 16`, red within 3 days) and **today's API spend** (UTC day) per
+  account, plus today's total of all accounts in the expanded header
+  (`TODAY API $1.20 · 2 ACCOUNTS`). Read for the account signed in to the console,
+  at most every 10 minutes or right away with ⟳. Read-only: GET requests and the
+  console's cost report query; nothing is claimed, reset or changed. Without the
+  permission (or after it is revoked) the row says *not allowed* and the total is
+  hidden; everything else works as before.
+- **Expanded part = 4-row label | value table** under every account, labels
+  under the account name and values from the bar column: Weekly resets ·
+  Fable resets · API credit · Last read (resets and API separately, so old
+  numbers never look live). The old `↺ WEEKLY RESETS` / `↺ FABLE RESETS`
+  headings are gone.
+- **WEEK and FABLE % left side by side** (the LEFT column is split); each rolls
+  over on its own when its reset time passes (`*`). Fable without its own date
+  follows the weekly reset.
+- One-time notification when a granted API credit expires within 3 days.
+
+### Changed
+- Accounts that were never read (typed in by hand, or known only from the
+  console) show no numbers: empty bar, `—`, a faint *not signed in* across the
+  RESETS and MONTH cells; they are left out of the 48-hour hint and sorted last.
+- Popup width 470 → 520 px. Money in the browser's language (`Intl`, USD).
+- Expired API credit counts as 0.
+
+### Fixed
+- If the free-reset request is refused, the extension falls back to plain
+  `/usage` and keeps the last known resets (and their read date) instead of 0.
+
 ## [1.2.0] — 2026-11-13
 
 ### Added

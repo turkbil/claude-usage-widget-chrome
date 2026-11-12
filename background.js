@@ -1,7 +1,18 @@
-import { fetchSnapshot } from './api.js';
-import { defaultPrefs, getPrefs, setPrefs, getCache, setCache, getAccounts, getHiddenAccounts, upsertAccount } from './prefs.js';
+import { fetchSnapshot, fetchConsoleCredits } from './api.js';
+import { defaultPrefs, getPrefs, setPrefs, getCache, setCache, getAccounts, getHiddenAccounts, upsertAccount, upsertAPI } from './prefs.js';
 import { drawIcon } from './icon-draw.js';
-import { accountState, visibleRecords, suggestion, shortNamer, formatRemaining, shortDay, grantText, i18n } from './accounts.js';
+import {
+  accountState, visibleRecords, suggestion, shortNamer, formatRemaining, shortDay, grantText, i18n,
+  activeCredits, money, utcDayKey, hasConsolePermission,
+} from './accounts.js';
+
+// Konsol (API kredisi) verisi yavaş değişir: en çok 10 dakikada bir okunur,
+// popup'taki ⟳ hemen okur. Damga storage'da: MV3 işçisi uyuyunca bellekteki değişken kaybolur.
+const CONSOLE_EVERY_MS = 10 * 60 * 1000;
+
+// Yenilemeler sırayla çalışır: ikisi aynı anda `accounts` kaydını okuyup yazınca biri ötekini siliyordu.
+let chain = Promise.resolve();
+const serial = fn => (chain = chain.then(fn, fn));
 
 const ALARM_REFRESH = 'cuw-refresh';
 const ALARM_HISTORY = 'cuw-history';
@@ -10,17 +21,17 @@ chrome.runtime.onInstalled.addListener(async () => {
   const prefs = await getPrefs();
   scheduleRefresh(prefs.pollIntervalSec);
   chrome.alarms.create(ALARM_HISTORY, { periodInMinutes: 5 });
-  await refresh();
+  await serial(() => refresh());
 });
 
 chrome.runtime.onStartup.addListener(async () => {
   const prefs = await getPrefs();
   scheduleRefresh(prefs.pollIntervalSec);
-  await refresh();
+  await serial(() => refresh());
 });
 
 chrome.alarms.onAlarm.addListener(async (alarm) => {
-  if (alarm.name === ALARM_REFRESH) await refresh();
+  if (alarm.name === ALARM_REFRESH) await serial(() => refresh());
   if (alarm.name === ALARM_HISTORY) await recordHistory();
 });
 
@@ -35,7 +46,7 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
       await updateBadge();   // gizlenen/silinen hesap ipucundan çıksın
       sendResponse({ ok: true });
     } else if (msg?.type === 'refresh-now') {
-      await refresh();
+      await serial(() => refresh({ forceConsole: true }));
       sendResponse({ ok: true });
     } else if (msg?.type === 'get-snapshot') {
       const cache = await getCache();
@@ -45,12 +56,21 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   return true;   // keep channel open for async sendResponse
 });
 
+// İsteğe bağlı konsol izni verilince hemen okunur; geri alınınca yeni istek
+// yapılmaz (popup «izin verilmedi» gösterir, kayıtlı kredi bildirim üretmez).
+chrome.permissions?.onAdded?.addListener(async p => {
+  if ((p.origins || []).some(o => o.startsWith('https://platform.claude.com'))) await serial(() => readConsole({ force: true }));
+});
+
 function scheduleRefresh(sec) {
   chrome.alarms.clear(ALARM_REFRESH);
   chrome.alarms.create(ALARM_REFRESH, { periodInMinutes: Math.max(0.5, sec / 60) });
 }
 
-async function refresh() {
+async function refresh({ forceConsole = false } = {}) {
+  // Konsol okuması kendi başına: konsol oturumu yoksa hata yazılmaz, claude.ai
+  // hatası da konsol okumasını engellemez. İki yazma sırayla (aynı kaydı değiştirirler).
+  await readConsole({ force: forceConsole });
   try {
     const snap = await fetchSnapshot();
     await setCache({ snapshot: snap, error: null, fetchedAt: Date.now() });
@@ -64,6 +84,20 @@ async function refresh() {
     await setCache({ ...cache, error: String(err.message || err), fetchedAt: Date.now() });
     await updateBadge();
   }
+}
+
+async function readConsole({ force = false } = {}) {
+  try {
+    if (!(await hasConsolePermission())) return;
+    const now = Date.now();
+    const { consoleReadAt = 0 } = await chrome.storage.local.get('consoleReadAt');
+    if (!force && now - consoleReadAt < CONSOLE_EVERY_MS) return;
+    await chrome.storage.local.set({ consoleReadAt: now });
+    const c = await fetchConsoleCredits(new Date(now));
+    if (!c) return;
+    await upsertAPI(c, new Date(now).toISOString(), utcDayKey(now));
+    await evaluateAccountNotifications();
+  } catch { /* konsol okunamadı: son değerler kalır */ }
 }
 
 // Alarmla 5 dakikada bir çalışır. Her yenilemeden sonra onAccountChange ile de
@@ -160,6 +194,7 @@ async function evaluateNotifications(snap) {
 //  • bir hesabın kullanılmamış kotası 48 sa içinde sıfırlanıyor
 //  • bir abonelik 3 gün içinde bitiyor
 //  • kullanılmamış bir sıfırlama hakkı 3 gün içinde sona eriyor
+//  • hibe API kredisi 3 gün içinde bitiyor
 async function evaluateAccountNotifications() {
   const prefs = await getPrefs();
   if (!prefs.notificationsEnabled) return;
@@ -168,6 +203,7 @@ async function evaluateAccountNotifications() {
   const records = visibleRecords(await getAccounts(), await getHiddenAccounts());
   const states = records.map(r => accountState(r, now));
   const shortName = shortNamer(records);
+  const apiAllowed = await hasConsolePermission();
   const { notifiedOnce = {} } = await chrome.storage.local.get('notifiedOnce');
   let changed = false;
 
@@ -197,6 +233,14 @@ async function evaluateAccountNotifications() {
     if (s.record.planRenews === false && s.planEnd != null && s.planEnd > now && s.planEnd - now <= soon) {
       once(`plan.${s.record.email}.${Math.floor(s.planEnd / 1000)}`,
            i18n('notification_plan_end', [name, shortDay(s.planEnd)]));
+    }
+    // Hibe API kredisi kullanılmadan bitmek üzere (izin geri alındıysa sorulmaz).
+    for (const c of apiAllowed ? activeCredits(s.record, now) : []) {
+      const end = c.expiresAt ? new Date(c.expiresAt).getTime() : null;
+      if (end != null && end - now <= soon) {
+        once(`api.${s.record.email}.${Math.floor(end / 1000)}`,
+             i18n('notification_api_end', [name, money(c.remaining), shortDay(end)]));
+      }
     }
     for (const g of s.grantsLeft) {
       const end = g.endsAt ? new Date(g.endsAt).getTime() : null;

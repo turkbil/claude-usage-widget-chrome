@@ -52,9 +52,11 @@ storage — Save the user's display preferences (which metrics to show, colors, 
 
 alarms — Schedule the periodic background refresh and history sampling. Without alarms, the extension would either spam claude.ai or only update when the user manually opens the popup.
 
-notifications — Send the optional alerts, off by default: usage thresholds (warn / alert / critical) per account, a reminder when an account's unused weekly quota resets within 48 hours, a cancelled plan ending within 3 days, and an unused free limit reset expiring within 3 days. Each is sent once.
+notifications — Send the optional alerts, off by default: usage thresholds (warn / alert / critical) per account, a reminder when an account's unused weekly quota resets within 48 hours, a cancelled plan ending within 3 days, an unused free limit reset expiring within 3 days, and a granted API credit expiring within 3 days (only with the optional console permission). Each is sent once.
 
 Host permission claude.ai — The single reason this extension exists: read the user's own data from claude.ai with GET requests only (organizations, account, usage including free resets, rate limits, subscription details), using the cookies the user already has. The extension never writes to claude.ai and never reads, copies or transmits those cookies elsewhere.
+
+Optional host permission platform.claude.com — Optional, requested only when the user clicks "Show API credits — allow access" (popup or Settings); the extension works fully without it. Used to show the user's own developer-console API credit balance, granted credits and their expiry date, and today's API spend. Read-only: GET requests for account, organizations and prepaid credits, plus one cost report query (POST body, read-only) for today's spend. It never claims credits, resets limits or writes anything; the values stay in chrome.storage.local and are never transmitted. If the permission is not granted or is revoked, no request is made to this domain.
 
 ## Privacy policy URL
 https://github.com/turkbil/claude-usage-widget-chrome/blob/main/PRIVACY.md

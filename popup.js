@@ -5,6 +5,7 @@ import {
 import {
   i18n, toMs, accountState, visibleRecords, suggestion, sortStates, shortNamer, resetsBefore, grantsOnHand,
   weekdayTime, shortDay, formatRemaining, ageText, grantText, grantLine, grantSummary,
+  activeCredits, apiTodayTotal, utcDayKey, money, dayTime, hasConsolePermission, CONSOLE_ORIGINS,
 } from './accounts.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -32,6 +33,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   setupSheet();
+  // İsteğe bağlı konsol izni: verilirse hemen okunur; geri alınırsa «izin verilmedi» hâline dönülür.
+  document.getElementById('apiPermBtn').addEventListener('click', async () => {
+    let ok = false;
+    try { ok = await chrome.permissions.request({ origins: CONSOLE_ORIGINS }); } catch {}
+    if (ok) { try { await chrome.runtime.sendMessage({ type: 'refresh-now' }); } catch {} }
+    await render();
+  });
+  chrome.permissions?.onRemoved?.addListener(() => render());
+  chrome.permissions?.onAdded?.addListener(() => render());
   await render();
 });
 
@@ -367,6 +377,7 @@ async function fillAccounts(snap, now = Date.now()) {
 
   document.getElementById('accountsTitle').textContent = i18n('section_accounts');
   document.getElementById('colLeft').textContent  = i18n('col_left');
+  document.getElementById('colFable').textContent = i18n('col_fable');
   document.getElementById('colReset').textContent = i18n('col_reset');
   document.getElementById('colPlan').textContent  = i18n('col_plan');
 
@@ -393,16 +404,24 @@ async function fillAccounts(snap, now = Date.now()) {
     return;
   }
 
-  // Her hesabın (açık hesap dahil) hemen altında, kapalıyken gizli hak satırı:
-  // «↺ HAFTALIK HAK» ve «↺ FABLE HAKKI» sütunlarında iki hücre.
+  // Her hesabın (açık hesap dahil) hemen altında, kapalıyken gizli 4 satırlık tablo.
+  // Başlıkta bugünkü API toplamı; konsol izni yoksa toplam yerine izin düğmesi.
   const expanded = await getGrantsExpanded();
-  setWithResetIcon(document.getElementById('grantHeadWeekly'), '↺ ' + i18n('grants_col_weekly'));
-  setWithResetIcon(document.getElementById('grantHeadFable'), '↺ ' + i18n('grants_col_fable'));
-  grantHead.hidden = !expanded;
+  const apiAllowed = await hasConsolePermission();
+  const total = apiTodayTotal(records, now);
+  const totalEl = document.getElementById('grantTotal');
+  totalEl.textContent = apiAllowed && total.accounts > 0
+    ? i18n('api_today_total', [money(total.sum), total.accounts]) : '';
+  totalEl.hidden = !totalEl.textContent;
+  const permBtn = document.getElementById('apiPermBtn');
+  permBtn.textContent = i18n('api_permission_button');
+  permBtn.hidden = apiAllowed;
+  grantHead.dataset.empty = totalEl.hidden && permBtn.hidden ? '1' : '';
+  grantHead.hidden = !expanded || grantHead.dataset.empty === '1';
   const rows = document.getElementById('accountRows');
   rows.replaceChildren(...states.flatMap(s => [
     accountRow(s, s.record.email === current, shortName(s.record.email), now),
-    grantRow(s, expanded),
+    grantRow(s, expanded, apiAllowed, now),
   ]));
   // Hesap varsa düğme her zaman görünür (tek hesapta da).
   toggle.hidden = false;
@@ -458,17 +477,29 @@ function accountRow(s, isCurrent, name, now) {
     cell('col-pct', '—', 'faint');
   }
 
-  // Sıfırlama günü ve saati.
-  if (s.nextReset != null) cell('col-reset', weekdayTime(s.nextReset));
-  else cell('col-reset', i18n('accounts_sign_in'), 'faint');
-
-  // Aylık tarih: yenileniyorsa (ya da bilinmiyorsa) renksiz, iptal edilmiş ve
-  // gerçekten bitiyorsa turuncu, tarihi geçtiyse soluk.
-  const ending = r.planRenews === false && s.planEnd != null && s.planEnd > now;
-  if (s.planEnd != null) {
-    cell('col-plan', shortDay(s.planEnd), s.planEnd < now ? 'faint' : (ending ? 'warn' : ''));
+  // Fable kalanı; «*» = son okumadan beri penceresi sıfırlandı (yeniden %100).
+  const f = s.scopedLeft[0];
+  if (f) {
+    const fp = cell('col-fpct', i18n('value_percent', [Math.round(f.left)]) + (s.scopedRolled ? '*' : ''));
+    fp.style.color = leftColor(f.left);
   } else {
-    cell('col-plan', '—', 'faint');
+    cell('col-fpct', '—', 'faint');
+  }
+
+  if (s.neverSignedIn || s.nextReset == null) {
+    // Hiç okunmadı: tahmin yerine bunu söyle; metin SIFIRLAMA + AYLIK hücrelerini birlikte kullanır.
+    cell('col-wide', i18n('accounts_not_signed_in'), 'faint');
+  } else {
+    // Sıfırlama günü ve saati.
+    cell('col-reset', weekdayTime(s.nextReset));
+    // Aylık tarih: yenileniyorsa (ya da bilinmiyorsa) renksiz, iptal edilmiş ve
+    // gerçekten bitiyorsa turuncu, tarihi geçtiyse soluk.
+    const ending = r.planRenews === false && s.planEnd != null && s.planEnd > now;
+    if (s.planEnd != null) {
+      cell('col-plan', shortDay(s.planEnd), s.planEnd < now ? 'faint' : (ending ? 'warn' : ''));
+    } else {
+      cell('col-plan', '—', 'faint');
+    }
   }
 
   row.title = accountDetails(s, isCurrent, now);
@@ -493,28 +524,71 @@ function setWithResetIcon(el, text) {
   });
 }
 
-// Hesabın altındaki hak satırı (Mac'teki GrantDetailView): haftalık | Fable hücresi.
-// Hücre: «↺ 1 · son 11 Ara», hak yoksa soluk «0», hiç okunmadıysa soluk «bilinmiyor».
-// Diğer türler (ör. oturum) hücrede yok, ipucunda haklar tek tek.
-function grantRow(s, expanded) {
+// Hesabın altındaki tablo (Mac'teki GrantDetailView), etiket | değer:
+//   Haftalık hak · «↺ 1 · son 11 Ara», hak yoksa soluk «0», hiç okunmadıysa soluk «bilinmiyor»
+//   Fable hakkı  · aynı biçim
+//   API kredisi  · «$4,42 / $200 hibe · son 16 Kas · bugün $0,00» (3 gün içinde bitecekse kırmızı)
+//   Son okuma    · «haklar 13 Kas 00:36 · API şimdi»
+// Diğer hak türleri (ör. oturum) tabloda yok, ipucunda tek tek.
+function grantRow(s, expanded, apiAllowed, now) {
+  const r = s.record;
   const el = document.createElement('div');
-  el.className = 'acct-grid grant-row';
+  el.className = 'grant-row';
   el.hidden = !expanded;
-  const known = Array.isArray(s.record.grants);
-  for (const kind of ['weekly', 'fable']) {
-    const c = document.createElement('span');
-    c.className = 'g-' + kind;
+  const line = (labelKey, text, cls, withIcon) => {
+    const ln = document.createElement('div');
+    ln.className = 'acct-grid g-line';
+    const l = document.createElement('span');
+    l.className = 'g-label';
+    l.textContent = i18n(labelKey);
+    const v = document.createElement('span');
+    v.className = 'g-value' + (cls ? ' ' + cls : '');
+    if (withIcon) setWithResetIcon(v, text); else v.textContent = text;
+    v.title = text;
+    ln.append(l, v);
+    el.append(ln);
+  };
+
+  for (const [kind, key] of [['weekly', 'grants_row_weekly'], ['fable', 'grants_row_fable']]) {
+    if (s.neverSignedIn || !Array.isArray(r.grants)) { line(key, i18n('grants_unknown_short')); continue; }
     const { count, first } = grantSummary(s.grantsLeft, kind);
-    if (!known) {
-      c.textContent = i18n('grants_unknown_short');
-    } else if (count === 0) {
-      c.textContent = '0';
-    } else {
-      setWithResetIcon(c, '↺ ' + count + (first != null ? ' · ' + i18n('grant_until', [shortDay(first)]) : ''));
-      c.classList.add('on');
-    }
-    el.append(c);
+    if (count === 0) line(key, '0');
+    else line(key, '↺ ' + count + (first != null ? ' · ' + i18n('grant_until', [shortDay(first)]) : ''), 'on', true);
   }
+
+  // API kredisi: konsoldan, yalnız izin verildiyse.
+  const today = r.apiTodayKey === utcDayKey(now) && typeof r.apiToday === 'number'
+    ? ' · ' + i18n('api_today', [money(r.apiToday)]) : '';
+  if (!apiAllowed) {
+    line('grants_row_api', i18n('api_no_permission'));
+  } else if (typeof r.apiTotal !== 'number') {
+    line('grants_row_api', i18n('api_unknown'));
+  } else {
+    const cr = activeCredits(r, now);
+    if (cr.length) {
+      const left = cr.reduce((n, c) => n + c.remaining, 0), granted = cr.reduce((n, c) => n + c.granted, 0);
+      const ends = cr.map(c => toMs(c.expiresAt)).filter(t => t != null);
+      const first = ends.length ? Math.min(...ends) : null;
+      const soon = first != null && first - now < 3 * 86400e3;
+      line('grants_row_api', i18n('api_credit', [money(left), money(granted)])
+        + (first != null ? ' · ' + i18n('grant_until', [shortDay(first)]) : '') + today, soon ? 'soon' : 'on');
+    } else {
+      line('grants_row_api', money(r.apiTotal) + today, r.apiTotal > 0 ? 'plain' : '');
+    }
+  }
+
+  // Son okuma, ayrı ayrı: haklar claude.ai'den, kredi konsoldan gelir.
+  const when = iso => (now - toMs(iso) < 180e3 ? i18n('accounts_now') : dayTime(toMs(iso)));
+  const apiSeen = apiAllowed && r.apiSeenAt ? r.apiSeenAt : null;
+  if (s.neverSignedIn && !apiSeen) {
+    line('grants_row_seen', i18n('accounts_never_read'));
+  } else {
+    const bits = [];
+    if (!s.neverSignedIn) bits.push(i18n('grants_seen_resets', [when(r.grantsSeenAt || r.seenAt)]));
+    if (apiSeen) bits.push(i18n('grants_seen_api', [when(apiSeen)]));
+    line('grants_row_seen', bits.join(' · '));
+  }
+
   if (s.grantsLeft.length) el.title = s.grantsLeft.map(grantLine).join('\n');
   return el;
 }
@@ -550,7 +624,8 @@ function accountDetails(s, isCurrent, now) {
     }
     lines.push(bits.join(' · '));
   }
-  lines.push(i18n('tip_seen', [isCurrent ? i18n('accounts_now') : ageText(r.seenAt, now)]));
+  if (s.neverSignedIn) lines.push(i18n('accounts_never_read'));
+  else lines.push(i18n('tip_seen', [isCurrent ? i18n('accounts_now') : ageText(r.seenAt, now)]));
   if (s.rolled) lines.push(i18n('tip_rolled'));
   lines.push(i18n('tip_remove'));
   if (!isCurrent) lines.push(i18n('tip_refresh'));
@@ -582,7 +657,8 @@ function setupSheet() {
   document.getElementById('grantsToggle').addEventListener('click', async () => {
     const expanded = !(await getGrantsExpanded());
     await setGrantsExpanded(expanded);
-    document.getElementById('grantHead').hidden = !expanded;
+    const gh = document.getElementById('grantHead');
+    gh.hidden = !expanded || gh.dataset.empty === '1';
     document.querySelectorAll('#accountRows .grant-row').forEach(el => { el.hidden = !expanded; });
     setToggleText(expanded);
   });

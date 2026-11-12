@@ -298,9 +298,6 @@
       }
     }
   },
-  "accounts_sign_in": {
-    "message": "ログイン"
-  },
   "label_scoped_cap": {
     "message": "$1 · 最大$2%",
     "placeholders": {
@@ -334,7 +331,7 @@
     "message": "使用内訳"
   },
   "col_left": {
-    "message": "残り"
+    "message": "週"
   },
   "col_reset": {
     "message": "リセット"
@@ -499,13 +496,61 @@
   "grants_hide": {
     "message": "無料リセットを隠す"
   },
-  "grants_col_weekly": {
-    "message": "週間リセット"
-  },
-  "grants_col_fable": {
-    "message": "FABLEリセット"
-  },
   "grants_unknown_short": {
     "message": "不明"
+  },
+  "col_fable": {
+    "message": "FABLE"
+  },
+  "accounts_not_signed_in": {
+    "message": "未ログイン"
+  },
+  "accounts_never_read": {
+    "message": "未ログイン · 一度も読み込まれていません"
+  },
+  "grants_row_weekly": {
+    "message": "週次リセット"
+  },
+  "grants_row_fable": {
+    "message": "Fableリセット"
+  },
+  "grants_row_api": {
+    "message": "APIクレジット"
+  },
+  "grants_row_seen": {
+    "message": "最終読み込み"
+  },
+  "grants_seen_resets": {
+    "message": "リセット $1"
+  },
+  "grants_seen_api": {
+    "message": "API $1"
+  },
+  "api_unknown": {
+    "message": "不明 · コンソールにログインすると表示"
+  },
+  "api_credit": {
+    "message": "$1 / $2 付与"
+  },
+  "api_today": {
+    "message": "今日 $1"
+  },
+  "api_today_total": {
+    "message": "今日のAPI $1 · $2 アカウント"
+  },
+  "notification_api_end": {
+    "message": "$1 の API クレジット $2 が $3 に失効します。"
+  },
+  "api_no_permission": {
+    "message": "未許可 · APIクレジットと今日の利用額は読み込まれません"
+  },
+  "api_permission_button": {
+    "message": "APIクレジットを表示 — 許可する"
+  },
+  "api_permission_note": {
+    "message": "許可しない場合、APIクレジット残高、付与クレジットの期限、今日のAPI利用額は表示されません。"
+  },
+  "api_permission_granted": {
+    "message": "許可済み — APIクレジットをコンソールから読み込みます。"
   }
 }

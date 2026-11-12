@@ -298,9 +298,6 @@
       }
     }
   },
-  "accounts_sign_in": {
-    "message": "inloggen"
-  },
   "label_scoped_cap": {
     "message": "$1 · max $2%",
     "placeholders": {
@@ -334,7 +331,7 @@
     "message": "Gebruik"
   },
   "col_left": {
-    "message": "OVER"
+    "message": "WEEK"
   },
   "col_reset": {
     "message": "RESET"
@@ -499,13 +496,61 @@
   "grants_hide": {
     "message": "Gratis resets verbergen"
   },
-  "grants_col_weekly": {
-    "message": "WEEKRESETS"
-  },
-  "grants_col_fable": {
-    "message": "FABLE-RESETS"
-  },
   "grants_unknown_short": {
     "message": "onbekend"
+  },
+  "col_fable": {
+    "message": "FABLE"
+  },
+  "accounts_not_signed_in": {
+    "message": "niet ingelogd"
+  },
+  "accounts_never_read": {
+    "message": "niet ingelogd · nooit gelezen"
+  },
+  "grants_row_weekly": {
+    "message": "Weekresets"
+  },
+  "grants_row_fable": {
+    "message": "Fable-resets"
+  },
+  "grants_row_api": {
+    "message": "API-tegoed"
+  },
+  "grants_row_seen": {
+    "message": "Laatst gelezen"
+  },
+  "grants_seen_resets": {
+    "message": "resets $1"
+  },
+  "grants_seen_api": {
+    "message": "API $1"
+  },
+  "api_unknown": {
+    "message": "onbekend · na inloggen op de console"
+  },
+  "api_credit": {
+    "message": "$1 / $2 toegekend"
+  },
+  "api_today": {
+    "message": "vandaag $1"
+  },
+  "api_today_total": {
+    "message": "VANDAAG API $1 · $2 ACCOUNTS"
+  },
+  "notification_api_end": {
+    "message": "$1: $2 API-tegoed verloopt op $3."
+  },
+  "api_no_permission": {
+    "message": "niet toegestaan · API-tegoed en kosten van vandaag niet gelezen"
+  },
+  "api_permission_button": {
+    "message": "API-tegoed tonen — toegang geven"
+  },
+  "api_permission_note": {
+    "message": "Zonder deze toestemming worden het API-tegoed, de vervaldatum van het toegekende tegoed en de API-kosten van vandaag niet getoond."
+  },
+  "api_permission_granted": {
+    "message": "Toegestaan — het API-tegoed wordt uit de console gelezen."
   }
 }

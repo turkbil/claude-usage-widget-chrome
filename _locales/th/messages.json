@@ -298,9 +298,6 @@
       }
     }
   },
-  "accounts_sign_in": {
-    "message": "ลงชื่อเข้าใช้"
-  },
   "label_scoped_cap": {
     "message": "$1 · สูงสุด $2%",
     "placeholders": {
@@ -334,7 +331,7 @@
     "message": "การใช้งาน"
   },
   "col_left": {
-    "message": "เหลือ"
+    "message": "สัปดาห์"
   },
   "col_reset": {
     "message": "รีเซ็ต"
@@ -499,13 +496,61 @@
   "grants_hide": {
     "message": "ซ่อนรีเซ็ตฟรี"
   },
-  "grants_col_weekly": {
-    "message": "รีเซ็ตรายสัปดาห์"
-  },
-  "grants_col_fable": {
-    "message": "รีเซ็ต FABLE"
-  },
   "grants_unknown_short": {
     "message": "ไม่ทราบ"
+  },
+  "col_fable": {
+    "message": "FABLE"
+  },
+  "accounts_not_signed_in": {
+    "message": "ยังไม่ได้เข้าสู่ระบบ"
+  },
+  "accounts_never_read": {
+    "message": "ยังไม่ได้เข้าสู่ระบบ · ไม่เคยอ่านข้อมูล"
+  },
+  "grants_row_weekly": {
+    "message": "รีเซ็ตรายสัปดาห์"
+  },
+  "grants_row_fable": {
+    "message": "รีเซ็ต Fable"
+  },
+  "grants_row_api": {
+    "message": "เครดิต API"
+  },
+  "grants_row_seen": {
+    "message": "อ่านล่าสุด"
+  },
+  "grants_seen_resets": {
+    "message": "รีเซ็ต $1"
+  },
+  "grants_seen_api": {
+    "message": "API $1"
+  },
+  "api_unknown": {
+    "message": "ไม่ทราบ · แสดงเมื่อเข้าสู่ระบบคอนโซล"
+  },
+  "api_credit": {
+    "message": "$1 / $2 ที่ได้รับ"
+  },
+  "api_today": {
+    "message": "วันนี้ $1"
+  },
+  "api_today_total": {
+    "message": "วันนี้ API $1 · $2 บัญชี"
+  },
+  "notification_api_end": {
+    "message": "เครดิต API $2 ของ $1 จะหมดอายุวันที่ $3"
+  },
+  "api_no_permission": {
+    "message": "ไม่ได้รับอนุญาต · ไม่อ่านเครดิต API และยอดใช้วันนี้"
+  },
+  "api_permission_button": {
+    "message": "แสดงเครดิต API — อนุญาต"
+  },
+  "api_permission_note": {
+    "message": "หากไม่อนุญาต จะไม่แสดงยอดเครดิต API วันหมดอายุของเครดิตที่ได้รับ และยอดใช้ API วันนี้"
+  },
+  "api_permission_granted": {
+    "message": "อนุญาตแล้ว — อ่านเครดิต API จากคอนโซล"
   }
 }

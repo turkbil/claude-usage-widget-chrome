@@ -75,11 +75,37 @@ export async function upsertAccount(snap) {
     planRenews:     typeof snap.planRenews === 'boolean' ? snap.planRenews
                   : (i >= 0 && typeof accounts[i].planRenews === 'boolean' ? accounts[i].planRenews : null),
     // Elde kalan ücretsiz sıfırlama hakları (yalnız okunur, yerelde tutulur).
-    grants:         Array.isArray(snap.grants) ? snap.grants : [],
+    // Bu sefer okunmadıysa (null) bilinen son haklar ve tarihleri korunur, 0'a dönmez.
+    grants:         Array.isArray(snap.grants) ? snap.grants : (i >= 0 ? accounts[i].grants ?? null : null),
+    grantsSeenAt:   Array.isArray(snap.grants) ? snap.fetchedAt : (i >= 0 ? accounts[i].grantsSeenAt ?? null : null),
     seenAt:         snap.fetchedAt,
     source:         'live',
   };
+  // Konsoldan okunan API kredisi ayrı yazılır (upsertAPI); burada korunur.
+  if (i >= 0) for (const k of API_FIELDS) if (accounts[i][k] !== undefined) rec[k] = accounts[i][k];
   if (i >= 0) accounts[i] = rec; else accounts.push(rec);
+  await chrome.storage.local.set({ accounts });
+}
+
+const API_FIELDS = ['apiTotal', 'apiCredits', 'apiSeenAt', 'apiToday', 'apiTodayKey'];
+
+// Konsolda (platform.claude.com) oturum açık hesabın API kredisi; claude.ai'deki
+// hesaptan farklı olabilir. Kayıt yoksa verisiz bir kayıt açılır («giriş yapılmadı»).
+// apiToday yalnız apiTodayKey (UTC günü) gününde sayılır.
+export async function upsertAPI({ email, total, credits, today }, at, dayKey) {
+  const e = String(email || '').toLowerCase();
+  if (!e) return;
+  const accounts = await getAccounts();
+  let rec = accounts.find(a => a.email === e);
+  if (!rec) {
+    rec = { email: e, plan: null, weeklyPct: null, weeklyResetsAt: null, scoped: [],
+            planEndsAt: null, planRenews: null, grants: null, seenAt: at, source: 'api' };
+    accounts.push(rec);
+  }
+  rec.apiTotal = total;
+  rec.apiCredits = Array.isArray(credits) ? credits : [];
+  rec.apiSeenAt = at;
+  if (typeof today === 'number') { rec.apiToday = today; rec.apiTodayKey = dayKey; }
   await chrome.storage.local.set({ accounts });
 }
 

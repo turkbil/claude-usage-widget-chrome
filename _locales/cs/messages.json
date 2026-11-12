@@ -298,9 +298,6 @@
       }
     }
   },
-  "accounts_sign_in": {
-    "message": "přihlásit"
-  },
   "label_scoped_cap": {
     "message": "$1 · max. $2%",
     "placeholders": {
@@ -334,7 +331,7 @@
     "message": "Využití"
   },
   "col_left": {
-    "message": "ZBÝVÁ"
+    "message": "TÝDEN"
   },
   "col_reset": {
     "message": "RESET"
@@ -499,13 +496,61 @@
   "grants_hide": {
     "message": "Skrýt resety zdarma"
   },
-  "grants_col_weekly": {
-    "message": "TÝDENNÍ RESETY"
-  },
-  "grants_col_fable": {
-    "message": "RESETY FABLE"
-  },
   "grants_unknown_short": {
     "message": "neznámé"
+  },
+  "col_fable": {
+    "message": "FABLE"
+  },
+  "accounts_not_signed_in": {
+    "message": "nepřihlášen"
+  },
+  "accounts_never_read": {
+    "message": "nepřihlášen · nikdy nenačteno"
+  },
+  "grants_row_weekly": {
+    "message": "Týdenní resety"
+  },
+  "grants_row_fable": {
+    "message": "Resety Fable"
+  },
+  "grants_row_api": {
+    "message": "Kredit API"
+  },
+  "grants_row_seen": {
+    "message": "Naposledy načteno"
+  },
+  "grants_seen_resets": {
+    "message": "resety $1"
+  },
+  "grants_seen_api": {
+    "message": "API $1"
+  },
+  "api_unknown": {
+    "message": "neznámé · po přihlášení do konzole"
+  },
+  "api_credit": {
+    "message": "$1 / $2 přiděleno"
+  },
+  "api_today": {
+    "message": "dnes $1"
+  },
+  "api_today_total": {
+    "message": "DNES API $1 · ÚČTŮ: $2"
+  },
+  "notification_api_end": {
+    "message": "$1: $2 kreditu API vyprší $3."
+  },
+  "api_no_permission": {
+    "message": "nepovoleno · kredit API a dnešní útrata se nenačítají"
+  },
+  "api_permission_button": {
+    "message": "Zobrazit kredity API — povolit"
+  },
+  "api_permission_note": {
+    "message": "Bez tohoto oprávnění se nezobrazí zůstatek kreditu API, datum vypršení přiděleného kreditu ani dnešní útrata za API."
+  },
+  "api_permission_granted": {
+    "message": "Povoleno — kredit API se načítá z konzole."
   }
 }

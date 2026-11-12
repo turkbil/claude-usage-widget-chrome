@@ -298,9 +298,6 @@
       }
     }
   },
-  "accounts_sign_in": {
-    "message": "войдите"
-  },
   "label_scoped_cap": {
     "message": "$1 · макс. $2%",
     "placeholders": {
@@ -334,7 +331,7 @@
     "message": "Расход"
   },
   "col_left": {
-    "message": "ЗАПАС"
+    "message": "НЕДЕЛЯ"
   },
   "col_reset": {
     "message": "СБРОС"
@@ -499,13 +496,61 @@
   "grants_hide": {
     "message": "Скрыть бесплатные сбросы"
   },
-  "grants_col_weekly": {
-    "message": "НЕД. СБРОСЫ"
-  },
-  "grants_col_fable": {
-    "message": "СБРОСЫ FABLE"
-  },
   "grants_unknown_short": {
     "message": "неизвестно"
+  },
+  "col_fable": {
+    "message": "FABLE"
+  },
+  "accounts_not_signed_in": {
+    "message": "не выполнен вход"
+  },
+  "accounts_never_read": {
+    "message": "не выполнен вход · данные не читались"
+  },
+  "grants_row_weekly": {
+    "message": "Недельные сбросы"
+  },
+  "grants_row_fable": {
+    "message": "Сбросы Fable"
+  },
+  "grants_row_api": {
+    "message": "Кредит API"
+  },
+  "grants_row_seen": {
+    "message": "Последнее чтение"
+  },
+  "grants_seen_resets": {
+    "message": "сбросы $1"
+  },
+  "grants_seen_api": {
+    "message": "API $1"
+  },
+  "api_unknown": {
+    "message": "неизвестно · после входа в консоль"
+  },
+  "api_credit": {
+    "message": "$1 / $2 выдано"
+  },
+  "api_today": {
+    "message": "сегодня $1"
+  },
+  "api_today_total": {
+    "message": "СЕГОДНЯ API $1 · АККАУНТОВ: $2"
+  },
+  "notification_api_end": {
+    "message": "$1: $2 API-кредита истекает $3."
+  },
+  "api_no_permission": {
+    "message": "нет разрешения · кредит API и расходы за сегодня не читаются"
+  },
+  "api_permission_button": {
+    "message": "Показать кредиты API — разрешить"
+  },
+  "api_permission_note": {
+    "message": "Без этого разрешения баланс кредита API, срок действия выданного кредита и сегодняшние расходы на API не показываются."
+  },
+  "api_permission_granted": {
+    "message": "Разрешено — кредит API читается из консоли."
   }
 }

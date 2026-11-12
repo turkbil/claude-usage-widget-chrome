@@ -298,9 +298,6 @@
       }
     }
   },
-  "accounts_sign_in": {
-    "message": "登入"
-  },
   "label_scoped_cap": {
     "message": "$1 · 最多 $2%",
     "placeholders": {
@@ -334,7 +331,7 @@
     "message": "用量"
   },
   "col_left": {
-    "message": "剩餘"
+    "message": "本週"
   },
   "col_reset": {
     "message": "重設"
@@ -499,13 +496,61 @@
   "grants_hide": {
     "message": "隱藏免費重設"
   },
-  "grants_col_weekly": {
-    "message": "每週重設"
-  },
-  "grants_col_fable": {
-    "message": "FABLE 重設"
-  },
   "grants_unknown_short": {
     "message": "未知"
+  },
+  "col_fable": {
+    "message": "FABLE"
+  },
+  "accounts_not_signed_in": {
+    "message": "未登入"
+  },
+  "accounts_never_read": {
+    "message": "未登入 · 從未讀取"
+  },
+  "grants_row_weekly": {
+    "message": "每週重設"
+  },
+  "grants_row_fable": {
+    "message": "Fable 重設"
+  },
+  "grants_row_api": {
+    "message": "API 額度"
+  },
+  "grants_row_seen": {
+    "message": "最後讀取"
+  },
+  "grants_seen_resets": {
+    "message": "重設 $1"
+  },
+  "grants_seen_api": {
+    "message": "API $1"
+  },
+  "api_unknown": {
+    "message": "未知 · 登入主控台後顯示"
+  },
+  "api_credit": {
+    "message": "$1 / $2 贈送"
+  },
+  "api_today": {
+    "message": "今天 $1"
+  },
+  "api_today_total": {
+    "message": "今天 API $1 · $2 個帳號"
+  },
+  "notification_api_end": {
+    "message": "$1 的 $2 API 額度將於 $3 到期。"
+  },
+  "api_no_permission": {
+    "message": "未授權 · 不讀取 API 額度與今天的花費"
+  },
+  "api_permission_button": {
+    "message": "顯示 API 額度 — 授予權限"
+  },
+  "api_permission_note": {
+    "message": "未授權時，不會顯示 API 額度餘額、贈送額度到期日與今天的 API 花費。"
+  },
+  "api_permission_granted": {
+    "message": "已授權 — 從主控台讀取 API 額度。"
   }
 }

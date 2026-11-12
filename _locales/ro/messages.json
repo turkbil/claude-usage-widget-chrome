@@ -298,9 +298,6 @@
       }
     }
   },
-  "accounts_sign_in": {
-    "message": "conectare"
-  },
   "label_scoped_cap": {
     "message": "$1 · max. $2%",
     "placeholders": {
@@ -334,7 +331,7 @@
     "message": "Consum"
   },
   "col_left": {
-    "message": "RĂMAS"
+    "message": "SĂPT."
   },
   "col_reset": {
     "message": "RESETARE"
@@ -499,13 +496,61 @@
   "grants_hide": {
     "message": "Ascunde resetările gratuite"
   },
-  "grants_col_weekly": {
-    "message": "RESETĂRI SĂPT."
-  },
-  "grants_col_fable": {
-    "message": "RESETĂRI FABLE"
-  },
   "grants_unknown_short": {
     "message": "necunoscut"
+  },
+  "col_fable": {
+    "message": "FABLE"
+  },
+  "accounts_not_signed_in": {
+    "message": "neconectat"
+  },
+  "accounts_never_read": {
+    "message": "neconectat · niciodată citit"
+  },
+  "grants_row_weekly": {
+    "message": "Resetări săpt."
+  },
+  "grants_row_fable": {
+    "message": "Resetări Fable"
+  },
+  "grants_row_api": {
+    "message": "Credit API"
+  },
+  "grants_row_seen": {
+    "message": "Ultima citire"
+  },
+  "grants_seen_resets": {
+    "message": "resetări $1"
+  },
+  "grants_seen_api": {
+    "message": "API $1"
+  },
+  "api_unknown": {
+    "message": "necunoscut · după conectarea la consolă"
+  },
+  "api_credit": {
+    "message": "$1 / $2 acordat"
+  },
+  "api_today": {
+    "message": "azi $1"
+  },
+  "api_today_total": {
+    "message": "AZI API $1 · $2 CONTURI"
+  },
+  "notification_api_end": {
+    "message": "$1: $2 credit API expiră pe $3."
+  },
+  "api_no_permission": {
+    "message": "nepermis · creditul API și cheltuiala de azi nu se citesc"
+  },
+  "api_permission_button": {
+    "message": "Afișează creditele API — permite"
+  },
+  "api_permission_note": {
+    "message": "Fără această permisiune nu se afișează soldul creditului API, data de expirare a creditului acordat și cheltuiala API de azi."
+  },
+  "api_permission_granted": {
+    "message": "Permis — creditul API se citește din consolă."
   }
 }
