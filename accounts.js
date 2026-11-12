@@ -70,6 +70,13 @@ export function accountState(r, now) {
   };
 }
 
+// Gizlenen hesaplar listeden, 48 sa uyarısından, araç çubuğu ipucundan ve
+// bildirimlerden çıkar; kayıtları storage'da kalır.
+export function visibleRecords(records, hidden) {
+  const h = new Set((hidden || []).map(e => String(e).toLowerCase()));
+  return records.filter(r => !h.has(r.email));
+}
+
 // Kullanılmamış haftalık kotası boşa gidecek hesap: 48 saat içinde sıfırlanır
 // ve en az %5 kalmıştır. En yakın sıfırlama kazanır; eşitse fazla kalan.
 export function suggestion(states, now) {

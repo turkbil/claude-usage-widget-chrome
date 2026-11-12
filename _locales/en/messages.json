@@ -100,5 +100,14 @@
   "tip_refresh": {"message": "Sign in to this account to update it."},
   "tip_plan_ends": {"message": "Plan ends $1", "placeholders": {"1": {"content": "$1"}}},
   "notification_plan_end": {"message": "The $1 plan ends on $2 — use the quota left.", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}},
-  "notification_grant_end": {"message": "$1 has an unused free reset: $2.", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}}
+  "notification_grant_end": {"message": "$1 has an unused free reset: $2.", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}},
+  "tip_remove": {"message": "Click: hide or delete"},
+  "hide_title": {"message": "What should happen to $1?", "placeholders": {"1": {"content": "$1"}}},
+  "hide_body_hide": {"message": "Hide: $1 disappears from the list, hints and notifications; its data is kept and “Show hidden accounts” brings it back.", "placeholders": {"1": {"content": "$1"}}},
+  "hide_body_delete": {"message": "Delete: the record is removed; it is added again from scratch the next time you sign in to it."},
+  "hide_confirm": {"message": "Hide"},
+  "hide_delete": {"message": "Delete"},
+  "hide_cancel": {"message": "Cancel"},
+  "hide_show": {"message": "Show hidden accounts ($1)", "placeholders": {"1": {"content": "$1"}}},
+  "icon_hint": {"message": "Show the next account in the toolbar tooltip (⏳ claude1)"}
 }

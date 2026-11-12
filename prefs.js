@@ -19,6 +19,9 @@ export const defaultPrefs = {
   alertThreshold:    75,
   criticalThreshold: 90,
   lastNotifiedLevel: '',
+
+  // Araç çubuğu ipucuna «⏳ claude1» (sıradaki hesap) eklensin mi; varsayılan kapalı.
+  toolbarHint: false,
 };
 
 export async function getPrefs() {
@@ -78,4 +81,30 @@ export async function upsertAccount(snap) {
   };
   if (i >= 0) accounts[i] = rec; else accounts.push(rec);
   await chrome.storage.local.set({ accounts });
+}
+
+// Listeden gizlenen hesaplar (küçük harf e-posta). Kayıt saklanır; yeniden
+// giriş yapılsa da gizli kalır, «Gizlenen hesapları göster» hepsini geri getirir.
+export async function getHiddenAccounts() {
+  const { hiddenAccounts = [] } = await chrome.storage.local.get('hiddenAccounts');
+  return Array.isArray(hiddenAccounts) ? hiddenAccounts : [];
+}
+
+export async function hideAccount(email) {
+  const e = String(email || '').toLowerCase();
+  if (!e) return;
+  const hidden = await getHiddenAccounts();
+  if (!hidden.includes(e)) await chrome.storage.local.set({ hiddenAccounts: [...hidden, e].sort() });
+}
+
+export async function unhideAllAccounts() {
+  await chrome.storage.local.set({ hiddenAccounts: [] });
+}
+
+// Kaydı siler ve gizli listesinden de çıkarır: hesap bir sonraki girişte sıfırdan eklenir.
+export async function removeAccount(email) {
+  const e = String(email || '').toLowerCase();
+  const accounts = (await getAccounts()).filter(a => a.email !== e);
+  const hiddenAccounts = (await getHiddenAccounts()).filter(h => h !== e);
+  await chrome.storage.local.set({ accounts, hiddenAccounts });
 }

@@ -178,6 +178,63 @@ html { overflow-x: hidden; }
 .acct .faint { color: var(--haze); }
 .acct .warn { color: var(--ember); }
 .acct .bar { height: 5px; }
+.acct { cursor: pointer; }
+.acct:hover, .acct:focus-visible { background: rgba(255,255,255,0.12); outline: none; }
+
+/* «Gizlenen hesapları göster (N)» — not satırıyla aynı hiza ve punto. */
+.show-hidden {
+  display: block;
+  padding: 4px 18px 2px;
+  border: 0;
+  background: none;
+  color: var(--haze);
+  font: 11px -apple-system, "Segoe UI", sans-serif;
+  line-height: 17px;
+  text-align: left;
+  cursor: pointer;
+}
+.show-hidden:hover, .show-hidden:focus-visible { color: var(--ember); outline: none; }
+
+/* Alttan açılan Gizle / Sil seçimi: popup yüksekliğini değiştirmez. */
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(0,0,0,0.55);
+}
+.sheet {
+  width: 100%;
+  padding: 12px 18px;
+  background: #2a2a2c;
+  border-top: 1px solid var(--line);
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 -8px 24px rgba(0,0,0,0.45);
+}
+.sheet-title { font-weight: 600; font-size: 13px; overflow-wrap: anywhere; }
+.sheet-line {
+  margin: 6px 0 0;
+  font-size: 11px;
+  line-height: 17px;
+  color: var(--haze-bright);
+  overflow-wrap: anywhere;
+}
+.sheet-actions { display: flex; gap: 6px; margin-top: 12px; }
+.sheet-actions button {
+  flex: 1;
+  padding: 7px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--bone);
+  font: 11px -apple-system, "Segoe UI", sans-serif;
+  cursor: pointer;
+}
+.sheet-actions button:hover { background: rgba(255,255,255,0.08); }
+.sheet-actions button.danger { color: var(--blood); background: rgba(214,100,90,0.12); }
+.sheet-actions button.danger:hover { background: rgba(214,100,90,0.22); }
+.sheet-actions button:focus-visible { outline: 1px solid var(--haze-bright); outline-offset: 1px; }
 
 .footer {
   padding: 6px 18px 4px;

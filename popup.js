@@ -1,6 +1,6 @@
-import { getCache, getHistory, getAccounts } from './prefs.js';
+import { getCache, getHistory, getAccounts, getHiddenAccounts, hideAccount, removeAccount, unhideAllAccounts } from './prefs.js';
 import {
-  i18n, toMs, accountState, suggestion, sortStates, shortNamer, resetsBefore, grantsOnHand,
+  i18n, toMs, accountState, visibleRecords, suggestion, sortStates, shortNamer, resetsBefore, grantsOnHand,
   weekdayTime, shortDay, formatRemaining, ageText, grantText,
 } from './accounts.js';
 
@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     chrome.tabs.create({ url: 'https://x.com/nurullah' });
   });
 
+  setupSheet();
   await render();
 });
 
@@ -346,12 +347,20 @@ function leftColor(left) {
 async function fillAccounts(snap, now = Date.now()) {
   const box = document.getElementById('accounts');
   const current = (snap.email || '').toLowerCase();
-  const records = await getAccounts();
+  const all = await getAccounts();
+  const hidden = await getHiddenAccounts();
+  const records = visibleRecords(all, hidden);
   const states = sortStates(records.map(r => accountState(r, now)));
   const shortName = shortNamer(records);
 
-  box.hidden = states.length === 0;
-  if (!states.length) return;
+  // «Gizlenen hesapları göster (N)»: hepsi gizli olsa da bölüm bu bağlantı için açık kalır.
+  const hiddenCount = all.length - records.length;
+  const showHidden = document.getElementById('showHidden');
+  showHidden.textContent = i18n('hide_show', [hiddenCount]);
+  showHidden.hidden = hiddenCount === 0;
+
+  box.hidden = states.length === 0 && hiddenCount === 0;
+  box.querySelector('.acct-head').hidden = states.length === 0;
 
   document.getElementById('accountsTitle').textContent = i18n('section_accounts');
   document.getElementById('colLeft').textContent  = i18n('col_left');
@@ -370,6 +379,11 @@ async function fillAccounts(snap, now = Date.now()) {
     hint.hidden = false;
   } else {
     hint.hidden = true;
+  }
+  if (!states.length) {
+    document.getElementById('accountRows').replaceChildren();
+    document.getElementById('accountsStale').hidden = true;
+    return;
   }
 
   const rows = document.getElementById('accountRows');
@@ -443,6 +457,13 @@ function accountRow(s, isCurrent, name, now) {
   }
 
   row.title = accountDetails(s, isCurrent, now);
+  // Tıklayınca (ya da Enter/Boşluk) alttan «Gizle · Sil · Vazgeç» seçimi açılır.
+  row.tabIndex = 0;
+  row.setAttribute('role', 'button');
+  row.addEventListener('click', () => openSheet(r.email, name));
+  row.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSheet(r.email, name); }
+  });
   return row;
 }
 
@@ -474,6 +495,62 @@ function accountDetails(s, isCurrent, now) {
   }
   lines.push(i18n('tip_seen', [isCurrent ? i18n('accounts_now') : ageText(r.seenAt, now)]));
   if (s.rolled) lines.push(i18n('tip_rolled'));
+  lines.push(i18n('tip_remove'));
   if (!isCurrent) lines.push(i18n('tip_refresh'));
   return lines.join('\n');
+}
+
+// ── Gizle / Sil ────────────────────────────────────────────────────────────
+// Mac'teki confirmHide (Sources/main.swift) karşılığı; native confirm() yerine
+// popup içinde alttan açılan panel. Gizle: kayıt kalır, listeden, uyarıdan,
+// ipucundan ve bildirimlerden çıkar. Sil: kayıt silinir, yeniden girişte sıfırdan eklenir.
+
+let sheetEmail = null;
+
+function setupSheet() {
+  document.getElementById('sheetHideBtn').textContent   = i18n('hide_confirm');
+  document.getElementById('sheetDeleteBtn').textContent = i18n('hide_delete');
+  document.getElementById('sheetCancelBtn').textContent = i18n('hide_cancel');
+
+  document.getElementById('sheetHideBtn').addEventListener('click', () => applySheet(hideAccount));
+  document.getElementById('sheetDeleteBtn').addEventListener('click', () => applySheet(removeAccount));
+  document.getElementById('sheetCancelBtn').addEventListener('click', closeSheet);
+  document.getElementById('sheetBackdrop').addEventListener('click', e => {
+    if (e.target.id === 'sheetBackdrop') closeSheet();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && sheetEmail) { e.preventDefault(); closeSheet(); }
+  });
+  document.getElementById('showHidden').addEventListener('click', async () => {
+    await unhideAllAccounts();
+    await accountsChanged();
+  });
+}
+
+function openSheet(email, name) {
+  sheetEmail = email;
+  document.getElementById('sheetTitle').textContent      = i18n('hide_title', [name]);
+  document.getElementById('sheetHideText').textContent   = i18n('hide_body_hide', [email]);
+  document.getElementById('sheetDeleteText').textContent = i18n('hide_body_delete');
+  document.getElementById('sheetBackdrop').hidden = false;
+  document.getElementById('sheetHideBtn').focus();
+}
+
+function closeSheet() {
+  sheetEmail = null;
+  document.getElementById('sheetBackdrop').hidden = true;
+}
+
+async function applySheet(action) {
+  const email = sheetEmail;
+  closeSheet();
+  if (!email) return;
+  await action(email);
+  await accountsChanged();
+}
+
+// Popup'ı yeniden çizer; background araç çubuğu ipucunu tazeler.
+async function accountsChanged() {
+  try { await chrome.runtime.sendMessage({ type: 'accounts-changed' }); } catch {}
+  await render();
 }

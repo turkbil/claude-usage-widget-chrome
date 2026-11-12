@@ -17,8 +17,14 @@ All notable changes to this project are documented here.
   account is bold on a soft band; details (e-mail, weekly, Fable, plan, free
   resets, last data time) are in the row tooltip.
 - **48-hour hint** (one line): names the account whose unused weekly quota
-  (≥ 5 %) resets within 48 hours, soonest first. The toolbar tooltip adds
-  `→ name` when that account is not the signed-in one.
+  (≥ 5 %) resets within 48 hours, soonest first. Optionally (Settings → Icon,
+  off by default) the toolbar tooltip adds `⏳ name` when that account is not
+  the signed-in one.
+- **Hide / Delete an account**: click an account row and choose in a small
+  sheet inside the popup. *Hide* keeps the record but drops it from the list,
+  the 48-hour hint, the toolbar tooltip and notifications; *Show hidden
+  accounts (N)* under the list brings them all back. *Delete* removes the
+  record (it is added again from scratch on the next sign-in).
 - **Details block** for the signed-in account: reset day and time, plan end or
   renewal date, free resets on hand, daily budget (left ÷ days to reset) and
   where the week went (`seven_day_breakdown`).

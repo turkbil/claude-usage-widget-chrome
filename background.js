@@ -1,7 +1,7 @@
 import { fetchSnapshot } from './api.js';
-import { defaultPrefs, getPrefs, setPrefs, getCache, setCache, getAccounts, upsertAccount } from './prefs.js';
+import { defaultPrefs, getPrefs, setPrefs, getCache, setCache, getAccounts, getHiddenAccounts, upsertAccount } from './prefs.js';
 import { drawIcon } from './icon-draw.js';
-import { accountState, suggestion, shortNamer, formatRemaining, shortDay, grantText, i18n } from './accounts.js';
+import { accountState, visibleRecords, suggestion, shortNamer, formatRemaining, shortDay, grantText, i18n } from './accounts.js';
 
 const ALARM_REFRESH = 'cuw-refresh';
 const ALARM_HISTORY = 'cuw-history';
@@ -31,6 +31,9 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
       const prefs = await getPrefs();
       scheduleRefresh(prefs.pollIntervalSec);
       await updateBadge();   // re-render with new settings
+    } else if (msg?.type === 'accounts-changed') {
+      await updateBadge();   // gizlenen/silinen hesap ipucundan çıksın
+      sendResponse({ ok: true });
     } else if (msg?.type === 'refresh-now') {
       await refresh();
       sendResponse({ ok: true });
@@ -85,13 +88,17 @@ async function updateBadge() {
   // Tooltip
   if (snapshot) {
     const pct = Math.round(snapshot.weeklyUtilization);
-    // "→ claude1": başka bir hesabın kullanılmamış kotası 48 sa içinde yanacak.
+    // "⏳ claude1": başka bir hesabın kullanılmamış kotası 48 sa içinde yanacak.
+    // İsteğe bağlı (Ayarlar, varsayılan kapalı); gizli hesaplar sayılmaz.
     // Rozet metnine dokunulmaz; ipucu yalnız başlığa eklenir.
-    const records = await getAccounts();
-    const sug = suggestion(records.map(r => accountState(r, Date.now())), Date.now());
-    const current = (snapshot.email || '').toLowerCase();
-    const arrow = sug && sug.record.email !== current ? ` → ${shortNamer(records)(sug.record.email)}` : '';
-    chrome.action.setTitle({ title: `Claude: ${pct}% this week${arrow}` });
+    let next = '';
+    if (prefs.toolbarHint) {
+      const records = visibleRecords(await getAccounts(), await getHiddenAccounts());
+      const sug = suggestion(records.map(r => accountState(r, Date.now())), Date.now());
+      const current = (snapshot.email || '').toLowerCase();
+      if (sug && sug.record.email !== current) next = ` ⏳ ${shortNamer(records)(sug.record.email)}`;
+    }
+    chrome.action.setTitle({ title: `Claude: ${pct}% this week${next}` });
   } else if (error) {
     const msg = error.startsWith('error.') ? (chrome.i18n.getMessage(error.replace(/\./g, '_')) || error) : error;
     chrome.action.setTitle({ title: `Claude Usage Widget — ${msg}` });
@@ -158,7 +165,7 @@ async function evaluateAccountNotifications() {
   if (!prefs.notificationsEnabled) return;
 
   const now = Date.now(), soon = 3 * 86400 * 1000;
-  const records = await getAccounts();
+  const records = visibleRecords(await getAccounts(), await getHiddenAccounts());
   const states = records.map(r => accountState(r, now));
   const shortName = shortNamer(records);
   const { notifiedOnce = {} } = await chrome.storage.local.get('notifiedOnce');

@@ -100,5 +100,14 @@
   "tip_refresh": {"message": "Güncellemek için bu hesaba giriş yapın."},
   "tip_plan_ends": {"message": "Abonelik $1 tarihinde bitiyor", "placeholders": {"1": {"content": "$1"}}},
   "notification_plan_end": {"message": "$1 aboneliği $2 tarihinde bitiyor; kalan kotayı kullanın.", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}},
-  "notification_grant_end": {"message": "$1 hesabında kullanılmamış sıfırlama hakkı: $2.", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}}
+  "notification_grant_end": {"message": "$1 hesabında kullanılmamış sıfırlama hakkı: $2.", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}},
+  "tip_remove": {"message": "Tıklayın: gizle ya da sil"},
+  "hide_title": {"message": "$1 ne yapılsın?", "placeholders": {"1": {"content": "$1"}}},
+  "hide_body_hide": {"message": "Gizle: $1 listede, uyarılarda ve bildirimlerde görünmez; veri saklanır, «Gizlenen hesapları göster» ile geri gelir.", "placeholders": {"1": {"content": "$1"}}},
+  "hide_body_delete": {"message": "Sil: kayıt silinir; bu hesaba yeniden giriş yaparsanız sıfırdan eklenir."},
+  "hide_confirm": {"message": "Gizle"},
+  "hide_delete": {"message": "Sil"},
+  "hide_cancel": {"message": "Vazgeç"},
+  "hide_show": {"message": "Gizlenen hesapları göster ($1)", "placeholders": {"1": {"content": "$1"}}},
+  "icon_hint": {"message": "Sıradaki hesabı araç çubuğu ipucunda göster (⏳ claude1)"}
 }

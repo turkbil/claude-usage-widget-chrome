@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('iconCustomLabel').textContent = i18n('icon_custom');
   document.getElementById('iconDonutLabel').textContent  = i18n('icon_donut');
   document.getElementById('iconNoneLabel').textContent   = i18n('icon_none');
+  document.getElementById('toolbarHintLabel').textContent = i18n('icon_hint');
   document.getElementById('refreshLabel').textContent    = i18n('menu_refresh_interval');
   document.getElementById('notificationsLabel').textContent = i18n('menu_notifications');
   document.getElementById('notifEnableLabel').textContent = i18n('notifications_enable');
@@ -134,6 +135,11 @@ function renderIconSection(prefs) {
       else if (r.value === 'custom') await commit({ iconType: 'custom', iconValue: customField.value.trim() || '🪐' });
     });
   });
+
+  // «⏳ claude1»: sıradaki hesap araç çubuğu ipucunda (varsayılan kapalı).
+  const hint = document.getElementById('toolbarHint');
+  hint.checked = prefs.toolbarHint === true;
+  hint.addEventListener('change', async () => { await commit({ toolbarHint: hint.checked }); });
 }
 
 function renderRefreshSection(prefs) {
