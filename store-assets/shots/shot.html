@@ -29,7 +29,7 @@
     .brand img { width: 32px; height: 32px; display: block; }
 
     .frame { position: relative; overflow: hidden; border-radius: 12px; background: #1c1c1e; box-shadow: var(--frame-shadow); }
-    .frame iframe { position: absolute; left: 0; top: 0; width: 420px; border: 0; transform-origin: 0 0; display: block; }
+    .frame iframe { position: absolute; left: 0; top: 0; width: 470px; border: 0; transform-origin: 0 0; display: block; }
 
     /* ── Ekran görüntüleri 1280×800 ── */
     body.shot { width: 1280px; height: 800px; }
@@ -160,11 +160,11 @@
       const full = doc.documentElement.scrollHeight;
       let h = full, crop = full, s = S;
       if (scene === 'hide') { h = crop = 600; }
-      if (scene === 'details') { s = 560 / 420; crop = Math.ceil(doc.getElementById('details').getBoundingClientRect().bottom + 6); }
+      if (scene === 'details') { s = 560 / 470; crop = Math.ceil(doc.getElementById('details').getBoundingClientRect().bottom + 6); }
       if (scene === 'marquee') { s = 1; crop = Math.min(full, 560 - 64); }   // alt kenarda yumuşak biter
       ifr.style.height = h + 'px';
       ifr.style.transform = `scale(${s})`;
-      frame.style.width = 420 * s + 'px';
+      frame.style.width = 470 * s + 'px';
       frame.style.height = crop * s + 'px';
       return { full, h, crop, s };
     };

@@ -184,7 +184,7 @@ function serve() {
     for (const sc of SCENES) {
       const { ctx, page, frame, errors, lay } = await open(l, sc, S);
       if (sc.id === 'hide') {
-        await frame.locator('.acct', { has: frame.locator('.nm', { hasText: /^team$/ }) }).click();
+        await frame.locator('.acct', { has: frame.locator('.nm', { hasText: /^team@/ }) }).click();
         await page.waitForTimeout(200);
       }
       const r = await page.evaluate(measureShot);
