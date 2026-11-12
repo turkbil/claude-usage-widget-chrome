@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented here.
 
-## [Unreleased]
+## [1.2.0] — 2026-11-13
 
 ### Added
 - **Accounts section** in the popup. Every claude.ai account signed in to this
