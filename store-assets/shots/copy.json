@@ -1,0 +1,92 @@
+{
+  "tr": {
+    "slogan": "Tüm Claude hesaplarının haftalık limiti",
+    "accounts": { "h": "Bütün Claude hesapların tek bakışta", "b": ["Her hesapta kalan haftalık %, sıfırlama günü ve saati", "Ücretsiz sıfırlama hakları (↺): kaç tane, ne zamana kadar", "«Önce bu hesabı kullan» uyarısı"] },
+    "details": { "h": "Haftalık limitin araç çubuğunda", "b": ["Halka içinde sayı: haftalık kullanım %", "Sıfırlama, abonelik bitişi, sıfırlama hakkı, günlük pay", "Haftanın nereye gittiği: Claude Code / Sohbet / Cowork"] },
+    "hide": { "h": "Gerekmeyen hesabı gizle ya da sil", "b": ["Hesaba tıkla, gizle ya da sil", "Gizlenen hesap tek tıkla geri gelir", "Veriler yalnız bu tarayıcıda kalır"] }
+  },
+  "en": {
+    "slogan": "Weekly Claude limits for all your accounts",
+    "accounts": { "h": "All your Claude accounts at a glance", "b": ["Weekly % left, reset day and time for every account", "Free limit resets (↺): how many and until when", "“Use this account first” hint"] },
+    "details": { "h": "Your weekly limit, right in your toolbar", "b": ["Ring with a number: weekly usage %", "Reset, plan end, free resets, daily budget", "Where the week went: Claude Code / Chat / Cowork"] },
+    "hide": { "h": "Hide or delete accounts you no longer need", "b": ["Click an account to hide or delete it", "Bring hidden accounts back with one click", "Data stays in this browser only"] }
+  },
+  "de": {
+    "slogan": "Claude-Wochenlimits für alle deine Konten",
+    "accounts": { "h": "Alle deine Claude-Konten auf einen Blick", "b": ["Verbleibende % der Woche, Reset-Tag und -Uhrzeit je Konto", "Gratis-Resets des Limits (↺): wie viele und bis wann", "Hinweis „Nutze zuerst dieses Konto“"] },
+    "details": { "h": "Dein Wochenlimit direkt in der Symbolleiste", "b": ["Ring mit Zahl: Wochennutzung in %", "Reset, Abo-Ende, freie Resets, Anteil pro Tag", "Wohin die Woche ging: Claude Code / Chat / Cowork"] },
+    "hide": { "h": "Konten ausblenden oder löschen, die du nicht mehr brauchst", "b": ["Konto anklicken, ausblenden oder löschen", "Ausgeblendete Konten mit einem Klick zurückholen", "Daten bleiben nur in diesem Browser"] }
+  },
+  "es": {
+    "slogan": "El límite semanal de Claude de todas tus cuentas",
+    "accounts": { "h": "Todas tus cuentas de Claude de un vistazo", "b": ["% semanal restante, día y hora de reinicio de cada cuenta", "Reinicios gratuitos del límite (↺): cuántos y hasta cuándo", "Aviso «Usa primero esta cuenta»"] },
+    "details": { "h": "Tu límite semanal en la barra de herramientas", "b": ["Anillo con número: % de uso semanal", "Reinicio, fin del plan, reinicios gratis, por día", "En qué se fue la semana: Claude Code / Chat / Cowork"] },
+    "hide": { "h": "Oculta o elimina las cuentas que ya no necesitas", "b": ["Haz clic en una cuenta para ocultarla o eliminarla", "Recupera las cuentas ocultas con un clic", "Los datos se quedan solo en este navegador"] }
+  },
+  "fr": {
+    "slogan": "La limite hebdomadaire Claude de tous vos comptes",
+    "accounts": { "h": "Tous vos comptes Claude d’un coup d’œil", "b": ["% hebdomadaire restant, jour et heure de réinitialisation par compte", "Réinitialisations gratuites (↺) : combien et jusqu’à quand", "Rappel « Utilisez d’abord ce compte »"] },
+    "details": { "h": "Votre limite hebdomadaire dans la barre d’outils", "b": ["Anneau avec chiffre : % d’utilisation de la semaine", "Réinitialisation, fin d’abonnement, réinit. offertes, par jour", "Où est passée la semaine : Claude Code / Chat / Cowork"] },
+    "hide": { "h": "Masquez ou supprimez les comptes inutiles", "b": ["Cliquez sur un compte pour le masquer ou le supprimer", "Les comptes masqués reviennent en un clic", "Les données restent dans ce navigateur"] }
+  },
+  "it": {
+    "slogan": "Il limite settimanale di Claude per tutti i tuoi account",
+    "accounts": { "h": "Tutti i tuoi account Claude a colpo d’occhio", "b": ["% settimanale rimasta, giorno e ora del reset per account", "Reset gratuiti del limite (↺): quanti e fino a quando", "Avviso «Usa prima questo account»"] },
+    "details": { "h": "Il tuo limite settimanale nella barra degli strumenti", "b": ["Anello con numero: % di utilizzo settimanale", "Reset, fine piano, reset gratis, al giorno", "Dove è andata la settimana: Claude Code / Chat / Cowork"] },
+    "hide": { "h": "Nascondi o elimina gli account che non ti servono più", "b": ["Fai clic su un account per nasconderlo o eliminarlo", "Gli account nascosti tornano con un clic", "I dati restano solo in questo browser"] }
+  },
+  "nl": {
+    "slogan": "De Claude-weeklimiet van al je accounts",
+    "accounts": { "h": "Al je Claude-accounts in één oogopslag", "b": ["% over deze week, resetdag en -tijd per account", "Gratis resets van de limiet (↺): hoeveel en tot wanneer", "Tip “Gebruik eerst dit account”"] },
+    "details": { "h": "Je weeklimiet direct in de werkbalk", "b": ["Ring met getal: weekgebruik in %", "Reset, einde abo, gratis resets, per dag", "Waar de week heen ging: Claude Code / Chat / Cowork"] },
+    "hide": { "h": "Verberg of verwijder accounts die je niet meer nodig hebt", "b": ["Klik op een account om het te verbergen of te verwijderen", "Verborgen accounts komen met één klik terug", "Gegevens blijven alleen in deze browser"] }
+  },
+  "cs": {
+    "slogan": "Týdenní limit Claude všech vašich účtů",
+    "accounts": { "h": "Všechny účty Claude na jeden pohled", "b": ["Zbývající % týdne, den a čas resetu u každého účtu", "Bezplatné resety limitu (↺): kolik a do kdy", "Upozornění „Nejdřív použijte tento účet“"] },
+    "details": { "h": "Týdenní limit přímo na liště", "b": ["Kruh s číslem: týdenní využití v %", "Reset, konec plánu, resety zdarma, denní příděl", "Kam se týden poděl: Claude Code / Chat / Cowork"] },
+    "hide": { "h": "Skryjte nebo smažte účty, které už nepotřebujete", "b": ["Klikněte na účet a skryjte ho nebo smažte", "Skryté účty vrátíte jedním kliknutím", "Data zůstávají jen v tomto prohlížeči"] }
+  },
+  "ro": {
+    "slogan": "Limita săptămânală Claude pentru toate conturile tale",
+    "accounts": { "h": "Toate conturile tale Claude dintr-o privire", "b": ["% rămas din săptămână, ziua și ora resetării pentru fiecare cont", "Resetări gratuite ale limitei (↺): câte și până când", "Indiciul „Folosește mai întâi acest cont”"] },
+    "details": { "h": "Limita săptămânală, chiar în bara de instrumente", "b": ["Inel cu număr: % de utilizare săptămânală", "Resetare, expirare, resetări gratuite, pe zi", "Unde s-a dus săptămâna: Claude Code / Chat / Cowork"] },
+    "hide": { "h": "Ascunde sau șterge conturile de care nu mai ai nevoie", "b": ["Dă clic pe un cont ca să-l ascunzi sau să-l ștergi", "Conturile ascunse revin cu un clic", "Datele rămân doar în acest browser"] }
+  },
+  "ru": {
+    "slogan": "Недельный лимит Claude всех ваших аккаунтов",
+    "accounts": { "h": "Все аккаунты Claude с одного взгляда", "b": ["Остаток недели в %, день и время сброса для каждого аккаунта", "Бесплатные сбросы лимита (↺): сколько и до какого числа", "Подсказка «Сначала используйте этот аккаунт»"] },
+    "details": { "h": "Недельный лимит прямо на панели инструментов", "b": ["Число в кольце: недельный расход в %", "Сброс, конец подписки, бесплатные сбросы, в день", "Куда ушла неделя: Claude Code / чат / Cowork"] },
+    "hide": { "h": "Скрывайте или удаляйте ненужные аккаунты", "b": ["Нажмите на аккаунт, чтобы скрыть или удалить его", "Скрытые аккаунты возвращаются одним щелчком", "Данные хранятся только в этом браузере"] }
+  },
+  "uk": {
+    "slogan": "Тижневий ліміт Claude усіх ваших акаунтів",
+    "accounts": { "h": "Усі акаунти Claude з одного погляду", "b": ["Залишок тижня у %, день і час скидання для кожного акаунта", "Безкоштовні скидання ліміту (↺): скільки і до якої дати", "Підказка «Спершу використайте цей акаунт»"] },
+    "details": { "h": "Тижневий ліміт просто на панелі інструментів", "b": ["Число в кільці: тижнева витрата у %", "Скидання, кінець підписки, вільні скидання, на день", "Куди пішов тиждень: Claude Code / чат / Cowork"] },
+    "hide": { "h": "Приховуйте або видаляйте непотрібні акаунти", "b": ["Натисніть на акаунт, щоб приховати або видалити його", "Приховані акаунти повертаються одним клацанням", "Дані зберігаються лише в цьому браузері"] }
+  },
+  "ja": {
+    "slogan": "全アカウントの Claude 週間上限をツールバーに",
+    "accounts": { "h": "すべての Claude アカウントをひと目で", "b": ["アカウントごとの週間残り %、リセットの曜日と時刻", "無料リセット（↺）：回数と有効期限", "「このアカウントを先に使う」のお知らせ"] },
+    "details": { "h": "週間上限をツールバーに", "b": ["リングの中に数字：週間の使用率 %", "リセット、プラン終了、無料リセット、1日の目安", "今週の使い道：Claude Code / チャット / Cowork"] },
+    "hide": { "h": "不要なアカウントは非表示または削除", "b": ["アカウントをクリックして非表示・削除", "非表示のアカウントはワンクリックで元に戻せます", "データはこのブラウザ内にのみ保存"] }
+  },
+  "ko": {
+    "slogan": "모든 계정의 Claude 주간 한도를 도구 모음에서",
+    "accounts": { "h": "모든 Claude 계정을 한눈에", "b": ["계정별 주간 남은 %, 초기화 요일과 시각", "무료 한도 초기화(↺): 개수와 만료일", "\"이 계정 먼저 사용\" 알림"] },
+    "details": { "h": "주간 한도를 도구 모음에서 바로", "b": ["링 안의 숫자: 주간 사용률 %", "초기화, 플랜 종료, 무료 초기화, 하루 할당", "이번 주 사용처: Claude Code / 채팅 / Cowork"] },
+    "hide": { "h": "필요 없는 계정은 숨기거나 삭제", "b": ["계정을 클릭해 숨기거나 삭제", "숨긴 계정은 클릭 한 번으로 복원", "데이터는 이 브라우저에만 저장"] }
+  },
+  "zh_TW": {
+    "slogan": "所有帳號的 Claude 每週上限，盡在工具列",
+    "accounts": { "h": "所有 Claude 帳號一目了然", "b": ["每個帳號的每週剩餘 %、重設的星期與時間", "免費重設（↺）：次數與到期日", "「先用這個帳號」提醒"] },
+    "details": { "h": "每週上限就在工具列上", "b": ["圓環中的數字：每週用量 %", "重設、方案到期、免費重設、每日額度", "本週用在哪裡：Claude Code / 對話 / Cowork"] },
+    "hide": { "h": "不需要的帳號可隱藏或刪除", "b": ["點選帳號即可隱藏或刪除", "隱藏的帳號一鍵就能恢復", "資料只存在這個瀏覽器中"] }
+  },
+  "th": {
+    "slogan": "ขีดจำกัด Claude รายสัปดาห์ของทุกบัญชีบนแถบเครื่องมือ",
+    "accounts": { "h": "ทุกบัญชี Claude ในพริบตาเดียว", "b": ["% ที่เหลือของสัปดาห์ วันและเวลารีเซ็ตของแต่ละบัญชี", "สิทธิ์รีเซ็ตฟรี (↺): จำนวนและวันหมดอายุ", "คำเตือน \"ใช้บัญชีนี้ก่อน\""] },
+    "details": { "h": "ขีดจำกัดรายสัปดาห์บนแถบเครื่องมือ", "b": ["ตัวเลขในวงแหวน: % การใช้งานรายสัปดาห์", "รีเซ็ต แพ็กเกจหมด รีเซ็ตฟรี ต่อวัน", "สัปดาห์นี้ใช้ไปกับอะไร: Claude Code / แชท / Cowork"] },
+    "hide": { "h": "ซ่อนหรือลบบัญชีที่ไม่ต้องการแล้ว", "b": ["คลิกบัญชีเพื่อซ่อนหรือลบ", "นำบัญชีที่ซ่อนกลับมาได้ในคลิกเดียว", "ข้อมูลอยู่ในเบราว์เซอร์นี้เท่านั้น"] }
+  }
+}

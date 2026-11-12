@@ -1,0 +1,175 @@
+<!doctype html>
+<!-- Mağaza görselleri için tek şablon. Parametreler: ?lang=tr&scene=accounts|details|hide|tile|marquee&s=1
+     Popup gerçek koddan (/popup.html) iframe ile gelir; chrome.* taklidini render.cjs her çerçeveye enjekte eder.
+     Metinler copy.json'dan. Sunucu kökü depo köküdür. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Store shot</title>
+  <style>
+    :root {
+      --bg: #151413;
+      --bone: #f4eee3;
+      --haze-bright: #d4cfc4;
+      --haze: #8a8378;
+      --ember: #d68c45;
+      --line: rgba(255,255,255,0.08);
+      --toolbar: #2a2928;
+      --field: #1d1c1b;
+      /* Boşluk ölçeği: 8 · 16 · 24 · 32 · 48 · 64 · 96 */
+      --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px; --s6: 48px; --s8: 64px; --s12: 96px;
+      --font: -apple-system, "Segoe UI", "Helvetica Neue", "Hiragino Sans", "Apple SD Gothic Neo", "PingFang TC", "Thonburi", sans-serif;
+      --frame-shadow: 0 0 0 1px var(--line), 0 8px 16px rgba(0,0,0,0.28), 0 24px 56px rgba(0,0,0,0.42);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--bg); color: var(--bone); font-family: var(--font); overflow: hidden; }
+    body { position: relative; }
+
+    .brand { display: flex; align-items: center; gap: var(--s2); font-size: 18px; font-weight: 600; line-height: 1.2; color: var(--haze-bright); }
+    .brand img { width: 32px; height: 32px; display: block; }
+
+    .frame { position: relative; overflow: hidden; border-radius: 12px; background: #1c1c1e; box-shadow: var(--frame-shadow); }
+    .frame iframe { position: absolute; left: 0; top: 0; width: 420px; border: 0; transform-origin: 0 0; display: block; }
+
+    /* ── Ekran görüntüleri 1280×800 ── */
+    body.shot { width: 1280px; height: 800px; }
+    .shot .brand { position: absolute; left: var(--s12); top: var(--s8); }
+    .shot .copy { position: absolute; left: var(--s12); top: 0; bottom: 0; width: 520px; display: flex; flex-direction: column; justify-content: center; }
+    .shot.details .copy { width: 480px; }   /* araç çubuğu sahnesi 560 px geniş: aradaki boşluk 48 px kalsın */
+    .shot h1 { margin: 0 0 var(--s4); font-size: 48px; font-weight: 700; line-height: 1.12; letter-spacing: -0.01em; text-wrap: balance; }
+    .shot ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--s2); }
+    .shot li { position: relative; padding-left: var(--s4); font-size: 20px; line-height: 1.4; color: var(--haze-bright); text-wrap: pretty; }
+    /* Japonca: satır sözcük ortasında değil öbek sınırında kırılsın. */
+    :lang(ja) h1, :lang(ja) li, :lang(ja) .slogan { word-break: auto-phrase; }
+    .reset-ico { width: 0.85em; height: 0.85em; vertical-align: -0.08em; color: var(--ember); }
+    .shot li::before { content: ""; position: absolute; left: 0; top: calc(0.7em - 4px); width: 8px; height: 8px; border-radius: 2px; background: var(--ember); }
+    .shot .stage { position: absolute; right: var(--s12); top: 0; bottom: 0; width: 560px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+
+    /* Araç çubuğu parçası: adres alanı + eklenti simgesi (vurgulu). */
+    .toolbar { width: 560px; height: 56px; padding: 0 var(--s2); display: flex; align-items: center; gap: var(--s2); background: var(--toolbar); border-radius: 12px; box-shadow: var(--frame-shadow); margin-bottom: var(--s2); }
+    .omnibox { flex: 1; height: 36px; border-radius: 18px; background: var(--field); display: flex; align-items: center; padding: 0 var(--s2); font-size: 15px; color: var(--haze); }
+    .ext { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; box-shadow: 0 0 0 2px var(--ember); }
+    .ext canvas { width: 28px; height: 28px; display: block; }
+
+    /* ── Tanıtım kutusu 440×280 ── */
+    body.tile { width: 440px; height: 280px; display: flex; flex-direction: column; justify-content: center; padding: 0 var(--s4); }
+    .tile img { width: 72px; height: 72px; display: block; }
+    .tile .name { margin-top: var(--s3); font-size: 28px; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
+    .tile .slogan { margin-top: var(--s1); font-size: 17px; line-height: 1.4; color: var(--haze-bright); max-width: 376px; }
+
+    /* ── Marquee 1400×560 ── */
+    body.marquee { width: 1400px; height: 560px; }
+    .marquee .copy { position: absolute; left: var(--s12); top: 0; bottom: 0; width: 724px; display: flex; flex-direction: column; justify-content: center; }
+    .marquee .copy img { width: 112px; height: 112px; display: block; }
+    .marquee .name { margin-top: var(--s4); font-size: 56px; font-weight: 700; line-height: 1.12; letter-spacing: -0.015em; white-space: nowrap; }
+    .marquee .slogan { margin-top: var(--s2); font-size: 28px; line-height: 1.3; color: var(--haze-bright); white-space: nowrap; }
+    .marquee .frame { position: absolute; right: var(--s12); top: var(--s8); -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent); mask-image: linear-gradient(to bottom, #000 60%, transparent); }
+  </style>
+</head>
+<body>
+  <script type="module">
+    import { drawIcon } from '/icon-draw.js';
+
+    const q = new URLSearchParams(location.search);
+    const lang = q.get('lang') || 'en';
+    const scene = q.get('scene') || 'accounts';
+    const S = parseFloat(q.get('s') || '1');           // ekran görüntülerinde ortak popup ölçeği
+    const copy = (await (await fetch('/store-assets/shots/copy.json')).json())[lang];
+    document.documentElement.lang = lang.replace('_', '-');
+    const ICON = '/icons/src/icon.svg';
+    const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+
+    // «↺» Mac Chrome'da «ʊ» gibi çiziliyor: popup'taki SVG okun aynısıyla değiştirilir.
+    const RESET_SVG = '<svg class="reset-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8a4.5 4.5 0 1 0 1.4-3.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M2.2 2.4 5.2 4.9 2 6.6Z" fill="currentColor"/></svg>';
+    function withIcons(node, text) {
+      // « / » ayırıcısı satır başına düşmesin: önündeki boşluk bölünmez.
+      text.replace(/ \/ /g, '\u00a0/ ').split('↺').forEach((part, i) => {
+        if (i) { const t = document.createElement('template'); t.innerHTML = RESET_SVG; node.append(t.content); }
+        node.append(part);
+      });
+      return node;
+    }
+
+    function popupFrame() {
+      const frame = el('div', 'frame');
+      const ifr = el('iframe');
+      ifr.src = '/popup.html';
+      ifr.title = 'popup';
+      frame.append(ifr);
+      return { frame, ifr };
+    }
+
+    // Toolbar simgesini gerçek icon-draw.js çizer; 32 px tuval K kat büyük çizilir ki keskin kalsın.
+    function toolbarIcon(pct) {
+      const K = 4, Real = OffscreenCanvas;
+      globalThis.OffscreenCanvas = class {
+        constructor(w, h) {
+          const c = new Real(w * K, h * K), ctx = c.getContext('2d');
+          ctx.scale(K, K);
+          const gid = ctx.getImageData.bind(ctx);
+          ctx.getImageData = (x, y, w2, h2) => gid(x * K, y * K, w2 * K, h2 * K);
+          this.ctx = ctx;
+        }
+        getContext() { return this.ctx; }
+      };
+      const img = drawIcon({ weeklyUtilization: pct }, { iconType: 'donut', weeklyPctMode: 'text', weeklyPctColor: '#d68c45' }, false);
+      globalThis.OffscreenCanvas = Real;
+      const cv = el('canvas');
+      cv.width = img.width; cv.height = img.height;
+      cv.getContext('2d').putImageData(img, 0, 0);
+      return cv;
+    }
+
+    let parts = {};
+    if (scene === 'tile' || scene === 'marquee') {
+      document.body.className = scene;
+      const box = scene === 'marquee' ? el('div', 'copy') : document.body;
+      const img = el('img'); img.src = ICON; img.alt = '';
+      box.append(img, el('div', 'name', 'Claude Usage Widget'), el('div', 'slogan', copy.slogan));
+      box.querySelector('.name').dataset.t = box.querySelector('.slogan').dataset.t = '';
+      if (scene === 'marquee') { document.body.append(box); parts = popupFrame(); document.body.append(parts.frame); }
+    } else {
+      document.body.className = 'shot ' + scene;
+      const brand = el('div', 'brand');
+      const img = el('img'); img.src = ICON; img.alt = '';
+      brand.append(img, el('span', null, 'Claude Usage Widget'));
+      const c = copy[scene];
+      const box = el('div', 'copy');
+      const h1 = el('h1', null, c.h); h1.dataset.t = '';
+      const ul = el('ul');
+      for (const b of c.b) { const li = withIcons(el('li'), b); li.dataset.t = ''; ul.append(li); }
+      box.append(h1, ul);
+      const stage = el('div', 'stage');
+      parts = popupFrame();
+      if (scene === 'details') {
+        const tb = el('div', 'toolbar');
+        const ext = el('div', 'ext');
+        ext.append(toolbarIcon(40));
+        tb.append(el('div', 'omnibox', 'claude.ai'), ext);
+        stage.append(tb);
+      }
+      stage.append(parts.frame);
+      document.body.append(brand, box, stage);
+    }
+
+    // render.cjs popup çizildikten sonra çağırır: iframe'i içeriğine göre boyutlar.
+    window.layout = () => {
+      const { frame, ifr } = parts;
+      if (!ifr) return null;
+      const doc = ifr.contentDocument;
+      const full = doc.documentElement.scrollHeight;
+      let h = full, crop = full, s = S;
+      if (scene === 'hide') { h = crop = 600; }
+      if (scene === 'details') { s = 560 / 420; crop = Math.ceil(doc.getElementById('details').getBoundingClientRect().bottom + 6); }
+      if (scene === 'marquee') { s = 1; crop = Math.min(full, 560 - 64); }   // alt kenarda yumuşak biter
+      ifr.style.height = h + 'px';
+      ifr.style.transform = `scale(${s})`;
+      frame.style.width = 420 * s + 'px';
+      frame.style.height = crop * s + 'px';
+      return { full, h, crop, s };
+    };
+    await document.fonts.ready;
+    window.__shotReady = true;
+  </script>
+</body>
+</html>
