@@ -3,7 +3,7 @@
     "message": "Claude Usage Widget"
   },
   "app_description": {
-    "message": "Votre consommation hebdomadaire de Claude dans la barre d’outils — la même donnée que claude.ai/settings/usage, avec prévision et alertes de seuil."
+    "message": "Votre usage hebdo de Claude dans la barre d’outils, avec prévision et alertes ; retient vos comptes et réinit. offertes."
   },
   "section_weekly": {
     "message": "HEBDOMADAIRE"
@@ -206,5 +206,291 @@
   },
   "error_org_not_found": {
     "message": "ID d’organisation introuvable"
+  },
+  "section_accounts": {
+    "message": "COMPTES"
+  },
+  "accounts_now": {
+    "message": "maintenant"
+  },
+  "accounts_ago": {
+    "message": "il y a $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_hours_short": {
+    "message": "$1h",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_days_short": {
+    "message": "$1j",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_until": {
+    "message": "Abonnement jusqu’au $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_passed": {
+    "message": "date passée"
+  },
+  "accounts_resets": {
+    "message": "$1 réinitialisations avant la fin",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_resets_split": {
+    "message": "$1 hebdo · $2 $3",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_stale_note": {
+    "message": "Grisé = ancien · * réinitialisé · ↺ = réinit. offerte · orange = fin d’abonnement"
+  },
+  "accounts_hint_current": {
+    "message": "$1% inutilisés ici, réinitialisés dans $2.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "accounts_hint_other": {
+    "message": "Utilisez d’abord $1 : $2% libres, réinit. dans $3.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_sign_in": {
+    "message": "se connecter"
+  },
+  "label_scoped_cap": {
+    "message": "$1 · max $2 %",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "detail_reset": {
+    "message": "Réinit."
+  },
+  "detail_plan": {
+    "message": "Fin abo"
+  },
+  "detail_renews": {
+    "message": "Renouvelé"
+  },
+  "detail_last_week": {
+    "message": "dernière semaine"
+  },
+  "detail_grants": {
+    "message": "Réinit. offertes"
+  },
+  "detail_daily": {
+    "message": "Par jour"
+  },
+  "detail_breakdown": {
+    "message": "Usage"
+  },
+  "col_left": {
+    "message": "RESTE"
+  },
+  "col_reset": {
+    "message": "RÉINIT."
+  },
+  "col_plan": {
+    "message": "MOIS"
+  },
+  "grant_weekly": {
+    "message": "$1 hebdo",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_fable": {
+    "message": "$1 Fable",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_session": {
+    "message": "$1 session",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_other": {
+    "message": "$1 réinit.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_until": {
+    "message": "jusqu’au $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_weekly": {
+    "message": "Hebdo : $1 restant · ↻ $2 ($3)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "tip_scoped": {
+    "message": "$1 : $2% restant",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_seen": {
+    "message": "Dernières données : $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_rolled": {
+    "message": "* A dû être réinitialisé depuis."
+  },
+  "tip_refresh": {
+    "message": "Connectez-vous à ce compte pour actualiser."
+  },
+  "tip_plan_ends": {
+    "message": "Fin de l’abonnement $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_plan_end": {
+    "message": "L’abonnement de $1 se termine le $2.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "notification_grant_end": {
+    "message": "$1 a une réinitialisation inutilisée : $2.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_remove": {
+    "message": "Clic : masquer ou supprimer"
+  },
+  "hide_title": {
+    "message": "Que faire de $1 ?",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_hide": {
+    "message": "Masquer : $1 disparaît de la liste, des conseils et des notifications ; les données sont gardées et « Afficher les comptes masqués » le rétablit.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_delete": {
+    "message": "Supprimer : l’entrée est effacée ; elle revient à la prochaine connexion."
+  },
+  "hide_confirm": {
+    "message": "Masquer"
+  },
+  "hide_delete": {
+    "message": "Supprimer"
+  },
+  "hide_cancel": {
+    "message": "Annuler"
+  },
+  "hide_show": {
+    "message": "Afficher les comptes masqués ($1)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "icon_hint": {
+    "message": "Afficher le compte suivant dans l’info-bulle de la barre d’outils (⏳ claude1)"
   }
 }

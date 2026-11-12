@@ -3,7 +3,7 @@
     "message": "Claude Usage Widget"
   },
   "app_description": {
-    "message": "Ваше тижневе використання Claude на панелі інструментів — те саме число, що й на claude.ai/settings/usage, з прогнозом і сповіщеннями про пороги."
+    "message": "Тижневе використання Claude на панелі, з прогнозом і сповіщеннями; пам’ятає всі ваші акаунти й безкоштовні скидання."
   },
   "section_weekly": {
     "message": "ЗА ТИЖДЕНЬ"
@@ -206,5 +206,291 @@
   },
   "error_org_not_found": {
     "message": "ID організації не знайдено"
+  },
+  "section_accounts": {
+    "message": "АКАУНТИ"
+  },
+  "accounts_now": {
+    "message": "зараз"
+  },
+  "accounts_ago": {
+    "message": "$1 тому",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_hours_short": {
+    "message": "$1год",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_days_short": {
+    "message": "$1д",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_until": {
+    "message": "Підписка до $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_passed": {
+    "message": "дата минула"
+  },
+  "accounts_resets": {
+    "message": "Скидань лишилось: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_resets_split": {
+    "message": "Скидання: $1 тижн. · $2 $3",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_stale_note": {
+    "message": "Блідо = старе · * скинуто · ↺ = вільне скидання · оранж. = кінець строку"
+  },
+  "accounts_hint_current": {
+    "message": "Тут не використано $1% · скидання через $2",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "accounts_hint_other": {
+    "message": "Спершу $1 · вільно $2% · скидання через $3",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_sign_in": {
+    "message": "увійдіть"
+  },
+  "label_scoped_cap": {
+    "message": "$1 · макс. $2%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "detail_reset": {
+    "message": "Скидання"
+  },
+  "detail_plan": {
+    "message": "Підписка до"
+  },
+  "detail_renews": {
+    "message": "Поновлення"
+  },
+  "detail_last_week": {
+    "message": "ост. тиждень"
+  },
+  "detail_grants": {
+    "message": "Вільні скидання"
+  },
+  "detail_daily": {
+    "message": "На день"
+  },
+  "detail_breakdown": {
+    "message": "Витрата"
+  },
+  "col_left": {
+    "message": "ЗАПАС"
+  },
+  "col_reset": {
+    "message": "СКИДАННЯ"
+  },
+  "col_plan": {
+    "message": "МІСЯЦЬ"
+  },
+  "grant_weekly": {
+    "message": "$1 тижневе",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_fable": {
+    "message": "$1 Fable",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_session": {
+    "message": "$1 сесія",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_other": {
+    "message": "$1 скидання",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_until": {
+    "message": "до $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_weekly": {
+    "message": "Тиждень: лишилось $1 · ↻ $2 ($3)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "tip_scoped": {
+    "message": "$1: лишилось $2%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_seen": {
+    "message": "Останні дані: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_rolled": {
+    "message": "* Відтоді ліміт мав скинутися."
+  },
+  "tip_refresh": {
+    "message": "Увійдіть у цей акаунт, щоб оновити дані."
+  },
+  "tip_plan_ends": {
+    "message": "Кінець підписки $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_plan_end": {
+    "message": "Підписка $1 закінчується $2 — використайте залишок квоти.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "notification_grant_end": {
+    "message": "$1 має невикористане безкоштовне скидання: $2.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_remove": {
+    "message": "Натисніть: приховати або видалити"
+  },
+  "hide_title": {
+    "message": "Що зробити з $1?",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_hide": {
+    "message": "Приховати: $1 зникне зі списку, підказок і сповіщень; дані збережуться, а «Показати приховані акаунти» поверне його.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_delete": {
+    "message": "Видалити: запис буде стерто; під час наступного входу він з’явиться знову."
+  },
+  "hide_confirm": {
+    "message": "Приховати"
+  },
+  "hide_delete": {
+    "message": "Видалити"
+  },
+  "hide_cancel": {
+    "message": "Скасувати"
+  },
+  "hide_show": {
+    "message": "Показати приховані акаунти ($1)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "icon_hint": {
+    "message": "Показувати наступний акаунт у підказці панелі (⏳ claude1)"
   }
 }

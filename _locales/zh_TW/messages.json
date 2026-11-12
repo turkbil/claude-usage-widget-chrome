@@ -3,7 +3,7 @@
     "message": "Claude Usage Widget"
   },
   "app_description": {
-    "message": "在工具列顯示你的每週 Claude 用量 — 與 claude.ai/settings/usage 相同的數字，含預測與門檻提醒。"
+    "message": "在工具列顯示每週 Claude 用量，附預測與提醒；記住你所有的帳號及免費重設次數。"
   },
   "section_weekly": {
     "message": "每週"
@@ -206,5 +206,291 @@
   },
   "error_org_not_found": {
     "message": "找不到組織 ID"
+  },
+  "section_accounts": {
+    "message": "帳號"
+  },
+  "accounts_now": {
+    "message": "剛剛"
+  },
+  "accounts_ago": {
+    "message": "$1前",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_hours_short": {
+    "message": "$1小時",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_days_short": {
+    "message": "$1天",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_until": {
+    "message": "方案至 $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_passed": {
+    "message": "已過期"
+  },
+  "accounts_resets": {
+    "message": "剩 $1 次重設",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_resets_split": {
+    "message": "重設：每週 $1 · $2 $3",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_stale_note": {
+    "message": "淡色 = 舊資料 · * 已重設 · ↺ = 免費重設 · 橘色 = 方案即將到期"
+  },
+  "accounts_hint_current": {
+    "message": "此帳號尚有 $1% 未用 · $2後重設",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "accounts_hint_other": {
+    "message": "先用 $1 · $2% 未用 · $3後重設",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_sign_in": {
+    "message": "登入"
+  },
+  "label_scoped_cap": {
+    "message": "$1 · 最多 $2%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "detail_reset": {
+    "message": "重設"
+  },
+  "detail_plan": {
+    "message": "方案到期"
+  },
+  "detail_renews": {
+    "message": "續訂"
+  },
+  "detail_last_week": {
+    "message": "最後一週"
+  },
+  "detail_grants": {
+    "message": "免費重設"
+  },
+  "detail_daily": {
+    "message": "每日額度"
+  },
+  "detail_breakdown": {
+    "message": "用量"
+  },
+  "col_left": {
+    "message": "剩餘"
+  },
+  "col_reset": {
+    "message": "重設"
+  },
+  "col_plan": {
+    "message": "月費"
+  },
+  "grant_weekly": {
+    "message": "每週 $1 次",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_fable": {
+    "message": "Fable $1 次",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_session": {
+    "message": "工作階段 $1 次",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_other": {
+    "message": "重設 $1 次",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_until": {
+    "message": "至 $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_weekly": {
+    "message": "每週：剩餘 $1 · ↻ $2 ($3)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "tip_scoped": {
+    "message": "$1：剩餘 $2%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_seen": {
+    "message": "最後資料：$1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_rolled": {
+    "message": "* 此後應已重設。"
+  },
+  "tip_refresh": {
+    "message": "登入此帳號即可更新。"
+  },
+  "tip_plan_ends": {
+    "message": "方案 $1 到期",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_plan_end": {
+    "message": "$1 的方案將於 $2 到期 — 用完剩餘額度吧。",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "notification_grant_end": {
+    "message": "$1 有未使用的免費重設：$2。",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_remove": {
+    "message": "點擊：隱藏或刪除"
+  },
+  "hide_title": {
+    "message": "要如何處理 $1？",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_hide": {
+    "message": "隱藏：$1 會從清單、提示和通知中消失；資料會保留，按「顯示隱藏的帳號」即可恢復。",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_delete": {
+    "message": "刪除：記錄會被移除；下次登入此帳號時會重新新增。"
+  },
+  "hide_confirm": {
+    "message": "隱藏"
+  },
+  "hide_delete": {
+    "message": "刪除"
+  },
+  "hide_cancel": {
+    "message": "取消"
+  },
+  "hide_show": {
+    "message": "顯示隱藏的帳號 ($1)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "icon_hint": {
+    "message": "在工具列提示中顯示下一個帳號 (⏳ claude1)"
   }
 }

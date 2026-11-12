@@ -3,7 +3,7 @@
     "message": "Claude Usage Widget"
   },
   "app_description": {
-    "message": "Il tuo utilizzo settimanale di Claude nella barra degli strumenti — lo stesso dato di claude.ai/settings/usage, con previsione e avvisi di soglia."
+    "message": "Il tuo uso settimanale di Claude nella barra, con previsione e avvisi; ricorda tutti i tuoi account e i reset gratuiti."
   },
   "section_weekly": {
     "message": "SETTIMANALE"
@@ -206,5 +206,291 @@
   },
   "error_org_not_found": {
     "message": "ID organizzazione non trovato"
+  },
+  "section_accounts": {
+    "message": "ACCOUNT"
+  },
+  "accounts_now": {
+    "message": "ora"
+  },
+  "accounts_ago": {
+    "message": "$1 fa",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_hours_short": {
+    "message": "$1h",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_days_short": {
+    "message": "$1g",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_until": {
+    "message": "Piano fino al $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_passed": {
+    "message": "data passata"
+  },
+  "accounts_resets": {
+    "message": "$1 reset rimasti",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_resets_split": {
+    "message": "$1 settimanali · $2 $3 reset",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_stale_note": {
+    "message": "Sbiadito = vecchio · * resettato · ↺ = reset gratis · arancio = piano scade"
+  },
+  "accounts_hint_current": {
+    "message": "$1% inutilizzato qui · reset tra $2",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "accounts_hint_other": {
+    "message": "Usa prima $1 · $2% libero · reset tra $3",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_sign_in": {
+    "message": "accedi"
+  },
+  "label_scoped_cap": {
+    "message": "$1 · max $2%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "detail_reset": {
+    "message": "Reset"
+  },
+  "detail_plan": {
+    "message": "Fine piano"
+  },
+  "detail_renews": {
+    "message": "Rinnovo"
+  },
+  "detail_last_week": {
+    "message": "ultima sett."
+  },
+  "detail_grants": {
+    "message": "Reset gratis"
+  },
+  "detail_daily": {
+    "message": "Al giorno"
+  },
+  "detail_breakdown": {
+    "message": "Utilizzo"
+  },
+  "col_left": {
+    "message": "LIBERO"
+  },
+  "col_reset": {
+    "message": "RESET"
+  },
+  "col_plan": {
+    "message": "MESE"
+  },
+  "grant_weekly": {
+    "message": "$1 settimanale",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_fable": {
+    "message": "$1 Fable",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_session": {
+    "message": "$1 sessione",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_other": {
+    "message": "$1 reset",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_until": {
+    "message": "fino al $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_weekly": {
+    "message": "Settimana: $1 libero · ↻ $2 ($3)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "tip_scoped": {
+    "message": "$1: $2% libero",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_seen": {
+    "message": "Ultimi dati: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_rolled": {
+    "message": "* Nel frattempo dovrebbe essersi resettato."
+  },
+  "tip_refresh": {
+    "message": "Accedi a questo account per aggiornarlo."
+  },
+  "tip_plan_ends": {
+    "message": "Fine piano $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_plan_end": {
+    "message": "Il piano di $1 termina il $2 — usa la quota rimasta.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "notification_grant_end": {
+    "message": "$1 ha un reset gratis non usato: $2.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_remove": {
+    "message": "Clic: nascondi o elimina"
+  },
+  "hide_title": {
+    "message": "Cosa fare con $1?",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_hide": {
+    "message": "Nascondi: $1 sparisce da elenco, suggerimenti e notifiche; i dati restano e «Mostra account nascosti» lo riporta.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_delete": {
+    "message": "Elimina: il record viene rimosso; verrà riaggiunto da zero al prossimo accesso."
+  },
+  "hide_confirm": {
+    "message": "Nascondi"
+  },
+  "hide_delete": {
+    "message": "Elimina"
+  },
+  "hide_cancel": {
+    "message": "Annulla"
+  },
+  "hide_show": {
+    "message": "Mostra account nascosti ($1)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "icon_hint": {
+    "message": "Mostra l’account successivo nel tooltip della barra (⏳ claude1)"
   }
 }

@@ -3,7 +3,7 @@
     "message": "Claude Usage Widget"
   },
   "app_description": {
-    "message": "Utilizarea ta săptămânală Claude în bara de instrumente — același număr ca pe claude.ai/settings/usage, cu prognoză și alerte de prag."
+    "message": "Utilizarea săptămânală Claude în bara de instrumente, cu prognoză și alerte; reține toate conturile și resetările gratuite."
   },
   "section_weekly": {
     "message": "SĂPTĂMÂNAL"
@@ -206,5 +206,291 @@
   },
   "error_org_not_found": {
     "message": "ID-ul organizației nu a fost găsit"
+  },
+  "section_accounts": {
+    "message": "CONTURI"
+  },
+  "accounts_now": {
+    "message": "acum"
+  },
+  "accounts_ago": {
+    "message": "acum $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_hours_short": {
+    "message": "$1h",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_days_short": {
+    "message": "$1z",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_until": {
+    "message": "Abonament până la $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_passed": {
+    "message": "dată depășită"
+  },
+  "accounts_resets": {
+    "message": "$1 resetări rămase",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_resets_split": {
+    "message": "$1 săptămânale · $2 $3 resetări",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_stale_note": {
+    "message": "Estompat = vechi · * resetat · ↺ = resetare gratis · portocaliu = expiră"
+  },
+  "accounts_hint_current": {
+    "message": "$1% nefolosit aici · resetare în $2",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "accounts_hint_other": {
+    "message": "Folosește întâi $1 · $2% liber · resetare în $3",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_sign_in": {
+    "message": "conectare"
+  },
+  "label_scoped_cap": {
+    "message": "$1 · max. $2%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "detail_reset": {
+    "message": "Resetare"
+  },
+  "detail_plan": {
+    "message": "Expirare"
+  },
+  "detail_renews": {
+    "message": "Reînnoire"
+  },
+  "detail_last_week": {
+    "message": "ultima săpt."
+  },
+  "detail_grants": {
+    "message": "Resetări gratuite"
+  },
+  "detail_daily": {
+    "message": "Pe zi"
+  },
+  "detail_breakdown": {
+    "message": "Consum"
+  },
+  "col_left": {
+    "message": "RĂMAS"
+  },
+  "col_reset": {
+    "message": "RESETARE"
+  },
+  "col_plan": {
+    "message": "LUNĂ"
+  },
+  "grant_weekly": {
+    "message": "$1 săptămânală",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_fable": {
+    "message": "$1 Fable",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_session": {
+    "message": "$1 sesiune",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_other": {
+    "message": "$1 resetare",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_until": {
+    "message": "până la $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_weekly": {
+    "message": "Săptămânal: $1 rămas · ↻ $2 ($3)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "tip_scoped": {
+    "message": "$1: $2% rămas",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_seen": {
+    "message": "Ultimele date: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_rolled": {
+    "message": "* Între timp ar fi trebuit resetat."
+  },
+  "tip_refresh": {
+    "message": "Conectează-te la acest cont ca să-l actualizezi."
+  },
+  "tip_plan_ends": {
+    "message": "Expiră $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_plan_end": {
+    "message": "Abonamentul $1 expiră pe $2 — folosește cota rămasă.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "notification_grant_end": {
+    "message": "$1 are o resetare gratuită nefolosită: $2.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_remove": {
+    "message": "Clic: ascunde sau șterge"
+  },
+  "hide_title": {
+    "message": "Ce faci cu $1?",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_hide": {
+    "message": "Ascunde: $1 dispare din listă, sugestii și notificări; datele rămân, iar „Afișează conturile ascunse” îl readuce.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_delete": {
+    "message": "Șterge: înregistrarea e eliminată; va fi adăugată din nou de la zero la următoarea conectare."
+  },
+  "hide_confirm": {
+    "message": "Ascunde"
+  },
+  "hide_delete": {
+    "message": "Șterge"
+  },
+  "hide_cancel": {
+    "message": "Anulează"
+  },
+  "hide_show": {
+    "message": "Afișează conturile ascunse ($1)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "icon_hint": {
+    "message": "Afișează contul următor în tooltipul din bară (⏳ claude1)"
   }
 }

@@ -3,7 +3,7 @@
     "message": "Claude Usage Widget"
   },
   "app_description": {
-    "message": "Tu uso semanal de Claude en la barra de herramientas — el mismo dato que claude.ai/settings/usage, con previsión y alertas de umbral."
+    "message": "Tu uso semanal de Claude en la barra, con previsión y alertas; recuerda todas tus cuentas y sus reinicios gratis."
   },
   "section_weekly": {
     "message": "SEMANAL"
@@ -206,5 +206,291 @@
   },
   "error_org_not_found": {
     "message": "No se encontró el ID de la organización"
+  },
+  "section_accounts": {
+    "message": "CUENTAS"
+  },
+  "accounts_now": {
+    "message": "ahora"
+  },
+  "accounts_ago": {
+    "message": "hace $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_hours_short": {
+    "message": "$1h",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_days_short": {
+    "message": "$1d",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_until": {
+    "message": "Plan hasta $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_passed": {
+    "message": "fecha pasada"
+  },
+  "accounts_resets": {
+    "message": "$1 reinicios antes del fin",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_resets_split": {
+    "message": "$1 semanales · $2 $3",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_stale_note": {
+    "message": "Atenuado = antiguo · * reiniciado · ↺ = reinicio gratis · naranja = plan termina"
+  },
+  "accounts_hint_current": {
+    "message": "$1% sin usar aquí, se reinicia en $2.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "accounts_hint_other": {
+    "message": "Usa primero $1: $2% libre, se reinicia en $3.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_sign_in": {
+    "message": "inicia sesión"
+  },
+  "label_scoped_cap": {
+    "message": "$1 · máx. $2%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "detail_reset": {
+    "message": "Reinicio"
+  },
+  "detail_plan": {
+    "message": "Fin del plan"
+  },
+  "detail_renews": {
+    "message": "Renueva"
+  },
+  "detail_last_week": {
+    "message": "última semana"
+  },
+  "detail_grants": {
+    "message": "Reinicios gratis"
+  },
+  "detail_daily": {
+    "message": "Por día"
+  },
+  "detail_breakdown": {
+    "message": "Uso"
+  },
+  "col_left": {
+    "message": "LIBRE"
+  },
+  "col_reset": {
+    "message": "REINICIO"
+  },
+  "col_plan": {
+    "message": "MES"
+  },
+  "grant_weekly": {
+    "message": "$1 semanal",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_fable": {
+    "message": "$1 Fable",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_session": {
+    "message": "$1 sesión",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_other": {
+    "message": "$1 reinicio",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_until": {
+    "message": "hasta $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_weekly": {
+    "message": "Semanal: $1 libre · ↻ $2 ($3)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "tip_scoped": {
+    "message": "$1: $2% libre",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_seen": {
+    "message": "Últimos datos: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_rolled": {
+    "message": "* Ya debería haberse reiniciado."
+  },
+  "tip_refresh": {
+    "message": "Inicia sesión en esta cuenta para actualizar."
+  },
+  "tip_plan_ends": {
+    "message": "El plan termina $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_plan_end": {
+    "message": "El plan de $1 termina el $2.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "notification_grant_end": {
+    "message": "$1 tiene un reinicio sin usar: $2.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_remove": {
+    "message": "Clic: ocultar o eliminar"
+  },
+  "hide_title": {
+    "message": "¿Qué hacer con $1?",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_hide": {
+    "message": "Ocultar: $1 desaparece de la lista, los avisos y las notificaciones; los datos se conservan y «Mostrar cuentas ocultas» la recupera.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_delete": {
+    "message": "Eliminar: se borra el registro; vuelve a crearse al iniciar sesión de nuevo."
+  },
+  "hide_confirm": {
+    "message": "Ocultar"
+  },
+  "hide_delete": {
+    "message": "Eliminar"
+  },
+  "hide_cancel": {
+    "message": "Cancelar"
+  },
+  "hide_show": {
+    "message": "Mostrar cuentas ocultas ($1)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "icon_hint": {
+    "message": "Mostrar la siguiente cuenta al pasar sobre el icono (⏳ claude1)"
   }
 }

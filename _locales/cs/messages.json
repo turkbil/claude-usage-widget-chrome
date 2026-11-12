@@ -3,7 +3,7 @@
     "message": "Claude Usage Widget"
   },
   "app_description": {
-    "message": "Vaše týdenní využití Claude na liště — stejné číslo jako na claude.ai/settings/usage, s predikcí a upozorněními na prahy."
+    "message": "Týdenní využití Claude na liště s prognózou a upozorněními; pamatuje si všechny vaše účty a jejich resety zdarma."
   },
   "section_weekly": {
     "message": "TÝDNĚ"
@@ -206,5 +206,291 @@
   },
   "error_org_not_found": {
     "message": "ID organizace nenalezeno"
+  },
+  "section_accounts": {
+    "message": "ÚČTY"
+  },
+  "accounts_now": {
+    "message": "teď"
+  },
+  "accounts_ago": {
+    "message": "před $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_hours_short": {
+    "message": "$1h",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_days_short": {
+    "message": "$1d",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_until": {
+    "message": "Plán do $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_passed": {
+    "message": "datum uplynulo"
+  },
+  "accounts_resets": {
+    "message": "Zbývá resetů: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_resets_split": {
+    "message": "Zbývá resetů: $1 týdenní · $2 $3",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_stale_note": {
+    "message": "Bledé = staré · * resetováno · ↺ = reset zdarma · oranžová = končí plán"
+  },
+  "accounts_hint_current": {
+    "message": "Zde nevyužito $1% · reset za $2",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "accounts_hint_other": {
+    "message": "Nejdřív $1 · nevyužito $2% · reset za $3",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_sign_in": {
+    "message": "přihlásit"
+  },
+  "label_scoped_cap": {
+    "message": "$1 · max. $2%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "detail_reset": {
+    "message": "Reset"
+  },
+  "detail_plan": {
+    "message": "Konec plánu"
+  },
+  "detail_renews": {
+    "message": "Obnovení"
+  },
+  "detail_last_week": {
+    "message": "poslední týden"
+  },
+  "detail_grants": {
+    "message": "Resety zdarma"
+  },
+  "detail_daily": {
+    "message": "Denní příděl"
+  },
+  "detail_breakdown": {
+    "message": "Využití"
+  },
+  "col_left": {
+    "message": "ZBÝVÁ"
+  },
+  "col_reset": {
+    "message": "RESET"
+  },
+  "col_plan": {
+    "message": "MĚSÍC"
+  },
+  "grant_weekly": {
+    "message": "$1 týdenní",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_fable": {
+    "message": "$1 Fable",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_session": {
+    "message": "$1 relace",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_other": {
+    "message": "$1 reset",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_until": {
+    "message": "do $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_weekly": {
+    "message": "Týden: zbývá $1 · ↻ $2 ($3)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "tip_scoped": {
+    "message": "$1: zbývá $2%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_seen": {
+    "message": "Poslední data: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_rolled": {
+    "message": "* Od té doby už měl proběhnout reset."
+  },
+  "tip_refresh": {
+    "message": "Pro aktualizaci se přihlaste k tomuto účtu."
+  },
+  "tip_plan_ends": {
+    "message": "Plán končí $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_plan_end": {
+    "message": "Plán $1 končí $2 — využijte zbývající kvótu.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "notification_grant_end": {
+    "message": "$1 má nevyužitý reset zdarma: $2.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_remove": {
+    "message": "Klikněte: skrýt nebo smazat"
+  },
+  "hide_title": {
+    "message": "Co udělat s $1?",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_hide": {
+    "message": "Skrýt: $1 zmizí ze seznamu, tipů i oznámení; data zůstanou a „Zobrazit skryté účty“ ho vrátí.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_delete": {
+    "message": "Smazat: záznam se odstraní; při příštím přihlášení se přidá znovu od nuly."
+  },
+  "hide_confirm": {
+    "message": "Skrýt"
+  },
+  "hide_delete": {
+    "message": "Smazat"
+  },
+  "hide_cancel": {
+    "message": "Zrušit"
+  },
+  "hide_show": {
+    "message": "Zobrazit skryté účty ($1)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "icon_hint": {
+    "message": "Zobrazit další účet v popisku na liště (⏳ claude1)"
   }
 }

@@ -3,7 +3,7 @@
     "message": "Claude Usage Widget"
   },
   "app_description": {
-    "message": "การใช้งาน Claude รายสัปดาห์บนแถบเครื่องมือ — ตัวเลขเดียวกับ claude.ai/settings/usage พร้อมการคาดการณ์และการแจ้งเตือนตามเกณฑ์"
+    "message": "การใช้งาน Claude รายสัปดาห์บนแถบเครื่องมือ พร้อมการคาดการณ์และการแจ้งเตือน จำทุกบัญชีและสิทธิ์รีเซ็ตฟรี"
   },
   "section_weekly": {
     "message": "รายสัปดาห์"
@@ -206,5 +206,291 @@
   },
   "error_org_not_found": {
     "message": "ไม่พบรหัสองค์กร"
+  },
+  "section_accounts": {
+    "message": "บัญชี"
+  },
+  "accounts_now": {
+    "message": "ตอนนี้"
+  },
+  "accounts_ago": {
+    "message": "$1ที่แล้ว",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_hours_short": {
+    "message": "$1ชม.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_days_short": {
+    "message": "$1วัน",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_until": {
+    "message": "แพ็กเกจถึง $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_passed": {
+    "message": "เลยกำหนดแล้ว"
+  },
+  "accounts_resets": {
+    "message": "รีเซ็ตเหลือ $1 ครั้ง",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_resets_split": {
+    "message": "รีเซ็ต: รายสัปดาห์ $1 · $2 $3",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_stale_note": {
+    "message": "จาง = ข้อมูลเก่า · * รีเซ็ตแล้ว · ↺ = รีเซ็ตฟรี · ส้ม = แพ็กเกจใกล้หมด"
+  },
+  "accounts_hint_current": {
+    "message": "บัญชีนี้ยังไม่ใช้ $1% · รีเซ็ตใน $2",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "accounts_hint_other": {
+    "message": "ใช้ $1 ก่อน · ว่าง $2% · รีเซ็ตใน $3",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_sign_in": {
+    "message": "ลงชื่อเข้าใช้"
+  },
+  "label_scoped_cap": {
+    "message": "$1 · สูงสุด $2%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "detail_reset": {
+    "message": "รีเซ็ต"
+  },
+  "detail_plan": {
+    "message": "แพ็กเกจหมด"
+  },
+  "detail_renews": {
+    "message": "ต่ออายุ"
+  },
+  "detail_last_week": {
+    "message": "สัปดาห์สุดท้าย"
+  },
+  "detail_grants": {
+    "message": "รีเซ็ตฟรี"
+  },
+  "detail_daily": {
+    "message": "ต่อวัน"
+  },
+  "detail_breakdown": {
+    "message": "การใช้งาน"
+  },
+  "col_left": {
+    "message": "เหลือ"
+  },
+  "col_reset": {
+    "message": "รีเซ็ต"
+  },
+  "col_plan": {
+    "message": "รายเดือน"
+  },
+  "grant_weekly": {
+    "message": "รายสัปดาห์ $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_fable": {
+    "message": "Fable $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_session": {
+    "message": "เซสชัน $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_other": {
+    "message": "รีเซ็ต $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_until": {
+    "message": "ถึง $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_weekly": {
+    "message": "รายสัปดาห์: เหลือ $1 · ↻ $2 ($3)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "tip_scoped": {
+    "message": "$1: เหลือ $2%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_seen": {
+    "message": "ข้อมูลล่าสุด: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_rolled": {
+    "message": "* น่าจะรีเซ็ตไปแล้วตั้งแต่ตอนนั้น"
+  },
+  "tip_refresh": {
+    "message": "ลงชื่อเข้าใช้บัญชีนี้เพื่ออัปเดต"
+  },
+  "tip_plan_ends": {
+    "message": "แพ็กเกจหมด $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_plan_end": {
+    "message": "แพ็กเกจของ $1 จะหมดวันที่ $2 — ใช้โควตาที่เหลือให้คุ้ม",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "notification_grant_end": {
+    "message": "$1 ยังมีรีเซ็ตฟรีที่ไม่ได้ใช้: $2",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_remove": {
+    "message": "คลิก: ซ่อนหรือลบ"
+  },
+  "hide_title": {
+    "message": "จะทำอะไรกับ $1?",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_hide": {
+    "message": "ซ่อน: $1 จะหายไปจากรายการ คำแนะนำ และการแจ้งเตือน ข้อมูลยังเก็บไว้ และ “แสดงบัญชีที่ซ่อน” จะนำกลับมา",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_delete": {
+    "message": "ลบ: ระเบียนจะถูกลบ และจะถูกเพิ่มใหม่ตั้งแต่ต้นเมื่อคุณลงชื่อเข้าใช้บัญชีนี้ครั้งถัดไป"
+  },
+  "hide_confirm": {
+    "message": "ซ่อน"
+  },
+  "hide_delete": {
+    "message": "ลบ"
+  },
+  "hide_cancel": {
+    "message": "ยกเลิก"
+  },
+  "hide_show": {
+    "message": "แสดงบัญชีที่ซ่อน ($1)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "icon_hint": {
+    "message": "แสดงบัญชีถัดไปในคำแนะนำบนแถบเครื่องมือ (⏳ claude1)"
   }
 }

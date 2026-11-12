@@ -3,7 +3,7 @@
     "message": "Claude Usage Widget"
   },
   "app_description": {
-    "message": "Ваше недельное использование Claude на панели инструментов — те же данные, что на claude.ai/settings/usage, с прогнозом и оповещениями о порогах."
+    "message": "Недельное использование Claude на панели, с прогнозом и оповещениями; помнит все ваши аккаунты и бесплатные сбросы."
   },
   "section_weekly": {
     "message": "ЗА НЕДЕЛЮ"
@@ -206,5 +206,291 @@
   },
   "error_org_not_found": {
     "message": "ID организации не найден"
+  },
+  "section_accounts": {
+    "message": "АККАУНТЫ"
+  },
+  "accounts_now": {
+    "message": "сейчас"
+  },
+  "accounts_ago": {
+    "message": "$1 назад",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_hours_short": {
+    "message": "$1ч",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_days_short": {
+    "message": "$1д",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_until": {
+    "message": "Подписка до $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_passed": {
+    "message": "дата прошла"
+  },
+  "accounts_resets": {
+    "message": "Сбросов осталось: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_resets_split": {
+    "message": "Сбросы: $1 недельн. · $2 $3",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_stale_note": {
+    "message": "Бледно = старое · * сброшено · ↺ = беспл. сброс · оранж. = конец срока"
+  },
+  "accounts_hint_current": {
+    "message": "Здесь не использовано $1% · сброс через $2",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "accounts_hint_other": {
+    "message": "Сначала $1 · свободно $2% · сброс через $3",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_sign_in": {
+    "message": "войдите"
+  },
+  "label_scoped_cap": {
+    "message": "$1 · макс. $2%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "detail_reset": {
+    "message": "Сброс"
+  },
+  "detail_plan": {
+    "message": "Конец подписки"
+  },
+  "detail_renews": {
+    "message": "Продление"
+  },
+  "detail_last_week": {
+    "message": "посл. неделя"
+  },
+  "detail_grants": {
+    "message": "Бесплатные сбросы"
+  },
+  "detail_daily": {
+    "message": "В день"
+  },
+  "detail_breakdown": {
+    "message": "Расход"
+  },
+  "col_left": {
+    "message": "ЗАПАС"
+  },
+  "col_reset": {
+    "message": "СБРОС"
+  },
+  "col_plan": {
+    "message": "МЕСЯЦ"
+  },
+  "grant_weekly": {
+    "message": "$1 недельный",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_fable": {
+    "message": "$1 Fable",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_session": {
+    "message": "$1 сессия",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_other": {
+    "message": "$1 сброс",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_until": {
+    "message": "до $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_weekly": {
+    "message": "Неделя: осталось $1 · ↻ $2 ($3)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "tip_scoped": {
+    "message": "$1: осталось $2%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_seen": {
+    "message": "Последние данные: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_rolled": {
+    "message": "* С тех пор лимит должен был сброситься."
+  },
+  "tip_refresh": {
+    "message": "Войдите в этот аккаунт, чтобы обновить данные."
+  },
+  "tip_plan_ends": {
+    "message": "Конец подписки $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_plan_end": {
+    "message": "Подписка $1 заканчивается $2 — используйте остаток квоты.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "notification_grant_end": {
+    "message": "У $1 есть неиспользованный бесплатный сброс: $2.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_remove": {
+    "message": "Нажмите: скрыть или удалить"
+  },
+  "hide_title": {
+    "message": "Что сделать с $1?",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_hide": {
+    "message": "Скрыть: $1 исчезнет из списка, подсказок и уведомлений; данные сохранятся, а «Показать скрытые аккаунты» вернёт его.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_delete": {
+    "message": "Удалить: запись будет стёрта; при следующем входе в аккаунт она появится заново."
+  },
+  "hide_confirm": {
+    "message": "Скрыть"
+  },
+  "hide_delete": {
+    "message": "Удалить"
+  },
+  "hide_cancel": {
+    "message": "Отмена"
+  },
+  "hide_show": {
+    "message": "Показать скрытые аккаунты ($1)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "icon_hint": {
+    "message": "Показывать следующий аккаунт в подсказке панели (⏳ claude1)"
   }
 }

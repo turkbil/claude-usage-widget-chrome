@@ -3,7 +3,7 @@
     "message": "Claude Usage Widget"
   },
   "app_description": {
-    "message": "今週のClaude使用量をツールバーに表示 — claude.ai/settings/usage と同じ数値、予測としきい値アラート付き。"
+    "message": "今週のClaude使用量をツールバーに表示。予測とアラート付きで、複数アカウントと無料リセットも記憶します。"
   },
   "section_weekly": {
     "message": "週間"
@@ -206,5 +206,291 @@
   },
   "error_org_not_found": {
     "message": "組織IDが見つかりません"
+  },
+  "section_accounts": {
+    "message": "アカウント"
+  },
+  "accounts_now": {
+    "message": "今"
+  },
+  "accounts_ago": {
+    "message": "$1前",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_hours_short": {
+    "message": "$1時間",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_days_short": {
+    "message": "$1日",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_until": {
+    "message": "プラン期限 $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_passed": {
+    "message": "期限切れ"
+  },
+  "accounts_resets": {
+    "message": "リセット残り$1回",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_resets_split": {
+    "message": "リセット残り: 週間$1 · $2 $3",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_stale_note": {
+    "message": "薄色 = 古い · * リセット済 · ↺ = 無料リセット · 橙 = プラン終了間近"
+  },
+  "accounts_hint_current": {
+    "message": "このアカウントで$1%未使用 · $2後にリセット",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "accounts_hint_other": {
+    "message": "先に$1を使用 · $2%未使用 · $3後にリセット",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_sign_in": {
+    "message": "ログイン"
+  },
+  "label_scoped_cap": {
+    "message": "$1 · 最大$2%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "detail_reset": {
+    "message": "リセット"
+  },
+  "detail_plan": {
+    "message": "プラン終了"
+  },
+  "detail_renews": {
+    "message": "更新日"
+  },
+  "detail_last_week": {
+    "message": "最終週"
+  },
+  "detail_grants": {
+    "message": "無料リセット"
+  },
+  "detail_daily": {
+    "message": "1日の目安"
+  },
+  "detail_breakdown": {
+    "message": "使用内訳"
+  },
+  "col_left": {
+    "message": "残り"
+  },
+  "col_reset": {
+    "message": "リセット"
+  },
+  "col_plan": {
+    "message": "月額"
+  },
+  "grant_weekly": {
+    "message": "週間 $1回",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_fable": {
+    "message": "Fable $1回",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_session": {
+    "message": "セッション $1回",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_other": {
+    "message": "リセット $1回",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_until": {
+    "message": "$1まで",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_weekly": {
+    "message": "週間: 残り$1 · ↻ $2 ($3)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "tip_scoped": {
+    "message": "$1: 残り$2%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_seen": {
+    "message": "最終データ: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_rolled": {
+    "message": "* その後リセットされているはずです。"
+  },
+  "tip_refresh": {
+    "message": "更新するにはこのアカウントにログインしてください。"
+  },
+  "tip_plan_ends": {
+    "message": "プラン終了 $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_plan_end": {
+    "message": "$1のプランは$2に終了します — 残りの枠を使い切りましょう。",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "notification_grant_end": {
+    "message": "$1に未使用の無料リセットがあります: $2。",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_remove": {
+    "message": "クリック: 非表示または削除"
+  },
+  "hide_title": {
+    "message": "$1をどうしますか？",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_hide": {
+    "message": "非表示: $1はリスト・ヒント・通知から消えます。データは保持され、「非表示のアカウントを表示」で戻せます。",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_delete": {
+    "message": "削除: 記録を消去します。次にこのアカウントにログインすると新しく追加されます。"
+  },
+  "hide_confirm": {
+    "message": "非表示"
+  },
+  "hide_delete": {
+    "message": "削除"
+  },
+  "hide_cancel": {
+    "message": "キャンセル"
+  },
+  "hide_show": {
+    "message": "非表示のアカウントを表示 ($1)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "icon_hint": {
+    "message": "ツールバーのツールチップに次のアカウントを表示 (⏳ claude1)"
   }
 }

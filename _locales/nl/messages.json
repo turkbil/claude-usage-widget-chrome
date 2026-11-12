@@ -3,7 +3,7 @@
     "message": "Claude Usage Widget"
   },
   "app_description": {
-    "message": "Je wekelijkse Claude-gebruik in de werkbalk — hetzelfde getal als claude.ai/settings/usage, met prognose en drempelmeldingen."
+    "message": "Je wekelijkse Claude-gebruik in de werkbalk, met prognose en meldingen; onthoudt al je accounts en gratis resets."
   },
   "section_weekly": {
     "message": "WEKELIJKS"
@@ -206,5 +206,291 @@
   },
   "error_org_not_found": {
     "message": "Organisatie-ID niet gevonden"
+  },
+  "section_accounts": {
+    "message": "ACCOUNTS"
+  },
+  "accounts_now": {
+    "message": "nu"
+  },
+  "accounts_ago": {
+    "message": "$1 geleden",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_hours_short": {
+    "message": "$1u",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_days_short": {
+    "message": "$1d",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_until": {
+    "message": "Abo tot $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_passed": {
+    "message": "datum verstreken"
+  },
+  "accounts_resets": {
+    "message": "nog $1 resets",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_resets_split": {
+    "message": "$1 wekelijks · $2 $3 resets",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_stale_note": {
+    "message": "Vaag = oud · * gereset · ↺ = gratis reset · oranje = abonnement stopt"
+  },
+  "accounts_hint_current": {
+    "message": "$1% ongebruikt hier · reset over $2",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "accounts_hint_other": {
+    "message": "Eerst $1 · $2% ongebruikt · reset over $3",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_sign_in": {
+    "message": "inloggen"
+  },
+  "label_scoped_cap": {
+    "message": "$1 · max $2%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "detail_reset": {
+    "message": "Reset"
+  },
+  "detail_plan": {
+    "message": "Einde abo"
+  },
+  "detail_renews": {
+    "message": "Verlengt"
+  },
+  "detail_last_week": {
+    "message": "laatste week"
+  },
+  "detail_grants": {
+    "message": "Gratis resets"
+  },
+  "detail_daily": {
+    "message": "Per dag"
+  },
+  "detail_breakdown": {
+    "message": "Gebruik"
+  },
+  "col_left": {
+    "message": "OVER"
+  },
+  "col_reset": {
+    "message": "RESET"
+  },
+  "col_plan": {
+    "message": "MAAND"
+  },
+  "grant_weekly": {
+    "message": "$1 wekelijks",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_fable": {
+    "message": "$1 Fable",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_session": {
+    "message": "$1 sessie",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_other": {
+    "message": "$1 reset",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_until": {
+    "message": "tot $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_weekly": {
+    "message": "Week: $1 over · ↻ $2 ($3)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "tip_scoped": {
+    "message": "$1: $2% over",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_seen": {
+    "message": "Laatste data: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_rolled": {
+    "message": "* Had inmiddels gereset moeten zijn."
+  },
+  "tip_refresh": {
+    "message": "Log in op dit account om het bij te werken."
+  },
+  "tip_plan_ends": {
+    "message": "Abo eindigt $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_plan_end": {
+    "message": "Het abonnement van $1 eindigt op $2 — gebruik het resterende tegoed.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "notification_grant_end": {
+    "message": "$1 heeft een ongebruikte gratis reset: $2.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_remove": {
+    "message": "Klik: verbergen of verwijderen"
+  },
+  "hide_title": {
+    "message": "Wat moet er met $1 gebeuren?",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_hide": {
+    "message": "Verbergen: $1 verdwijnt uit de lijst, tips en meldingen; de gegevens blijven en ‘Verborgen accounts tonen’ haalt het terug.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_delete": {
+    "message": "Verwijderen: het record wordt gewist; bij de volgende keer inloggen komt het opnieuw terug."
+  },
+  "hide_confirm": {
+    "message": "Verbergen"
+  },
+  "hide_delete": {
+    "message": "Verwijderen"
+  },
+  "hide_cancel": {
+    "message": "Annuleren"
+  },
+  "hide_show": {
+    "message": "Verborgen accounts tonen ($1)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "icon_hint": {
+    "message": "Volgende account tonen in de knopinfo van de werkbalk (⏳ claude1)"
   }
 }
