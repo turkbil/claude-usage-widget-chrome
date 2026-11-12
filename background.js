@@ -1,5 +1,5 @@
 import { fetchSnapshot } from './api.js';
-import { defaultPrefs, getPrefs, setPrefs, getCache, setCache } from './prefs.js';
+import { defaultPrefs, getPrefs, setPrefs, getCache, setCache, upsertAccount } from './prefs.js';
 import { drawIcon } from './icon-draw.js';
 
 const ALARM_REFRESH = 'cuw-refresh';
@@ -50,6 +50,8 @@ async function refresh() {
   try {
     const snap = await fetchSnapshot();
     await setCache({ snapshot: snap, error: null, fetchedAt: Date.now() });
+    await upsertAccount(snap);
+    await recordHistory({ onAccountChange: true });
     await updateBadge();
     await evaluateNotifications(snap);
   } catch (err) {
@@ -59,11 +61,16 @@ async function refresh() {
   }
 }
 
-async function recordHistory() {
+// Alarmla 5 dakikada bir çalışır. Her yenilemeden sonra onAccountChange ile de
+// çağrılır: o zaman yalnız oturumdaki hesap son örneğinkinden farklıysa yazar,
+// böylece yeni hesabın çizgisi 5 dakika beklemeden başlar.
+async function recordHistory({ onAccountChange = false } = {}) {
   const { snapshot } = (await getCache()) || {};
   if (!snapshot) return;
   const { history = [] } = await chrome.storage.local.get('history');
-  history.push({ t: Date.now() / 1000, v: snapshot.weeklyUtilization });
+  const a = (snapshot.email || '').toLowerCase() || null;
+  if (onAccountChange && history.length && (history[history.length - 1].a ?? null) === a) return;
+  history.push({ t: Date.now() / 1000, v: snapshot.weeklyUtilization, a });
   // Cap at 14 days × 24h × 12 samples/h = 4032
   const trimmed = history.length > 4032 ? history.slice(history.length - 4032) : history;
   await chrome.storage.local.set({ history: trimmed });

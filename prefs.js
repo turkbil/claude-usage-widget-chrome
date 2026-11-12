@@ -46,3 +46,31 @@ export async function getHistory() {
   const { history = [] } = await chrome.storage.local.get('history');
   return history;
 }
+
+// Bu tarayıcıda görülen her claude.ai hesabı, küçük harf e-postaya göre.
+// Yalnız oturum açık hesap canlı okunabilir; diğerleri son girişteki değerleri
+// tutar. Yalnız yerelde saklanır, hiçbir yere gönderilmez.
+export async function getAccounts() {
+  const { accounts = [] } = await chrome.storage.local.get('accounts');
+  return Array.isArray(accounts) ? accounts : [];
+}
+
+export async function upsertAccount(snap) {
+  const email = (snap?.email || '').toLowerCase();
+  if (!email) return;
+  const accounts = await getAccounts();
+  const i = accounts.findIndex(a => a.email === email);
+  const rec = {
+    email,
+    plan:           snap.planLabel ?? null,
+    weeklyPct:      snap.weeklyUtilization ?? null,
+    weeklyResetsAt: snap.weeklyResetsAt ?? null,
+    scoped:         Array.isArray(snap.scopedLimits) ? snap.scopedLimits : [],
+    // subscription_details yanıt vermezse bilinen son bitiş tarihi korunur.
+    planEndsAt:     snap.planEndsAt ?? (i >= 0 ? accounts[i].planEndsAt : null) ?? null,
+    seenAt:         snap.fetchedAt,
+    source:         'live',
+  };
+  if (i >= 0) accounts[i] = rec; else accounts.push(rec);
+  await chrome.storage.local.set({ accounts });
+}

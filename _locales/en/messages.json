@@ -62,5 +62,22 @@
 
   "error_no_session":   { "message": "No claude.ai session — please log in via your browser" },
   "error_api_parse":    { "message": "Usage JSON parse error" },
-  "error_org_not_found":{ "message": "Organization ID not found" }
+  "error_org_not_found":{ "message": "Organization ID not found" },
+
+  "section_accounts":      { "message": "ACCOUNTS" },
+  "accounts_count":        { "message": "$1 accounts", "placeholders": { "1": { "content": "$1" } } },
+  "accounts_now":          { "message": "now" },
+  "accounts_ago":          { "message": "$1 ago", "placeholders": { "1": { "content": "$1" } } },
+  "time_hours_short":      { "message": "$1h", "placeholders": { "1": { "content": "$1" } } },
+  "time_days_short":       { "message": "$1d", "placeholders": { "1": { "content": "$1" } } },
+  "accounts_left":         { "message": "$1% left", "placeholders": { "1": { "content": "$1" } } },
+  "accounts_no_data":      { "message": "no data · sign in once" },
+  "accounts_scoped_left":  { "message": "$1 $2% left", "placeholders": { "1": { "content": "$1" }, "2": { "content": "$2" } } },
+  "accounts_plan_until":   { "message": "Plan until $1", "placeholders": { "1": { "content": "$1" } } },
+  "accounts_plan_passed":  { "message": "date passed" },
+  "accounts_resets":       { "message": "$1 resets left", "placeholders": { "1": { "content": "$1" } } },
+  "accounts_resets_split": { "message": "$1 weekly · $2 $3 resets left", "placeholders": { "1": { "content": "$1" }, "2": { "content": "$2" }, "3": { "content": "$3" } } },
+  "accounts_stale_note":   { "message": "Other accounts show the values from their last sign-in and may be out of date; sign in to an account to update it. * should have reset since." },
+  "accounts_hint_current": { "message": "$1% of this account is unused and resets in $2 — use it before it is lost.", "placeholders": { "1": { "content": "$1" }, "2": { "content": "$2" } } },
+  "accounts_hint_other":   { "message": "Use $1 first: $2% unused, resets in $3.", "placeholders": { "1": { "content": "$1" }, "2": { "content": "$2" }, "3": { "content": "$3" } } }
 }

@@ -2,6 +2,23 @@
 
 All notable changes to this project are documented here.
 
+## [Unreleased]
+
+### Added
+- **Accounts section** in the popup. Every claude.ai account signed in to this
+  browser is remembered locally (e-mail, weekly and per-model % left, reset
+  day and time, plan end date, weekly resets left before it). Accounts that
+  are not signed in show their last-seen values, rolled forward when a weekly
+  reset has passed since (marked `*`).
+- **48-hour hint**: names the account whose unused weekly quota (≥ 5 %) resets
+  within 48 hours, soonest first.
+- **Per-model weekly limit** (e.g. *Fable*, from `limits[]`) replaces the Sonnet
+  row when present.
+
+### Changed
+- History samples are tagged with the account; the trend chart draws only the
+  signed-in account, and switching accounts records a sample at once.
+
 ## [1.1.1] — 2026-10-14
 
 ### Fixed

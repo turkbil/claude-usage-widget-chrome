@@ -62,5 +62,22 @@
 
   "error_no_session":   { "message": "claude.ai oturumu yok — tarayıcında giriş yap" },
   "error_api_parse":    { "message": "Kullanım JSON ayrıştırma hatası" },
-  "error_org_not_found":{ "message": "Organizasyon ID bulunamadı" }
+  "error_org_not_found":{ "message": "Organizasyon ID bulunamadı" },
+
+  "section_accounts":      { "message": "HESAPLAR" },
+  "accounts_count":        { "message": "$1 hesap", "placeholders": { "1": { "content": "$1" } } },
+  "accounts_now":          { "message": "şimdi" },
+  "accounts_ago":          { "message": "$1 önce", "placeholders": { "1": { "content": "$1" } } },
+  "time_hours_short":      { "message": "$1s", "placeholders": { "1": { "content": "$1" } } },
+  "time_days_short":       { "message": "$1g", "placeholders": { "1": { "content": "$1" } } },
+  "accounts_left":         { "message": "%$1 kaldı", "placeholders": { "1": { "content": "$1" } } },
+  "accounts_no_data":      { "message": "veri yok · bir kez giriş yapın" },
+  "accounts_scoped_left":  { "message": "$1 %$2 kaldı", "placeholders": { "1": { "content": "$1" }, "2": { "content": "$2" } } },
+  "accounts_plan_until":   { "message": "Abonelik $1", "placeholders": { "1": { "content": "$1" } } },
+  "accounts_plan_passed":  { "message": "tarih geçti" },
+  "accounts_resets":       { "message": "$1 sıfırlama kaldı", "placeholders": { "1": { "content": "$1" } } },
+  "accounts_resets_split": { "message": "$1 haftalık · $2 $3 sıfırlama", "placeholders": { "1": { "content": "$1" }, "2": { "content": "$2" }, "3": { "content": "$3" } } },
+  "accounts_stale_note":   { "message": "Diğer hesaplar son girişteki veridir, güncel olmayabilir; güncellemek için o hesaba giriş yapın. * = o tarihten beri sıfırlanmış olmalı." },
+  "accounts_hint_current": { "message": "Bu hesapta %$1 boş, $2 sonra sıfırlanıyor; boşa gitmesin.", "placeholders": { "1": { "content": "$1" }, "2": { "content": "$2" } } },
+  "accounts_hint_other":   { "message": "Önce $1 hesabını kullanın: %$2 boş, $3 sonra sıfırlanıyor.", "placeholders": { "1": { "content": "$1" }, "2": { "content": "$2" }, "3": { "content": "$3" } } }
 }

@@ -4,11 +4,12 @@
 
 export async function fetchSnapshot() {
   const orgId = await findOrgId();
-  // Plan + display name are optional — fetch in parallel, ignore failures.
-  const [usage, account, plan] = await Promise.all([
+  // Plan, görünen ad ve abonelik bitişi isteğe bağlı — paralel çek, hatayı yut.
+  const [usage, account, plan, sub] = await Promise.all([
     getJson(`/api/organizations/${orgId}/usage`),
     safeJson(`/api/account`),
     safeJson(`/api/organizations/${orgId}/rate_limits`),
+    safeJson(`/api/organizations/${orgId}/subscription_details`),
   ]);
 
   if (!usage?.seven_day) throw new Error('error.api_parse');
@@ -19,14 +20,32 @@ export async function fetchSnapshot() {
     if (block?.utilization != null) { sonnet = block.utilization; break; }
   }
 
+  // Modele özel haftalık limitler (ör. "Fable") limits[] içinde kind "weekly_scoped" olarak gelir.
+  const scopedLimits = [];
+  for (const item of Array.isArray(usage.limits) ? usage.limits : []) {
+    if (item?.kind !== 'weekly_scoped') continue;
+    const name = item.scope?.model?.display_name || item.scope?.surface?.display_name;
+    if (!name || typeof item.percent !== 'number') continue;
+    scopedLimits.push({ name, pct: item.percent, resetsAt: isoOrNull(item.resets_at) });
+  }
+
+  // Fatura yanıtından yalnız ödenmiş ayın bitiş tarihi okunur; ödeme/kart
+  // alanları asla alınmaz, saklanmaz.
+  const planEndsAt = isoOrNull(sub?.plan_ending_at) || isoOrNull(sub?.next_charge_at);
+
+  const email = account?.email_address || null;
+
   return {
     weeklyUtilization:    usage.seven_day.utilization,
     weeklyResetsAt:       usage.seven_day.resets_at,
     fiveHourUtilization:  usage.five_hour?.utilization ?? null,
     fiveHourResetsAt:     usage.five_hour?.resets_at  ?? null,
     sonnetUtilization:    sonnet,
-    displayName:          account?.display_name || account?.full_name || account?.email_address || null,
+    displayName:          account?.display_name || account?.full_name || email,
     planLabel:            plan?.rate_limit_tier ? prettyPlanName(plan.rate_limit_tier) : null,
+    email,
+    scopedLimits,
+    planEndsAt,
     fetchedAt:            new Date().toISOString(),
   };
 }
@@ -58,6 +77,13 @@ async function getJson(path) {
 
 async function safeJson(path) {
   try { return await getJson(path); } catch { return null; }
+}
+
+// ISO metni → düzgün ISO metni; yoksa ya da ayrıştırılamazsa null.
+function isoOrNull(x) {
+  if (typeof x !== 'string' || !x) return null;
+  const d = new Date(x);
+  return isNaN(d.getTime()) ? null : d.toISOString();
 }
 
 function prettyPlanName(tier) {

@@ -94,6 +94,37 @@ html, body {
 
 .sparkline { display: block; margin: 8px 0 0; }
 
+/* Hesaplar bölümü: Mac'teki üç satırlık hesap görünümünün karşılığı. */
+.accounts {
+  border-top: 1px solid var(--line);
+  margin-top: 8px;
+}
+.note {
+  padding: 2px 18px 6px;
+  font-size: 11px;
+  color: var(--haze-bright);
+}
+.note.hint { color: var(--ember); }
+.note.stale { font-size: 10px; color: var(--haze); padding-top: 6px; }
+
+.acct { padding: 6px 18px; }
+.acct-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+.acct-l, .acct-r { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.acct-l {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.acct-r { flex-shrink: 0; text-align: right; }
+.acct-line.top { font-weight: 600; }
+.acct-line.mid { font-size: 11px; color: var(--haze-bright); }
+.acct-line.low { font-size: 10px; color: var(--haze); }
+
 .footer {
   padding: 10px 18px 6px;
   text-align: center;

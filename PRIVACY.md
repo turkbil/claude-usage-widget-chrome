@@ -1,6 +1,6 @@
 # Privacy Policy — Claude Usage Widget
 
-**Last updated:** 2026-05-13
+**Last updated:** 2026-11-12
 
 This Chrome extension does **not** collect, store, or transmit any personal
 data to any server we operate or any third party. The only outbound network
@@ -19,12 +19,18 @@ In your browser's local extension storage (`chrome.storage.local`):
 
 - **Settings** — your display preferences (which metrics to show, colors,
   thresholds, etc.).
-- **Cached snapshot** — your latest weekly usage %, plan label, display name
-  (all read from claude.ai). Used to render the toolbar icon instantly when
+- **Cached snapshot** — your latest weekly usage %, plan label, display name,
+  account e-mail and plan end date (all read from claude.ai). Used to render the toolbar icon instantly when
   you open the popup. Never transmitted.
 - **Usage history** — up to 14 days of weekly-utilization samples (a single
-  number per sample, timestamped). Used to draw the trend chart. Never
-  transmitted.
+  number per sample, timestamped, tagged with the account e-mail). Used to
+  draw the trend chart. Never transmitted.
+- **Accounts** — for every claude.ai account signed in to this browser: its
+  e-mail address, plan label, weekly and per-model usage %, reset times and
+  plan end date, as last seen. Used only for the *Accounts* section of the
+  popup. Account e-mails are kept only in `chrome.storage.local` on this
+  device and are never sent anywhere. From the billing reply only the plan end
+  date is read; no payment or card details are read or stored.
 
 ### What we do NOT do
 
