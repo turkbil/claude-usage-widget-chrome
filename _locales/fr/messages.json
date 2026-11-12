@@ -492,5 +492,20 @@
   },
   "icon_hint": {
     "message": "Afficher le compte suivant dans l’info-bulle de la barre d’outils (⏳ claude1)"
+  },
+  "col_grants": {
+    "message": "GRAT."
+  },
+  "grants_show": {
+    "message": "Afficher les réinit. offertes"
+  },
+  "grants_hide": {
+    "message": "Masquer les réinit. offertes"
+  },
+  "grants_none": {
+    "message": "aucune réinit. offerte"
+  },
+  "grants_unknown": {
+    "message": "inconnu · visible après connexion"
   }
 }

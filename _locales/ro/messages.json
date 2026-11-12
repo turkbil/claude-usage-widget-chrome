@@ -492,5 +492,20 @@
   },
   "icon_hint": {
     "message": "Afișează contul următor în tooltipul din bară (⏳ claude1)"
+  },
+  "col_grants": {
+    "message": "BONUS"
+  },
+  "grants_show": {
+    "message": "Afișează resetările gratuite"
+  },
+  "grants_hide": {
+    "message": "Ascunde resetările gratuite"
+  },
+  "grants_none": {
+    "message": "nicio resetare gratuită"
+  },
+  "grants_unknown": {
+    "message": "necunoscut · apare după conectarea la acest cont"
   }
 }

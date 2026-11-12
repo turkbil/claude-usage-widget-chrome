@@ -1,7 +1,10 @@
-import { getCache, getHistory, getAccounts, getHiddenAccounts, hideAccount, removeAccount, unhideAllAccounts } from './prefs.js';
+import {
+  getCache, getHistory, getAccounts, getHiddenAccounts, hideAccount, removeAccount, unhideAllAccounts,
+  getGrantsExpanded, setGrantsExpanded,
+} from './prefs.js';
 import {
   i18n, toMs, accountState, visibleRecords, suggestion, sortStates, shortNamer, resetsBefore, grantsOnHand,
-  weekdayTime, shortDay, formatRemaining, ageText, grantText,
+  weekdayTime, shortDay, formatRemaining, ageText, grantText, grantLine,
 } from './accounts.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -364,6 +367,7 @@ async function fillAccounts(snap, now = Date.now()) {
 
   document.getElementById('accountsTitle').textContent = i18n('section_accounts');
   document.getElementById('colLeft').textContent  = i18n('col_left');
+  document.getElementById('colGrants').textContent = i18n('col_grants');
   document.getElementById('colReset').textContent = i18n('col_reset');
   document.getElementById('colPlan').textContent  = i18n('col_plan');
 
@@ -380,15 +384,23 @@ async function fillAccounts(snap, now = Date.now()) {
   } else {
     hint.hidden = true;
   }
+  const toggle = document.getElementById('grantsToggle');
   if (!states.length) {
     document.getElementById('accountRows').replaceChildren();
     document.getElementById('accountsStale').hidden = true;
+    toggle.hidden = true;
     return;
   }
 
+  // Her hesap satırının hemen altında (kapalıyken gizli) sıfırlama hakkı satırı.
+  const expanded = await getGrantsExpanded();
   const rows = document.getElementById('accountRows');
-  rows.replaceChildren(...states.map(s =>
-    accountRow(s, s.record.email === current, shortName(s.record.email), now)));
+  rows.replaceChildren(...states.flatMap(s => [
+    accountRow(s, s.record.email === current, shortName(s.record.email), now),
+    grantDetail(s, expanded),
+  ]));
+  toggle.hidden = false;
+  setToggleText(expanded);
 
   const stale = document.getElementById('accountsStale');
   stale.textContent = i18n('accounts_stale_note');
@@ -396,7 +408,7 @@ async function fillAccounts(snap, now = Date.now()) {
   stale.hidden = states.length < 2;
 }
 
-// Tek satır: ad (+↺N) · kalan çubuğu · %N · sıfırlama · abonelik bitişi. Ayrıntılar ipucunda.
+// Tek satır: ad · kalan çubuğu · %N · ↺N · sıfırlama · abonelik bitişi. Ayrıntılar ipucunda.
 function accountRow(s, isCurrent, name, now) {
   const r = s.record;
   const row = document.createElement('div');
@@ -410,19 +422,16 @@ function accountRow(s, isCurrent, name, now) {
     return el;
   };
 
-  // Ad: güncel hesap kalın ve «● » önekli; diğerleri soluk (son girişteki veri).
-  // Uzun adda yalnız ad kısalır; ↺N rozeti hep görünür.
+  // Ad: güncel hesap kalın ve «●» işaretli; diğerleri soluk (son girişteki veri).
+  // İşaretin sabit yeri var (adlar aynı hizada); uzun ad alt satıra kaymaz, «…» ile kesilir.
   const nameEl = cell('col-name');
+  const mk = document.createElement('span');
+  mk.className = 'mk';
+  mk.textContent = isCurrent ? '●' : '';
   const nm = document.createElement('span');
   nm.className = 'nm';
-  nm.textContent = (isCurrent ? '● ' : '') + name;
-  nameEl.append(nm);
-  if (s.grantCount > 0) {
-    const g = document.createElement('span');
-    g.className = 'grant';
-    g.textContent = '↺' + s.grantCount;
-    nameEl.append(g);
-  }
+  nm.textContent = name;
+  nameEl.append(mk, nm);
 
   // Kalan çubuğu ve yüzdesi.
   const barCell = cell('col-bar');
@@ -442,6 +451,11 @@ function accountRow(s, isCurrent, name, now) {
     fill.style.width = '0';
     cell('col-pct', '—', 'faint');
   }
+
+  // Sıfırlama hakkı: hiç okunmadıysa «—», elde varsa turuncu «↺N», yoksa «0».
+  if (!Array.isArray(r.grants)) cell('col-grant', '—', 'faint');
+  else if (s.grantCount > 0) cell('col-grant', '↺' + s.grantCount, 'on');
+  else cell('col-grant', '0', 'faint');
 
   // Sıfırlama günü ve saati.
   if (s.nextReset != null) cell('col-reset', weekdayTime(s.nextReset));
@@ -465,6 +479,29 @@ function accountRow(s, isCurrent, name, now) {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSheet(r.email, name); }
   });
   return row;
+}
+
+// Hesabın altındaki ayrıntı: «↺ 1 haftalık · son 11 Ara, 3 Fable · son 9 Mar»,
+// «↺ sıfırlama hakkı yok» ya da «↺ bilinmiyor · …». İpucunda haklar tek tek.
+function grantDetail(s, expanded) {
+  const el = document.createElement('div');
+  el.className = 'grant-detail';
+  el.hidden = !expanded;
+  if (!Array.isArray(s.record.grants)) {
+    el.textContent = '↺ ' + i18n('grants_unknown');
+  } else if (!s.grantsLeft.length) {
+    el.textContent = '↺ ' + i18n('grants_none');
+  } else {
+    el.textContent = '↺ ' + grantText(s.grantsLeft);
+    el.classList.add('on');
+    el.title = s.grantsLeft.map(grantLine).join('\n');
+  }
+  return el;
+}
+
+function setToggleText(expanded) {
+  document.getElementById('grantsToggle').textContent =
+    (expanded ? '▾ ' : '▸ ') + i18n(expanded ? 'grants_hide' : 'grants_show');
 }
 
 // İpucu: e-posta, haftalık, Fable, sıfırlama hakkı, abonelik, son veri zamanı.
@@ -520,6 +557,13 @@ function setupSheet() {
   });
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && sheetEmail) { e.preventDefault(); closeSheet(); }
+  });
+  // Aç/kapa yeniden çizmeden yalnız ayrıntı satırlarını gösterir/gizler; durum hatırlanır.
+  document.getElementById('grantsToggle').addEventListener('click', async () => {
+    const expanded = !(await getGrantsExpanded());
+    await setGrantsExpanded(expanded);
+    document.querySelectorAll('#accountRows .grant-detail').forEach(el => { el.hidden = !expanded; });
+    setToggleText(expanded);
   });
   document.getElementById('showHidden').addEventListener('click', async () => {
     await unhideAllAccounts();

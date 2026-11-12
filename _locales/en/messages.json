@@ -109,5 +109,10 @@
   "hide_delete": {"message": "Delete"},
   "hide_cancel": {"message": "Cancel"},
   "hide_show": {"message": "Show hidden accounts ($1)", "placeholders": {"1": {"content": "$1"}}},
-  "icon_hint": {"message": "Show the next account in the toolbar tooltip (⏳ claude1)"}
+  "icon_hint": {"message": "Show the next account in the toolbar tooltip (⏳ claude1)"},
+  "col_grants": {"message": "FREE"},
+  "grants_show": {"message": "Show free resets"},
+  "grants_hide": {"message": "Hide free resets"},
+  "grants_none": {"message": "no free resets"},
+  "grants_unknown": {"message": "unknown · shows after you sign in to this account"}
 }

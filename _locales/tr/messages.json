@@ -109,5 +109,10 @@
   "hide_delete": {"message": "Sil"},
   "hide_cancel": {"message": "Vazgeç"},
   "hide_show": {"message": "Gizlenen hesapları göster ($1)", "placeholders": {"1": {"content": "$1"}}},
-  "icon_hint": {"message": "Sıradaki hesabı araç çubuğu ipucunda göster (⏳ claude1)"}
+  "icon_hint": {"message": "Sıradaki hesabı araç çubuğu ipucunda göster (⏳ claude1)"},
+  "col_grants": {"message": "HAK"},
+  "grants_show": {"message": "Sıfırlama haklarını göster"},
+  "grants_hide": {"message": "Sıfırlama haklarını gizle"},
+  "grants_none": {"message": "sıfırlama hakkı yok"},
+  "grants_unknown": {"message": "bilinmiyor · bu hesaba giriş yapınca görünür"}
 }

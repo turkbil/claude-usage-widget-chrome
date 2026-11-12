@@ -492,5 +492,20 @@
   },
   "icon_hint": {
     "message": "Nächstes Konto im Symbolleisten-Tooltip zeigen (⏳ claude1)"
+  },
+  "col_grants": {
+    "message": "BONUS"
+  },
+  "grants_show": {
+    "message": "Freie Resets anzeigen"
+  },
+  "grants_hide": {
+    "message": "Freie Resets ausblenden"
+  },
+  "grants_none": {
+    "message": "keine freien Resets"
+  },
+  "grants_unknown": {
+    "message": "unbekannt · erscheint nach Anmeldung"
   }
 }

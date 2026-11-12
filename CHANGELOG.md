@@ -11,11 +11,18 @@ All notable changes to this project are documented here.
   signed in show their last-seen values, rolled forward when a weekly reset
   has passed since (marked `*`).
 - **One-line account rows** on a shared column grid with aligned headings
-  (ACCOUNTS · LEFT · RESETS · MONTH): short name, `↺N` free-reset badge, %-left
-  bar, reset day and time, monthly date. Order: accounts with quota left by
+  (ACCOUNTS · LEFT · FREE · RESETS · MONTH): short name, %-left bar, free
+  resets (`↺N` in orange, `0` when none, `—` until the account has been read),
+  reset day and time, monthly date. Order: accounts with quota left by
   soonest reset, then full ones, then accounts without data. The signed-in
-  account is bold on a soft band; details (e-mail, weekly, Fable, plan, free
-  resets, last data time) are in the row tooltip.
+  account is bold on a soft band with `●` in a fixed 14 px slot, so every name
+  starts at the same x; names never wrap (they end in `…`). Details (e-mail,
+  weekly, Fable, plan, free resets, last data time) are in the row tooltip.
+- **Show free resets** (`▸` / `▾` under the list, remembered): a line under
+  every account lists its free resets grouped by kind with the earliest end
+  date (`1 weekly · until Dec 11, 3 Fable · until Mar 9`), *no free resets*,
+  or *unknown · shows after you sign in to this account*. The tooltip lists
+  each reset on its own line.
 - **48-hour hint** (one line): names the account whose unused weekly quota
   (≥ 5 %) resets within 48 hours, soonest first. Optionally (Settings → Icon,
   off by default) the toolbar tooltip adds `⏳ name` when that account is not
@@ -37,7 +44,12 @@ All notable changes to this project are documented here.
   row when present, with its share of the weekly limit (`Fable · max 50%`).
 
 ### Changed
-- Popup is 380 px wide (as on the Mac); the header shows the account e-mail.
+- Popup is 420 px wide (as on the Mac); the header shows the account e-mail.
+  With 7 accounts it stays under Chrome's 600 px popup height while the free
+  resets are collapsed; line height is fixed at 1.2 so Japanese and Thai
+  fallback fonts no longer stretch rows.
+- Free resets of the same kind are grouped everywhere (details block, row
+  tooltip): count summed, earliest end date shown.
   Order: bars → trend chart → forecast → details → 5-hour window → accounts.
 - A renewing plan (active, next charge set, no downgrade or pause scheduled)
   shows *Renews 13 Nov* without warning; only a cancelled plan is shown in

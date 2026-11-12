@@ -101,6 +101,16 @@ export async function unhideAllAccounts() {
   await chrome.storage.local.set({ hiddenAccounts: [] });
 }
 
+// «Sıfırlama haklarını göster» açık mı (her hesabın altındaki ayrıntı satırı).
+export async function getGrantsExpanded() {
+  const { grantsExpanded = false } = await chrome.storage.local.get('grantsExpanded');
+  return grantsExpanded === true;
+}
+
+export async function setGrantsExpanded(on) {
+  await chrome.storage.local.set({ grantsExpanded: !!on });
+}
+
 // Kaydı siler ve gizli listesinden de çıkarır: hesap bir sonraki girişte sıfırdan eklenir.
 export async function removeAccount(email) {
   const e = String(email || '').toLowerCase();

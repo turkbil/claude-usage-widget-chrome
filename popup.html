@@ -25,7 +25,7 @@
     <span class="row-value" id="sonnetValue"></span>
   </div>
 
-  <canvas class="sparkline" id="sparkline" width="380" height="40"></canvas>
+  <canvas class="sparkline" id="sparkline" width="420" height="40"></canvas>
 
   <div class="forecast" id="forecast" hidden></div>
 
@@ -48,11 +48,14 @@
       <span class="col-name" id="accountsTitle"></span>
       <span class="col-bar"></span>
       <span class="col-pct" id="colLeft"></span>
+      <span class="col-grant" id="colGrants"></span>
       <span class="col-reset" id="colReset"></span>
       <span class="col-plan" id="colPlan"></span>
     </div>
     <div class="note hint" id="accountsHint" hidden></div>
     <div id="accountRows"></div>
+    <!-- «▸ Sıfırlama haklarını göster»: her hesabın altındaki ayrıntı satırını açar/kapar. -->
+    <button type="button" class="show-hidden grants-toggle" id="grantsToggle" hidden></button>
     <div class="note stale" id="accountsStale" hidden></div>
     <button type="button" class="show-hidden" id="showHidden" hidden></button>
   </div>

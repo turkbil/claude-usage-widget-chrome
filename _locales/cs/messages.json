@@ -492,5 +492,20 @@
   },
   "icon_hint": {
     "message": "Zobrazit další účet v popisku na liště (⏳ claude1)"
+  },
+  "col_grants": {
+    "message": "BONUS"
+  },
+  "grants_show": {
+    "message": "Zobrazit resety zdarma"
+  },
+  "grants_hide": {
+    "message": "Skrýt resety zdarma"
+  },
+  "grants_none": {
+    "message": "žádné resety zdarma"
+  },
+  "grants_unknown": {
+    "message": "neznámé · zobrazí se po přihlášení k účtu"
   }
 }

@@ -492,5 +492,20 @@
   },
   "icon_hint": {
     "message": "Mostrar la siguiente cuenta al pasar sobre el icono (⏳ claude1)"
+  },
+  "col_grants": {
+    "message": "GRAT."
+  },
+  "grants_show": {
+    "message": "Mostrar reinicios gratis"
+  },
+  "grants_hide": {
+    "message": "Ocultar reinicios gratis"
+  },
+  "grants_none": {
+    "message": "sin reinicios gratis"
+  },
+  "grants_unknown": {
+    "message": "desconocido · aparece al iniciar sesión"
   }
 }

@@ -17,16 +17,19 @@
 /* .row / .section-head set display:flex, which beats the UA [hidden] rule. */
 [hidden] { display: none !important; }
 
+/* Her `font:` kısaltmasında satır yüksekliği 1.2: «normal» kalınca Japonca/Tayca
+   yedek yazı tipleri satırları uzatıp popup'ı 600 px'in üstüne itiyordu. */
 html, body {
   margin: 0;
   background: var(--bg);
   color: var(--bone);
-  font: 13px -apple-system, "Segoe UI", "Helvetica Neue", sans-serif;
-  width: 380px;
-  padding: 4px 0 2px;
+  font: 13px/1.2 -apple-system, "Segoe UI", "Helvetica Neue", sans-serif;
+  width: 420px;
 }
+/* İç boşluk yalnız gövdede: html'de de olunca iki kat sayılıyordu (7 hesapta 600 px sınırı). */
+body { padding: 4px 0 2px; }
 
-/* Çok hesapla popup 600 px sınırını aşabilir; klasik kaydırma çubuğu 380 px'lik
+/* Çok hesapla popup 600 px sınırını aşabilir; klasik kaydırma çubuğu 420 px'lik
    gövdeyi yatay kaydırmasın (içerik zaten 18 px iç boşlukla sağdan çekilmiş). */
 html { overflow-x: hidden; }
 
@@ -47,7 +50,7 @@ html { overflow-x: hidden; }
   white-space: nowrap;
 }
 .pill {
-  font: 10px "JetBrains Mono", "Cascadia Mono", "SF Mono", monospace;
+  font: 10px/1.2 "JetBrains Mono", "Cascadia Mono", "SF Mono", monospace;
   letter-spacing: 0.04em;
   padding: 2px 7px;
   border-radius: 5px;
@@ -62,12 +65,12 @@ html { overflow-x: hidden; }
   padding: 8px 18px 4px;
 }
 .section-title {
-  font: 700 10px -apple-system, "Segoe UI", sans-serif;
+  font: 700 10px/1.2 -apple-system, "Segoe UI", sans-serif;
   letter-spacing: 0.12em;
   color: var(--haze);
 }
 .section-trailing {
-  font: 11px "JetBrains Mono", "Cascadia Mono", "SF Mono", monospace;
+  font: 11px/1.2 "JetBrains Mono", "Cascadia Mono", "SF Mono", monospace;
   color: var(--haze);
 }
 
@@ -93,7 +96,7 @@ html { overflow-x: hidden; }
 .row-value {
   flex: 0 0 36px;
   text-align: right;
-  font: 600 11px "JetBrains Mono", "Cascadia Mono", "SF Mono", monospace;
+  font: 600 11px/1.2 "JetBrains Mono", "Cascadia Mono", "SF Mono", monospace;
   font-variant-numeric: tabular-nums;
 }
 
@@ -129,23 +132,23 @@ html { overflow-x: hidden; }
 }
 
 /* Hesaplar: Mac'teki tek satırlık hesap listesinin karşılığı. Başlık ve
-   satırlar aynı ızgarayı paylaşır (ad · çubuk · kalan · sıfırlama · bitiş). */
+   satırlar aynı ızgarayı paylaşır (ad · çubuk · kalan · hak · sıfırlama · bitiş). */
 .accounts {
   border-top: 1px solid var(--line);
   margin-top: 6px;
 }
 .acct-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 56px 46px 70px 52px;
+  grid-template-columns: minmax(0, 1fr) 40px 46px 38px 70px 52px;
   column-gap: 10px;
   align-items: center;
   padding: 0 18px;
 }
 .acct-grid > span { white-space: nowrap; overflow: hidden; }
-.col-pct, .col-reset, .col-plan { text-align: right; }
+.col-pct, .col-grant, .col-reset, .col-plan { text-align: right; }
 .acct-head { padding-top: 8px; padding-bottom: 4px; }
 .acct-head > span {
-  font: 800 10px -apple-system, "Segoe UI", sans-serif;
+  font: 800 10px/1.2 -apple-system, "Segoe UI", sans-serif;
   letter-spacing: 0.02em;
   color: var(--haze);
   overflow: visible;
@@ -162,7 +165,7 @@ html { overflow-x: hidden; }
   text-overflow: ellipsis;
 }
 .note.hint { color: var(--ember); }
-.note.stale { font-size: 10px; color: var(--haze); padding-top: 4px; }
+.note.stale { font-size: 10px; color: var(--haze); }
 
 .acct {
   height: 22px;
@@ -170,11 +173,14 @@ html { overflow-x: hidden; }
   font-variant-numeric: tabular-nums;
 }
 .acct.current { background: rgba(255,255,255,0.07); }
-.acct .col-name { display: flex; align-items: baseline; color: var(--haze-bright); font-weight: 500; }
-.acct .nm { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.acct .col-name { display: flex; align-items: center; color: var(--haze-bright); font-weight: 500; }
+/* «●» için her satırda sabit 14 px yer: bütün adlar aynı x'ten başlar. */
+.acct .mk { flex: 0 0 14px; font-size: 8px; }
+/* Ad asla alt satıra kaymaz: kesilir, «…» ile biter. */
+.acct .nm { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .acct.current .col-name { color: var(--bone); font-weight: 700; }
-.acct .grant { flex-shrink: 0; margin-left: 4px; color: var(--ember); font-size: 11px; font-weight: 600; }
-.acct .col-pct { font-weight: 600; }
+.acct .col-pct, .acct .col-grant { font-weight: 600; }
+.acct .col-grant.on { color: var(--ember); }
 .acct .col-reset, .acct .col-plan { color: var(--haze-bright); }
 .acct .faint { color: var(--haze); }
 .acct .warn { color: var(--ember); }
@@ -189,12 +195,25 @@ html { overflow-x: hidden; }
   border: 0;
   background: none;
   color: var(--haze);
-  font: 11px -apple-system, "Segoe UI", sans-serif;
+  font: 11px/1.2 -apple-system, "Segoe UI", sans-serif;
   line-height: 17px;
   text-align: left;
   cursor: pointer;
 }
 .show-hidden:hover, .show-hidden:focus-visible { color: var(--ember); outline: none; }
+.grants-toggle { padding: 0 18px; color: var(--haze-bright); font-weight: 500; }
+
+/* Hesabın altındaki sıfırlama hakkı satırı: «↺ 1 haftalık · son 11 Ara». */
+.grant-detail {
+  padding: 0 18px 2px 32px;   /* adlarla aynı x: 18 + 14 (● yeri) */
+  line-height: 17px;
+  font-size: 11px;
+  color: var(--haze);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.grant-detail.on { color: var(--ember); }
 
 /* Alttan açılan Gizle / Sil seçimi: popup yüksekliğini değiştirmez. */
 .sheet-backdrop {
@@ -229,7 +248,7 @@ html { overflow-x: hidden; }
   border: 1px solid var(--line);
   border-radius: 6px;
   color: var(--bone);
-  font: 11px -apple-system, "Segoe UI", sans-serif;
+  font: 11px/1.2 -apple-system, "Segoe UI", sans-serif;
   cursor: pointer;
 }
 .sheet-actions button:hover { background: rgba(255,255,255,0.08); }
@@ -240,7 +259,7 @@ html { overflow-x: hidden; }
 .footer {
   padding: 6px 18px 4px;
   text-align: center;
-  font: 11px -apple-system, "Segoe UI", sans-serif;
+  font: 11px/1.2 -apple-system, "Segoe UI", sans-serif;
   color: var(--haze);
   border-top: 1px solid var(--line);
   margin-top: 6px;
@@ -258,7 +277,7 @@ html { overflow-x: hidden; }
   border: 1px solid var(--line);
   border-radius: 6px;
   color: var(--bone);
-  font: 11px -apple-system, "Segoe UI", sans-serif;
+  font: 11px/1.2 -apple-system, "Segoe UI", sans-serif;
   cursor: pointer;
 }
 .actions button:hover { background: rgba(255,255,255,0.08); }
@@ -267,7 +286,7 @@ html { overflow-x: hidden; }
 .credit {
   padding: 2px 18px 4px;
   text-align: center;
-  font: 10px -apple-system, "Segoe UI", sans-serif;
+  font: 10px/1.2 -apple-system, "Segoe UI", sans-serif;
   color: var(--haze);
 }
 .credit a {

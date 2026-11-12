@@ -492,5 +492,20 @@
   },
   "icon_hint": {
     "message": "แสดงบัญชีถัดไปในคำแนะนำบนแถบเครื่องมือ (⏳ claude1)"
+  },
+  "col_grants": {
+    "message": "ฟรี"
+  },
+  "grants_show": {
+    "message": "แสดงรีเซ็ตฟรี"
+  },
+  "grants_hide": {
+    "message": "ซ่อนรีเซ็ตฟรี"
+  },
+  "grants_none": {
+    "message": "ไม่มีรีเซ็ตฟรี"
+  },
+  "grants_unknown": {
+    "message": "ไม่ทราบ · จะแสดงเมื่อลงชื่อเข้าใช้บัญชีนี้"
   }
 }

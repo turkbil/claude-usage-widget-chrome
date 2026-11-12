@@ -145,11 +145,26 @@ export function ageText(iso, now) {
   return i18n('accounts_ago', [i18n('time_days_short', [Math.floor(s / 86400)])]);
 }
 
-// "1 haftalık · son 11 Ara" — her hak türü için.
+const grantKind = g => (['weekly', 'fable', 'session'].includes(g.kind) ? g.kind : 'other');
+
+// "1 haftalık · son 11 Ara" — tek bir hak.
+export function grantLine(g) {
+  const kind = i18n('grant_' + grantKind(g), [g.left]);
+  const end = toMs(g.endsAt);
+  return end != null ? kind + ' · ' + i18n('grant_until', [shortDay(end)]) : kind;
+}
+
+// "1 haftalık · son 11 Ara, 3 Fable · son 9 Mar" — aynı türdeki haklar
+// toplanır, türün en erken son tarihi (önce kullanılacak olan) gösterilir.
 export function grantText(grants) {
-  return grants.map(g => {
-    const kind = i18n('grant_' + (['weekly', 'fable', 'session'].includes(g.kind) ? g.kind : 'other'), [g.left]);
+  const groups = new Map();
+  for (const g of grants) {
+    const k = grantKind(g);
+    const acc = groups.get(k) || { kind: k, left: 0, endsAt: null };
+    acc.left += g.left;
     const end = toMs(g.endsAt);
-    return end != null ? kind + ' · ' + i18n('grant_until', [shortDay(end)]) : kind;
-  }).join(', ');
+    if (end != null && (acc.endsAt == null || end < toMs(acc.endsAt))) acc.endsAt = g.endsAt;
+    groups.set(k, acc);
+  }
+  return [...groups.values()].map(grantLine).join(', ');
 }
