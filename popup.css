@@ -295,3 +295,6 @@ html { overflow-x: hidden; }
 }
 .credit a:hover { color: var(--ember); }
 .credit span { margin: 0 4px; opacity: 0.5; }
+
+/* «↺» yerine çizilen küçük ok: metinle aynı boy ve renk. */
+.reset-ico { width: 0.95em; height: 0.95em; vertical-align: -0.12em; margin-right: 0.08em; }

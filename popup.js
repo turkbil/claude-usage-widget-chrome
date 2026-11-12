@@ -405,8 +405,8 @@ async function fillAccounts(snap, now = Date.now()) {
   setToggleText(expanded);
 
   const stale = document.getElementById('accountsStale');
-  stale.textContent = i18n('accounts_stale_note');
-  stale.title = stale.textContent;
+  setWithResetIcon(stale, i18n('accounts_stale_note'));
+  stale.title = i18n('accounts_stale_note');
   stale.hidden = states.length < 2;
 }
 
@@ -458,7 +458,7 @@ function accountRow(s, isCurrent, name, now) {
   // Açık hesapta boş: hakları üstteki ayrıntılarda yazıyor.
   if (isCurrent) cell('col-grant', '');
   else if (!Array.isArray(r.grants)) cell('col-grant', '—', 'faint');
-  else if (s.grantCount > 0) cell('col-grant', '↺' + s.grantCount, 'on');
+  else if (s.grantCount > 0) setWithResetIcon(cell('col-grant', null, 'on'), '↺' + s.grantCount);
   else cell('col-grant', '0', 'faint');
 
   // Sıfırlama günü ve saati.
@@ -485,6 +485,17 @@ function accountRow(s, isCurrent, name, now) {
   return row;
 }
 
+// «↺» yazı tiplerinde tutarsız çiziliyor (Mac Chrome'da «ʊ» gibi); metindeki her «↺»
+// yerine aynı boyutta küçük bir SVG ok koyar.
+const RESET_SVG = '<svg class="reset-ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8a4.5 4.5 0 1 0 1.4-3.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M2.2 2.4 5.2 4.9 2 6.6Z" fill="currentColor"/></svg>';
+function setWithResetIcon(el, text) {
+  el.textContent = '';
+  text.split('↺').forEach((part, i) => {
+    if (i > 0) el.insertAdjacentHTML('beforeend', RESET_SVG);
+    if (part) el.append(part);
+  });
+}
+
 // Hesabın altındaki ayrıntı: «↺ 1 haftalık · son 11 Ara, 3 Fable · son 9 Mar»,
 // «↺ sıfırlama hakkı yok» ya da «↺ bilinmiyor · …». İpucunda haklar tek tek.
 function grantDetail(s, expanded) {
@@ -492,11 +503,11 @@ function grantDetail(s, expanded) {
   el.className = 'grant-detail';
   el.hidden = !expanded;
   if (!Array.isArray(s.record.grants)) {
-    el.textContent = '↺ ' + i18n('grants_unknown');
+    setWithResetIcon(el, '↺ ' + i18n('grants_unknown'));
   } else if (!s.grantsLeft.length) {
-    el.textContent = '↺ ' + i18n('grants_none');
+    setWithResetIcon(el, '↺ ' + i18n('grants_none'));
   } else {
-    el.textContent = '↺ ' + grantText(s.grantsLeft);
+    setWithResetIcon(el, '↺ ' + grantText(s.grantsLeft));
     el.classList.add('on');
     el.title = s.grantsLeft.map(grantLine).join('\n');
   }
