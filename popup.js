@@ -397,11 +397,16 @@ function accountRow(s, isCurrent, name, now) {
   };
 
   // Ad: güncel hesap kalın ve «● » önekli; diğerleri soluk (son girişteki veri).
-  const nameEl = cell('col-name', (isCurrent ? '● ' : '') + name);
+  // Uzun adda yalnız ad kısalır; ↺N rozeti hep görünür.
+  const nameEl = cell('col-name');
+  const nm = document.createElement('span');
+  nm.className = 'nm';
+  nm.textContent = (isCurrent ? '● ' : '') + name;
+  nameEl.append(nm);
   if (s.grantCount > 0) {
     const g = document.createElement('span');
     g.className = 'grant';
-    g.textContent = ' ↺' + s.grantCount;
+    g.textContent = '↺' + s.grantCount;
     nameEl.append(g);
   }
 

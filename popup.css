@@ -76,7 +76,7 @@ html { overflow-x: hidden; }
   gap: 10px;
   padding: 4px 18px;
 }
-.row-label { flex: 0 0 auto; min-width: 110px; white-space: nowrap; }
+.row-label { flex: 0 0 124px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .bar {
   flex: 1;
   height: 8px;
@@ -169,9 +169,10 @@ html { overflow-x: hidden; }
   font-variant-numeric: tabular-nums;
 }
 .acct.current { background: rgba(255,255,255,0.07); }
-.acct .col-name { text-overflow: ellipsis; color: var(--haze-bright); font-weight: 500; }
+.acct .col-name { display: flex; align-items: baseline; color: var(--haze-bright); font-weight: 500; }
+.acct .nm { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .acct.current .col-name { color: var(--bone); font-weight: 700; }
-.acct .grant { color: var(--ember); font-size: 11px; font-weight: 600; }
+.acct .grant { flex-shrink: 0; margin-left: 4px; color: var(--ember); font-size: 11px; font-weight: 600; }
 .acct .col-pct { font-weight: 600; }
 .acct .col-reset, .acct .col-plan { color: var(--haze-bright); }
 .acct .faint { color: var(--haze); }
