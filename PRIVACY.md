@@ -6,12 +6,10 @@ This Chrome extension does **not** collect, store, or transmit any personal
 data to any server we operate or any third party. The only outbound network
 traffic is:
 
-1. **`https://claude.ai/*`** — to fetch your own usage statistics. The extension
-   uses cookies you already have for that domain; Chrome attaches them
-   automatically. We never read, copy, or transmit those cookies anywhere.
-2. **`https://api.github.com/repos/turkbil/...`** — once per day, to check
-   whether a newer release exists. No identifying information is sent (no
-   account ID, no email). This can be disabled in the extension settings.
+1. **`https://claude.ai/*`** — read-only (GET) requests to fetch your own usage
+   statistics. The extension uses cookies you already have for that domain;
+   Chrome attaches them automatically. We never read, copy, or transmit those
+   cookies anywhere.
 
 ### What we store locally
 

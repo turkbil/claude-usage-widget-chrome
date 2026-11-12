@@ -36,7 +36,6 @@
   ],
 
   "host_permissions": [
-    "https://claude.ai/*",
-    "https://api.github.com/repos/turkbil/*"
+    "https://claude.ai/*"
   ]
 }

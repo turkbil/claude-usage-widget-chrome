@@ -56,10 +56,6 @@ notifications — Send the optional alerts, off by default: usage thresholds (wa
 
 Host permission claude.ai — The single reason this extension exists: read the user's own data from claude.ai with GET requests only (organizations, account, usage including free resets, rate limits, subscription details), using the cookies the user already has. The extension never writes to claude.ai and never reads, copies or transmits those cookies elsewhere.
 
-Host permission api.github.com/repos/turkbil/* — Daily anonymous check for a new release of this extension. Can be disabled in settings; only the public Releases endpoint is contacted, no account info is sent.
-
-> Not (13 Kas 2026): kodda (*.js) api.github.com çağrısı yok. Ya bu izin manifest'ten çıkarılmalı ya da sürüm denetimi koda eklenmeli; inceleme kullanılmayan izni reddedebilir.
-
 ## Privacy policy URL
 https://github.com/turkbil/claude-usage-widget-chrome/blob/main/PRIVACY.md
 
