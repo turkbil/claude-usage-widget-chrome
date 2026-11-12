@@ -401,7 +401,8 @@ async function fillAccounts(snap, now = Date.now()) {
     const row = accountRow(s, isCurrent, shortName(s.record.email), now);
     return isCurrent ? [row] : [row, grantDetail(s, expanded)];
   }));
-  toggle.hidden = false;
+  // Açık hesabın hakları üstte yazıyor; açılacak başka hesap yoksa düğme de yok.
+  toggle.hidden = !states.some(st => st.record.email !== current);
   setToggleText(expanded);
 
   const stale = document.getElementById('accountsStale');
