@@ -25,6 +25,10 @@ html, body {
   padding: 8px 0 4px;
 }
 
+/* Çok hesapla popup 600 px sınırını aşar; klasik kaydırma çubuğu 320 px'lik
+   gövdeyi yatay kaydırmasın (içerik zaten 18 px iç boşlukla sağdan çekilmiş). */
+html { overflow-x: hidden; }
+
 .header {
   display: flex;
   align-items: center;
