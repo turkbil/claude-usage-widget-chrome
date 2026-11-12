@@ -225,6 +225,12 @@ function serve() {
     }
     if (k.endsWith('hide')) A(typeof r.sheet === 'string' && r.sheet.includes('team'), 'sheet ' + r.sheet);
   }
+  // 01-accounts'ta haklar AÇIK olmalı: açık popup, kapalı (hide sahnesi) popuptan uzun çıkmalı.
+  // Tutmazsa popup'ın aç/kapa durum anahtarı (şimdilik storage 'grantsExpanded') değişmiş demektir: data() güncellenmeli.
+  for (const l of LOCS) {
+    const a = report.shots[`${l}/accounts`], h = report.shots[`${l}/hide`];
+    if (!(a.lay.full > h.lay.full)) fails.push(`${l}/accounts haklar açık değil (açık ${a.lay.full} ≤ kapalı ${h.lay.full}); data() içindeki grantsExpanded anahtarını kontrol et`);
+  }
   const keySets = Object.values(copy).map(c => JSON.stringify([Object.keys(c), ...['accounts', 'details', 'hide'].map(s => [Object.keys(c[s]), c[s].b.length])]));
   if (Object.keys(copy).length !== 15 || new Set(keySets).size !== 1) fails.push('copy.json key sets differ');
   const lines = Object.fromEntries(Object.entries(report.shots).map(([k, r]) => [k, r.lines]));
