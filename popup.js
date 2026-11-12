@@ -1,6 +1,8 @@
 import { getCache, getHistory, getAccounts } from './prefs.js';
-
-const i18n = (k, args) => chrome.i18n.getMessage(k, args ? args.map(String) : undefined) || k;
+import {
+  i18n, toMs, accountState, suggestion, sortStates, shortNamer, resetsBefore, grantsOnHand,
+  weekdayTime, shortDay, formatRemaining, ageText, grantText,
+} from './accounts.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('refreshBtn').textContent = '⟳';
@@ -41,6 +43,7 @@ async function render() {
     fillAccountHeader(snapshot);
     fillWeekly(snapshot);
     fillForecast(snapshot);
+    fillDetails(snapshot);
     fillFiveHour(snapshot);
     await fillAccounts(snapshot);
     await drawSparkline(snapshot);
@@ -60,7 +63,8 @@ function fillAccountHeader(s) {
   const headerEl = document.getElementById('header');
   if (!s.displayName && !s.planLabel) { headerEl.hidden = true; return; }
   headerEl.hidden = false;
-  document.getElementById('name').textContent = s.displayName || '';
+  // E-posta hesapları ayırt eder; görünen adlar çoğu zaman aynıdır.
+  document.getElementById('name').textContent = s.email ? '● ' + s.email : (s.displayName || '');
   const pill = document.getElementById('planPill');
   if (s.planLabel) { pill.textContent = s.planLabel; pill.hidden = false; }
   else pill.hidden = true;
@@ -79,7 +83,9 @@ function fillWeekly(s) {
   const scoped = (s.scopedLimits || [])[0];
   if (scoped) {
     document.getElementById('sonnetRow').hidden = false;
-    document.getElementById('sonnetLabel').textContent = scoped.name;
+    document.getElementById('sonnetLabel').textContent = typeof s.scopedShare === 'number'
+      ? i18n('label_scoped_cap', [scoped.name, Math.round(s.scopedShare)])
+      : scoped.name;
     setBar('sonnet', Math.round(scoped.pct));
   } else if (s.sonnetUtilization != null) {
     document.getElementById('sonnetRow').hidden = false;
@@ -153,17 +159,6 @@ function remainingText(iso) {
   return i18n('remaining_suffix', [formatRemaining(iso)]);
 }
 
-function formatRemaining(iso, now = Date.now()) {
-  const total = Math.max(0, Math.floor((new Date(iso).getTime() - now) / 1000));
-  if (total <= 0) return i18n('time_reset');
-  const d = Math.floor(total / 86400);
-  const h = Math.floor((total % 86400) / 3600);
-  const m = Math.floor((total % 3600) / 60);
-  if (d > 0) return i18n('time_days_hours',    [d, h]);
-  if (h > 0) return i18n('time_hours_minutes', [h, m]);
-  return i18n('time_minutes', [m]);
-}
-
 function computeForecast(snap) {
   const weekEnd   = new Date(snap.weeklyResetsAt).getTime() / 1000;
   const weekStart = weekEnd - 7 * 24 * 3600;
@@ -180,7 +175,7 @@ function computeForecast(snap) {
 
   const rate = snap.weeklyUtilization / elapsedSec;
   const secondsToLimit = (100 - snap.weeklyUtilization) / rate;
-  return { kind: 'over', timeStr: formatRemaining(new Date(Date.now() + secondsToLimit * 1000).toISOString()) };
+  return { kind: 'over', timeStr: formatRemaining(Date.now() + secondsToLimit * 1000) };
 }
 
 async function drawSparkline(snap) {
@@ -276,109 +271,70 @@ async function drawSparkline(snap) {
   ctx.fill();
 }
 
-// ── Hesaplar ───────────────────────────────────────────────────────────────
-// Mac'teki AccountMath (Sources/Accounts.swift) ile aynı hesap.
+// ── Ayrıntılar ─────────────────────────────────────────────────────────────
+// Mac'teki currentDetailRows (Sources/main.swift) ile aynı satırlar.
 
-const WEEK_MS = 7 * 24 * 3600 * 1000;
-const HINT_WINDOW_MS = 48 * 3600 * 1000;
+function fillDetails(s, now = Date.now()) {
+  const rows = [];
+  const reset = toMs(s.weeklyResetsAt);
+  if (reset != null) rows.push({ label: i18n('detail_reset'), value: weekdayTime(reset) });
 
-const toMs = iso => {
-  if (!iso) return null;
-  const t = new Date(iso).getTime();
-  return isNaN(t) ? null : t;
-};
-
-// Tarihi bütün haftalarla geleceğe gelene dek ileri kaydırır.
-function roll(t, now) {
-  if (t > now) return { next: t, rolled: false };
-  const weeks = Math.floor((now - t) / WEEK_MS) + 1;
-  return { next: t + weeks * WEEK_MS, rolled: true };
-}
-
-// `next`ten `end`e (dahil) kadar kalan haftalık sıfırlama sayısı.
-function resetsBefore(end, next) {
-  if (end == null || next == null) return null;
-  if (next > end) return 0;
-  return Math.floor((end - next) / WEEK_MS) + 1;
-}
-
-// Bir kaydın şimdiki anlamı: kayıttan beri geçen haftalık pencereler ileri
-// kaydırılır (limit arada sıfırlanmış olmalı).
-function accountState(r, now) {
-  let next = null, rolled = false;
-  const reset = toMs(r.weeklyResetsAt);
-  if (reset != null) ({ next, rolled } = roll(reset, now));
-
-  const weeklyLeft = rolled ? 100 : (typeof r.weeklyPct === 'number' ? Math.max(0, 100 - r.weeklyPct) : null);
-
-  const scopedLeft = [];
-  let scopedNext = null;
-  (Array.isArray(r.scoped) ? r.scoped : []).forEach((sc, i) => {
-    let left = Math.max(0, 100 - (Number(sc.pct) || 0));
-    const ra = toMs(sc.resetsAt);
-    if (ra != null) {
-      const x = roll(ra, now);
-      if (x.rolled) left = 100;
-      if (i === 0) scopedNext = x.next;
+  const end = toMs(s.planEndsAt);
+  if (end != null && s.planRenews === true) {
+    // Yenilenen abonelik: yalnız yenileme tarihi, uyarısız.
+    rows.push({ label: i18n('detail_renews'), value: shortDay(end) });
+  } else if (end != null && s.planRenews !== false) {
+    // Yenilenip yenilenmeyeceği bilinmiyor: tarih renksiz, uyarı yok.
+    rows.push({ label: i18n('detail_plan'), value: shortDay(end) });
+  } else if (end != null) {
+    const n = resetsBefore(end, reset);
+    if (end < now) {
+      rows.push({ label: i18n('detail_plan'), value: shortDay(end) + ' · ' + i18n('accounts_plan_passed'), color: 'var(--haze)' });
+    } else if (n === 0) {
+      rows.push({ label: i18n('detail_plan'), value: shortDay(end) + ' · ' + i18n('detail_last_week'), color: 'var(--ember)' });
+    } else {
+      rows.push({ label: i18n('detail_plan'), value: shortDay(end) + (n != null ? ' · ' + i18n('accounts_resets', [n]) : '') });
     }
-    scopedLeft.push({ name: sc.name, left });
-  });
+  }
 
-  const planEnd = toMs(r.planEndsAt);
-  return {
-    record: r, nextReset: next, weeklyLeft, scopedLeft, rolled, planEnd,
-    weeklyResetsLeft: resetsBefore(planEnd, next),
-    scopedResetsLeft: resetsBefore(planEnd, scopedNext),
-  };
+  const onHand = grantsOnHand(s.grants, now);
+  if (onHand.length) rows.push({ label: i18n('detail_grants'), value: grantText(onHand), color: 'var(--ember)' });
+
+  // Günlük pay: kalan kota, sıfırlamaya kalan günlere bölünür.
+  if (reset != null) {
+    const days = (reset - now) / 86400e3;
+    if (days > 0.25) {
+      const left = Math.max(0, 100 - s.weeklyUtilization);
+      rows.push({ label: i18n('detail_daily'), value: '~' + i18n('value_percent', [Math.round(left / Math.max(1, days))]) });
+    }
+  }
+
+  const used = (Array.isArray(s.breakdown) ? s.breakdown : []).filter(b => b.pct >= 1).sort((a, b) => b.pct - a.pct);
+  if (used.length) {
+    rows.push({ label: i18n('detail_breakdown'),
+                value: used.map(b => b.name + ' ' + i18n('value_percent', [Math.round(b.pct)])).join(' · ') });
+  }
+
+  const box = document.getElementById('details');
+  box.hidden = rows.length === 0;
+  box.replaceChildren(...rows.map(r => {
+    const el = document.createElement('div');
+    el.className = 'detail';
+    const l = document.createElement('span');
+    l.className = 'detail-l';
+    l.textContent = r.label;
+    const v = document.createElement('span');
+    v.className = 'detail-r';
+    v.textContent = r.value;
+    v.title = r.value;
+    if (r.color) v.style.color = r.color;
+    el.append(l, v);
+    return el;
+  }));
 }
 
-// Kullanılmamış haftalık kotası boşa gidecek hesap: 48 saat içinde sıfırlanır
-// ve en az %5 kalmıştır. En yakın sıfırlama kazanır; eşitse fazla kalan.
-function suggestion(states, now) {
-  const c = states.filter(s => {
-    if (s.nextReset == null || s.weeklyLeft == null) return false;
-    const until = s.nextReset - now;
-    return until > 0 && until <= HINT_WINDOW_MS && s.weeklyLeft >= 5;
-  });
-  c.sort((a, b) => (a.nextReset - b.nextReset) || ((b.weeklyLeft ?? 0) - (a.weeklyLeft ?? 0)));
-  return c[0] || null;
-}
-
-// Güncel hesap önce, sonra en yakın sıfırlama.
-function sortStates(states, current) {
-  return states.sort((a, b) => {
-    const ac = a.record.email === current, bc = b.record.email === current;
-    if (ac !== bc) return ac ? -1 : 1;
-    return (a.nextReset ?? Infinity) - (b.nextReset ?? Infinity);
-  });
-}
-
-const uiLocale = () => {
-  try { return chrome.i18n.getUILanguage() || undefined; } catch { return undefined; }
-};
-
-// "Pzt 16:00" — haftalık sıfırlamanın günü ve saati, tarayıcı dilinde.
-function weekdayTime(t) {
-  return new Intl.DateTimeFormat(uiLocale(), {
-    weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
-  }).format(new Date(t));
-}
-
-// "13 Kas"
-function shortDay(t) {
-  return new Intl.DateTimeFormat(uiLocale(), { day: 'numeric', month: 'short' }).format(new Date(t));
-}
-
-// "şimdi" · "25dk önce" · "3s önce" · "2g önce"
-function ageText(iso, now) {
-  const t = toMs(iso);
-  if (t == null) return '';
-  const s = Math.max(0, (now - t) / 1000);
-  if (s < 120)   return i18n('accounts_now');
-  if (s < 3600)  return i18n('accounts_ago', [i18n('time_minutes',     [Math.floor(s / 60)])]);
-  if (s < 86400) return i18n('accounts_ago', [i18n('time_hours_short', [Math.floor(s / 3600)])]);
-  return i18n('accounts_ago', [i18n('time_days_short', [Math.floor(s / 86400)])]);
-}
+// ── Hesaplar ───────────────────────────────────────────────────────────────
+// Mac'teki AccountRowView (Sources/Accounts.swift) ile aynı tek satırlık görünüm.
 
 function leftColor(left) {
   if (left <= 10) return 'var(--blood)';
@@ -390,86 +346,129 @@ function leftColor(left) {
 async function fillAccounts(snap, now = Date.now()) {
   const box = document.getElementById('accounts');
   const current = (snap.email || '').toLowerCase();
-  const states = sortStates((await getAccounts()).map(r => accountState(r, now)), current);
+  const records = await getAccounts();
+  const states = sortStates(records.map(r => accountState(r, now)));
+  const shortName = shortNamer(records);
 
   box.hidden = states.length === 0;
   if (!states.length) return;
 
   document.getElementById('accountsTitle').textContent = i18n('section_accounts');
-  document.getElementById('accountsTrailing').textContent = i18n('accounts_count', [states.length]);
+  document.getElementById('colLeft').textContent  = i18n('col_left');
+  document.getElementById('colReset').textContent = i18n('col_reset');
+  document.getElementById('colPlan').textContent  = i18n('col_plan');
 
   const hint = document.getElementById('accountsHint');
   const sug = suggestion(states, now);
   if (sug) {
     const pct = Math.round(sug.weeklyLeft);
-    const when = formatRemaining(new Date(sug.nextReset).toISOString(), now);
+    const when = formatRemaining(sug.nextReset, now);
     hint.textContent = '⏳ ' + (sug.record.email === current
       ? i18n('accounts_hint_current', [pct, when])
-      : i18n('accounts_hint_other', [sug.record.email, pct, when]));
+      : i18n('accounts_hint_other', [shortName(sug.record.email), pct, when]));
+    hint.title = hint.textContent;
     hint.hidden = false;
   } else {
     hint.hidden = true;
   }
 
   const rows = document.getElementById('accountRows');
-  rows.replaceChildren(...states.map(s => accountRow(s, s.record.email === current, now)));
+  rows.replaceChildren(...states.map(s =>
+    accountRow(s, s.record.email === current, shortName(s.record.email), now)));
 
   const stale = document.getElementById('accountsStale');
   stale.textContent = i18n('accounts_stale_note');
+  stale.title = stale.textContent;
   stale.hidden = states.length < 2;
 }
 
-// Bir hesap için üç satır: e-posta | kalan · sıfırlama | Fable · abonelik | yaş.
-function accountRow(s, isCurrent, now) {
+// Tek satır: ad (+↺N) · kalan çubuğu · %N · sıfırlama · abonelik bitişi. Ayrıntılar ipucunda.
+function accountRow(s, isCurrent, name, now) {
   const r = s.record;
   const row = document.createElement('div');
-  row.className = 'acct';
+  row.className = 'acct acct-grid' + (isCurrent ? ' current' : '');
 
-  const line = (cls, leftText, rightText, rightColor) => {
-    const el = document.createElement('div');
-    el.className = 'acct-line ' + cls;
-    const l = document.createElement('span');
-    l.className = 'acct-l';
-    l.textContent = leftText;
-    l.title = leftText;
-    const rt = document.createElement('span');
-    rt.className = 'acct-r';
-    rt.textContent = rightText;
-    if (rightColor) rt.style.color = rightColor;
-    el.append(l, rt);
+  const cell = (cls, text, extra) => {
+    const el = document.createElement('span');
+    el.className = cls + (extra ? ' ' + extra : '');
+    if (text != null) el.textContent = text;
     row.append(el);
+    return el;
   };
 
-  // 1) ● e-posta | %X kaldı
-  let leftText = '—', leftCol = 'var(--haze)';
-  if (s.weeklyLeft != null) {
-    leftText = i18n('accounts_left', [Math.round(s.weeklyLeft)]) + (s.rolled ? '*' : '');
-    leftCol = leftColor(s.weeklyLeft);
+  // Ad: güncel hesap kalın ve «● » önekli; diğerleri soluk (son girişteki veri).
+  const nameEl = cell('col-name', (isCurrent ? '● ' : '') + name);
+  if (s.grantCount > 0) {
+    const g = document.createElement('span');
+    g.className = 'grant';
+    g.textContent = ' ↺' + s.grantCount;
+    nameEl.append(g);
   }
-  line('top', (isCurrent ? '● ' : '') + r.email, leftText, leftCol);
 
-  // 2) ↻ Pzt 16:00 · 3g 17s | Fable %Y kaldı
-  const reset = s.nextReset != null
-    ? '↻ ' + weekdayTime(s.nextReset) + ' · ' + formatRemaining(new Date(s.nextReset).toISOString(), now)
-    : i18n('accounts_no_data');
-  const f = s.scopedLeft[0];
-  line('mid', reset, f ? i18n('accounts_scoped_left', [f.name, Math.round(f.left)]) : '');
+  // Kalan çubuğu ve yüzdesi.
+  const barCell = cell('col-bar');
+  const bar = document.createElement('div');
+  bar.className = 'bar';
+  const fill = document.createElement('div');
+  fill.className = 'bar-fill';
+  bar.append(fill);
+  barCell.append(bar);
+  if (s.weeklyLeft != null) {
+    fill.style.width = `${Math.max(0, Math.min(100, s.weeklyLeft))}%`;
+    fill.style.background = leftColor(s.weeklyLeft);
+    if (!isCurrent) fill.style.opacity = '0.7';
+    const pct = cell('col-pct', i18n('value_percent', [Math.round(s.weeklyLeft)]) + (s.rolled ? '*' : ''));
+    pct.style.color = leftColor(s.weeklyLeft);
+  } else {
+    fill.style.width = '0';
+    cell('col-pct', '—', 'faint');
+  }
 
-  // 3) Abonelik 13 Kas · 0 sıfırlama kaldı | 2s önce
-  const bits = [];
+  // Sıfırlama günü ve saati.
+  if (s.nextReset != null) cell('col-reset', weekdayTime(s.nextReset));
+  else cell('col-reset', i18n('accounts_sign_in'), 'faint');
+
+  // Aylık tarih: yenileniyorsa (ya da bilinmiyorsa) renksiz, iptal edilmiş ve
+  // gerçekten bitiyorsa turuncu, tarihi geçtiyse soluk.
+  const ending = r.planRenews === false && s.planEnd != null && s.planEnd > now;
   if (s.planEnd != null) {
-    bits.push(i18n('accounts_plan_until', [shortDay(s.planEnd)]));
+    cell('col-plan', shortDay(s.planEnd), s.planEnd < now ? 'faint' : (ending ? 'warn' : ''));
+  } else {
+    cell('col-plan', '—', 'faint');
+  }
+
+  row.title = accountDetails(s, isCurrent, now);
+  return row;
+}
+
+// İpucu: e-posta, haftalık, Fable, sıfırlama hakkı, abonelik, son veri zamanı.
+function accountDetails(s, isCurrent, now) {
+  const r = s.record;
+  const lines = [r.email];
+  if (s.nextReset != null) {
+    const pct = s.weeklyLeft != null ? i18n('value_percent', [Math.round(s.weeklyLeft)]) : '—';
+    lines.push(i18n('tip_weekly', [pct, weekdayTime(s.nextReset), formatRemaining(s.nextReset, now)]));
+  }
+  for (const f of s.scopedLeft) lines.push(i18n('tip_scoped', [f.name, Math.round(f.left)]));
+  if (s.grantsLeft.length) lines.push(i18n('detail_grants') + ': ' + grantText(s.grantsLeft));
+  if (s.planEnd != null && r.planRenews === true) {
+    lines.push(i18n('detail_renews') + ' ' + shortDay(s.planEnd));
+  } else if (s.planEnd != null) {
+    const bits = [i18n(r.planRenews === false ? 'tip_plan_ends' : 'accounts_plan_until', [shortDay(s.planEnd)])];
     if (s.planEnd < now) {
       bits.push(i18n('accounts_plan_passed'));
     } else if (s.weeklyResetsLeft != null) {
+      const f = s.scopedLeft[0];
       if (s.scopedResetsLeft != null && s.scopedResetsLeft !== s.weeklyResetsLeft && f) {
         bits.push(i18n('accounts_resets_split', [s.weeklyResetsLeft, f.name, s.scopedResetsLeft]));
       } else {
         bits.push(i18n('accounts_resets', [s.weeklyResetsLeft]));
       }
     }
+    lines.push(bits.join(' · '));
   }
-  line('low', bits.join(' · '), isCurrent ? i18n('accounts_now') : ageText(r.seenAt, now));
-
-  return row;
+  lines.push(i18n('tip_seen', [isCurrent ? i18n('accounts_now') : ageText(r.seenAt, now)]));
+  if (s.rolled) lines.push(i18n('tip_rolled'));
+  if (!isCurrent) lines.push(i18n('tip_refresh'));
+  return lines.join('\n');
 }

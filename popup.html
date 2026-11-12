@@ -25,9 +25,12 @@
     <span class="row-value" id="sonnetValue"></span>
   </div>
 
+  <canvas class="sparkline" id="sparkline" width="380" height="40"></canvas>
+
   <div class="forecast" id="forecast" hidden></div>
 
-  <canvas class="sparkline" id="sparkline" width="296" height="44"></canvas>
+  <!-- Güncel hesabın ayrıntıları: etiket solda, değer sağda. -->
+  <div class="details" id="details" hidden></div>
 
   <div class="section-head" id="fiveHead" hidden>
     <span class="section-title" id="fiveTitle"></span>
@@ -40,9 +43,13 @@
   </div>
 
   <div class="accounts" id="accounts" hidden>
-    <div class="section-head">
-      <span class="section-title" id="accountsTitle"></span>
-      <span class="section-trailing" id="accountsTrailing"></span>
+    <!-- Başlık ve satırlar aynı sütun ızgarasını kullanır: başlıklar değerlerin tam üstünde. -->
+    <div class="acct-grid acct-head">
+      <span class="col-name" id="accountsTitle"></span>
+      <span class="col-bar"></span>
+      <span class="col-pct" id="colLeft"></span>
+      <span class="col-reset" id="colReset"></span>
+      <span class="col-plan" id="colPlan"></span>
     </div>
     <div class="note hint" id="accountsHint" hidden></div>
     <div id="accountRows"></div>

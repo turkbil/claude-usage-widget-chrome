@@ -68,6 +68,11 @@ export async function upsertAccount(snap) {
     scoped:         Array.isArray(snap.scopedLimits) ? snap.scopedLimits : [],
     // subscription_details yanıt vermezse bilinen son bitiş tarihi korunur.
     planEndsAt:     snap.planEndsAt ?? (i >= 0 ? accounts[i].planEndsAt : null) ?? null,
+    // true = o gün yenilenir · false = iptal edilmiş, gerçekten bitiyor · null = bilinmiyor.
+    planRenews:     typeof snap.planRenews === 'boolean' ? snap.planRenews
+                  : (i >= 0 && typeof accounts[i].planRenews === 'boolean' ? accounts[i].planRenews : null),
+    // Elde kalan ücretsiz sıfırlama hakları (yalnız okunur, yerelde tutulur).
+    grants:         Array.isArray(snap.grants) ? snap.grants : [],
     seenAt:         snap.fetchedAt,
     source:         'live',
   };

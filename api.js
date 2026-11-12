@@ -6,7 +6,9 @@ export async function fetchSnapshot() {
   const orgId = await findOrgId();
   // Plan, görünen ad ve abonelik bitişi isteğe bağlı — paralel çek, hatayı yut.
   const [usage, account, plan, sub] = await Promise.all([
-    getJson(`/api/organizations/${orgId}/usage`),
+    // cedar_ember=1 ücretsiz sıfırlama haklarını da getirir (claude.ai/settings/usage
+    // ne gösteriyorsa). Yalnız okuma: hiçbir hak kullanılmaz, POST atılmaz.
+    getJson(`/api/organizations/${orgId}/usage?cedar_ember=1&skip_spend=1`),
     safeJson(`/api/account`),
     safeJson(`/api/organizations/${orgId}/rate_limits`),
     safeJson(`/api/organizations/${orgId}/subscription_details`),
@@ -29,9 +31,45 @@ export async function fetchSnapshot() {
     scopedLimits.push({ name, pct: item.percent, resetsAt: isoOrNull(item.resets_at) });
   }
 
-  // Fatura yanıtından yalnız ödenmiş ayın bitiş tarihi okunur; ödeme/kart
-  // alanları asla alınmaz, saklanmaz.
+  // Haftanın nereye gittiği: Claude Code, Sohbetler, …
+  const breakdown = [];
+  for (const row of Array.isArray(usage.seven_day_breakdown?.rows) ? usage.seven_day_breakdown.rows : []) {
+    if (typeof row?.display_name === 'string' && typeof row.percent === 'number')
+      breakdown.push({ name: row.display_name, pct: row.percent });
+  }
+
+  // İlk modele özel limitin haftalık kotadan en çok alabileceği pay (ör. Fable %50).
+  const share = Array.isArray(usage.weekly_scoped_shares)
+    ? usage.weekly_scoped_shares[0]?.allowance_percent_of_weekly : null;
+  const scopedShare = typeof share === 'number' ? share : null;
+
+  // claude.ai'nin verdiği ücretsiz sıfırlama hakları; duraklatılmışlar atlanır.
+  const grants = [];
+  for (const g of Array.isArray(usage.cedar_ember?.grants) ? usage.cedar_ember.grants : []) {
+    if (!g || g.paused === true) continue;
+    const clears = Array.isArray(g.clears) ? g.clears : [];
+    const kind = g.gives_back_weekly === true ? 'fable'
+               : clears.includes('seven_day') ? 'weekly'
+               : clears.includes('five_hour') ? 'session' : 'other';
+    grants.push({
+      kind,
+      left:   Number(g.resets_left)  || 0,
+      total:  Number(g.resets_total) || 0,
+      endsAt: isoOrNull(g.ends_at),
+    });
+  }
+
+  // Fatura yanıtından yalnız ödenmiş ayın bitiş tarihi ve o gün yenilenip
+  // yenilenmeyeceği okunur; ödeme/kart alanları asla alınmaz, saklanmaz.
   const planEndsAt = isoOrNull(sub?.plan_ending_at) || isoOrNull(sub?.next_charge_at);
+  // Aktif, sonraki ödemesi olan ve durdurulması planlanmamış abonelik yenilenir.
+  // Fatura ucu yanıt vermezse bilinmiyor (null).
+  const planRenews = sub && typeof sub === 'object'
+    ? sub.status === 'active'
+      && typeof sub.next_charge_at === 'string'
+      && sub.scheduled_downgrade == null
+      && sub.manual_pause_scheduled_at == null
+    : null;
 
   const email = account?.email_address || null;
 
@@ -46,6 +84,10 @@ export async function fetchSnapshot() {
     email,
     scopedLimits,
     planEndsAt,
+    planRenews,
+    breakdown,
+    scopedShare,
+    grants,
     fetchedAt:            new Date().toISOString(),
   };
 }

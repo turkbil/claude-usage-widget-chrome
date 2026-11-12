@@ -7,15 +7,37 @@ All notable changes to this project are documented here.
 ### Added
 - **Accounts section** in the popup. Every claude.ai account signed in to this
   browser is remembered locally (e-mail, weekly and per-model % left, reset
-  day and time, plan end date, weekly resets left before it). Accounts that
-  are not signed in show their last-seen values, rolled forward when a weekly
-  reset has passed since (marked `*`).
-- **48-hour hint**: names the account whose unused weekly quota (≥ 5 %) resets
-  within 48 hours, soonest first.
+  day and time, plan end date, free resets on hand). Accounts that are not
+  signed in show their last-seen values, rolled forward when a weekly reset
+  has passed since (marked `*`).
+- **One-line account rows** on a shared column grid with aligned headings
+  (ACCOUNTS · LEFT · RESETS · MONTH): short name, `↺N` free-reset badge, %-left
+  bar, reset day and time, monthly date. Order: accounts with quota left by
+  soonest reset, then full ones, then accounts without data. The signed-in
+  account is bold on a soft band; details (e-mail, weekly, Fable, plan, free
+  resets, last data time) are in the row tooltip.
+- **48-hour hint** (one line): names the account whose unused weekly quota
+  (≥ 5 %) resets within 48 hours, soonest first. The toolbar tooltip adds
+  `→ name` when that account is not the signed-in one.
+- **Details block** for the signed-in account: reset day and time, plan end or
+  renewal date, free resets on hand, daily budget (left ÷ days to reset) and
+  where the week went (`seven_day_breakdown`).
+- **Free resets**: `usage?cedar_ember=1&skip_spend=1` (GET only) lists the
+  limit resets claude.ai hands out; they are shown, never used.
+- **Account notifications**, each sent once: unused quota resetting within
+  48 hours, a cancelled plan ending within 3 days, an unused free reset
+  expiring within 3 days.
 - **Per-model weekly limit** (e.g. *Fable*, from `limits[]`) replaces the Sonnet
-  row when present.
+  row when present, with its share of the weekly limit (`Fable · max 50%`).
 
 ### Changed
+- Popup is 380 px wide (as on the Mac); the header shows the account e-mail.
+  Order: bars → trend chart → forecast → details → 5-hour window → accounts.
+- A renewing plan (active, next charge set, no downgrade or pause scheduled)
+  shows *Renews 13 Nov* without warning; only a cancelled plan is shown in
+  orange, counts resets left and is notified.
+- Threshold notifications are tracked per account: switching to an account
+  that is already past a threshold no longer fires a notification.
 - History samples are tagged with the account; the trend chart draws only the
   signed-in account, and switching accounts records a sample at once.
 

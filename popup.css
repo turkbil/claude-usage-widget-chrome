@@ -21,11 +21,11 @@ html, body {
   background: var(--bg);
   color: var(--bone);
   font: 13px -apple-system, "Segoe UI", "Helvetica Neue", sans-serif;
-  width: 320px;
-  padding: 8px 0 4px;
+  width: 380px;
+  padding: 4px 0 2px;
 }
 
-/* Çok hesapla popup 600 px sınırını aşar; klasik kaydırma çubuğu 320 px'lik
+/* Çok hesapla popup 600 px sınırını aşabilir; klasik kaydırma çubuğu 380 px'lik
    gövdeyi yatay kaydırmasın (içerik zaten 18 px iç boşlukla sağdan çekilmiş). */
 html { overflow-x: hidden; }
 
@@ -33,11 +33,18 @@ html { overflow-x: hidden; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 18px 12px;
+  padding: 6px 18px 8px;
   border-bottom: 1px solid var(--line);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
-.name { font-weight: 600; font-size: 13px; }
+.name {
+  font-weight: 600;
+  font-size: 13px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .pill {
   font: 10px "JetBrains Mono", "Cascadia Mono", "SF Mono", monospace;
   letter-spacing: 0.04em;
@@ -51,7 +58,7 @@ html { overflow-x: hidden; }
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  padding: 10px 18px 6px;
+  padding: 8px 18px 4px;
 }
 .section-title {
   font: 700 10px -apple-system, "Segoe UI", sans-serif;
@@ -67,9 +74,9 @@ html { overflow-x: hidden; }
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 6px 18px;
+  padding: 4px 18px;
 }
-.row-label { flex: 0 0 110px; }
+.row-label { flex: 0 0 auto; min-width: 110px; white-space: nowrap; }
 .bar {
   flex: 1;
   height: 8px;
@@ -90,58 +97,100 @@ html { overflow-x: hidden; }
 }
 
 .forecast {
-  padding: 6px 18px 0;
+  padding: 4px 18px 0;
   font-size: 11px;
   color: var(--haze-bright);
 }
 .forecast.warn { color: var(--ember); }
 
-.sparkline { display: block; margin: 8px 0 0; }
+.sparkline { display: block; margin: 4px 0 0; }
 
-/* Hesaplar bölümü: Mac'teki üç satırlık hesap görünümünün karşılığı. */
-.accounts {
-  border-top: 1px solid var(--line);
-  margin-top: 8px;
-}
-.note {
-  padding: 2px 18px 6px;
-  font-size: 11px;
-  color: var(--haze-bright);
-}
-.note.hint { color: var(--ember); }
-.note.stale { font-size: 10px; color: var(--haze); padding-top: 6px; }
-
-.acct { padding: 6px 18px; }
-.acct-line {
+/* Güncel hesap ayrıntıları: "Sıfırlama ········ Pzt 16:00". */
+.details { padding: 4px 0 2px; }
+.detail {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 10px;
+  gap: 12px;
+  padding: 0 18px;
+  font-size: 11px;
+  line-height: 17px;
 }
-.acct-l, .acct-r { white-space: nowrap; font-variant-numeric: tabular-nums; }
-.acct-l {
+.detail-l { flex-shrink: 0; color: var(--haze-bright); }
+.detail-r {
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: right;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
 }
-.acct-r { flex-shrink: 0; text-align: right; }
-.acct-line.top { font-weight: 600; }
-.acct-line.mid { font-size: 11px; color: var(--haze-bright); }
-.acct-line.low { font-size: 10px; color: var(--haze); }
+
+/* Hesaplar: Mac'teki tek satırlık hesap listesinin karşılığı. Başlık ve
+   satırlar aynı ızgarayı paylaşır (ad · çubuk · kalan · sıfırlama · bitiş). */
+.accounts {
+  border-top: 1px solid var(--line);
+  margin-top: 6px;
+}
+.acct-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 56px 46px 70px 52px;
+  column-gap: 10px;
+  align-items: center;
+  padding: 0 18px;
+}
+.acct-grid > span { white-space: nowrap; overflow: hidden; }
+.col-pct, .col-reset, .col-plan { text-align: right; }
+.acct-head { padding-top: 8px; padding-bottom: 4px; }
+.acct-head > span {
+  font: 800 10px -apple-system, "Segoe UI", sans-serif;
+  letter-spacing: 0.02em;
+  color: var(--haze);
+  overflow: visible;
+}
+.acct-head > .col-name { color: var(--haze-bright); letter-spacing: 0.12em; }
+
+.note {
+  padding: 0 18px 2px;
+  line-height: 17px;
+  font-size: 11px;
+  color: var(--haze-bright);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.note.hint { color: var(--ember); }
+.note.stale { font-size: 10px; color: var(--haze); padding-top: 4px; }
+
+.acct {
+  height: 22px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.acct.current { background: rgba(255,255,255,0.07); }
+.acct .col-name { text-overflow: ellipsis; color: var(--haze-bright); font-weight: 500; }
+.acct.current .col-name { color: var(--bone); font-weight: 700; }
+.acct .grant { color: var(--ember); font-size: 11px; font-weight: 600; }
+.acct .col-pct { font-weight: 600; }
+.acct .col-reset, .acct .col-plan { color: var(--haze-bright); }
+.acct .faint { color: var(--haze); }
+.acct .warn { color: var(--ember); }
+.acct .bar { height: 5px; }
 
 .footer {
-  padding: 10px 18px 6px;
+  padding: 6px 18px 4px;
   text-align: center;
   font: 11px -apple-system, "Segoe UI", sans-serif;
   color: var(--haze);
   border-top: 1px solid var(--line);
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
 .actions {
   display: flex;
   gap: 6px;
-  padding: 0 12px 8px;
+  padding: 0 12px 6px;
 }
 .actions button {
   flex: 1;
@@ -157,7 +206,7 @@ html { overflow-x: hidden; }
 .actions button:first-child, .actions button:last-child { flex: 0 0 36px; }
 
 .credit {
-  padding: 4px 18px 8px;
+  padding: 2px 18px 4px;
   text-align: center;
   font: 10px -apple-system, "Segoe UI", sans-serif;
   color: var(--haze);

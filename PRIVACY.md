@@ -30,7 +30,16 @@ In your browser's local extension storage (`chrome.storage.local`):
   plan end date, as last seen. Used only for the *Accounts* section of the
   popup. Account e-mails are kept only in `chrome.storage.local` on this
   device and are never sent anywhere. From the billing reply only the plan end
-  date is read; no payment or card details are read or stored.
+  date and whether the plan renews on it (status, next charge date, scheduled
+  downgrade or pause) are read; only the date and a renews yes/no are stored.
+  No payment or card details are read or stored.
+- **Free resets** — the free limit resets claude.ai lists for each account
+  (kind, how many are left, expiry date). The extension only reads them to
+  show them; it never uses one. Kept only in `chrome.storage.local` on this
+  device and never transmitted.
+- **Notification state** — which one-time reminders were already shown and
+  the last threshold level per account e-mail, so nothing is shown twice.
+  Kept only locally.
 
 ### What we do NOT do
 
