@@ -375,7 +375,7 @@
     }
   },
   "grant_until": {
-    "message": "până la $1",
+    "message": "exp. $1",
     "placeholders": {
       "1": {
         "content": "$1"
@@ -493,19 +493,19 @@
   "icon_hint": {
     "message": "Afișează contul următor în tooltipul din bară (⏳ claude1)"
   },
-  "col_grants": {
-    "message": "BONUS"
-  },
   "grants_show": {
     "message": "Afișează resetările gratuite"
   },
   "grants_hide": {
     "message": "Ascunde resetările gratuite"
   },
-  "grants_none": {
-    "message": "nicio resetare gratuită"
+  "grants_col_weekly": {
+    "message": "RESETĂRI SĂPT."
   },
-  "grants_unknown": {
-    "message": "necunoscut · apare după conectarea la acest cont"
+  "grants_col_fable": {
+    "message": "RESETĂRI FABLE"
+  },
+  "grants_unknown_short": {
+    "message": "necunoscut"
   }
 }

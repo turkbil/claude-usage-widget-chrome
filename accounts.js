@@ -66,7 +66,6 @@ export function accountState(r, now) {
     weeklyResetsLeft: renews ? null : resetsBefore(planEnd, next),
     scopedResetsLeft: renews ? null : resetsBefore(planEnd, scopedNext),
     grantsLeft,
-    grantCount: grantsLeft.reduce((n, g) => n + g.left, 0),
   };
 }
 
@@ -98,12 +97,10 @@ export function sortStates(states) {
 }
 
 // "claude2" — e-postanın @ öncesi; iki hesap aynı ön adı paylaşıyorsa tam e-posta.
+// Hesap adı her yerde tam e-posta: alan adları farklı olabiliyor (claude2@nurullah.net,
+// nurullahnet@gmail.com), «@» öncesi tek başına yanıltıyor. Mac'teki shortName ile aynı.
 export function shortNamer(records) {
-  const local = e => String(e || '').split('@')[0];
-  return email => {
-    const l = local(email);
-    return records.filter(r => local(r.email) === l).length > 1 ? email : l;
-  };
+  return email => String(email || '');
 }
 
 const uiLocale = () => {
@@ -156,6 +153,13 @@ export function grantLine(g) {
   const kind = i18n('grant_' + grantKind(g), [g.left]);
   const end = toMs(g.endsAt);
   return end != null ? kind + ' · ' + i18n('grant_until', [shortDay(end)]) : kind;
+}
+
+// Bir türdeki haklar: toplam kalan ve en erken son tarih (Mac'teki grantSummary).
+export function grantSummary(grants, kind) {
+  const g = grants.filter(x => x.kind === kind);
+  const ends = g.map(x => toMs(x.endsAt)).filter(t => t != null);
+  return { count: g.reduce((n, x) => n + x.left, 0), first: ends.length ? Math.min(...ends) : null };
 }
 
 // "1 haftalık · son 11 Ara, 3 Fable · son 9 Mar" — aynı türdeki haklar

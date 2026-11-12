@@ -493,19 +493,19 @@
   "icon_hint": {
     "message": "툴바 툴팁에 다음 계정 표시 (⏳ claude1)"
   },
-  "col_grants": {
-    "message": "무료"
-  },
   "grants_show": {
     "message": "무료 초기화 표시"
   },
   "grants_hide": {
     "message": "무료 초기화 숨기기"
   },
-  "grants_none": {
-    "message": "무료 초기화 없음"
+  "grants_col_weekly": {
+    "message": "주간 초기화"
   },
-  "grants_unknown": {
-    "message": "알 수 없음 · 이 계정에 로그인하면 표시"
+  "grants_col_fable": {
+    "message": "FABLE 초기화"
+  },
+  "grants_unknown_short": {
+    "message": "알 수 없음"
   }
 }

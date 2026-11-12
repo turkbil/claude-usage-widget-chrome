@@ -493,19 +493,19 @@
   "icon_hint": {
     "message": "ツールバーのツールチップに次のアカウントを表示 (⏳ claude1)"
   },
-  "col_grants": {
-    "message": "無料"
-  },
   "grants_show": {
     "message": "無料リセットを表示"
   },
   "grants_hide": {
     "message": "無料リセットを隠す"
   },
-  "grants_none": {
-    "message": "無料リセットなし"
+  "grants_col_weekly": {
+    "message": "週間リセット"
   },
-  "grants_unknown": {
-    "message": "不明 · このアカウントにログインすると表示"
+  "grants_col_fable": {
+    "message": "FABLEリセット"
+  },
+  "grants_unknown_short": {
+    "message": "不明"
   }
 }

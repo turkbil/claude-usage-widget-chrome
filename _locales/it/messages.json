@@ -493,19 +493,19 @@
   "icon_hint": {
     "message": "Mostra l’account successivo nel tooltip della barra (⏳ claude1)"
   },
-  "col_grants": {
-    "message": "GRATIS"
-  },
   "grants_show": {
     "message": "Mostra reset gratis"
   },
   "grants_hide": {
     "message": "Nascondi reset gratis"
   },
-  "grants_none": {
-    "message": "nessun reset gratis"
+  "grants_col_weekly": {
+    "message": "RESET SETTIM."
   },
-  "grants_unknown": {
-    "message": "sconosciuto · appare dopo l’accesso a questo account"
+  "grants_col_fable": {
+    "message": "RESET FABLE"
+  },
+  "grants_unknown_short": {
+    "message": "sconosciuto"
   }
 }

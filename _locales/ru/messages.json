@@ -493,19 +493,19 @@
   "icon_hint": {
     "message": "Показывать следующий аккаунт в подсказке панели (⏳ claude1)"
   },
-  "col_grants": {
-    "message": "БОНУС"
-  },
   "grants_show": {
     "message": "Показать бесплатные сбросы"
   },
   "grants_hide": {
     "message": "Скрыть бесплатные сбросы"
   },
-  "grants_none": {
-    "message": "нет бесплатных сбросов"
+  "grants_col_weekly": {
+    "message": "СБРОСЫ НЕДЕЛИ"
   },
-  "grants_unknown": {
-    "message": "неизвестно · появится после входа в аккаунт"
+  "grants_col_fable": {
+    "message": "СБРОСЫ FABLE"
+  },
+  "grants_unknown_short": {
+    "message": "неизвестно"
   }
 }

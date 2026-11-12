@@ -493,19 +493,19 @@
   "icon_hint": {
     "message": "在工具列提示中顯示下一個帳號 (⏳ claude1)"
   },
-  "col_grants": {
-    "message": "免費"
-  },
   "grants_show": {
     "message": "顯示免費重設"
   },
   "grants_hide": {
     "message": "隱藏免費重設"
   },
-  "grants_none": {
-    "message": "沒有免費重設"
+  "grants_col_weekly": {
+    "message": "每週重設"
   },
-  "grants_unknown": {
-    "message": "未知 · 登入此帳號後顯示"
+  "grants_col_fable": {
+    "message": "FABLE 重設"
+  },
+  "grants_unknown_short": {
+    "message": "未知"
   }
 }

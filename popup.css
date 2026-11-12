@@ -24,12 +24,12 @@ html, body {
   background: var(--bg);
   color: var(--bone);
   font: 13px/1.2 -apple-system, "Segoe UI", "Helvetica Neue", sans-serif;
-  width: 420px;
+  width: 470px;
 }
 /* İç boşluk yalnız gövdede: html'de de olunca iki kat sayılıyordu (7 hesapta 600 px sınırı). */
 body { padding: 4px 0 2px; }
 
-/* Çok hesapla popup 600 px sınırını aşabilir; klasik kaydırma çubuğu 420 px'lik
+/* Çok hesapla popup 600 px sınırını aşabilir; klasik kaydırma çubuğu 470 px'lik
    gövdeyi yatay kaydırmasın (içerik zaten 18 px iç boşlukla sağdan çekilmiş). */
 html { overflow-x: hidden; }
 
@@ -132,20 +132,20 @@ html { overflow-x: hidden; }
 }
 
 /* Hesaplar: Mac'teki tek satırlık hesap listesinin karşılığı. Başlık ve
-   satırlar aynı ızgarayı paylaşır (ad · çubuk · kalan · hak · sıfırlama · bitiş). */
+   satırlar aynı ızgarayı paylaşır (ad · çubuk · kalan · sıfırlama · bitiş). */
 .accounts {
   border-top: 1px solid var(--line);
   margin-top: 6px;
 }
 .acct-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 40px 46px 38px 70px 52px;
+  grid-template-columns: minmax(0, 1fr) 48px 46px 70px 52px;
   column-gap: 10px;
   align-items: center;
   padding: 0 18px;
 }
 .acct-grid > span { white-space: nowrap; overflow: hidden; }
-.col-pct, .col-grant, .col-reset, .col-plan { text-align: right; }
+.col-pct, .col-reset, .col-plan { text-align: right; }
 .acct-head { padding-top: 8px; padding-bottom: 4px; }
 .acct-head > span {
   font: 800 10px/1.2 -apple-system, "Segoe UI", sans-serif;
@@ -179,8 +179,7 @@ html { overflow-x: hidden; }
 /* Ad asla alt satıra kaymaz: kesilir, «…» ile biter. */
 .acct .nm { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .acct.current .col-name { color: var(--bone); font-weight: 700; }
-.acct .col-pct, .acct .col-grant { font-weight: 600; }
-.acct .col-grant.on { color: var(--ember); }
+.acct .col-pct { font-weight: 600; }
 .acct .col-reset, .acct .col-plan { color: var(--haze-bright); }
 .acct .faint { color: var(--haze); }
 .acct .warn { color: var(--ember); }
@@ -203,17 +202,31 @@ html { overflow-x: hidden; }
 .show-hidden:hover, .show-hidden:focus-visible { color: var(--ember); outline: none; }
 .grants-toggle { padding: 0 18px; color: var(--haze-bright); font-weight: 500; }
 
-/* Hesabın altındaki sıfırlama hakkı satırı: «↺ 1 haftalık · son 11 Ara». */
-.grant-detail {
-  padding: 0 18px 2px 32px;   /* adlarla aynı x: 18 + 14 (● yeri) */
-  line-height: 17px;
-  font-size: 11px;
-  color: var(--haze);
+/* Sıfırlama hakları (açıkken): hesap ızgarasıyla aynı sütunlar. Haftalık hücre
+   çubuk + KALAN, Fable hücresi SIFIRLAMA + AYLIK sütunlarını kaplar. */
+.grant-head, .grant-row { line-height: 14px; }
+.grant-head > span, .grant-row > span {
+  min-width: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.grant-detail.on { color: var(--ember); }
+.g-weekly { grid-column: 2 / 4; }
+.g-fable  { grid-column: 4 / 6; }
+.grant-head { padding-top: 2px; padding-bottom: 2px; }
+.grant-head > span {
+  font: 800 10px/14px -apple-system, "Segoe UI", sans-serif;
+  color: var(--haze);
+}
+/* Satır hesabına yapışık (üstte 1 px), sonraki hesaptan 8 px boşlukla ayrılır. */
+.grant-row {
+  padding-top: 1px;
+  padding-bottom: 8px;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.grant-row > span { color: var(--haze); }
+.grant-row > span.on { color: var(--ember); }
 
 /* Alttan açılan Gizle / Sil seçimi: popup yüksekliğini değiştirmez. */
 .sheet-backdrop {

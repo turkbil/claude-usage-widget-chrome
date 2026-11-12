@@ -4,7 +4,7 @@ import {
 } from './prefs.js';
 import {
   i18n, toMs, accountState, visibleRecords, suggestion, sortStates, shortNamer, resetsBefore, grantsOnHand,
-  weekdayTime, shortDay, formatRemaining, ageText, grantText, grantLine,
+  weekdayTime, shortDay, formatRemaining, ageText, grantText, grantLine, grantSummary,
 } from './accounts.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -367,7 +367,6 @@ async function fillAccounts(snap, now = Date.now()) {
 
   document.getElementById('accountsTitle').textContent = i18n('section_accounts');
   document.getElementById('colLeft').textContent  = i18n('col_left');
-  document.getElementById('colGrants').textContent = i18n('col_grants');
   document.getElementById('colReset').textContent = i18n('col_reset');
   document.getElementById('colPlan').textContent  = i18n('col_plan');
 
@@ -385,24 +384,28 @@ async function fillAccounts(snap, now = Date.now()) {
     hint.hidden = true;
   }
   const toggle = document.getElementById('grantsToggle');
+  const grantHead = document.getElementById('grantHead');
   if (!states.length) {
     document.getElementById('accountRows').replaceChildren();
     document.getElementById('accountsStale').hidden = true;
     toggle.hidden = true;
+    grantHead.hidden = true;
     return;
   }
 
-  // Her hesap satırının hemen altında (kapalıyken gizli) sıfırlama hakkı satırı.
-  // Açık hesapta yok: hakları üstteki ayrıntılarda («Sıfırlama hakkı») yazıyor.
+  // Her hesabın (açık hesap dahil) hemen altında, kapalıyken gizli hak satırı:
+  // «↺ HAFTALIK HAK» ve «↺ FABLE HAKKI» sütunlarında iki hücre.
   const expanded = await getGrantsExpanded();
+  setWithResetIcon(document.getElementById('grantHeadWeekly'), '↺ ' + i18n('grants_col_weekly'));
+  setWithResetIcon(document.getElementById('grantHeadFable'), '↺ ' + i18n('grants_col_fable'));
+  grantHead.hidden = !expanded;
   const rows = document.getElementById('accountRows');
-  rows.replaceChildren(...states.flatMap(s => {
-    const isCurrent = s.record.email === current;
-    const row = accountRow(s, isCurrent, shortName(s.record.email), now);
-    return isCurrent ? [row] : [row, grantDetail(s, expanded)];
-  }));
-  // Açık hesabın hakları üstte yazıyor; açılacak başka hesap yoksa düğme de yok.
-  toggle.hidden = !states.some(st => st.record.email !== current);
+  rows.replaceChildren(...states.flatMap(s => [
+    accountRow(s, s.record.email === current, shortName(s.record.email), now),
+    grantRow(s, expanded),
+  ]));
+  // Hesap varsa düğme her zaman görünür (tek hesapta da).
+  toggle.hidden = false;
   setToggleText(expanded);
 
   const stale = document.getElementById('accountsStale');
@@ -411,7 +414,7 @@ async function fillAccounts(snap, now = Date.now()) {
   stale.hidden = states.length < 2;
 }
 
-// Tek satır: ad · kalan çubuğu · %N · ↺N · sıfırlama · abonelik bitişi. Ayrıntılar ipucunda.
+// Tek satır: ad · kalan çubuğu · %N · sıfırlama · abonelik bitişi. Ayrıntılar ipucunda.
 function accountRow(s, isCurrent, name, now) {
   const r = s.record;
   const row = document.createElement('div');
@@ -455,13 +458,6 @@ function accountRow(s, isCurrent, name, now) {
     cell('col-pct', '—', 'faint');
   }
 
-  // Sıfırlama hakkı: hiç okunmadıysa «—», elde varsa turuncu «↺N», yoksa «0».
-  // Açık hesapta boş: hakları üstteki ayrıntılarda yazıyor.
-  if (isCurrent) cell('col-grant', '');
-  else if (!Array.isArray(r.grants)) cell('col-grant', '—', 'faint');
-  else if (s.grantCount > 0) setWithResetIcon(cell('col-grant', null, 'on'), '↺' + s.grantCount);
-  else cell('col-grant', '0', 'faint');
-
   // Sıfırlama günü ve saati.
   if (s.nextReset != null) cell('col-reset', weekdayTime(s.nextReset));
   else cell('col-reset', i18n('accounts_sign_in'), 'faint');
@@ -497,21 +493,29 @@ function setWithResetIcon(el, text) {
   });
 }
 
-// Hesabın altındaki ayrıntı: «↺ 1 haftalık · son 11 Ara, 3 Fable · son 9 Mar»,
-// «↺ sıfırlama hakkı yok» ya da «↺ bilinmiyor · …». İpucunda haklar tek tek.
-function grantDetail(s, expanded) {
+// Hesabın altındaki hak satırı (Mac'teki GrantDetailView): haftalık | Fable hücresi.
+// Hücre: «↺ 1 · son 11 Ara», hak yoksa soluk «0», hiç okunmadıysa soluk «bilinmiyor».
+// Diğer türler (ör. oturum) hücrede yok, ipucunda haklar tek tek.
+function grantRow(s, expanded) {
   const el = document.createElement('div');
-  el.className = 'grant-detail';
+  el.className = 'acct-grid grant-row';
   el.hidden = !expanded;
-  if (!Array.isArray(s.record.grants)) {
-    setWithResetIcon(el, '↺ ' + i18n('grants_unknown'));
-  } else if (!s.grantsLeft.length) {
-    setWithResetIcon(el, '↺ ' + i18n('grants_none'));
-  } else {
-    setWithResetIcon(el, '↺ ' + grantText(s.grantsLeft));
-    el.classList.add('on');
-    el.title = s.grantsLeft.map(grantLine).join('\n');
+  const known = Array.isArray(s.record.grants);
+  for (const kind of ['weekly', 'fable']) {
+    const c = document.createElement('span');
+    c.className = 'g-' + kind;
+    const { count, first } = grantSummary(s.grantsLeft, kind);
+    if (!known) {
+      c.textContent = i18n('grants_unknown_short');
+    } else if (count === 0) {
+      c.textContent = '0';
+    } else {
+      setWithResetIcon(c, '↺ ' + count + (first != null ? ' · ' + i18n('grant_until', [shortDay(first)]) : ''));
+      c.classList.add('on');
+    }
+    el.append(c);
   }
+  if (s.grantsLeft.length) el.title = s.grantsLeft.map(grantLine).join('\n');
   return el;
 }
 
@@ -574,11 +578,12 @@ function setupSheet() {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && sheetEmail) { e.preventDefault(); closeSheet(); }
   });
-  // Aç/kapa yeniden çizmeden yalnız ayrıntı satırlarını gösterir/gizler; durum hatırlanır.
+  // Aç/kapa yeniden çizmeden yalnız hak başlığını ve satırlarını gösterir/gizler; durum hatırlanır.
   document.getElementById('grantsToggle').addEventListener('click', async () => {
     const expanded = !(await getGrantsExpanded());
     await setGrantsExpanded(expanded);
-    document.querySelectorAll('#accountRows .grant-detail').forEach(el => { el.hidden = !expanded; });
+    document.getElementById('grantHead').hidden = !expanded;
+    document.querySelectorAll('#accountRows .grant-row').forEach(el => { el.hidden = !expanded; });
     setToggleText(expanded);
   });
   document.getElementById('showHidden').addEventListener('click', async () => {

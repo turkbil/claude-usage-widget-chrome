@@ -493,19 +493,19 @@
   "icon_hint": {
     "message": "Volgende account tonen in de knopinfo van de werkbalk (⏳ claude1)"
   },
-  "col_grants": {
-    "message": "GRATIS"
-  },
   "grants_show": {
     "message": "Gratis resets tonen"
   },
   "grants_hide": {
     "message": "Gratis resets verbergen"
   },
-  "grants_none": {
-    "message": "geen gratis resets"
+  "grants_col_weekly": {
+    "message": "WEEKRESETS"
   },
-  "grants_unknown": {
-    "message": "onbekend · zichtbaar na inloggen op dit account"
+  "grants_col_fable": {
+    "message": "FABLE-RESETS"
+  },
+  "grants_unknown_short": {
+    "message": "onbekend"
   }
 }

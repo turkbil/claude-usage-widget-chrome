@@ -493,19 +493,19 @@
   "icon_hint": {
     "message": "Показувати наступний акаунт у підказці панелі (⏳ claude1)"
   },
-  "col_grants": {
-    "message": "ВІЛЬНІ"
-  },
   "grants_show": {
     "message": "Показати вільні скидання"
   },
   "grants_hide": {
     "message": "Сховати вільні скидання"
   },
-  "grants_none": {
-    "message": "немає вільних скидань"
+  "grants_col_weekly": {
+    "message": "СКИД. ТИЖНЯ"
   },
-  "grants_unknown": {
-    "message": "невідомо · з’явиться після входу в акаунт"
+  "grants_col_fable": {
+    "message": "СКИДАННЯ FABLE"
+  },
+  "grants_unknown_short": {
+    "message": "невідомо"
   }
 }
