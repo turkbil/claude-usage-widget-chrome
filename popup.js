@@ -393,12 +393,14 @@ async function fillAccounts(snap, now = Date.now()) {
   }
 
   // Her hesap satırının hemen altında (kapalıyken gizli) sıfırlama hakkı satırı.
+  // Açık hesapta yok: hakları üstteki ayrıntılarda («Sıfırlama hakkı») yazıyor.
   const expanded = await getGrantsExpanded();
   const rows = document.getElementById('accountRows');
-  rows.replaceChildren(...states.flatMap(s => [
-    accountRow(s, s.record.email === current, shortName(s.record.email), now),
-    grantDetail(s, expanded),
-  ]));
+  rows.replaceChildren(...states.flatMap(s => {
+    const isCurrent = s.record.email === current;
+    const row = accountRow(s, isCurrent, shortName(s.record.email), now);
+    return isCurrent ? [row] : [row, grantDetail(s, expanded)];
+  }));
   toggle.hidden = false;
   setToggleText(expanded);
 
@@ -453,7 +455,9 @@ function accountRow(s, isCurrent, name, now) {
   }
 
   // Sıfırlama hakkı: hiç okunmadıysa «—», elde varsa turuncu «↺N», yoksa «0».
-  if (!Array.isArray(r.grants)) cell('col-grant', '—', 'faint');
+  // Açık hesapta boş: hakları üstteki ayrıntılarda yazıyor.
+  if (isCurrent) cell('col-grant', '');
+  else if (!Array.isArray(r.grants)) cell('col-grant', '—', 'faint');
   else if (s.grantCount > 0) cell('col-grant', '↺' + s.grantCount, 'on');
   else cell('col-grant', '0', 'faint');
 

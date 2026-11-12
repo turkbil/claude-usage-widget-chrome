@@ -110,16 +110,20 @@ const uiLocale = () => {
   try { return chrome.i18n.getUILanguage() || undefined; } catch { return undefined; }
 };
 
+// Biçimlendirmeden önce en yakın dakikaya yuvarlar: resets_at «…13:59:59.9Z» gibi
+// geldiğinde saat «13:59» değil (Mac'teki gibi) «14:00» yazılsın.
+const toMinute = t => new Date(Math.round(new Date(t).getTime() / 60000) * 60000);
+
 // "Pzt 16:00" — haftalık sıfırlamanın günü ve saati, tarayıcı dilinde.
 export function weekdayTime(t) {
   return new Intl.DateTimeFormat(uiLocale(), {
     weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
-  }).format(new Date(t));
+  }).format(toMinute(t));
 }
 
 // "13 Kas"
 export function shortDay(t) {
-  return new Intl.DateTimeFormat(uiLocale(), { day: 'numeric', month: 'short' }).format(new Date(t));
+  return new Intl.DateTimeFormat(uiLocale(), { day: 'numeric', month: 'short' }).format(toMinute(t));
 }
 
 // "2g 1s" · "3s 20dk" · "12dk"
