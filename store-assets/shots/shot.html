@@ -29,7 +29,7 @@
     .brand img { width: 32px; height: 32px; display: block; }
 
     .frame { position: relative; overflow: hidden; border-radius: 12px; background: #1c1c1e; box-shadow: var(--frame-shadow); }
-    .frame iframe { position: absolute; left: 0; top: 0; width: 520px; border: 0; transform-origin: 0 0; display: block; }
+    .frame iframe { position: absolute; left: 0; top: 0; width: 540px; border: 0; transform-origin: 0 0; display: block; }
 
     /* ── Ekran görüntüleri 1280×800 ── */
     body.shot { width: 1280px; height: 800px; }
@@ -160,11 +160,11 @@
       const full = doc.documentElement.scrollHeight;
       let h = full, crop = full, s = S;
       if (scene === 'hide') { h = crop = 600; }
-      if (scene === 'details') { s = 560 / 520; crop = Math.ceil(doc.getElementById('details').getBoundingClientRect().bottom + 6); }
-      if (scene === 'marquee') { s = 470 / 520; crop = Math.min(full, Math.floor((560 - 64) / s)); }   // alt kenarda yumuşak biter
+      if (scene === 'details') { s = 560 / 540; crop = Math.ceil(doc.getElementById('details').getBoundingClientRect().bottom + 6); }
+      if (scene === 'marquee') { s = 470 / 540; crop = Math.min(full, Math.floor((560 - 64) / s)); }   // alt kenarda yumuşak biter
       ifr.style.height = h + 'px';
       ifr.style.transform = `scale(${s})`;
-      frame.style.width = 520 * s + 'px';
+      frame.style.width = 540 * s + 'px';
       frame.style.height = crop * s + 'px';
       return { full, h, crop, s };
     };

@@ -20,9 +20,9 @@
     "hide": {
       "h": "Gerekmeyen hesabı gizle ya da sil",
       "b": [
-        "Hesaba tıkla, gizle ya da sil",
+        "Göz simgesine tıkla, gizle ya da sil",
         "Gizlenen hesap tek tıkla geri gelir",
-        "Veriler yalnız bu tarayıcıda kalır"
+        "Veriler yalnız sizin Chrome’unuzda kalır"
       ]
     }
   },
@@ -47,9 +47,9 @@
     "hide": {
       "h": "Hide or delete accounts you no longer need",
       "b": [
-        "Click an account to hide or delete it",
+        "Click the eye icon to hide or delete",
         "Bring hidden accounts back with one click",
-        "Data stays in this browser only"
+        "Data stays in your own Chrome"
       ]
     }
   },
@@ -74,9 +74,9 @@
     "hide": {
       "h": "Konten ausblenden oder löschen, die du nicht mehr brauchst",
       "b": [
-        "Konto anklicken, ausblenden oder löschen",
+        "Auf das Augen-Symbol klicken: ausblenden oder löschen",
         "Ausgeblendete Konten mit einem Klick zurückholen",
-        "Daten bleiben nur in diesem Browser"
+        "Daten bleiben in Ihrem eigenen Chrome"
       ]
     }
   },
@@ -101,9 +101,9 @@
     "hide": {
       "h": "Oculta o elimina las cuentas que ya no necesitas",
       "b": [
-        "Haz clic en una cuenta para ocultarla o eliminarla",
+        "Haz clic en el icono del ojo para ocultar o eliminar",
         "Recupera las cuentas ocultas con un clic",
-        "Los datos se quedan solo en este navegador"
+        "Los datos se quedan en tu propio Chrome"
       ]
     }
   },
@@ -128,9 +128,9 @@
     "hide": {
       "h": "Masquez ou supprimez les comptes inutiles",
       "b": [
-        "Cliquez sur un compte pour le masquer ou le supprimer",
+        "Cliquez sur l’œil pour masquer ou supprimer",
         "Les comptes masqués reviennent en un clic",
-        "Les données restent dans ce navigateur"
+        "Les données restent dans votre Chrome"
       ]
     }
   },
@@ -155,9 +155,9 @@
     "hide": {
       "h": "Nascondi o elimina gli account che non ti servono più",
       "b": [
-        "Fai clic su un account per nasconderlo o eliminarlo",
+        "Fai clic sull’icona dell’occhio per nascondere o eliminare",
         "Gli account nascosti tornano con un clic",
-        "I dati restano solo in questo browser"
+        "I dati restano nel tuo Chrome"
       ]
     }
   },
@@ -182,9 +182,9 @@
     "hide": {
       "h": "Verberg of verwijder accounts die je niet meer nodig hebt",
       "b": [
-        "Klik op een account om het te verbergen of te verwijderen",
+        "Klik op het oog-icoon om te verbergen of te verwijderen",
         "Verborgen accounts komen met één klik terug",
-        "Gegevens blijven alleen in deze browser"
+        "Gegevens blijven in je eigen Chrome"
       ]
     }
   },
@@ -209,9 +209,9 @@
     "hide": {
       "h": "Skryjte nebo smažte účty, které už nepotřebujete",
       "b": [
-        "Klikněte na účet a skryjte ho nebo smažte",
+        "Kliknutím na ikonu oka skryjete nebo smažete",
         "Skryté účty vrátíte jedním kliknutím",
-        "Data zůstávají jen v tomto prohlížeči"
+        "Data zůstávají ve vašem Chromu"
       ]
     }
   },
@@ -236,9 +236,9 @@
     "hide": {
       "h": "Ascunde sau șterge conturile de care nu mai ai nevoie",
       "b": [
-        "Dă clic pe un cont ca să-l ascunzi sau să-l ștergi",
+        "Dă clic pe iconița ochi ca să ascunzi sau să ștergi",
         "Conturile ascunse revin cu un clic",
-        "Datele rămân doar în acest browser"
+        "Datele rămân în propriul tău Chrome"
       ]
     }
   },
@@ -263,9 +263,9 @@
     "hide": {
       "h": "Скрывайте или удаляйте ненужные аккаунты",
       "b": [
-        "Нажмите на аккаунт, чтобы скрыть или удалить его",
+        "Нажмите на значок глаза, чтобы скрыть или удалить",
         "Скрытые аккаунты возвращаются одним щелчком",
-        "Данные хранятся только в этом браузере"
+        "Данные остаются в вашем Chrome"
       ]
     }
   },
@@ -290,9 +290,9 @@
     "hide": {
       "h": "Приховуйте або видаляйте непотрібні акаунти",
       "b": [
-        "Натисніть на акаунт, щоб приховати або видалити його",
+        "Натисніть значок ока, щоб приховати або видалити",
         "Приховані акаунти повертаються одним клацанням",
-        "Дані зберігаються лише в цьому браузері"
+        "Дані залишаються у вашому Chrome"
       ]
     }
   },
@@ -317,9 +317,9 @@
     "hide": {
       "h": "不要なアカウントは非表示または削除",
       "b": [
-        "アカウントをクリックして非表示・削除",
+        "目のアイコンで非表示・削除",
         "非表示のアカウントはワンクリックで元に戻せます",
-        "データはこのブラウザ内にのみ保存"
+        "データはあなたの Chrome 内だけ"
       ]
     }
   },
@@ -344,9 +344,9 @@
     "hide": {
       "h": "필요 없는 계정은 숨기거나 삭제",
       "b": [
-        "계정을 클릭해 숨기거나 삭제",
+        "눈 아이콘을 눌러 숨기거나 삭제",
         "숨긴 계정은 클릭 한 번으로 복원",
-        "데이터는 이 브라우저에만 저장"
+        "데이터는 내 Chrome에만 저장"
       ]
     }
   },
@@ -371,9 +371,9 @@
     "hide": {
       "h": "不需要的帳號可隱藏或刪除",
       "b": [
-        "點選帳號即可隱藏或刪除",
+        "點眼睛圖示即可隱藏或刪除",
         "隱藏的帳號一鍵就能恢復",
-        "資料只存在這個瀏覽器中"
+        "資料只存在你自己的 Chrome"
       ]
     }
   },
@@ -398,9 +398,9 @@
     "hide": {
       "h": "ซ่อนหรือลบบัญชีที่ไม่ต้องการแล้ว",
       "b": [
-        "คลิกบัญชีเพื่อซ่อนหรือลบ",
+        "คลิกไอคอนตาเพื่อซ่อนหรือลบ",
         "นำบัญชีที่ซ่อนกลับมาได้ในคลิกเดียว",
-        "ข้อมูลอยู่ในเบราว์เซอร์นี้เท่านั้น"
+        "ข้อมูลอยู่ใน Chrome ของคุณเท่านั้น"
       ]
     }
   }
