@@ -46,13 +46,13 @@ In your browser's local extension storage (`chrome.storage.local`):
   No payment or card details are read or stored.
 - **Free resets** — the free limit resets claude.ai lists for each account
   (kind, how many are left, expiry date). The extension only reads them to
-  show them; it never uses one. Kept only in `chrome.storage.local` on this
-  device and never transmitted.
+  show them; it never uses one. Kept in `chrome.storage.local` and the
+  `chrome.storage.sync` backup below; we never receive them.
 - **API credits** — only with the optional permission above: for the account
   signed in to the developer console, its credit balance, granted credits
   (name, amount left, amount granted, expiry date), today's API spend and when
-  they were read. Kept only in `chrome.storage.local` on this device and never
-  transmitted.
+  they were read. Kept in `chrome.storage.local` and the `chrome.storage.sync`
+  backup below (balance and credits, not today's spend); we never receive them.
 - **Notification state** — which one-time reminders were already shown and
   the last threshold level per account e-mail, so nothing is shown twice.
   Kept only locally.
@@ -63,8 +63,8 @@ In Chrome's extension sync storage (`chrome.storage.sync`):
   plan, usage %, reset times, plan end date, free resets, API credit balance
   and when they were read) and the list of hidden accounts, so they come back
   after the extension is removed and installed again. **If Chrome sync is on,
-  Chrome syncs this with your Google account** (Google's sync, encrypted as
-  Chrome syncs extension settings); **we never see it** — it never reaches a
+  Chrome syncs this with your Google account** (Chrome's own extension sync);
+  **we never see it** — it never reaches a
   server we operate. If Chrome sync is off it stays in this browser only. It
   holds no cookies, tokens, payment or card details.
 

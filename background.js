@@ -5,7 +5,7 @@ import {
   accountState, visibleRecords, suggestion, shortNamer, formatRemaining, shortDay, grantText, i18n,
   activeCredits, money, utcDayKey, hasConsolePermission,
 } from './accounts.js';
-import { restoreFromSync, backupToSync, importFromMac, hasMacPermission } from './restore.js';
+import { restoreFromSync, backupToSync, importFromMac } from './restore.js';
 
 // Konsol (API kredisi) verisi yavaş değişir: en çok 10 dakikada bir okunur,
 // popup'taki ⟳ hemen okur. Damga storage'da: MV3 işçisi uyuyunca bellekteki değişken kaybolur.
@@ -24,22 +24,19 @@ chrome.runtime.onInstalled.addListener(async () => {
   const prefs = await getPrefs();
   scheduleRefresh(prefs.pollIntervalSec);
   chrome.alarms.create(ALARM_HISTORY, { periodInMinutes: 5 });
-  await serial(() => restoreAll());
+  await serial(() => restoreFromSync());
   await serial(() => refresh());
 });
 
 chrome.runtime.onStartup.addListener(async () => {
   const prefs = await getPrefs();
   scheduleRefresh(prefs.pollIntervalSec);
-  await serial(() => restoreAll());
+  await serial(() => restoreFromSync());
   await serial(() => refresh());
 });
 
-// Sync yedeği; Mac izni önceden verildiyse Mac uygulamasından da (uç yoksa sessizce geçer).
-async function restoreAll() {
-  await restoreFromSync();
-  if (await hasMacPermission()) await importFromMac();
-}
+// Mac uygulamasından içe aktarma kendiliğinden yapılmaz (silinen hesap geri gelmesin):
+// yalnız düğmeyle (izin verilince onAdded, ya da «import-mac» mesajı).
 
 // Hesap kayıtları ya da gizlenenler değişince sync'e yazılır (birkaç değişim tek yazmada toplanır).
 // Başka bilgisayardan sync'e gelen kayıtlar aynı birleştirmeyle yerele alınır.

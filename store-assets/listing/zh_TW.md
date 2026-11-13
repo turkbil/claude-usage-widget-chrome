@@ -26,7 +26,7 @@ Claude Usage Widget
 • 15 種語言，自動偵測
 
 ▸ 隱私
-• 帳號電子郵件與免費重設資訊只存在這個瀏覽器（chrome.storage.local），不會傳送到任何地方
+• 帳號電子郵件與免費重設資訊存在這個瀏覽器（chrome.storage.local，以及若開啟同步、由 Chrome 與你的 Google 帳號同步的 chrome.storage.sync 備份），不會傳送給我們或任何人
 • 只向 claude.ai 發出 GET 請求：只讀取，絕不更改你的帳號
 • 沒有遙測、沒有分析、沒有第三方服務
 • 不讀取也不儲存你的 Cookie：呼叫 claude.ai 時由 Chrome 自行附上

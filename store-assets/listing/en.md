@@ -26,7 +26,7 @@ How close am I to my weekly limit, and which account should I use first? The ans
 • 15 languages, auto-detected
 
 ▸ PRIVACY
-• Account e-mails and free-reset info are kept only in this browser (chrome.storage.local) and never sent anywhere
+• Account e-mails and free-reset info stay in this browser (chrome.storage.local, plus a chrome.storage.sync backup that Chrome syncs with your Google account if sync is on) and are never sent to us or anyone else
 • Requests go only to claude.ai, and only as GET: the extension reads, it never changes your account
 • No telemetry, no analytics, no third-party services
 • Never reads or stores your cookies: Chrome attaches them itself when calling claude.ai

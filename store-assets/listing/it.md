@@ -26,7 +26,7 @@ Quanto mi resta del limite settimanale e quale account conviene usare prima? La 
 • 15 lingue, rilevamento automatico
 
 ▸ PRIVACY
-• Le e-mail degli account e i dati sui reset gratuiti restano solo in questo browser (chrome.storage.local) e non vengono inviati da nessuna parte
+• Le e-mail degli account e i dati sui reset gratuiti restano in questo browser (chrome.storage.local, più una copia in chrome.storage.sync che Chrome sincronizza con il tuo account Google se la sincronizzazione è attiva) e non vengono inviati né a noi né ad altri
 • Le richieste vanno solo a claude.ai e solo in GET: l’estensione legge, non modifica mai il tuo account
 • Nessuna telemetria, nessuna analisi, nessun servizio di terze parti
 • Non legge né salva i tuoi cookie: è Chrome ad aggiungerli quando chiama claude.ai

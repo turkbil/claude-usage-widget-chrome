@@ -26,7 +26,7 @@ Wie viel ist von meinem Wochenlimit noch übrig, und welches Konto nutze ich zue
 • 15 Sprachen, automatisch erkannt
 
 ▸ DATENSCHUTZ
-• Konto-E-Mails und Infos zu Gratis-Resets bleiben nur in diesem Browser (chrome.storage.local) und werden nirgendwohin gesendet
+• Konto-E-Mails und Infos zu Gratis-Resets bleiben in diesem Browser (chrome.storage.local, dazu eine chrome.storage.sync-Sicherung, die Chrome bei aktiver Synchronisierung mit Ihrem Google-Konto abgleicht) und werden weder an uns noch an andere gesendet
 • Anfragen gehen nur an claude.ai und nur als GET: Die Erweiterung liest, sie ändert nie etwas an deinem Konto
 • Keine Telemetrie, keine Analyse, keine Drittanbieter
 • Liest und speichert deine Cookies nie: Chrome hängt sie bei Aufrufen an claude.ai selbst an

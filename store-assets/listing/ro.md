@@ -26,7 +26,7 @@ Cât mai am din limita săptămânală și ce cont să folosesc mai întâi? Ră
 • 15 limbi, detectare automată
 
 ▸ CONFIDENȚIALITATE
-• E-mailurile conturilor și informațiile despre resetările gratuite rămân doar în acest browser (chrome.storage.local) și nu sunt trimise nicăieri
+• E-mailurile conturilor și informațiile despre resetările gratuite rămân în acest browser (chrome.storage.local, plus o copie în chrome.storage.sync pe care Chrome o sincronizează cu contul Google dacă sincronizarea e activă) și nu sunt trimise nici nouă, nici altcuiva
 • Cererile merg doar la claude.ai și doar ca GET: extensia citește, nu modifică niciodată contul tău
 • Fără telemetrie, fără analiză, fără servicii terțe
 • Nu citește și nu stochează cookie-urile tale: Chrome le atașează singur la apelurile către claude.ai

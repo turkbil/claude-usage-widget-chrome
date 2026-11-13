@@ -26,7 +26,7 @@ Hoeveel is er nog over van mijn weeklimiet, en welk account gebruik ik eerst? He
 • 15 talen, automatisch herkend
 
 ▸ PRIVACY
-• Account-e-mails en informatie over gratis resets blijven alleen in deze browser (chrome.storage.local) en worden nergens naartoe gestuurd
+• Account-e-mails en informatie over gratis resets blijven in deze browser (chrome.storage.local, plus een back-up in chrome.storage.sync die Chrome met je Google-account synchroniseert als synchronisatie aan staat) en worden niet naar ons of anderen gestuurd
 • Verzoeken gaan alleen naar claude.ai en alleen als GET: de extensie leest, ze wijzigt nooit iets aan je account
 • Geen telemetrie, geen analytics, geen diensten van derden
 • Leest of bewaart je cookies nooit: Chrome voegt ze zelf toe bij verzoeken aan claude.ai

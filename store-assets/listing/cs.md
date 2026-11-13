@@ -26,7 +26,7 @@ Kolik mi zbývá z týdenního limitu a který účet použít jako první? Odpo
 • 15 jazyků, automatická detekce
 
 ▸ SOUKROMÍ
-• E-maily účtů a údaje o bezplatných resetech zůstávají jen v tomto prohlížeči (chrome.storage.local) a nikam se neodesílají
+• E-maily účtů a údaje o bezplatných resetech zůstávají v tomto prohlížeči (chrome.storage.local a záloha v chrome.storage.sync, kterou Chrome při zapnuté synchronizaci synchronizuje s vaším účtem Google) a neodesílají se nám ani nikomu jinému
 • Požadavky míří jen na claude.ai a jen jako GET: rozšíření pouze čte, ve vašem účtu nic nemění
 • Žádná telemetrie, žádná analytika, žádné služby třetích stran
 • Nečte ani neukládá vaše cookies: Chrome je k požadavkům na claude.ai přidává sám

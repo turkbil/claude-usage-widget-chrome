@@ -89,6 +89,8 @@ export function mergeAccounts(local, incoming, liveEmail = '') {
       const lt = g.at(cur), it = g.at(inc);
       if (it == null) continue;
       if (lt != null && (it <= lt || (inc.email === liveEmail && g.name !== 'api'))) continue;
+      // Elle girilmiş not okunmuş veri değildir: okunmuş kullanımın yerine geçmez.
+      if (g.name === 'usage' && lt != null && inc.source === 'note' && cur.source !== 'note') continue;
       for (const f of g.fields) {
         if (inc[f] === undefined) delete cur[f]; else cur[f] = inc[f];
       }

@@ -26,7 +26,7 @@ Où en suis-je de ma limite hebdomadaire, et quel compte utiliser en premier ? L
 • 15 langues, détection automatique
 
 ▸ CONFIDENTIALITÉ
-• Les e-mails des comptes et les informations de réinitialisation gratuite restent uniquement dans ce navigateur (chrome.storage.local) et ne sont envoyés nulle part
+• Les e-mails des comptes et les informations de réinitialisation gratuite restent dans ce navigateur (chrome.storage.local, plus une copie dans chrome.storage.sync que Chrome synchronise avec votre compte Google si la synchronisation est active) et ne nous sont jamais envoyés, ni à personne
 • Les requêtes vont uniquement vers claude.ai, en GET seulement : l’extension lit, elle ne modifie jamais votre compte
 • Aucune télémétrie, aucune analyse, aucun service tiers
 • Ne lit ni ne stocke vos cookies : Chrome les ajoute lui-même lors des appels à claude.ai

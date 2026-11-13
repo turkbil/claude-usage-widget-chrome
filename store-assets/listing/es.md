@@ -26,7 +26,7 @@ Tu límite semanal de Claude en la barra: todas tus cuentas, Fable, reinicios gr
 • 15 idiomas, detección automática
 
 ▸ PRIVACIDAD
-• Los correos de las cuentas y los datos de reinicios gratuitos se guardan solo en este navegador (chrome.storage.local) y no se envían a ningún sitio
+• Los correos de las cuentas y los datos de reinicios gratuitos se quedan en este navegador (chrome.storage.local, más una copia en chrome.storage.sync que Chrome sincroniza con tu cuenta de Google si la sincronización está activa) y no se envían ni a nosotros ni a nadie
 • Las solicitudes van solo a claude.ai y solo como GET: la extensión lee, nunca cambia nada de tu cuenta
 • Sin telemetría, sin analíticas, sin servicios de terceros
 • Nunca lee ni guarda tus cookies: Chrome las añade por su cuenta al llamar a claude.ai

@@ -26,7 +26,7 @@ Haftalık limitimin ne kadarı kaldı, önce hangi hesabı kullanmalıyım? Ceva
 • 15 dil, tarayıcı diline göre kendiliğinden
 
 ▸ GİZLİLİK
-• Hesap e-postaları ve sıfırlama hakkı bilgisi yalnız bu tarayıcıda (chrome.storage.local) tutulur, hiçbir yere gönderilmez
+• Hesap e-postaları ve sıfırlama hakkı bilgisi bu tarayıcıda tutulur (chrome.storage.local; ayrıca Chrome eşitlemesi açıksa Google hesabınızla eşitlenen bir chrome.storage.sync yedeği), bize ya da başkasına gönderilmez
 • İstekler yalnız claude.ai'ye ve yalnız GET: eklenti okur, hesabında hiçbir şeyi değiştirmez
 • Telemetri, analitik, üçüncü taraf hizmet yok
 • Çerezlerini okumaz, saklamaz: claude.ai'ye istek giderken Chrome onları kendisi ekler
