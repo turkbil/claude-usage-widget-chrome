@@ -440,7 +440,7 @@
     }
   },
   "tip_remove": {
-    "message": "Klikněte: skrýt nebo smazat"
+    "message": "Skrýt nebo smazat"
   },
   "hide_title": {
     "message": "Co udělat s $1?",
@@ -543,5 +543,29 @@
   },
   "api_permission_granted": {
     "message": "Povoleno — kredit API se načítá z konzole."
+  },
+  "api_permission_short": {
+    "message": "zobrazit — povolit"
+  },
+  "mac_import_popup": {
+    "message": "Načíst účty z aplikace pro Mac"
+  },
+  "mac_import_settings": {
+    "message": "Importovat účty z aplikace pro Mac"
+  },
+  "mac_import_note": {
+    "message": "Pokud aplikace pro Mac běží a je zapnuto Nastavení → Síť → Local HTTP, účty se načtou z ní."
+  },
+  "mac_import_missing": {
+    "message": "Aplikace pro Mac nenalezena"
+  },
+  "mac_import_done": {
+    "message": "Importováno účtů: $1"
+  },
+  "backup_label": {
+    "message": "Záloha účtů"
+  },
+  "backup_note": {
+    "message": "Účty se zálohují i do chrome.storage.sync: při zapnuté synchronizaci Chromu se synchronizují s vaším účtem Google a po přeinstalaci se vrátí. Tato data nevidíme."
   }
 }

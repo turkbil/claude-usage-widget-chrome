@@ -25,7 +25,7 @@
     <span class="row-value" id="sonnetValue"></span>
   </div>
 
-  <canvas class="sparkline" id="sparkline" width="520" height="40"></canvas>
+  <canvas class="sparkline" id="sparkline" width="540" height="40"></canvas>
 
   <div class="forecast" id="forecast" hidden></div>
 
@@ -51,6 +51,7 @@
       <span class="col-fpct" id="colFable"></span>
       <span class="col-reset" id="colReset"></span>
       <span class="col-plan" id="colPlan"></span>
+      <span class="col-eye"></span>
     </div>
     <div class="note hint" id="accountsHint" hidden></div>
     <!-- Açıkken: bugün harcaması okunmuş hesapların API toplamı («BUGÜN API $1,20 · 2 HESAP»);
@@ -63,6 +64,12 @@
     <button type="button" class="show-hidden grants-toggle" id="grantsToggle" hidden></button>
     <div class="note stale" id="accountsStale" hidden></div>
     <button type="button" class="show-hidden" id="showHidden" hidden></button>
+  </div>
+
+  <!-- Yeniden kurulumdan sonra (yalnız macOS): «↓ Mac uygulamasındaki hesapları al». -->
+  <div class="note mac-import" id="macImport" hidden>
+    <button type="button" class="mac-btn" id="macImportBtn"></button>
+    <span class="mac-state" id="macImportState" hidden></span>
   </div>
 
   <div class="footer" id="footer"></div>

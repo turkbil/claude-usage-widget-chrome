@@ -48,7 +48,7 @@ The extension does one thing: display the user's own Claude weekly-usage metrics
 
 ## Permission justifications
 
-storage — Save the user's display preferences (which metrics to show, colors, thresholds), a small local cache of the last fetched usage so the toolbar icon renders instantly when Chrome restarts, and the remembered accounts: e-mail, per-account usage values, reset times, plan dates and free-reset info. Everything stays in chrome.storage.local and is never transmitted.
+storage — Save the user's display preferences (which metrics to show, colors, thresholds), a small local cache of the last fetched usage so the toolbar icon renders instantly when Chrome restarts, and the remembered accounts: e-mail, per-account usage values, reset times, plan dates and free-reset info, in chrome.storage.local. A small copy of the account records and the hidden-account list is also kept in chrome.storage.sync so the accounts come back after a reinstall; if the user has Chrome sync on, Chrome syncs it with their Google account. The developer never receives any of it; nothing is sent to a server we operate.
 
 alarms — Schedule the periodic background refresh and history sampling. Without alarms, the extension would either spam claude.ai or only update when the user manually opens the popup.
 
@@ -57,6 +57,8 @@ notifications — Send the optional alerts, off by default: usage thresholds (wa
 Host permission claude.ai — The single reason this extension exists: read the user's own data from claude.ai with GET requests only (organizations, account, usage including free resets, rate limits, subscription details), using the cookies the user already has. The extension never writes to claude.ai and never reads, copies or transmits those cookies elsewhere.
 
 Optional host permission platform.claude.com — Optional, requested only when the user clicks "Show API credits — allow access" (popup or Settings); the extension works fully without it. Used to show the user's own developer-console API credit balance, granted credits and their expiry date, and today's API spend. Read-only: GET requests for account, organizations and prepaid credits, plus one cost report query (POST body, read-only) for today's spend. It never claims credits, resets limits or writes anything; the values stay in chrome.storage.local and are never transmitted. If the permission is not granted or is revoked, no request is made to this domain.
+
+Optional host permission http://127.0.0.1:9123 — Optional, macOS only, requested only when the user clicks "Get accounts from the Mac app" (popup, shown only when no other account is known, e.g. after a reinstall) or "Import accounts from the Mac app" (Settings). 127.0.0.1 is this computer: one GET request to /accounts of the user's own Claude Usage Widget Mac app, which returns the accounts it already knows, so the user does not have to sign in to every account again. Nothing is sent to it; the records are merged into chrome.storage.local. If the app is not running or its Local HTTP endpoint is off, the extension shows "Mac app not found" and works as before. Without the permission no request is made.
 
 ## Privacy policy URL
 https://github.com/turkbil/claude-usage-widget-chrome/blob/main/PRIVACY.md

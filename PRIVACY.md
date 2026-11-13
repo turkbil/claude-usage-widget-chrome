@@ -3,8 +3,7 @@
 **Last updated:** 2026-11-13
 
 This Chrome extension does **not** collect, store, or transmit any personal
-data to any server we operate or any third party. The only outbound network
-traffic is:
+data to any server we operate or any third party. The only network traffic is:
 
 1. **`https://claude.ai/*`** — read-only (GET) requests to fetch your own usage
    statistics. The extension uses cookies you already have for that domain;
@@ -18,8 +17,14 @@ traffic is:
    changes nothing). No credit is ever claimed, no limit is reset, nothing is
    written. Without the permission, no request goes to this domain. You can
    revoke it any time in Chrome's extension settings.
+3. **`http://127.0.0.1:9123/*`** — macOS only, and only if you grant this
+   **optional** permission (*Get accounts from the Mac app*). One GET request to
+   `/accounts` of the Claude Usage Widget Mac app **on this same computer**
+   (127.0.0.1 never leaves your machine), to copy the accounts it already knows
+   after a reinstall. Nothing is sent to it. Without the permission, no request
+   is made.
 
-### What we store locally
+### What we store
 
 In your browser's local extension storage (`chrome.storage.local`):
 
@@ -34,8 +39,8 @@ In your browser's local extension storage (`chrome.storage.local`):
 - **Accounts** — for every claude.ai account signed in to this browser: its
   e-mail address, plan label, weekly and per-model usage %, reset times and
   plan end date, as last seen. Used only for the *Accounts* section of the
-  popup. Account e-mails are kept only in `chrome.storage.local` on this
-  device and are never sent anywhere. From the billing reply only the plan end
+  popup. Account e-mails are kept in `chrome.storage.local` and in the
+  `chrome.storage.sync` backup below; we never receive them. From the billing reply only the plan end
   date and whether the plan renews on it (status, next charge date, scheduled
   downgrade or pause) are read; only the date and a renews yes/no are stored.
   No payment or card details are read or stored.
@@ -51,6 +56,17 @@ In your browser's local extension storage (`chrome.storage.local`):
 - **Notification state** — which one-time reminders were already shown and
   the last threshold level per account e-mail, so nothing is shown twice.
   Kept only locally.
+
+In Chrome's extension sync storage (`chrome.storage.sync`):
+
+- **Account backup** — a small copy of the account records above (e-mail,
+  plan, usage %, reset times, plan end date, free resets, API credit balance
+  and when they were read) and the list of hidden accounts, so they come back
+  after the extension is removed and installed again. **If Chrome sync is on,
+  Chrome syncs this with your Google account** (Google's sync, encrypted as
+  Chrome syncs extension settings); **we never see it** — it never reaches a
+  server we operate. If Chrome sync is off it stays in this browser only. It
+  holds no cookies, tokens, payment or card details.
 
 ### What we do NOT do
 

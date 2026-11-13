@@ -24,12 +24,12 @@ html, body {
   background: var(--bg);
   color: var(--bone);
   font: 13px/1.2 -apple-system, "Segoe UI", "Helvetica Neue", sans-serif;
-  width: 520px;
+  width: 540px;
 }
 /* İç boşluk yalnız gövdede: html'de de olunca iki kat sayılıyordu (7 hesapta 600 px sınırı). */
 body { padding: 4px 0 2px; }
 
-/* Çok hesapla popup 600 px sınırını aşabilir; klasik kaydırma çubuğu 520 px'lik
+/* Çok hesapla popup 600 px sınırını aşabilir; klasik kaydırma çubuğu 540 px'lik
    gövdeyi yatay kaydırmasın (içerik zaten 18 px iç boşlukla sağdan çekilmiş). */
 html { overflow-x: hidden; }
 
@@ -139,7 +139,7 @@ html { overflow-x: hidden; }
 }
 .acct-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 48px 46px 46px 70px 52px;
+  grid-template-columns: minmax(0, 1fr) 48px 46px 46px 70px 52px 16px;
   column-gap: 10px;
   align-items: center;
   padding: 0 18px;
@@ -186,8 +186,22 @@ html { overflow-x: hidden; }
 .acct .faint { color: var(--haze); }
 .acct .warn { color: var(--ember); }
 .acct .bar { height: 5px; }
-.acct { cursor: pointer; }
-.acct:hover, .acct:focus-visible { background: rgba(255,255,255,0.12); outline: none; }
+/* Gizle / sil yalnız satır sonundaki soluk göz simgesinden; üstüne gelince belirginleşir. */
+.col-eye {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--haze);
+  opacity: 0.55;
+  cursor: pointer;
+}
+.col-eye svg { width: 13px; height: 13px; }
+.col-eye:hover, .col-eye:focus-visible { color: var(--bone); opacity: 1; outline: none; }
 
 /* «Gizlenen hesapları göster (N)» — not satırıyla aynı hiza ve punto. */
 .show-hidden {
@@ -233,6 +247,23 @@ html { overflow-x: hidden; }
   cursor: pointer;
 }
 .api-perm:hover, .api-perm:focus-visible { color: var(--bone); outline: none; text-decoration: underline; }
+/* Üstteki ayrıntılarda «API kredisi · göster — izin ver» ve «↓ Mac uygulamasındaki hesapları al». */
+.detail-perm, .mac-btn {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ember);
+  font: 600 11px/17px -apple-system, "Segoe UI", sans-serif;
+  cursor: pointer;
+}
+.detail-perm:hover, .detail-perm:focus-visible, .mac-btn:hover, .mac-btn:focus-visible { color: var(--bone); outline: none; text-decoration: underline; }
+.mac-btn:disabled { opacity: 0.5; cursor: default; text-decoration: none; }
+.detail-r.on { color: var(--ember); }
+.detail-r.soon { color: var(--blood); }
+.detail-r.plain { color: var(--bone); }
+.detail-r.faint { color: var(--haze); font-weight: 400; }
+.mac-import { display: flex; align-items: baseline; gap: 8px; padding-top: 6px; }
+.mac-state { min-width: 0; overflow: hidden; text-overflow: ellipsis; color: var(--haze); }
 /* Tablo hesabına yapışık (üstte 1 px), sonraki hesaptan 8 px boşlukla ayrılır. */
 .grant-row { padding-top: 1px; padding-bottom: 8px; }
 .g-line {

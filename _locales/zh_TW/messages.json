@@ -440,7 +440,7 @@
     }
   },
   "tip_remove": {
-    "message": "點擊：隱藏或刪除"
+    "message": "隱藏或刪除"
   },
   "hide_title": {
     "message": "要如何處理 $1？",
@@ -543,5 +543,29 @@
   },
   "api_permission_granted": {
     "message": "已授權 — 從主控台讀取 API 額度。"
+  },
+  "api_permission_short": {
+    "message": "顯示 — 授予權限"
+  },
+  "mac_import_popup": {
+    "message": "從 Mac 應用程式取得帳號"
+  },
+  "mac_import_settings": {
+    "message": "從 Mac 應用程式匯入帳號"
+  },
+  "mac_import_note": {
+    "message": "若 Mac 應用程式已開啟且已啟用「設定 → 網路 → Local HTTP」，帳號會從那裡取得。"
+  },
+  "mac_import_missing": {
+    "message": "找不到 Mac 應用程式"
+  },
+  "mac_import_done": {
+    "message": "已匯入 $1 個帳號"
+  },
+  "backup_label": {
+    "message": "帳號備份"
+  },
+  "backup_note": {
+    "message": "帳號也會備份到 chrome.storage.sync：若開啟 Chrome 同步，會與你的 Google 帳號同步，重新安裝後即可取回。我們看不到這些資料。"
   }
 }

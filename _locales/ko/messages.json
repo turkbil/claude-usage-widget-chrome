@@ -440,7 +440,7 @@
     }
   },
   "tip_remove": {
-    "message": "클릭: 숨기기 또는 삭제"
+    "message": "숨기기 또는 삭제"
   },
   "hide_title": {
     "message": "$1을(를) 어떻게 할까요?",
@@ -543,5 +543,29 @@
   },
   "api_permission_granted": {
     "message": "허용됨 — 콘솔에서 API 크레딧을 읽습니다."
+  },
+  "api_permission_short": {
+    "message": "표시 — 권한 허용"
+  },
+  "mac_import_popup": {
+    "message": "Mac 앱의 계정 가져오기"
+  },
+  "mac_import_settings": {
+    "message": "Mac 앱에서 계정 가져오기"
+  },
+  "mac_import_note": {
+    "message": "Mac 앱이 실행 중이고 설정 → 네트워크 → Local HTTP가 켜져 있으면 거기서 계정을 가져옵니다."
+  },
+  "mac_import_missing": {
+    "message": "Mac 앱을 찾을 수 없음"
+  },
+  "mac_import_done": {
+    "message": "계정 $1개를 가져왔습니다"
+  },
+  "backup_label": {
+    "message": "계정 백업"
+  },
+  "backup_note": {
+    "message": "계정은 chrome.storage.sync에도 백업됩니다. Chrome 동기화가 켜져 있으면 Google 계정과 동기화되어 다시 설치해도 돌아옵니다. 저희는 이 데이터를 볼 수 없습니다."
   }
 }

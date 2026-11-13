@@ -440,7 +440,7 @@
     }
   },
   "tip_remove": {
-    "message": "Klik: verbergen of verwijderen"
+    "message": "Verbergen of verwijderen"
   },
   "hide_title": {
     "message": "Wat moet er met $1 gebeuren?",
@@ -543,5 +543,29 @@
   },
   "api_permission_granted": {
     "message": "Toegestaan — het API-tegoed wordt uit de console gelezen."
+  },
+  "api_permission_short": {
+    "message": "tonen — toegang geven"
+  },
+  "mac_import_popup": {
+    "message": "Accounts uit de Mac-app halen"
+  },
+  "mac_import_settings": {
+    "message": "Accounts importeren uit de Mac-app"
+  },
+  "mac_import_note": {
+    "message": "Als de Mac-app draait en Instellingen → Netwerk → Local HTTP aan staat, worden de accounts daaruit gehaald."
+  },
+  "mac_import_missing": {
+    "message": "Mac-app niet gevonden"
+  },
+  "mac_import_done": {
+    "message": "$1 accounts geïmporteerd"
+  },
+  "backup_label": {
+    "message": "Accountback-up"
+  },
+  "backup_note": {
+    "message": "Accounts worden ook bewaard in chrome.storage.sync: met Chrome-synchronisatie aan synchroniseren ze met je Google-account en komen ze terug na herinstallatie. Wij zien deze gegevens nooit."
   }
 }

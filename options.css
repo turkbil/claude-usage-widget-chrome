@@ -213,3 +213,5 @@ footer a:hover { color: var(--ember); }
 .perm-btn:hover { background: rgba(255,255,255,0.08); }
 .perm-btn:focus-visible { outline: 1px solid var(--bone); outline-offset: 1px; }
 .perm-state { margin: 0; font-size: 13px; color: var(--grass); }
+.perm-state.faint { color: var(--haze); }
+#macImportOptState { margin-top: 10px; }

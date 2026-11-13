@@ -440,7 +440,7 @@
     }
   },
   "tip_remove": {
-    "message": "Clic: ascunde sau șterge"
+    "message": "Ascunde sau șterge"
   },
   "hide_title": {
     "message": "Ce faci cu $1?",
@@ -543,5 +543,29 @@
   },
   "api_permission_granted": {
     "message": "Permis — creditul API se citește din consolă."
+  },
+  "api_permission_short": {
+    "message": "afișează — permite"
+  },
+  "mac_import_popup": {
+    "message": "Preia conturile din aplicația Mac"
+  },
+  "mac_import_settings": {
+    "message": "Importă conturile din aplicația Mac"
+  },
+  "mac_import_note": {
+    "message": "Dacă aplicația Mac rulează și Setări → Rețea → Local HTTP este activat, conturile sunt preluate de acolo."
+  },
+  "mac_import_missing": {
+    "message": "Aplicația Mac nu a fost găsită"
+  },
+  "mac_import_done": {
+    "message": "$1 conturi importate"
+  },
+  "backup_label": {
+    "message": "Copie de rezervă a conturilor"
+  },
+  "backup_note": {
+    "message": "Conturile sunt salvate și în chrome.storage.sync: cu sincronizarea Chrome activă se sincronizează cu contul Google și revin după reinstalare. Noi nu vedem niciodată aceste date."
   }
 }

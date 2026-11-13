@@ -97,7 +97,7 @@
   "tip_plan_ends": {"message": "Plan ends $1", "placeholders": {"1": {"content": "$1"}}},
   "notification_plan_end": {"message": "The $1 plan ends on $2 — use the quota left.", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}},
   "notification_grant_end": {"message": "$1 has an unused free reset: $2.", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}},
-  "tip_remove": {"message": "Click: hide or delete"},
+  "tip_remove": {"message": "Hide or delete"},
   "hide_title": {"message": "What should happen to $1?", "placeholders": {"1": {"content": "$1"}}},
   "hide_body_hide": {"message": "Hide: $1 disappears from the list, hints and notifications; its data is kept and “Show hidden accounts” brings it back.", "placeholders": {"1": {"content": "$1"}}},
   "hide_body_delete": {"message": "Delete: the record is removed; it is added again from scratch the next time you sign in to it."},
@@ -126,5 +126,13 @@
   "api_no_permission": {"message": "not allowed · API credit and today’s spend are not read"},
   "api_permission_button": {"message": "Show API credits — allow access"},
   "api_permission_note": {"message": "Without this permission, the API credit balance, the grant expiry date and today’s API spend are not shown."},
-  "api_permission_granted": {"message": "Allowed — API credit is read from the console."}
+  "api_permission_granted": {"message": "Allowed — API credit is read from the console."},
+  "api_permission_short": {"message": "show — allow access"},
+  "mac_import_popup": {"message": "Get accounts from the Mac app"},
+  "mac_import_settings": {"message": "Import accounts from the Mac app"},
+  "mac_import_note": {"message": "If the Mac app is running and Settings → Network → Local HTTP is on, accounts are taken from it."},
+  "mac_import_missing": {"message": "Mac app not found"},
+  "mac_import_done": {"message": "$1 accounts imported"},
+  "backup_label": {"message": "Account backup"},
+  "backup_note": {"message": "Accounts are also backed up to chrome.storage.sync: if Chrome sync is on, they sync with your Google account and come back after reinstalling. We never see this data."}
 }

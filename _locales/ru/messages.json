@@ -440,7 +440,7 @@
     }
   },
   "tip_remove": {
-    "message": "Нажмите: скрыть или удалить"
+    "message": "Скрыть или удалить"
   },
   "hide_title": {
     "message": "Что сделать с $1?",
@@ -543,5 +543,29 @@
   },
   "api_permission_granted": {
     "message": "Разрешено — кредит API читается из консоли."
+  },
+  "api_permission_short": {
+    "message": "показать — разрешить"
+  },
+  "mac_import_popup": {
+    "message": "Взять аккаунты из приложения для Mac"
+  },
+  "mac_import_settings": {
+    "message": "Импортировать аккаунты из приложения для Mac"
+  },
+  "mac_import_note": {
+    "message": "Если приложение для Mac запущено и включено Настройки → Сеть → Local HTTP, аккаунты берутся оттуда."
+  },
+  "mac_import_missing": {
+    "message": "Приложение для Mac не найдено"
+  },
+  "mac_import_done": {
+    "message": "Импортировано аккаунтов: $1"
+  },
+  "backup_label": {
+    "message": "Резервная копия аккаунтов"
+  },
+  "backup_note": {
+    "message": "Аккаунты также сохраняются в chrome.storage.sync: при включённой синхронизации Chrome они синхронизируются с вашим аккаунтом Google и возвращаются после переустановки. Мы эти данные не видим."
   }
 }

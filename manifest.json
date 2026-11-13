@@ -40,6 +40,7 @@
   ],
 
   "optional_host_permissions": [
-    "https://platform.claude.com/*"
+    "https://platform.claude.com/*",
+    "http://127.0.0.1:9123/*"
   ]
 }

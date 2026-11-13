@@ -440,7 +440,7 @@
     }
   },
   "tip_remove": {
-    "message": "คลิก: ซ่อนหรือลบ"
+    "message": "ซ่อนหรือลบ"
   },
   "hide_title": {
     "message": "จะทำอะไรกับ $1?",
@@ -543,5 +543,29 @@
   },
   "api_permission_granted": {
     "message": "อนุญาตแล้ว — อ่านเครดิต API จากคอนโซล"
+  },
+  "api_permission_short": {
+    "message": "แสดง — อนุญาต"
+  },
+  "mac_import_popup": {
+    "message": "ดึงบัญชีจากแอป Mac"
+  },
+  "mac_import_settings": {
+    "message": "นำเข้าบัญชีจากแอป Mac"
+  },
+  "mac_import_note": {
+    "message": "หากแอป Mac เปิดอยู่และเปิด การตั้งค่า → เครือข่าย → Local HTTP ไว้ จะดึงบัญชีจากแอปนั้น"
+  },
+  "mac_import_missing": {
+    "message": "ไม่พบแอป Mac"
+  },
+  "mac_import_done": {
+    "message": "นำเข้า $1 บัญชีแล้ว"
+  },
+  "backup_label": {
+    "message": "สำรองบัญชี"
+  },
+  "backup_note": {
+    "message": "บัญชีจะถูกสำรองไว้ใน chrome.storage.sync ด้วย หากเปิดการซิงค์ของ Chrome จะซิงค์กับบัญชี Google ของคุณและกลับมาหลังติดตั้งใหม่ เราไม่เห็นข้อมูลนี้"
   }
 }

@@ -62,6 +62,18 @@
       <p class="perm-state" id="apiPermState" hidden></p>
     </section>
 
+    <!-- Hesap yedeği: chrome.storage.sync; yalnız macOS'ta Mac uygulamasından içe aktarma
+         (isteğe bağlı izin http://127.0.0.1:9123, yalnız düğmeye basınca istenir). -->
+    <section>
+      <h2 id="backupLabel"></h2>
+      <p class="perm-note" id="backupNote"></p>
+      <div id="macImportBox" hidden>
+        <p class="perm-note" id="macImportNote"></p>
+        <button type="button" class="perm-btn" id="macImportOptBtn"></button>
+        <p class="perm-state" id="macImportOptState" hidden></p>
+      </div>
+    </section>
+
     <footer>
       <span>Claude Usage Widget</span>
       <a href="https://www.nurullah.net" target="_blank">nurullah.net ↗</a>

@@ -440,7 +440,7 @@
     }
   },
   "tip_remove": {
-    "message": "Натисніть: приховати або видалити"
+    "message": "Приховати або видалити"
   },
   "hide_title": {
     "message": "Що зробити з $1?",
@@ -543,5 +543,29 @@
   },
   "api_permission_granted": {
     "message": "Дозволено — кредит API читається з консолі."
+  },
+  "api_permission_short": {
+    "message": "показати — дозволити"
+  },
+  "mac_import_popup": {
+    "message": "Узяти акаунти з застосунку для Mac"
+  },
+  "mac_import_settings": {
+    "message": "Імпортувати акаунти з застосунку для Mac"
+  },
+  "mac_import_note": {
+    "message": "Якщо застосунок для Mac запущено й увімкнено Налаштування → Мережа → Local HTTP, акаунти беруться звідти."
+  },
+  "mac_import_missing": {
+    "message": "Застосунок для Mac не знайдено"
+  },
+  "mac_import_done": {
+    "message": "Імпортовано акаунтів: $1"
+  },
+  "backup_label": {
+    "message": "Резервна копія акаунтів"
+  },
+  "backup_note": {
+    "message": "Акаунти також зберігаються в chrome.storage.sync: з увімкненою синхронізацією Chrome вони синхронізуються з вашим акаунтом Google і повертаються після перевстановлення. Ми цих даних не бачимо."
   }
 }

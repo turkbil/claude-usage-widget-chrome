@@ -440,7 +440,7 @@
     }
   },
   "tip_remove": {
-    "message": "Clic: nascondi o elimina"
+    "message": "Nascondi o elimina"
   },
   "hide_title": {
     "message": "Cosa fare con $1?",
@@ -543,5 +543,29 @@
   },
   "api_permission_granted": {
     "message": "Consentito — il credito API viene letto dalla console."
+  },
+  "api_permission_short": {
+    "message": "mostra — consenti"
+  },
+  "mac_import_popup": {
+    "message": "Prendi gli account dall’app Mac"
+  },
+  "mac_import_settings": {
+    "message": "Importa gli account dall’app Mac"
+  },
+  "mac_import_note": {
+    "message": "Se l’app Mac è aperta e Impostazioni → Rete → Local HTTP è attivo, gli account vengono presi da lì."
+  },
+  "mac_import_missing": {
+    "message": "App Mac non trovata"
+  },
+  "mac_import_done": {
+    "message": "$1 account importati"
+  },
+  "backup_label": {
+    "message": "Backup account"
+  },
+  "backup_note": {
+    "message": "Gli account vengono salvati anche in chrome.storage.sync: con la sincronizzazione di Chrome attiva si sincronizzano con il tuo account Google e tornano dopo la reinstallazione. Non vediamo mai questi dati."
   }
 }

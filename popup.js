@@ -7,6 +7,7 @@ import {
   weekdayTime, shortDay, formatRemaining, ageText, grantText, grantLine, grantSummary,
   activeCredits, apiTodayTotal, utcDayKey, money, dayTime, hasConsolePermission, CONSOLE_ORIGINS,
 } from './accounts.js';
+import { MAC_ORIGINS, isMac, importFromMac, forgetInSync, unhideAllInSync } from './restore.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('refreshBtn').textContent = '⟳';
@@ -33,15 +34,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   setupSheet();
-  // İsteğe bağlı konsol izni: düğme API kredisi satırında (yeniden çizilir, dinleyici listede).
-  // Verilirse hemen okunur; geri alınırsa «izin verilmedi» hâline dönülür.
-  document.getElementById('accountRows').addEventListener('click', async e => {
-    if (!e.target.closest('.api-perm')) return;
+  // İsteğe bağlı konsol izni: düğme üstteki ayrıntılarda («API kredisi · göster — izin ver»)
+  // ve açılır kısımdaki API kredisi satırında (yeniden çizilir, dinleyici belgede).
+  // Verilirse hemen okunur; popup kapanırsa okumayı background yapar (permissions.onAdded).
+  document.addEventListener('click', async e => {
+    if (!e.target.closest('.api-perm, .detail-perm')) return;
     let ok = false;
+    // İstek tıklamanın içinde, önünde başka await olmadan (kullanıcı hareketi kaybolmasın).
     try { ok = await chrome.permissions.request({ origins: CONSOLE_ORIGINS }); } catch {}
     if (ok) { try { await chrome.runtime.sendMessage({ type: 'refresh-now' }); } catch {} }
     await render();
   });
+  document.getElementById('macImportBtn').addEventListener('click', () => macImport());
   chrome.permissions?.onRemoved?.addListener(() => render());
   chrome.permissions?.onAdded?.addListener(() => render());
   await render();
@@ -49,25 +53,60 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 async function render() {
   const cache = await getCache();
-  if (!cache) {
-    document.getElementById('footer').textContent = i18n('sparkline_empty');
-    return;
-  }
-  const { snapshot, error } = cache;
+  const { snapshot, error } = cache || {};
 
   if (snapshot) {
+    const rec = (await getAccounts()).find(a => a.email === (snapshot.email || '').toLowerCase()) || null;
     fillAccountHeader(snapshot);
     fillWeekly(snapshot);
     fillForecast(snapshot);
-    fillDetails(snapshot);
+    fillDetails(snapshot, rec, await hasConsolePermission());
     fillFiveHour(snapshot);
     await fillAccounts(snapshot);
     await drawSparkline(snapshot);
     fillFooter(snapshot, error);
-  } else if (error) {
-    document.getElementById('footer').textContent = '⚠ ' + errorText(error);
-    document.getElementById('footer').style.color = 'var(--blood)';
+  } else {
+    // Oturum yok (ya da henüz okunmadı): yedekten gelen hesaplar yine listelenir.
+    await fillAccounts({});
+    const footer = document.getElementById('footer');
+    footer.textContent = error ? '⚠ ' + errorText(error) : i18n('sparkline_empty');
+    footer.style.color = error ? 'var(--blood)' : '';
   }
+  await fillMacImport(snapshot);
+}
+
+// ── Mac uygulamasından içe aktarma ──────────────────────────────────────────
+// Yalnız macOS'ta ve oturumdaki hesap dışında hiç hesap yokken (ör. yeniden kurulumdan sonra,
+// sync yedeği de yoksa) tek satır: «Mac uygulamasındaki hesapları al». İzin yalnız tıklayınca istenir.
+let macState = '';   // '' | 'busy' | 'missing'
+async function fillMacImport(snapshot) {
+  const box = document.getElementById('macImport');
+  const current = (snapshot?.email || '').toLowerCase();
+  const others = (await getAccounts()).filter(a => a.email !== current).length;
+  const { macImportDone = false } = await chrome.storage.local.get('macImportDone');
+  box.hidden = !isMac() || others > 0 || macImportDone;
+  if (box.hidden) return;
+  const btn = document.getElementById('macImportBtn');
+  btn.textContent = '↓ ' + i18n('mac_import_popup');
+  btn.disabled = macState === 'busy';
+  const st = document.getElementById('macImportState');
+  st.textContent = macState === 'missing' ? i18n('mac_import_missing') : '';
+  st.hidden = !st.textContent;
+}
+
+async function macImport() {
+  let ok = false;
+  try { ok = await chrome.permissions.request({ origins: MAC_ORIGINS }); } catch {}
+  if (!ok) return;
+  macState = 'busy';
+  await fillMacImport((await getCache())?.snapshot);
+  let r = null;
+  // Yazma background'da sırayla yapılır (aynı anda yenilemeyle çakışmasın); yoksa burada.
+  try { r = await chrome.runtime.sendMessage({ type: 'import-mac' }); } catch {}
+  if (!r || typeof r.ok !== 'boolean') r = await importFromMac();
+  macState = r.ok ? '' : 'missing';
+  if (r.ok) { try { await chrome.storage.local.set({ macImportDone: true }); } catch {} }
+  await render();
 }
 
 // Background stores error codes like 'error.no_session'; locale keys use underscores.
@@ -290,7 +329,7 @@ async function drawSparkline(snap) {
 // ── Ayrıntılar ─────────────────────────────────────────────────────────────
 // Mac'teki currentDetailRows (Sources/main.swift) ile aynı satırlar.
 
-function fillDetails(s, now = Date.now()) {
+function fillDetails(s, rec, apiAllowed, now = Date.now()) {
   const rows = [];
   const reset = toMs(s.weeklyResetsAt);
   if (reset != null) rows.push({ label: i18n('detail_reset'), value: weekdayTime(reset) });
@@ -331,6 +370,15 @@ function fillDetails(s, now = Date.now()) {
                 value: used.map(b => b.name + ' ' + i18n('value_percent', [Math.round(b.pct)])).join(' · ') });
   }
 
+  // API kredisi her zaman görünür: izin yoksa turuncu «göster — izin ver» (açılır kısmı
+  // açmadan da bulunsun), izin varsa oturumdaki hesabın değeri.
+  if (!apiAllowed) {
+    rows.push({ label: i18n('grants_row_api'), button: i18n('api_permission_short') });
+  } else {
+    const a = apiValue(rec || {}, now);
+    rows.push({ label: i18n('grants_row_api'), value: a.text, cls: a.cls || 'faint' });
+  }
+
   const box = document.getElementById('details');
   box.hidden = rows.length === 0;
   box.replaceChildren(...rows.map(r => {
@@ -339,14 +387,40 @@ function fillDetails(s, now = Date.now()) {
     const l = document.createElement('span');
     l.className = 'detail-l';
     l.textContent = r.label;
-    const v = document.createElement('span');
-    v.className = 'detail-r';
-    v.textContent = r.value;
-    v.title = r.value;
-    if (r.color) v.style.color = r.color;
+    let v;
+    if (r.button) {
+      v = document.createElement('button');
+      v.type = 'button';
+      v.className = 'detail-r detail-perm';
+      v.textContent = r.button;
+    } else {
+      v = document.createElement('span');
+      v.className = 'detail-r' + (r.cls ? ' ' + r.cls : '');
+      v.textContent = r.value;
+      v.title = r.value;
+      if (r.color) v.style.color = r.color;
+    }
     el.append(l, v);
     return el;
   }));
+}
+
+// API kredisi değeri (ayrıntılar ve açılır tablo aynı metni kullanır):
+// «$4,42 / $200 hibe · son 16 Kas · bugün $0,00»; 3 gün içinde bitecekse kırmızı.
+function apiValue(r, now) {
+  const today = r.apiTodayKey === utcDayKey(now) && typeof r.apiToday === 'number'
+    ? ' · ' + i18n('api_today', [money(r.apiToday)]) : '';
+  if (typeof r.apiTotal !== 'number') return { text: i18n('api_unknown'), cls: '' };
+  const cr = activeCredits(r, now);
+  if (cr.length) {
+    const left = cr.reduce((n, c) => n + c.remaining, 0), granted = cr.reduce((n, c) => n + c.granted, 0);
+    const ends = cr.map(c => toMs(c.expiresAt)).filter(t => t != null);
+    const first = ends.length ? Math.min(...ends) : null;
+    const soon = first != null && first - now < 3 * 86400e3;
+    return { text: i18n('api_credit', [money(left), money(granted)])
+      + (first != null ? ' · ' + i18n('grant_until', [shortDay(first)]) : '') + today, cls: soon ? 'soon' : 'on' };
+  }
+  return { text: money(r.apiTotal) + today, cls: r.apiTotal > 0 ? 'plain' : '' };
 }
 
 // ── Hesaplar ───────────────────────────────────────────────────────────────
@@ -500,15 +574,20 @@ function accountRow(s, isCurrent, name, now) {
   }
 
   row.title = accountDetails(s, isCurrent, now);
-  // Tıklayınca (ya da Enter/Boşluk) alttan «Gizle · Sil · Vazgeç» seçimi açılır.
-  row.tabIndex = 0;
-  row.setAttribute('role', 'button');
-  row.addEventListener('click', () => openSheet(r.email, name));
-  row.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSheet(r.email, name); }
-  });
+  // Satıra tıklamak bir şey yapmaz; yalnız en sağdaki soluk göz simgesi (düğme: tık,
+  // Enter, Boşluk) alttan «Gizle · Sil · Vazgeç» seçimini açar. Mac'teki eye.slash.
+  const eye = document.createElement('button');
+  eye.type = 'button';
+  eye.className = 'col-eye';
+  eye.title = i18n('tip_remove');
+  eye.setAttribute('aria-label', i18n('tip_remove') + ': ' + r.email);
+  eye.innerHTML = EYE_SVG;
+  eye.addEventListener('click', e => { e.stopPropagation(); openSheet(r.email, name); });
+  row.append(eye);
   return row;
 }
+
+const EYE_SVG = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.6 8s2.4-4.2 6.4-4.2S14.4 8 14.4 8s-2.4 4.2-6.4 4.2S1.6 8 1.6 8Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="8" cy="8" r="1.9" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M2.5 13.5 13.5 2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>';
 
 // «↺» yazı tiplerinde tutarsız çiziliyor (Mac Chrome'da «ʊ» gibi); metindeki her «↺»
 // yerine aynı boyutta küçük bir SVG ok koyar.
@@ -555,8 +634,6 @@ function grantRow(s, expanded, apiAllowed, now, permButton) {
   }
 
   // API kredisi: konsoldan, yalnız izin verildiyse.
-  const today = r.apiTodayKey === utcDayKey(now) && typeof r.apiToday === 'number'
-    ? ' · ' + i18n('api_today', [money(r.apiToday)]) : '';
   if (!apiAllowed) {
     const v = line('grants_row_api', i18n('api_no_permission'));
     if (permButton) {
@@ -567,20 +644,9 @@ function grantRow(s, expanded, apiAllowed, now, permButton) {
       b.textContent = i18n('api_permission_button');
       v.append(b);
     }
-  } else if (typeof r.apiTotal !== 'number') {
-    line('grants_row_api', i18n('api_unknown'));
   } else {
-    const cr = activeCredits(r, now);
-    if (cr.length) {
-      const left = cr.reduce((n, c) => n + c.remaining, 0), granted = cr.reduce((n, c) => n + c.granted, 0);
-      const ends = cr.map(c => toMs(c.expiresAt)).filter(t => t != null);
-      const first = ends.length ? Math.min(...ends) : null;
-      const soon = first != null && first - now < 3 * 86400e3;
-      line('grants_row_api', i18n('api_credit', [money(left), money(granted)])
-        + (first != null ? ' · ' + i18n('grant_until', [shortDay(first)]) : '') + today, soon ? 'soon' : 'on');
-    } else {
-      line('grants_row_api', money(r.apiTotal) + today, r.apiTotal > 0 ? 'plain' : '');
-    }
+    const a = apiValue(r, now);
+    line('grants_row_api', a.text, a.cls);
   }
 
   // Son okuma, ayrı ayrı: haklar claude.ai'den, kredi konsoldan gelir.
@@ -633,7 +699,6 @@ function accountDetails(s, isCurrent, now) {
   if (s.neverSignedIn) lines.push(i18n('accounts_never_read'));
   else lines.push(i18n('tip_seen', [isCurrent ? i18n('accounts_now') : ageText(r.seenAt, now)]));
   if (s.rolled) lines.push(i18n('tip_rolled'));
-  lines.push(i18n('tip_remove'));
   if (!isCurrent) lines.push(i18n('tip_refresh'));
   return lines.join('\n');
 }
@@ -651,7 +716,8 @@ function setupSheet() {
   document.getElementById('sheetCancelBtn').textContent = i18n('hide_cancel');
 
   document.getElementById('sheetHideBtn').addEventListener('click', () => applySheet(hideAccount));
-  document.getElementById('sheetDeleteBtn').addEventListener('click', () => applySheet(removeAccount));
+  // Silinen hesap sync yedeğinden de silinir; yoksa sonraki geri yüklemede geri gelirdi.
+  document.getElementById('sheetDeleteBtn').addEventListener('click', () => applySheet(async e => { await removeAccount(e); await forgetInSync(e); }));
   document.getElementById('sheetCancelBtn').addEventListener('click', closeSheet);
   document.getElementById('sheetBackdrop').addEventListener('click', e => {
     if (e.target.id === 'sheetBackdrop') closeSheet();
@@ -670,6 +736,7 @@ function setupSheet() {
   });
   document.getElementById('showHidden').addEventListener('click', async () => {
     await unhideAllAccounts();
+    await unhideAllInSync();   // gizlenenler sync'te birleşimdir: orada da boşaltılır
     await accountsChanged();
   });
 }

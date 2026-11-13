@@ -52,7 +52,8 @@ export async function getHistory() {
 
 // Bu tarayıcıda görülen her claude.ai hesabı, küçük harf e-postaya göre.
 // Yalnız oturum açık hesap canlı okunabilir; diğerleri son girişteki değerleri
-// tutar. Yalnız yerelde saklanır, hiçbir yere gönderilmez.
+// tutar. Asıl kopya yerelde; küçük bir yedeği chrome.storage.sync'te (restore.js):
+// Chrome eşitlemesi açıksa Google hesabıyla eşitlenir. Başka hiçbir yere gönderilmez.
 export async function getAccounts() {
   const { accounts = [] } = await chrome.storage.local.get('accounts');
   return Array.isArray(accounts) ? accounts : [];

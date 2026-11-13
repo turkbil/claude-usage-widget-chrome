@@ -29,12 +29,42 @@ Popup matches the macOS widget 1.5.7.
   same colours. Each rolls over on its own when its reset time passes (`0%*`).
   Fable without its own date follows the weekly reset.
 - One-time notification when a granted API credit expires within 3 days.
+- **Accounts survive a reinstall.** Removing the extension deletes its local
+  storage; the accounts now come back in this order:
+  1. **`chrome.storage.sync` backup** — a small copy of every account record
+     (≤ 8 KB each, ≤ 100 KB in all; free resets / API credits shortened if
+     needed) and the hidden list, written only when something changed (read
+     times alone at most hourly). With Chrome sync on it follows your Google
+     account. Several computers may write it: nothing is overwritten — per
+     account, each field group (usage · free resets · API) keeps the newer read,
+     hidden accounts are a union. Quota errors are skipped silently and retried
+     on the next change; without `storage.sync` (sync off, other Chromium
+     browsers) the extension simply works from local storage.
+  2. **The macOS widget** (macOS only): *Get accounts from the Mac app* in the
+     popup when no other account is known, and *Import accounts from the Mac
+     app* in Settings. Asks for the optional permission
+     `http://127.0.0.1:9123/*` on click and reads `GET /accounts` from the Mac
+     app on this computer (Unix-second dates converted). If the app is not
+     running or its Local HTTP endpoint is off: a faint *Mac app not found*,
+     try again any time.
+  3. Otherwise: sign in to the accounts again, as before.
+  Merging never deletes a record; the account signed in to Chrome right now
+  always keeps its own live numbers. Updating from 1.2.0 / 1.1.1 keeps all
+  local data.
+- **API credit row in the top details**, always visible: without the console
+  permission it reads *API credit · show — allow access* (orange), so the
+  permission no longer hides behind *Show free resets*; once allowed it shows
+  the signed-in account's value (`$4.42 / $200 granted · until Nov 16 · today
+  $0.00`). If the permission prompt closes the popup, the background reads it.
+- **Hide / delete only from the eye icon** at the end of each row (faint,
+  brighter on hover, *Hide or delete*, keyboard too); clicking the row does
+  nothing, like the macOS widget.
 
 ### Changed
 - Accounts that were never read (typed in by hand, or known only from the
   console) show no numbers: empty bar, `—`, a faint *not signed in* across the
   RESETS and MONTH cells; they are left out of the 48-hour hint and sorted last.
-- Popup width 470 → 520 px. Money in the browser's language (`Intl`, USD).
+- Popup width 470 → 540 px (long e-mails in bold are not cut). Money in the browser's language (`Intl`, USD).
 - Expired API credit counts as 0.
 
 ### Fixed

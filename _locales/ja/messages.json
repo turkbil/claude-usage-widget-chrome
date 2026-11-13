@@ -440,7 +440,7 @@
     }
   },
   "tip_remove": {
-    "message": "クリック: 非表示または削除"
+    "message": "非表示または削除"
   },
   "hide_title": {
     "message": "$1をどうしますか？",
@@ -543,5 +543,29 @@
   },
   "api_permission_granted": {
     "message": "許可済み — APIクレジットをコンソールから読み込みます。"
+  },
+  "api_permission_short": {
+    "message": "表示 — 許可する"
+  },
+  "mac_import_popup": {
+    "message": "Macアプリのアカウントを取得"
+  },
+  "mac_import_settings": {
+    "message": "Macアプリからアカウントを読み込む"
+  },
+  "mac_import_note": {
+    "message": "Macアプリが起動中で、設定 → ネットワーク → Local HTTP がオンなら、そこからアカウントを取得します。"
+  },
+  "mac_import_missing": {
+    "message": "Macアプリが見つかりません"
+  },
+  "mac_import_done": {
+    "message": "$1 件のアカウントを読み込みました"
+  },
+  "backup_label": {
+    "message": "アカウントのバックアップ"
+  },
+  "backup_note": {
+    "message": "アカウントは chrome.storage.sync にもバックアップされます。Chrome の同期がオンなら Google アカウントと同期され、再インストール後に戻ります。私たちがこのデータを見ることはありません。"
   }
 }

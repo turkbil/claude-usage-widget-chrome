@@ -97,7 +97,7 @@
   "tip_plan_ends": {"message": "Abonelik $1 tarihinde bitiyor", "placeholders": {"1": {"content": "$1"}}},
   "notification_plan_end": {"message": "$1 aboneliği $2 tarihinde bitiyor; kalan kotayı kullanın.", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}},
   "notification_grant_end": {"message": "$1 hesabında kullanılmamış sıfırlama hakkı: $2.", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}},
-  "tip_remove": {"message": "Tıklayın: gizle ya da sil"},
+  "tip_remove": {"message": "Gizle ya da sil"},
   "hide_title": {"message": "$1 ne yapılsın?", "placeholders": {"1": {"content": "$1"}}},
   "hide_body_hide": {"message": "Gizle: $1 listede, uyarılarda ve bildirimlerde görünmez; veri saklanır, «Gizlenen hesapları göster» ile geri gelir.", "placeholders": {"1": {"content": "$1"}}},
   "hide_body_delete": {"message": "Sil: kayıt silinir; bu hesaba yeniden giriş yaparsanız sıfırdan eklenir."},
@@ -126,5 +126,13 @@
   "api_no_permission": {"message": "izin verilmedi · API kredisi ve bugünkü harcama hesaplanmaz"},
   "api_permission_button": {"message": "API kredilerini göster — izin ver"},
   "api_permission_note": {"message": "İzin verilmezse API kredisi bakiyesi, hibe son tarihi ve bugünkü API harcaması gösterilmez."},
-  "api_permission_granted": {"message": "İzin verildi — API kredisi konsoldan okunuyor."}
+  "api_permission_granted": {"message": "İzin verildi — API kredisi konsoldan okunuyor."},
+  "api_permission_short": {"message": "göster — izin ver"},
+  "mac_import_popup": {"message": "Mac uygulamasındaki hesapları al"},
+  "mac_import_settings": {"message": "Mac uygulamasından hesapları içe aktar"},
+  "mac_import_note": {"message": "Mac uygulaması açık ve Ayarlar → Ağ → Yerel HTTP açıksa hesaplar oradan alınır."},
+  "mac_import_missing": {"message": "Mac uygulaması bulunamadı"},
+  "mac_import_done": {"message": "$1 hesap alındı"},
+  "backup_label": {"message": "Hesap yedeği"},
+  "backup_note": {"message": "Hesaplar chrome.storage.sync içine de yedeklenir: Chrome eşitlemesi açıksa Google hesabınızla eşitlenir ve eklentiyi yeniden kurunca geri gelir. Biz bu veriyi görmeyiz."}
 }

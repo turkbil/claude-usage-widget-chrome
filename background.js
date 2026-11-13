@@ -5,6 +5,7 @@ import {
   accountState, visibleRecords, suggestion, shortNamer, formatRemaining, shortDay, grantText, i18n,
   activeCredits, money, utcDayKey, hasConsolePermission,
 } from './accounts.js';
+import { restoreFromSync, backupToSync, importFromMac, hasMacPermission } from './restore.js';
 
 // Konsol (API kredisi) verisi yavaş değişir: en çok 10 dakikada bir okunur,
 // popup'taki ⟳ hemen okur. Damga storage'da: MV3 işçisi uyuyunca bellekteki değişken kaybolur.
@@ -17,17 +18,39 @@ const serial = fn => (chain = chain.then(fn, fn));
 const ALARM_REFRESH = 'cuw-refresh';
 const ALARM_HISTORY = 'cuw-history';
 
+// Kurulum, güncelleme ve tarayıcı açılışı: önce yedekten geri yükle (yeniden kurulumda
+// local boştur), sonra yenile. Güncellemede local olduğu gibi kalır; birleştirme hiçbir kaydı silmez.
 chrome.runtime.onInstalled.addListener(async () => {
   const prefs = await getPrefs();
   scheduleRefresh(prefs.pollIntervalSec);
   chrome.alarms.create(ALARM_HISTORY, { periodInMinutes: 5 });
+  await serial(() => restoreAll());
   await serial(() => refresh());
 });
 
 chrome.runtime.onStartup.addListener(async () => {
   const prefs = await getPrefs();
   scheduleRefresh(prefs.pollIntervalSec);
+  await serial(() => restoreAll());
   await serial(() => refresh());
+});
+
+// Sync yedeği; Mac izni önceden verildiyse Mac uygulamasından da (uç yoksa sessizce geçer).
+async function restoreAll() {
+  await restoreFromSync();
+  if (await hasMacPermission()) await importFromMac();
+}
+
+// Hesap kayıtları ya da gizlenenler değişince sync'e yazılır (birkaç değişim tek yazmada toplanır).
+// Başka bilgisayardan sync'e gelen kayıtlar aynı birleştirmeyle yerele alınır.
+let backupTimer = null;
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === 'local' && (changes.accounts || changes.hiddenAccounts)) {
+    clearTimeout(backupTimer);
+    backupTimer = setTimeout(() => serial(() => backupToSync()), 2000);
+  } else if (area === 'sync' && Object.keys(changes).some(k => k.startsWith('acct:') || k === 'hidden')) {
+    serial(() => restoreFromSync());
+  }
 });
 
 chrome.alarms.onAlarm.addListener(async (alarm) => {
@@ -48,6 +71,10 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
     } else if (msg?.type === 'refresh-now') {
       await serial(() => refresh({ forceConsole: true }));
       sendResponse({ ok: true });
+    } else if (msg?.type === 'import-mac') {
+      const r = await serial(() => importFromMac());
+      await updateBadge();
+      sendResponse(r);
     } else if (msg?.type === 'get-snapshot') {
       const cache = await getCache();
       sendResponse(cache);
@@ -58,8 +85,10 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
 
 // İsteğe bağlı konsol izni verilince hemen okunur; geri alınınca yeni istek
 // yapılmaz (popup «izin verilmedi» gösterir, kayıtlı kredi bildirim üretmez).
+// Mac izni verilince de hemen içe aktarılır: izin penceresi popup'ı kapatsa bile hesaplar gelir.
 chrome.permissions?.onAdded?.addListener(async p => {
   if ((p.origins || []).some(o => o.startsWith('https://platform.claude.com'))) await serial(() => readConsole({ force: true }));
+  if ((p.origins || []).some(o => o.startsWith('http://127.0.0.1'))) await serial(() => importFromMac());
 });
 
 function scheduleRefresh(sec) {

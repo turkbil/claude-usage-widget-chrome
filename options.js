@@ -1,6 +1,7 @@
 import { defaultPrefs, getPrefs, setPrefs } from './prefs.js';
+import { MAC_ORIGINS, isMac, importFromMac } from './restore.js';
 
-const i18n = (k) => chrome.i18n.getMessage(k) || k;
+const i18n = (k, args) => chrome.i18n.getMessage(k, args) || k;
 
 // Only the weekly-% metric actually drives the toolbar icon (see icon-draw.js,
 // which reads just weeklyPctMode + weeklyPctColor). The other three metric rows
@@ -36,6 +37,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('criticalLabel').textContent   = i18n('notifications_critical');
 
   renderApiPermission();
+  renderBackup();
   chrome.permissions?.onAdded?.addListener(renderApiPermission);
   chrome.permissions?.onRemoved?.addListener(renderApiPermission);
 
@@ -218,5 +220,32 @@ async function renderApiPermission() {
     try { granted = await chrome.permissions.request({ origins: CONSOLE_ORIGINS }); } catch {}
     if (granted) { try { await chrome.runtime.sendMessage({ type: 'refresh-now' }); } catch {} }
     await renderApiPermission();
+  });
+}
+
+// Hesap yedeği: sync açıklaması her yerde; Mac uygulamasından içe aktarma yalnız macOS'ta.
+// Uç yoksa ya da Yerel HTTP kapalıysa hata değil, soluk «Mac uygulaması bulunamadı»; yeniden denenebilir.
+function renderBackup() {
+  document.getElementById('backupLabel').textContent = i18n('backup_label');
+  document.getElementById('backupNote').textContent = i18n('backup_note');
+  const box = document.getElementById('macImportBox');
+  box.hidden = !isMac();
+  if (box.hidden) return;
+  document.getElementById('macImportNote').textContent = i18n('mac_import_note');
+  const btn = document.getElementById('macImportOptBtn');
+  const state = document.getElementById('macImportOptState');
+  btn.textContent = i18n('mac_import_settings');
+  btn.addEventListener('click', async () => {
+    let ok = false;
+    try { ok = await chrome.permissions.request({ origins: MAC_ORIGINS }); } catch {}
+    if (!ok) return;
+    btn.disabled = true;
+    let r = null;
+    try { r = await chrome.runtime.sendMessage({ type: 'import-mac' }); } catch {}
+    if (!r || typeof r.ok !== 'boolean') r = await importFromMac();
+    btn.disabled = false;
+    state.textContent = r.ok ? '✓ ' + i18n('mac_import_done', [String(r.count)]) : i18n('mac_import_missing');
+    state.classList.toggle('faint', !r.ok);
+    state.hidden = false;
   });
 }
