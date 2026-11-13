@@ -23,9 +23,11 @@ Popup matches the macOS widget 1.5.7.
   Fable resets · API credit · Last read (resets and API separately, so old
   numbers never look live). The old `↺ WEEKLY RESETS` / `↺ FABLE RESETS`
   headings are gone.
-- **WEEK and FABLE % left side by side** (the LEFT column is split); each rolls
-  over on its own when its reset time passes (`*`). Fable without its own date
-  follows the weekly reset.
+- **WEEK and FABLE % side by side** (the LEFT column is split). The list now shows
+  **% used**, like the bars at the top (it used to show % left, so the same
+  account read 3 % above and 97 % below); the bar fills with use and takes the
+  same colours. Each rolls over on its own when its reset time passes (`0%*`).
+  Fable without its own date follows the weekly reset.
 - One-time notification when a granted API credit expires within 3 days.
 
 ### Changed

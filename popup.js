@@ -352,13 +352,6 @@ function fillDetails(s, now = Date.now()) {
 // ── Hesaplar ───────────────────────────────────────────────────────────────
 // Mac'teki AccountRowView (Sources/Accounts.swift) ile aynı tek satırlık görünüm.
 
-function leftColor(left) {
-  if (left <= 10) return 'var(--blood)';
-  if (left <= 25) return 'var(--ember)';
-  if (left <= 50) return 'var(--sun)';
-  return 'var(--grass)';
-}
-
 async function fillAccounts(snap, now = Date.now()) {
   const box = document.getElementById('accounts');
   const current = (snap.email || '').toLowerCase();
@@ -459,7 +452,8 @@ function accountRow(s, isCurrent, name, now) {
   nm.textContent = name;
   nameEl.append(mk, nm);
 
-  // Kalan çubuğu ve yüzdesi.
+  // Kullanılan çubuğu ve yüzdesi: üstteki ana çubuklarla aynı anlam ve renk (kalan değil,
+  // kullanılan; yoksa aynı hesap üstte %3, listede %97 görünüp kafa karıştırıyordu).
   const barCell = cell('col-bar');
   const bar = document.createElement('div');
   bar.className = 'bar';
@@ -468,21 +462,23 @@ function accountRow(s, isCurrent, name, now) {
   bar.append(fill);
   barCell.append(bar);
   if (s.weeklyLeft != null) {
-    fill.style.width = `${Math.max(0, Math.min(100, s.weeklyLeft))}%`;
-    fill.style.background = leftColor(s.weeklyLeft);
+    const used = 100 - s.weeklyLeft;
+    fill.style.width = `${Math.max(0, Math.min(100, used))}%`;
+    fill.style.background = colorFor(used);
     if (!isCurrent) fill.style.opacity = '0.7';
-    const pct = cell('col-pct', i18n('value_percent', [Math.round(s.weeklyLeft)]) + (s.rolled ? '*' : ''));
-    pct.style.color = leftColor(s.weeklyLeft);
+    const pct = cell('col-pct', i18n('value_percent', [Math.round(used)]) + (s.rolled ? '*' : ''));
+    pct.style.color = colorFor(used);
   } else {
     fill.style.width = '0';
     cell('col-pct', '—', 'faint');
   }
 
-  // Fable kalanı; «*» = son okumadan beri penceresi sıfırlandı (yeniden %100).
+  // Fable kullanılanı; «*» = son okumadan beri penceresi sıfırlandı (yeniden %0).
   const f = s.scopedLeft[0];
   if (f) {
-    const fp = cell('col-fpct', i18n('value_percent', [Math.round(f.left)]) + (s.scopedRolled ? '*' : ''));
-    fp.style.color = leftColor(f.left);
+    const fu = 100 - f.left;
+    const fp = cell('col-fpct', i18n('value_percent', [Math.round(fu)]) + (s.scopedRolled ? '*' : ''));
+    fp.style.color = colorFor(fu);
   } else {
     cell('col-fpct', '—', 'faint');
   }
