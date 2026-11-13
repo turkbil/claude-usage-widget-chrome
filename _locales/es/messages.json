@@ -101,15 +101,6 @@
   "metric_weekly_pct": {
     "message": "% semanal"
   },
-  "metric_weekly_time": {
-    "message": "Restante semanal"
-  },
-  "metric_five_pct": {
-    "message": "% de 5 horas"
-  },
-  "metric_five_time": {
-    "message": "Restante de 5 horas"
-  },
   "mode_hidden": {
     "message": "Ocultar"
   },

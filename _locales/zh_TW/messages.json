@@ -101,15 +101,6 @@
   "metric_weekly_pct": {
     "message": "每週 %"
   },
-  "metric_weekly_time": {
-    "message": "每週剩餘"
-  },
-  "metric_five_pct": {
-    "message": "5 小時 %"
-  },
-  "metric_five_time": {
-    "message": "5 小時剩餘"
-  },
   "mode_hidden": {
     "message": "隱藏"
   },

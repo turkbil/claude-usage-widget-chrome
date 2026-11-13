@@ -101,15 +101,6 @@
   "metric_weekly_pct": {
     "message": "Wöchentlich %"
   },
-  "metric_weekly_time": {
-    "message": "Wöchentlich verbleibend"
-  },
-  "metric_five_pct": {
-    "message": "5-Stunden %"
-  },
-  "metric_five_time": {
-    "message": "5-Stunden verbleibend"
-  },
   "mode_hidden": {
     "message": "Ausblenden"
   },
@@ -542,7 +533,7 @@
     "message": "$1: $2 API-Guthaben verfällt am $3."
   },
   "api_no_permission": {
-    "message": "nicht erlaubt · API-Guthaben und heutige Kosten werden nicht gelesen"
+    "message": "nicht erlaubt · kein API-Guthaben, keine Tageskosten"
   },
   "api_permission_button": {
     "message": "API-Guthaben anzeigen — Zugriff erlauben"

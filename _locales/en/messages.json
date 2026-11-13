@@ -29,9 +29,6 @@
   "menu_notifications":   { "message": "Notifications" },
 
   "metric_weekly_pct":  { "message": "Weekly %" },
-  "metric_weekly_time": { "message": "Weekly remaining" },
-  "metric_five_pct":    { "message": "5-hour %" },
-  "metric_five_time":   { "message": "5-hour remaining" },
 
   "mode_hidden": { "message": "Hide" },
   "mode_text":   { "message": "Text" },

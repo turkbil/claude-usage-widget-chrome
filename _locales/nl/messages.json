@@ -101,15 +101,6 @@
   "metric_weekly_pct": {
     "message": "Wekelijks %"
   },
-  "metric_weekly_time": {
-    "message": "Wekelijks resterend"
-  },
-  "metric_five_pct": {
-    "message": "5-uur %"
-  },
-  "metric_five_time": {
-    "message": "5-uur resterend"
-  },
   "mode_hidden": {
     "message": "Verbergen"
   },
@@ -542,7 +533,7 @@
     "message": "$1: $2 API-tegoed verloopt op $3."
   },
   "api_no_permission": {
-    "message": "niet toegestaan · API-tegoed en kosten van vandaag niet gelezen"
+    "message": "niet toegestaan · geen API-tegoed of dagkosten"
   },
   "api_permission_button": {
     "message": "API-tegoed tonen — toegang geven"

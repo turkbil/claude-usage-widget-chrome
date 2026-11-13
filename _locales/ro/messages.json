@@ -101,15 +101,6 @@
   "metric_weekly_pct": {
     "message": "% săptămânal"
   },
-  "metric_weekly_time": {
-    "message": "Rămas săptămânal"
-  },
-  "metric_five_pct": {
-    "message": "% pe 5 ore"
-  },
-  "metric_five_time": {
-    "message": "Rămas pe 5 ore"
-  },
   "mode_hidden": {
     "message": "Ascunde"
   },

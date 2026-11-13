@@ -101,15 +101,6 @@
   "metric_weekly_pct": {
     "message": "% за тиждень"
   },
-  "metric_weekly_time": {
-    "message": "Залишок за тиждень"
-  },
-  "metric_five_pct": {
-    "message": "% за 5 годин"
-  },
-  "metric_five_time": {
-    "message": "Залишок за 5 годин"
-  },
   "mode_hidden": {
     "message": "Сховати"
   },
@@ -542,7 +533,7 @@
     "message": "$1: $2 API-кредиту спливає $3."
   },
   "api_no_permission": {
-    "message": "немає дозволу · кредит API і сьогоднішні витрати не читаються"
+    "message": "немає дозволу · кредит і витрати API не читаються"
   },
   "api_permission_button": {
     "message": "Показати кредити API — дозволити"

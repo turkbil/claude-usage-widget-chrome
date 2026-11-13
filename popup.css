@@ -221,16 +221,14 @@ html { overflow-x: hidden; }
   font: 800 10px/14px -apple-system, "Segoe UI", sans-serif;
   color: var(--ember);
 }
-/* «API kredilerini göster — izin ver»: başlık satırında, etiketlerle aynı x'te. */
+/* «API kredilerini göster — izin ver»: API kredisi satırında, soluk metnin altında. */
 .api-perm {
-  grid-column: 1 / -1;
-  justify-self: start;
-  margin-left: 14px;
-  padding: 2px 0;
+  display: block;
+  padding: 0;
   border: 0;
   background: none;
   color: var(--ember);
-  font: 600 11px/14px -apple-system, "Segoe UI", sans-serif;
+  font: 600 11px/16px -apple-system, "Segoe UI", sans-serif;
   text-align: left;
   cursor: pointer;
 }

@@ -101,15 +101,6 @@
   "metric_weekly_pct": {
     "message": "週間 %"
   },
-  "metric_weekly_time": {
-    "message": "週間の残り"
-  },
-  "metric_five_pct": {
-    "message": "5時間 %"
-  },
-  "metric_five_time": {
-    "message": "5時間の残り"
-  },
   "mode_hidden": {
     "message": "非表示"
   },

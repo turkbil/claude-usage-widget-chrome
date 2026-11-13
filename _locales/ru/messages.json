@@ -101,15 +101,6 @@
   "metric_weekly_pct": {
     "message": "% за неделю"
   },
-  "metric_weekly_time": {
-    "message": "Остаток за неделю"
-  },
-  "metric_five_pct": {
-    "message": "% за 5 часов"
-  },
-  "metric_five_time": {
-    "message": "Остаток за 5 часов"
-  },
   "mode_hidden": {
     "message": "Скрыть"
   },
@@ -542,7 +533,7 @@
     "message": "$1: $2 API-кредита истекает $3."
   },
   "api_no_permission": {
-    "message": "нет разрешения · кредит API и расходы за сегодня не читаются"
+    "message": "нет разрешения · кредит и расходы API не читаются"
   },
   "api_permission_button": {
     "message": "Показать кредиты API — разрешить"

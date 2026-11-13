@@ -33,8 +33,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   setupSheet();
-  // İsteğe bağlı konsol izni: verilirse hemen okunur; geri alınırsa «izin verilmedi» hâline dönülür.
-  document.getElementById('apiPermBtn').addEventListener('click', async () => {
+  // İsteğe bağlı konsol izni: düğme API kredisi satırında (yeniden çizilir, dinleyici listede).
+  // Verilirse hemen okunur; geri alınırsa «izin verilmedi» hâline dönülür.
+  document.getElementById('accountRows').addEventListener('click', async e => {
+    if (!e.target.closest('.api-perm')) return;
     let ok = false;
     try { ok = await chrome.permissions.request({ origins: CONSOLE_ORIGINS }); } catch {}
     if (ok) { try { await chrome.runtime.sendMessage({ type: 'refresh-now' }); } catch {} }
@@ -405,7 +407,7 @@ async function fillAccounts(snap, now = Date.now()) {
   }
 
   // Her hesabın (açık hesap dahil) hemen altında, kapalıyken gizli 4 satırlık tablo.
-  // Başlıkta bugünkü API toplamı; konsol izni yoksa toplam yerine izin düğmesi.
+  // Başlıkta bugünkü API toplamı; konsol izni yoksa gösterilmez.
   const expanded = await getGrantsExpanded();
   const apiAllowed = await hasConsolePermission();
   const total = apiTodayTotal(records, now);
@@ -413,15 +415,14 @@ async function fillAccounts(snap, now = Date.now()) {
   totalEl.textContent = apiAllowed && total.accounts > 0
     ? i18n('api_today_total', [money(total.sum), total.accounts]) : '';
   totalEl.hidden = !totalEl.textContent;
-  const permBtn = document.getElementById('apiPermBtn');
-  permBtn.textContent = i18n('api_permission_button');
-  permBtn.hidden = apiAllowed;
-  grantHead.dataset.empty = totalEl.hidden && permBtn.hidden ? '1' : '';
+  grantHead.dataset.empty = totalEl.hidden ? '1' : '';
   grantHead.hidden = !expanded || grantHead.dataset.empty === '1';
   const rows = document.getElementById('accountRows');
+  // İzin düğmesi tek: oturum açık hesabın (yoksa ilk hesabın) API kredisi satırında.
+  const permAt = states.some(s => s.record.email === current) ? current : states[0].record.email;
   rows.replaceChildren(...states.flatMap(s => [
     accountRow(s, s.record.email === current, shortName(s.record.email), now),
-    grantRow(s, expanded, apiAllowed, now),
+    grantRow(s, expanded, apiAllowed, now, s.record.email === permAt),
   ]));
   // Hesap varsa düğme her zaman görünür (tek hesapta da).
   toggle.hidden = false;
@@ -530,7 +531,7 @@ function setWithResetIcon(el, text) {
 //   API kredisi  · «$4,42 / $200 hibe · son 16 Kas · bugün $0,00» (3 gün içinde bitecekse kırmızı)
 //   Son okuma    · «haklar 13 Kas 00:36 · API şimdi»
 // Diğer hak türleri (ör. oturum) tabloda yok, ipucunda tek tek.
-function grantRow(s, expanded, apiAllowed, now) {
+function grantRow(s, expanded, apiAllowed, now, permButton) {
   const r = s.record;
   const el = document.createElement('div');
   el.className = 'grant-row';
@@ -547,6 +548,7 @@ function grantRow(s, expanded, apiAllowed, now) {
     v.title = text;
     ln.append(l, v);
     el.append(ln);
+    return v;
   };
 
   for (const [kind, key] of [['weekly', 'grants_row_weekly'], ['fable', 'grants_row_fable']]) {
@@ -560,7 +562,15 @@ function grantRow(s, expanded, apiAllowed, now) {
   const today = r.apiTodayKey === utcDayKey(now) && typeof r.apiToday === 'number'
     ? ' · ' + i18n('api_today', [money(r.apiToday)]) : '';
   if (!apiAllowed) {
-    line('grants_row_api', i18n('api_no_permission'));
+    const v = line('grants_row_api', i18n('api_no_permission'));
+    if (permButton) {
+      // «API kredilerini göster — izin ver»: soluk metnin altında, aynı hücrede.
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'api-perm';
+      b.textContent = i18n('api_permission_button');
+      v.append(b);
+    }
   } else if (typeof r.apiTotal !== 'number') {
     line('grants_row_api', i18n('api_unknown'));
   } else {

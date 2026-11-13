@@ -101,15 +101,6 @@
   "metric_weekly_pct": {
     "message": "% รายสัปดาห์"
   },
-  "metric_weekly_time": {
-    "message": "คงเหลือรายสัปดาห์"
-  },
-  "metric_five_pct": {
-    "message": "% 5 ชั่วโมง"
-  },
-  "metric_five_time": {
-    "message": "คงเหลือ 5 ชั่วโมง"
-  },
   "mode_hidden": {
     "message": "ซ่อน"
   },

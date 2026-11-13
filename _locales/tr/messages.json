@@ -29,9 +29,6 @@
   "menu_notifications":   { "message": "Bildirimler" },
 
   "metric_weekly_pct":  { "message": "Haftalık %" },
-  "metric_weekly_time": { "message": "Haftalık kalan süre" },
-  "metric_five_pct":    { "message": "5 saatlik %" },
-  "metric_five_time":   { "message": "5 saatlik kalan süre" },
 
   "mode_hidden": { "message": "Gizle" },
   "mode_text":   { "message": "Yazı" },

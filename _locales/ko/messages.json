@@ -101,15 +101,6 @@
   "metric_weekly_pct": {
     "message": "주간 %"
   },
-  "metric_weekly_time": {
-    "message": "주간 잔여"
-  },
-  "metric_five_pct": {
-    "message": "5시간 %"
-  },
-  "metric_five_time": {
-    "message": "5시간 잔여"
-  },
   "mode_hidden": {
     "message": "숨기기"
   },

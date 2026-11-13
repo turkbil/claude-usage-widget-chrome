@@ -101,15 +101,6 @@
   "metric_weekly_pct": {
     "message": "Týdně %"
   },
-  "metric_weekly_time": {
-    "message": "Týdně zbývá"
-  },
-  "metric_five_pct": {
-    "message": "5hodinové %"
-  },
-  "metric_five_time": {
-    "message": "5hodinové zbývá"
-  },
   "mode_hidden": {
     "message": "Skrýt"
   },
