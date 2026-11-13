@@ -499,12 +499,6 @@
   "accounts_never_read": {
     "message": "로그인 안 함 · 읽은 적 없음"
   },
-  "grants_row_weekly": {
-    "message": "주간 초기화"
-  },
-  "grants_row_fable": {
-    "message": "Fable 초기화"
-  },
   "grants_row_api": {
     "message": "API 크레딧"
   },
@@ -567,5 +561,14 @@
   },
   "backup_note": {
     "message": "계정은 chrome.storage.sync에도 백업됩니다. Chrome 동기화가 켜져 있으면 Google 계정과 동기화되어 다시 설치해도 돌아옵니다. 저희는 이 데이터를 볼 수 없습니다."
+  },
+  "grants_row_resets": {
+    "message": "무료 초기화"
+  },
+  "grants_cell_weekly": {
+    "message": "주간"
+  },
+  "grants_cell_fable": {
+    "message": "Fable"
   }
 }

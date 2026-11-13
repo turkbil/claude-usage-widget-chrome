@@ -499,12 +499,6 @@
   "accounts_never_read": {
     "message": "ยังไม่ได้เข้าสู่ระบบ · ไม่เคยอ่านข้อมูล"
   },
-  "grants_row_weekly": {
-    "message": "รีเซ็ตรายสัปดาห์"
-  },
-  "grants_row_fable": {
-    "message": "รีเซ็ต Fable"
-  },
   "grants_row_api": {
     "message": "เครดิต API"
   },
@@ -567,5 +561,14 @@
   },
   "backup_note": {
     "message": "บัญชีจะถูกสำรองไว้ใน chrome.storage.sync ด้วย หากเปิดการซิงค์ของ Chrome จะซิงค์กับบัญชี Google ของคุณและกลับมาหลังติดตั้งใหม่ เราไม่เห็นข้อมูลนี้"
+  },
+  "grants_row_resets": {
+    "message": "รีเซ็ตฟรี"
+  },
+  "grants_cell_weekly": {
+    "message": "รายสัปดาห์"
+  },
+  "grants_cell_fable": {
+    "message": "Fable"
   }
 }

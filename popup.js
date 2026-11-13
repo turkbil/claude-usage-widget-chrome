@@ -601,8 +601,7 @@ function setWithResetIcon(el, text) {
 }
 
 // Hesabın altındaki tablo (Mac'teki GrantDetailView), etiket | değer:
-//   Haftalık hak · «↺ 1 · son 11 Ara», hak yoksa soluk «0», hiç okunmadıysa soluk «bilinmiyor»
-//   Fable hakkı  · aynı biçim
+//   Sıfırlama hakkı · «Haftalık ↺ 1 · son 11 Ara» | «Fable ↺ 3 · son 9 Mar» (yoksa 0, okunmadıysa bilinmiyor)
 //   API kredisi  · «$4,42 / $200 hibe · son 16 Kas · bugün $0,00» (3 gün içinde bitecekse kırmızı)
 //   Son okuma    · «haklar 13 Kas 00:36 · API şimdi»
 // Diğer hak türleri (ör. oturum) tabloda yok, ipucunda tek tek.
@@ -626,11 +625,30 @@ function grantRow(s, expanded, apiAllowed, now, permButton) {
     return v;
   };
 
-  for (const [kind, key] of [['weekly', 'grants_row_weekly'], ['fable', 'grants_row_fable']]) {
-    if (s.neverSignedIn || !Array.isArray(r.grants)) { line(key, i18n('grants_unknown_short')); continue; }
-    const { count, first } = grantSummary(s.grantsLeft, kind);
-    if (count === 0) line(key, '0');
-    else line(key, '↺ ' + count + (first != null ? ' · ' + i18n('grant_until', [shortDay(first)]) : ''), 'on', true);
+  // Tek satır, iki hücre: «Sıfırlama hakkı  Haftalık ↺ 1 · son 11 Ara  Fable ↺ 3 · son 9 Mar».
+  {
+    const ln = document.createElement('div');
+    ln.className = 'acct-grid g-line';
+    const l = document.createElement('span');
+    l.className = 'g-label';
+    l.textContent = i18n('grants_row_resets');
+    ln.append(l);
+    for (const [kind, key, cls] of [['weekly', 'grants_cell_weekly', 'g-w'], ['fable', 'grants_cell_fable', 'g-f']]) {
+      const v = document.createElement('span');
+      const title = i18n(key);
+      let text, on = false;
+      if (s.neverSignedIn || !Array.isArray(r.grants)) text = title + ' ' + i18n('grants_unknown_short');
+      else {
+        const { count, first } = grantSummary(s.grantsLeft, kind);
+        if (count === 0) text = title + ' 0';
+        else { text = title + ' ↺ ' + count + (first != null ? ' · ' + i18n('grant_until', [shortDay(first)]) : ''); on = true; }
+      }
+      v.className = 'g-value ' + cls + (on ? ' on' : '');
+      setWithResetIcon(v, text);
+      v.title = text;
+      ln.append(v);
+    }
+    el.append(ln);
   }
 
   // API kredisi: konsoldan, yalnız izin verildiyse.

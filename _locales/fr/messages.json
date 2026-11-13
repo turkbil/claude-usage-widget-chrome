@@ -499,12 +499,6 @@
   "accounts_never_read": {
     "message": "non connecté · jamais lu"
   },
-  "grants_row_weekly": {
-    "message": "Réinit. hebdo"
-  },
-  "grants_row_fable": {
-    "message": "Réinit. Fable"
-  },
   "grants_row_api": {
     "message": "Crédit API"
   },
@@ -567,5 +561,14 @@
   },
   "backup_note": {
     "message": "Les comptes sont aussi sauvegardés dans chrome.storage.sync : si la synchronisation Chrome est active, ils suivent votre compte Google et reviennent après réinstallation. Nous ne voyons jamais ces données."
+  },
+  "grants_row_resets": {
+    "message": "Réinit. offertes"
+  },
+  "grants_cell_weekly": {
+    "message": "Hebdo"
+  },
+  "grants_cell_fable": {
+    "message": "Fable"
   }
 }

@@ -499,12 +499,6 @@
   "accounts_never_read": {
     "message": "neconectat · niciodată citit"
   },
-  "grants_row_weekly": {
-    "message": "Resetări săpt."
-  },
-  "grants_row_fable": {
-    "message": "Resetări Fable"
-  },
   "grants_row_api": {
     "message": "Credit API"
   },
@@ -567,5 +561,14 @@
   },
   "backup_note": {
     "message": "Conturile sunt salvate și în chrome.storage.sync: cu sincronizarea Chrome activă se sincronizează cu contul Google și revin după reinstalare. Noi nu vedem niciodată aceste date."
+  },
+  "grants_row_resets": {
+    "message": "Resetări gratuite"
+  },
+  "grants_cell_weekly": {
+    "message": "Săptămână"
+  },
+  "grants_cell_fable": {
+    "message": "Fable"
   }
 }

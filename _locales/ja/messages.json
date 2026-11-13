@@ -499,12 +499,6 @@
   "accounts_never_read": {
     "message": "未ログイン · 一度も読み込まれていません"
   },
-  "grants_row_weekly": {
-    "message": "週次リセット"
-  },
-  "grants_row_fable": {
-    "message": "Fableリセット"
-  },
   "grants_row_api": {
     "message": "APIクレジット"
   },
@@ -567,5 +561,14 @@
   },
   "backup_note": {
     "message": "アカウントは chrome.storage.sync にもバックアップされます。Chrome の同期がオンなら Google アカウントと同期され、再インストール後に戻ります。私たちがこのデータを見ることはありません。"
+  },
+  "grants_row_resets": {
+    "message": "無料リセット"
+  },
+  "grants_cell_weekly": {
+    "message": "週間"
+  },
+  "grants_cell_fable": {
+    "message": "Fable"
   }
 }

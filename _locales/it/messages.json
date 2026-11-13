@@ -499,12 +499,6 @@
   "accounts_never_read": {
     "message": "non connesso · mai letto"
   },
-  "grants_row_weekly": {
-    "message": "Reset settim."
-  },
-  "grants_row_fable": {
-    "message": "Reset Fable"
-  },
   "grants_row_api": {
     "message": "Credito API"
   },
@@ -567,5 +561,14 @@
   },
   "backup_note": {
     "message": "Gli account vengono salvati anche in chrome.storage.sync: con la sincronizzazione di Chrome attiva si sincronizzano con il tuo account Google e tornano dopo la reinstallazione. Non vediamo mai questi dati."
+  },
+  "grants_row_resets": {
+    "message": "Reset gratuiti"
+  },
+  "grants_cell_weekly": {
+    "message": "Settimana"
+  },
+  "grants_cell_fable": {
+    "message": "Fable"
   }
 }

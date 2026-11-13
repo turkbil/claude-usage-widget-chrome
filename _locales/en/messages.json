@@ -1,138 +1,574 @@
 {
-  "app_name":        { "message": "Claude Usage Widget" },
-  "app_description": { "message": "Weekly Claude usage in the toolbar, with forecast and alerts — remembers all your accounts and their free resets." },
-
-  "section_weekly":     { "message": "WEEKLY" },
-  "section_five_hour":  { "message": "5-HOUR WINDOW" },
-
-  "label_all_models": { "message": "All models" },
-  "label_sonnet":     { "message": "Sonnet" },
-  "label_usage":      { "message": "Usage" },
-
-  "value_percent":    { "message": "$1%", "placeholders": { "1": { "content": "$1" } } },
-  "remaining_suffix": { "message": "$1 left", "placeholders": { "1": { "content": "$1" } } },
-  "time_days_hours":  { "message": "$1d $2h", "placeholders": { "1": { "content": "$1" }, "2": { "content": "$2" } } },
-  "time_hours_minutes": { "message": "$1h $2m", "placeholders": { "1": { "content": "$1" }, "2": { "content": "$2" } } },
-  "time_minutes":     { "message": "$1m", "placeholders": { "1": { "content": "$1" } } },
-  "time_reset":       { "message": "reset" },
-
-  "footer_updated":   { "message": "Updated: $1", "placeholders": { "1": { "content": "$1" } } },
-
-  "menu_refresh":     { "message": "Refresh now" },
-  "menu_open_usage":  { "message": "Open usage page" },
-
-  "settings_title":   { "message": "Claude Usage Widget — Settings" },
-
-  "menu_title_content":   { "message": "Title content" },
-  "menu_icon":            { "message": "Icon" },
-  "menu_refresh_interval":{ "message": "Refresh interval" },
-  "menu_notifications":   { "message": "Notifications" },
-
-  "metric_weekly_pct":  { "message": "Weekly %" },
-
-  "mode_hidden": { "message": "Hide" },
-  "mode_text":   { "message": "Text" },
-  "mode_donut":  { "message": "Donut" },
-
-  "icon_custom": { "message": "Custom emoji" },
-  "icon_donut":  { "message": "Donut summary" },
-  "icon_none":   { "message": "No icon" },
-
-  "refresh_30s": { "message": "30 seconds" },
-  "refresh_1m":  { "message": "1 minute" },
-  "refresh_5m":  { "message": "5 minutes" },
-  "refresh_10m": { "message": "10 minutes" },
-
-  "notifications_enable":   { "message": "Enable threshold alerts" },
-  "notifications_warn":     { "message": "Warning" },
-  "notifications_alert":    { "message": "Alert" },
-  "notifications_critical": { "message": "Critical" },
-  "notification_warn":      { "message": "Weekly usage hit $1% — pace yourself.", "placeholders": { "1": { "content": "$1" } } },
-  "notification_alert":     { "message": "Weekly usage at $1% — about 3 days left.", "placeholders": { "1": { "content": "$1" } } },
-  "notification_critical":  { "message": "Weekly usage critical at $1% — consider pausing heavy sessions.", "placeholders": { "1": { "content": "$1" } } },
-
-  "forecast_under":    { "message": "↗ Projected end-of-week: $1%", "placeholders": { "1": { "content": "$1" } } },
-  "forecast_over":     { "message": "⚠ At this pace, limit in ~$1", "placeholders": { "1": { "content": "$1" } } },
-  "forecast_exceeded": { "message": "⚠ Limit exceeded" },
-
-  "sparkline_empty":   { "message": "trend data accumulating…" },
-
-  "error_no_session":   { "message": "No claude.ai session — please log in via your browser" },
-  "error_api_parse":    { "message": "Usage JSON parse error" },
-  "error_org_not_found":{ "message": "Organization ID not found" },
-
-  "section_accounts":      { "message": "ACCOUNTS" },
-  "accounts_now":          { "message": "now" },
-  "accounts_ago":          { "message": "$1 ago", "placeholders": { "1": { "content": "$1" } } },
-  "time_hours_short":      { "message": "$1h", "placeholders": { "1": { "content": "$1" } } },
-  "time_days_short":       { "message": "$1d", "placeholders": { "1": { "content": "$1" } } },
-  "accounts_plan_until":   { "message": "Plan until $1", "placeholders": { "1": { "content": "$1" } } },
-  "accounts_plan_passed":  { "message": "date passed" },
-  "accounts_resets":       { "message": "$1 resets left", "placeholders": { "1": { "content": "$1" } } },
-  "accounts_resets_split": { "message": "$1 weekly · $2 $3 resets left", "placeholders": { "1": { "content": "$1" }, "2": { "content": "$2" }, "3": { "content": "$3" } } },
-  "accounts_stale_note": {"message": "Dimmed = old data · * reset since then · ↺ = free reset · orange = plan ending"},
-  "accounts_hint_current": {"message": "$1% unused here · resets in $2", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}},
-  "accounts_hint_other": {"message": "Use $1 first · $2% unused · resets in $3", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}, "3": {"content": "$3"}}},
-  "label_scoped_cap": {"message": "$1 · max $2%", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}},
-  "detail_reset": {"message": "Resets"},
-  "detail_plan": {"message": "Plan ends"},
-  "detail_renews": {"message": "Renews"},
-  "detail_last_week": {"message": "last week"},
-  "detail_grants": {"message": "Free resets"},
-  "detail_daily": {"message": "Daily budget"},
-  "detail_breakdown": {"message": "Usage"},
-  "col_left": {"message": "WEEK"},
-  "col_reset": {"message": "RESETS"},
-  "col_plan": {"message": "MONTH"},
-  "grant_weekly": {"message": "$1 weekly", "placeholders": {"1": {"content": "$1"}}},
-  "grant_fable": {"message": "$1 Fable", "placeholders": {"1": {"content": "$1"}}},
-  "grant_session": {"message": "$1 session", "placeholders": {"1": {"content": "$1"}}},
-  "grant_other": {"message": "$1 reset", "placeholders": {"1": {"content": "$1"}}},
-  "grant_until": {"message": "until $1", "placeholders": {"1": {"content": "$1"}}},
-  "tip_weekly": {"message": "Weekly: $1 left · ↻ $2 ($3)", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}, "3": {"content": "$3"}}},
-  "tip_scoped": {"message": "$1: $2% left", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}},
-  "tip_seen": {"message": "Last data: $1", "placeholders": {"1": {"content": "$1"}}},
-  "tip_rolled": {"message": "* Should have reset since then."},
-  "tip_refresh": {"message": "Sign in to this account to update it."},
-  "tip_plan_ends": {"message": "Plan ends $1", "placeholders": {"1": {"content": "$1"}}},
-  "notification_plan_end": {"message": "The $1 plan ends on $2 — use the quota left.", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}},
-  "notification_grant_end": {"message": "$1 has an unused free reset: $2.", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}},
-  "tip_remove": {"message": "Hide or delete"},
-  "hide_title": {"message": "What should happen to $1?", "placeholders": {"1": {"content": "$1"}}},
-  "hide_body_hide": {"message": "Hide: $1 disappears from the list, hints and notifications; its data is kept and “Show hidden accounts” brings it back.", "placeholders": {"1": {"content": "$1"}}},
-  "hide_body_delete": {"message": "Delete: the record is removed; it is added again from scratch the next time you sign in to it."},
-  "hide_confirm": {"message": "Hide"},
-  "hide_delete": {"message": "Delete"},
-  "hide_cancel": {"message": "Cancel"},
-  "hide_show": {"message": "Show hidden accounts ($1)", "placeholders": {"1": {"content": "$1"}}},
-  "icon_hint": {"message": "Show the next account in the toolbar tooltip (⏳ claude1)"},
-  "grants_show": {"message": "Show free resets"},
-  "grants_hide": {"message": "Hide free resets"},
-  "grants_unknown_short": {"message": "unknown"},
-  "col_fable": {"message": "FABLE"},
-  "accounts_not_signed_in": {"message": "not signed in"},
-  "accounts_never_read": {"message": "not signed in · never read in this browser"},
-  "grants_row_weekly": {"message": "Weekly resets"},
-  "grants_row_fable": {"message": "Fable resets"},
-  "grants_row_api": {"message": "API credit"},
-  "grants_row_seen": {"message": "Last read"},
-  "grants_seen_resets": {"message": "resets $1"},
-  "grants_seen_api": {"message": "API $1"},
-  "api_unknown": {"message": "unknown · shows after a console sign-in"},
-  "api_credit": {"message": "$1 / $2 granted"},
-  "api_today": {"message": "today $1"},
-  "api_today_total": {"message": "TODAY API $1 · $2 ACCOUNTS"},
-  "notification_api_end": {"message": "$1 has $2 of API credit expiring on $3."},
-  "api_no_permission": {"message": "not allowed · API credit and today’s spend are not read"},
-  "api_permission_button": {"message": "Show API credits — allow access"},
-  "api_permission_note": {"message": "Without this permission, the API credit balance, the grant expiry date and today’s API spend are not shown."},
-  "api_permission_granted": {"message": "Allowed — API credit is read from the console."},
-  "api_permission_short": {"message": "show — allow access"},
-  "mac_import_popup": {"message": "Get accounts from the Mac app"},
-  "mac_import_settings": {"message": "Import accounts from the Mac app"},
-  "mac_import_note": {"message": "If the Mac app is running and Settings → Network → Local HTTP is on, accounts are taken from it."},
-  "mac_import_missing": {"message": "Mac app not found"},
-  "mac_import_done": {"message": "$1 accounts imported"},
-  "backup_label": {"message": "Account backup"},
-  "backup_note": {"message": "Accounts are also backed up to chrome.storage.sync: if Chrome sync is on, they sync with your Google account and come back after reinstalling. We never see this data."}
+  "app_name": {
+    "message": "Claude Usage Widget"
+  },
+  "app_description": {
+    "message": "Weekly Claude usage in the toolbar, with forecast and alerts — remembers all your accounts and their free resets."
+  },
+  "section_weekly": {
+    "message": "WEEKLY"
+  },
+  "section_five_hour": {
+    "message": "5-HOUR WINDOW"
+  },
+  "label_all_models": {
+    "message": "All models"
+  },
+  "label_sonnet": {
+    "message": "Sonnet"
+  },
+  "label_usage": {
+    "message": "Usage"
+  },
+  "value_percent": {
+    "message": "$1%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "remaining_suffix": {
+    "message": "$1 left",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_days_hours": {
+    "message": "$1d $2h",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "time_hours_minutes": {
+    "message": "$1h $2m",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "time_minutes": {
+    "message": "$1m",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_reset": {
+    "message": "reset"
+  },
+  "footer_updated": {
+    "message": "Updated: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "menu_refresh": {
+    "message": "Refresh now"
+  },
+  "menu_open_usage": {
+    "message": "Open usage page"
+  },
+  "settings_title": {
+    "message": "Claude Usage Widget — Settings"
+  },
+  "menu_title_content": {
+    "message": "Title content"
+  },
+  "menu_icon": {
+    "message": "Icon"
+  },
+  "menu_refresh_interval": {
+    "message": "Refresh interval"
+  },
+  "menu_notifications": {
+    "message": "Notifications"
+  },
+  "metric_weekly_pct": {
+    "message": "Weekly %"
+  },
+  "mode_hidden": {
+    "message": "Hide"
+  },
+  "mode_text": {
+    "message": "Text"
+  },
+  "mode_donut": {
+    "message": "Donut"
+  },
+  "icon_custom": {
+    "message": "Custom emoji"
+  },
+  "icon_donut": {
+    "message": "Donut summary"
+  },
+  "icon_none": {
+    "message": "No icon"
+  },
+  "refresh_30s": {
+    "message": "30 seconds"
+  },
+  "refresh_1m": {
+    "message": "1 minute"
+  },
+  "refresh_5m": {
+    "message": "5 minutes"
+  },
+  "refresh_10m": {
+    "message": "10 minutes"
+  },
+  "notifications_enable": {
+    "message": "Enable threshold alerts"
+  },
+  "notifications_warn": {
+    "message": "Warning"
+  },
+  "notifications_alert": {
+    "message": "Alert"
+  },
+  "notifications_critical": {
+    "message": "Critical"
+  },
+  "notification_warn": {
+    "message": "Weekly usage hit $1% — pace yourself.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_alert": {
+    "message": "Weekly usage at $1% — about 3 days left.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_critical": {
+    "message": "Weekly usage critical at $1% — consider pausing heavy sessions.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "forecast_under": {
+    "message": "↗ Projected end-of-week: $1%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "forecast_over": {
+    "message": "⚠ At this pace, limit in ~$1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "forecast_exceeded": {
+    "message": "⚠ Limit exceeded"
+  },
+  "sparkline_empty": {
+    "message": "trend data accumulating…"
+  },
+  "error_no_session": {
+    "message": "No claude.ai session — please log in via your browser"
+  },
+  "error_api_parse": {
+    "message": "Usage JSON parse error"
+  },
+  "error_org_not_found": {
+    "message": "Organization ID not found"
+  },
+  "section_accounts": {
+    "message": "ACCOUNTS"
+  },
+  "accounts_now": {
+    "message": "now"
+  },
+  "accounts_ago": {
+    "message": "$1 ago",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_hours_short": {
+    "message": "$1h",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_days_short": {
+    "message": "$1d",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_until": {
+    "message": "Plan until $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_passed": {
+    "message": "date passed"
+  },
+  "accounts_resets": {
+    "message": "$1 resets left",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_resets_split": {
+    "message": "$1 weekly · $2 $3 resets left",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_stale_note": {
+    "message": "Dimmed = old data · * reset since then · ↺ = free reset · orange = plan ending"
+  },
+  "accounts_hint_current": {
+    "message": "$1% unused here · resets in $2",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "accounts_hint_other": {
+    "message": "Use $1 first · $2% unused · resets in $3",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "label_scoped_cap": {
+    "message": "$1 · max $2%",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "detail_reset": {
+    "message": "Resets"
+  },
+  "detail_plan": {
+    "message": "Plan ends"
+  },
+  "detail_renews": {
+    "message": "Renews"
+  },
+  "detail_last_week": {
+    "message": "last week"
+  },
+  "detail_grants": {
+    "message": "Free resets"
+  },
+  "detail_daily": {
+    "message": "Daily budget"
+  },
+  "detail_breakdown": {
+    "message": "Usage"
+  },
+  "col_left": {
+    "message": "WEEK"
+  },
+  "col_reset": {
+    "message": "RESETS"
+  },
+  "col_plan": {
+    "message": "MONTH"
+  },
+  "grant_weekly": {
+    "message": "$1 weekly",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_fable": {
+    "message": "$1 Fable",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_session": {
+    "message": "$1 session",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_other": {
+    "message": "$1 reset",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_until": {
+    "message": "until $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_weekly": {
+    "message": "Weekly: $1 left · ↻ $2 ($3)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "tip_scoped": {
+    "message": "$1: $2% left",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_seen": {
+    "message": "Last data: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_rolled": {
+    "message": "* Should have reset since then."
+  },
+  "tip_refresh": {
+    "message": "Sign in to this account to update it."
+  },
+  "tip_plan_ends": {
+    "message": "Plan ends $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_plan_end": {
+    "message": "The $1 plan ends on $2 — use the quota left.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "notification_grant_end": {
+    "message": "$1 has an unused free reset: $2.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_remove": {
+    "message": "Hide or delete"
+  },
+  "hide_title": {
+    "message": "What should happen to $1?",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_hide": {
+    "message": "Hide: $1 disappears from the list, hints and notifications; its data is kept and “Show hidden accounts” brings it back.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_delete": {
+    "message": "Delete: the record is removed; it is added again from scratch the next time you sign in to it."
+  },
+  "hide_confirm": {
+    "message": "Hide"
+  },
+  "hide_delete": {
+    "message": "Delete"
+  },
+  "hide_cancel": {
+    "message": "Cancel"
+  },
+  "hide_show": {
+    "message": "Show hidden accounts ($1)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "icon_hint": {
+    "message": "Show the next account in the toolbar tooltip (⏳ claude1)"
+  },
+  "grants_show": {
+    "message": "Show free resets"
+  },
+  "grants_hide": {
+    "message": "Hide free resets"
+  },
+  "grants_unknown_short": {
+    "message": "unknown"
+  },
+  "col_fable": {
+    "message": "FABLE"
+  },
+  "accounts_not_signed_in": {
+    "message": "not signed in"
+  },
+  "accounts_never_read": {
+    "message": "not signed in · never read in this browser"
+  },
+  "grants_row_api": {
+    "message": "API credit"
+  },
+  "grants_row_seen": {
+    "message": "Last read"
+  },
+  "grants_seen_resets": {
+    "message": "resets $1"
+  },
+  "grants_seen_api": {
+    "message": "API $1"
+  },
+  "api_unknown": {
+    "message": "unknown · shows after a console sign-in"
+  },
+  "api_credit": {
+    "message": "$1 / $2 granted"
+  },
+  "api_today": {
+    "message": "today $1"
+  },
+  "api_today_total": {
+    "message": "TODAY API $1 · $2 ACCOUNTS"
+  },
+  "notification_api_end": {
+    "message": "$1 has $2 of API credit expiring on $3."
+  },
+  "api_no_permission": {
+    "message": "not allowed · API credit and today’s spend are not read"
+  },
+  "api_permission_button": {
+    "message": "Show API credits — allow access"
+  },
+  "api_permission_note": {
+    "message": "Without this permission, the API credit balance, the grant expiry date and today’s API spend are not shown."
+  },
+  "api_permission_granted": {
+    "message": "Allowed — API credit is read from the console."
+  },
+  "api_permission_short": {
+    "message": "show — allow access"
+  },
+  "mac_import_popup": {
+    "message": "Get accounts from the Mac app"
+  },
+  "mac_import_settings": {
+    "message": "Import accounts from the Mac app"
+  },
+  "mac_import_note": {
+    "message": "If the Mac app is running and Settings → Network → Local HTTP is on, accounts are taken from it."
+  },
+  "mac_import_missing": {
+    "message": "Mac app not found"
+  },
+  "mac_import_done": {
+    "message": "$1 accounts imported"
+  },
+  "backup_label": {
+    "message": "Account backup"
+  },
+  "backup_note": {
+    "message": "Accounts are also backed up to chrome.storage.sync: if Chrome sync is on, they sync with your Google account and come back after reinstalling. We never see this data."
+  },
+  "grants_row_resets": {
+    "message": "Free resets"
+  },
+  "grants_cell_weekly": {
+    "message": "Weekly"
+  },
+  "grants_cell_fable": {
+    "message": "Fable"
+  }
 }

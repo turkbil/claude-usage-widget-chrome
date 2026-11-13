@@ -1,138 +1,574 @@
 {
-  "app_name":        { "message": "Claude Kullanım Widget'ı" },
-  "app_description": { "message": "Claude haftalık kullanımı araç çubuğunda, tahmin ve bildirimlerle; tüm hesaplarınızı ve sıfırlama haklarını hatırlar." },
-
-  "section_weekly":     { "message": "BU HAFTA" },
-  "section_five_hour":  { "message": "5 SAATLİK PENCERE" },
-
-  "label_all_models": { "message": "Tüm modeller" },
-  "label_sonnet":     { "message": "Sonnet" },
-  "label_usage":      { "message": "Kullanım" },
-
-  "value_percent":    { "message": "%$1", "placeholders": { "1": { "content": "$1" } } },
-  "remaining_suffix": { "message": "$1 kaldı", "placeholders": { "1": { "content": "$1" } } },
-  "time_days_hours":  { "message": "$1g $2s", "placeholders": { "1": { "content": "$1" }, "2": { "content": "$2" } } },
-  "time_hours_minutes": { "message": "$1s $2dk", "placeholders": { "1": { "content": "$1" }, "2": { "content": "$2" } } },
-  "time_minutes":     { "message": "$1dk", "placeholders": { "1": { "content": "$1" } } },
-  "time_reset":       { "message": "sıfırlandı" },
-
-  "footer_updated":   { "message": "Güncelleme: $1", "placeholders": { "1": { "content": "$1" } } },
-
-  "menu_refresh":     { "message": "Şimdi yenile" },
-  "menu_open_usage":  { "message": "Kullanım sayfasını aç" },
-
-  "settings_title":   { "message": "Claude Usage Widget — Ayarlar" },
-
-  "menu_title_content":   { "message": "Başlık içeriği" },
-  "menu_icon":            { "message": "Simge" },
-  "menu_refresh_interval":{ "message": "Yenileme aralığı" },
-  "menu_notifications":   { "message": "Bildirimler" },
-
-  "metric_weekly_pct":  { "message": "Haftalık %" },
-
-  "mode_hidden": { "message": "Gizle" },
-  "mode_text":   { "message": "Yazı" },
-  "mode_donut":  { "message": "Donut" },
-
-  "icon_custom": { "message": "Özel emoji" },
-  "icon_donut":  { "message": "Donut özet" },
-  "icon_none":   { "message": "Simge yok" },
-
-  "refresh_30s": { "message": "30 saniye" },
-  "refresh_1m":  { "message": "1 dakika" },
-  "refresh_5m":  { "message": "5 dakika" },
-  "refresh_10m": { "message": "10 dakika" },
-
-  "notifications_enable":   { "message": "Eşik bildirimlerini etkinleştir" },
-  "notifications_warn":     { "message": "Uyarı" },
-  "notifications_alert":    { "message": "Alarm" },
-  "notifications_critical": { "message": "Kritik" },
-  "notification_warn":      { "message": "Haftalık kullanım %$1'e ulaştı — yavaşla.", "placeholders": { "1": { "content": "$1" } } },
-  "notification_alert":     { "message": "Haftalık kullanım %$1 — yaklaşık 3 gün kaldı.", "placeholders": { "1": { "content": "$1" } } },
-  "notification_critical":  { "message": "Haftalık kullanım kritik %$1 — yoğun oturumları ertele.", "placeholders": { "1": { "content": "$1" } } },
-
-  "forecast_under":    { "message": "↗ Hafta sonu tahmini: %$1", "placeholders": { "1": { "content": "$1" } } },
-  "forecast_over":     { "message": "⚠ Bu hızla yaklaşık $1 sonra limit", "placeholders": { "1": { "content": "$1" } } },
-  "forecast_exceeded": { "message": "⚠ Limit aşıldı" },
-
-  "sparkline_empty":   { "message": "trend verisi birikiyor…" },
-
-  "error_no_session":   { "message": "claude.ai oturumu yok — tarayıcında giriş yap" },
-  "error_api_parse":    { "message": "Kullanım JSON ayrıştırma hatası" },
-  "error_org_not_found":{ "message": "Organizasyon ID bulunamadı" },
-
-  "section_accounts":      { "message": "HESAPLAR" },
-  "accounts_now":          { "message": "şimdi" },
-  "accounts_ago":          { "message": "$1 önce", "placeholders": { "1": { "content": "$1" } } },
-  "time_hours_short":      { "message": "$1s", "placeholders": { "1": { "content": "$1" } } },
-  "time_days_short":       { "message": "$1g", "placeholders": { "1": { "content": "$1" } } },
-  "accounts_plan_until":   { "message": "Abonelik $1", "placeholders": { "1": { "content": "$1" } } },
-  "accounts_plan_passed":  { "message": "tarih geçti" },
-  "accounts_resets":       { "message": "$1 sıfırlama kaldı", "placeholders": { "1": { "content": "$1" } } },
-  "accounts_resets_split": { "message": "$1 haftalık · $2 $3 sıfırlama", "placeholders": { "1": { "content": "$1" }, "2": { "content": "$2" }, "3": { "content": "$3" } } },
-  "accounts_stale_note": {"message": "Soluk = eski veri · * o tarihten beri sıfırlandı · ↺ = hak · turuncu = abonelik bitiyor"},
-  "accounts_hint_current": {"message": "Bu hesapta %$1 boş · $2 sonra sıfırlanıyor", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}},
-  "accounts_hint_other": {"message": "Önce $1 · %$2 boş · $3 sonra sıfırlanıyor", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}, "3": {"content": "$3"}}},
-  "label_scoped_cap": {"message": "$1 · en çok %$2", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}},
-  "detail_reset": {"message": "Sıfırlama"},
-  "detail_plan": {"message": "Abonelik bitişi"},
-  "detail_renews": {"message": "Yenileme"},
-  "detail_last_week": {"message": "son hafta"},
-  "detail_grants": {"message": "Sıfırlama hakkı"},
-  "detail_daily": {"message": "Günlük pay"},
-  "detail_breakdown": {"message": "Kullanım"},
-  "col_left": {"message": "HAFTA"},
-  "col_reset": {"message": "SIFIRLAMA"},
-  "col_plan": {"message": "AYLIK"},
-  "grant_weekly": {"message": "$1 haftalık", "placeholders": {"1": {"content": "$1"}}},
-  "grant_fable": {"message": "$1 Fable", "placeholders": {"1": {"content": "$1"}}},
-  "grant_session": {"message": "$1 oturum", "placeholders": {"1": {"content": "$1"}}},
-  "grant_other": {"message": "$1 sıfırlama", "placeholders": {"1": {"content": "$1"}}},
-  "grant_until": {"message": "son $1", "placeholders": {"1": {"content": "$1"}}},
-  "tip_weekly": {"message": "Haftalık: $1 kaldı · ↻ $2 ($3)", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}, "3": {"content": "$3"}}},
-  "tip_scoped": {"message": "$1: %$2 kaldı", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}},
-  "tip_seen": {"message": "Son veri: $1", "placeholders": {"1": {"content": "$1"}}},
-  "tip_rolled": {"message": "* O tarihten beri sıfırlanmış olmalı."},
-  "tip_refresh": {"message": "Güncellemek için bu hesaba giriş yapın."},
-  "tip_plan_ends": {"message": "Abonelik $1 tarihinde bitiyor", "placeholders": {"1": {"content": "$1"}}},
-  "notification_plan_end": {"message": "$1 aboneliği $2 tarihinde bitiyor; kalan kotayı kullanın.", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}},
-  "notification_grant_end": {"message": "$1 hesabında kullanılmamış sıfırlama hakkı: $2.", "placeholders": {"1": {"content": "$1"}, "2": {"content": "$2"}}},
-  "tip_remove": {"message": "Gizle ya da sil"},
-  "hide_title": {"message": "$1 ne yapılsın?", "placeholders": {"1": {"content": "$1"}}},
-  "hide_body_hide": {"message": "Gizle: $1 listede, uyarılarda ve bildirimlerde görünmez; veri saklanır, «Gizlenen hesapları göster» ile geri gelir.", "placeholders": {"1": {"content": "$1"}}},
-  "hide_body_delete": {"message": "Sil: kayıt silinir; bu hesaba yeniden giriş yaparsanız sıfırdan eklenir."},
-  "hide_confirm": {"message": "Gizle"},
-  "hide_delete": {"message": "Sil"},
-  "hide_cancel": {"message": "Vazgeç"},
-  "hide_show": {"message": "Gizlenen hesapları göster ($1)", "placeholders": {"1": {"content": "$1"}}},
-  "icon_hint": {"message": "Sıradaki hesabı araç çubuğu ipucunda göster (⏳ claude1)"},
-  "grants_show": {"message": "Sıfırlama haklarını göster"},
-  "grants_hide": {"message": "Sıfırlama haklarını gizle"},
-  "grants_unknown_short": {"message": "bilinmiyor"},
-  "col_fable": {"message": "FABLE"},
-  "accounts_not_signed_in": {"message": "giriş yapılmadı"},
-  "accounts_never_read": {"message": "giriş yapılmadı · bu hesabın verisi hiç okunmadı"},
-  "grants_row_weekly": {"message": "Haftalık hak"},
-  "grants_row_fable": {"message": "Fable hakkı"},
-  "grants_row_api": {"message": "API kredisi"},
-  "grants_row_seen": {"message": "Son okuma"},
-  "grants_seen_resets": {"message": "haklar $1"},
-  "grants_seen_api": {"message": "API $1"},
-  "api_unknown": {"message": "bilinmiyor · konsola girince görünür"},
-  "api_credit": {"message": "$1 / $2 hibe"},
-  "api_today": {"message": "bugün $1"},
-  "api_today_total": {"message": "BUGÜN API $1 · $2 HESAP"},
-  "notification_api_end": {"message": "$1 hesabının $2 API kredisi $3 tarihinde bitiyor."},
-  "api_no_permission": {"message": "izin verilmedi · API kredisi ve bugünkü harcama hesaplanmaz"},
-  "api_permission_button": {"message": "API kredilerini göster — izin ver"},
-  "api_permission_note": {"message": "İzin verilmezse API kredisi bakiyesi, hibe son tarihi ve bugünkü API harcaması gösterilmez."},
-  "api_permission_granted": {"message": "İzin verildi — API kredisi konsoldan okunuyor."},
-  "api_permission_short": {"message": "göster — izin ver"},
-  "mac_import_popup": {"message": "Mac uygulamasındaki hesapları al"},
-  "mac_import_settings": {"message": "Mac uygulamasından hesapları içe aktar"},
-  "mac_import_note": {"message": "Mac uygulaması açık ve Ayarlar → Ağ → Yerel HTTP açıksa hesaplar oradan alınır."},
-  "mac_import_missing": {"message": "Mac uygulaması bulunamadı"},
-  "mac_import_done": {"message": "$1 hesap alındı"},
-  "backup_label": {"message": "Hesap yedeği"},
-  "backup_note": {"message": "Hesaplar chrome.storage.sync içine de yedeklenir: Chrome eşitlemesi açıksa Google hesabınızla eşitlenir ve eklentiyi yeniden kurunca geri gelir. Biz bu veriyi görmeyiz."}
+  "app_name": {
+    "message": "Claude Kullanım Widget'ı"
+  },
+  "app_description": {
+    "message": "Claude haftalık kullanımı araç çubuğunda, tahmin ve bildirimlerle; tüm hesaplarınızı ve sıfırlama haklarını hatırlar."
+  },
+  "section_weekly": {
+    "message": "BU HAFTA"
+  },
+  "section_five_hour": {
+    "message": "5 SAATLİK PENCERE"
+  },
+  "label_all_models": {
+    "message": "Tüm modeller"
+  },
+  "label_sonnet": {
+    "message": "Sonnet"
+  },
+  "label_usage": {
+    "message": "Kullanım"
+  },
+  "value_percent": {
+    "message": "%$1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "remaining_suffix": {
+    "message": "$1 kaldı",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_days_hours": {
+    "message": "$1g $2s",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "time_hours_minutes": {
+    "message": "$1s $2dk",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "time_minutes": {
+    "message": "$1dk",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_reset": {
+    "message": "sıfırlandı"
+  },
+  "footer_updated": {
+    "message": "Güncelleme: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "menu_refresh": {
+    "message": "Şimdi yenile"
+  },
+  "menu_open_usage": {
+    "message": "Kullanım sayfasını aç"
+  },
+  "settings_title": {
+    "message": "Claude Usage Widget — Ayarlar"
+  },
+  "menu_title_content": {
+    "message": "Başlık içeriği"
+  },
+  "menu_icon": {
+    "message": "Simge"
+  },
+  "menu_refresh_interval": {
+    "message": "Yenileme aralığı"
+  },
+  "menu_notifications": {
+    "message": "Bildirimler"
+  },
+  "metric_weekly_pct": {
+    "message": "Haftalık %"
+  },
+  "mode_hidden": {
+    "message": "Gizle"
+  },
+  "mode_text": {
+    "message": "Yazı"
+  },
+  "mode_donut": {
+    "message": "Donut"
+  },
+  "icon_custom": {
+    "message": "Özel emoji"
+  },
+  "icon_donut": {
+    "message": "Donut özet"
+  },
+  "icon_none": {
+    "message": "Simge yok"
+  },
+  "refresh_30s": {
+    "message": "30 saniye"
+  },
+  "refresh_1m": {
+    "message": "1 dakika"
+  },
+  "refresh_5m": {
+    "message": "5 dakika"
+  },
+  "refresh_10m": {
+    "message": "10 dakika"
+  },
+  "notifications_enable": {
+    "message": "Eşik bildirimlerini etkinleştir"
+  },
+  "notifications_warn": {
+    "message": "Uyarı"
+  },
+  "notifications_alert": {
+    "message": "Alarm"
+  },
+  "notifications_critical": {
+    "message": "Kritik"
+  },
+  "notification_warn": {
+    "message": "Haftalık kullanım %$1'e ulaştı — yavaşla.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_alert": {
+    "message": "Haftalık kullanım %$1 — yaklaşık 3 gün kaldı.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_critical": {
+    "message": "Haftalık kullanım kritik %$1 — yoğun oturumları ertele.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "forecast_under": {
+    "message": "↗ Hafta sonu tahmini: %$1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "forecast_over": {
+    "message": "⚠ Bu hızla yaklaşık $1 sonra limit",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "forecast_exceeded": {
+    "message": "⚠ Limit aşıldı"
+  },
+  "sparkline_empty": {
+    "message": "trend verisi birikiyor…"
+  },
+  "error_no_session": {
+    "message": "claude.ai oturumu yok — tarayıcında giriş yap"
+  },
+  "error_api_parse": {
+    "message": "Kullanım JSON ayrıştırma hatası"
+  },
+  "error_org_not_found": {
+    "message": "Organizasyon ID bulunamadı"
+  },
+  "section_accounts": {
+    "message": "HESAPLAR"
+  },
+  "accounts_now": {
+    "message": "şimdi"
+  },
+  "accounts_ago": {
+    "message": "$1 önce",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_hours_short": {
+    "message": "$1s",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "time_days_short": {
+    "message": "$1g",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_until": {
+    "message": "Abonelik $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_plan_passed": {
+    "message": "tarih geçti"
+  },
+  "accounts_resets": {
+    "message": "$1 sıfırlama kaldı",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "accounts_resets_split": {
+    "message": "$1 haftalık · $2 $3 sıfırlama",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "accounts_stale_note": {
+    "message": "Soluk = eski veri · * o tarihten beri sıfırlandı · ↺ = hak · turuncu = abonelik bitiyor"
+  },
+  "accounts_hint_current": {
+    "message": "Bu hesapta %$1 boş · $2 sonra sıfırlanıyor",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "accounts_hint_other": {
+    "message": "Önce $1 · %$2 boş · $3 sonra sıfırlanıyor",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "label_scoped_cap": {
+    "message": "$1 · en çok %$2",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "detail_reset": {
+    "message": "Sıfırlama"
+  },
+  "detail_plan": {
+    "message": "Abonelik bitişi"
+  },
+  "detail_renews": {
+    "message": "Yenileme"
+  },
+  "detail_last_week": {
+    "message": "son hafta"
+  },
+  "detail_grants": {
+    "message": "Sıfırlama hakkı"
+  },
+  "detail_daily": {
+    "message": "Günlük pay"
+  },
+  "detail_breakdown": {
+    "message": "Kullanım"
+  },
+  "col_left": {
+    "message": "HAFTA"
+  },
+  "col_reset": {
+    "message": "SIFIRLAMA"
+  },
+  "col_plan": {
+    "message": "AYLIK"
+  },
+  "grant_weekly": {
+    "message": "$1 haftalık",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_fable": {
+    "message": "$1 Fable",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_session": {
+    "message": "$1 oturum",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_other": {
+    "message": "$1 sıfırlama",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "grant_until": {
+    "message": "son $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_weekly": {
+    "message": "Haftalık: $1 kaldı · ↻ $2 ($3)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      },
+      "3": {
+        "content": "$3"
+      }
+    }
+  },
+  "tip_scoped": {
+    "message": "$1: %$2 kaldı",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_seen": {
+    "message": "Son veri: $1",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "tip_rolled": {
+    "message": "* O tarihten beri sıfırlanmış olmalı."
+  },
+  "tip_refresh": {
+    "message": "Güncellemek için bu hesaba giriş yapın."
+  },
+  "tip_plan_ends": {
+    "message": "Abonelik $1 tarihinde bitiyor",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "notification_plan_end": {
+    "message": "$1 aboneliği $2 tarihinde bitiyor; kalan kotayı kullanın.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "notification_grant_end": {
+    "message": "$1 hesabında kullanılmamış sıfırlama hakkı: $2.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      },
+      "2": {
+        "content": "$2"
+      }
+    }
+  },
+  "tip_remove": {
+    "message": "Gizle ya da sil"
+  },
+  "hide_title": {
+    "message": "$1 ne yapılsın?",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_hide": {
+    "message": "Gizle: $1 listede, uyarılarda ve bildirimlerde görünmez; veri saklanır, «Gizlenen hesapları göster» ile geri gelir.",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "hide_body_delete": {
+    "message": "Sil: kayıt silinir; bu hesaba yeniden giriş yaparsanız sıfırdan eklenir."
+  },
+  "hide_confirm": {
+    "message": "Gizle"
+  },
+  "hide_delete": {
+    "message": "Sil"
+  },
+  "hide_cancel": {
+    "message": "Vazgeç"
+  },
+  "hide_show": {
+    "message": "Gizlenen hesapları göster ($1)",
+    "placeholders": {
+      "1": {
+        "content": "$1"
+      }
+    }
+  },
+  "icon_hint": {
+    "message": "Sıradaki hesabı araç çubuğu ipucunda göster (⏳ claude1)"
+  },
+  "grants_show": {
+    "message": "Sıfırlama haklarını göster"
+  },
+  "grants_hide": {
+    "message": "Sıfırlama haklarını gizle"
+  },
+  "grants_unknown_short": {
+    "message": "bilinmiyor"
+  },
+  "col_fable": {
+    "message": "FABLE"
+  },
+  "accounts_not_signed_in": {
+    "message": "giriş yapılmadı"
+  },
+  "accounts_never_read": {
+    "message": "giriş yapılmadı · bu hesabın verisi hiç okunmadı"
+  },
+  "grants_row_api": {
+    "message": "API kredisi"
+  },
+  "grants_row_seen": {
+    "message": "Son okuma"
+  },
+  "grants_seen_resets": {
+    "message": "haklar $1"
+  },
+  "grants_seen_api": {
+    "message": "API $1"
+  },
+  "api_unknown": {
+    "message": "bilinmiyor · konsola girince görünür"
+  },
+  "api_credit": {
+    "message": "$1 / $2 hibe"
+  },
+  "api_today": {
+    "message": "bugün $1"
+  },
+  "api_today_total": {
+    "message": "BUGÜN API $1 · $2 HESAP"
+  },
+  "notification_api_end": {
+    "message": "$1 hesabının $2 API kredisi $3 tarihinde bitiyor."
+  },
+  "api_no_permission": {
+    "message": "izin verilmedi · API kredisi ve bugünkü harcama hesaplanmaz"
+  },
+  "api_permission_button": {
+    "message": "API kredilerini göster — izin ver"
+  },
+  "api_permission_note": {
+    "message": "İzin verilmezse API kredisi bakiyesi, hibe son tarihi ve bugünkü API harcaması gösterilmez."
+  },
+  "api_permission_granted": {
+    "message": "İzin verildi — API kredisi konsoldan okunuyor."
+  },
+  "api_permission_short": {
+    "message": "göster — izin ver"
+  },
+  "mac_import_popup": {
+    "message": "Mac uygulamasındaki hesapları al"
+  },
+  "mac_import_settings": {
+    "message": "Mac uygulamasından hesapları içe aktar"
+  },
+  "mac_import_note": {
+    "message": "Mac uygulaması açık ve Ayarlar → Ağ → Yerel HTTP açıksa hesaplar oradan alınır."
+  },
+  "mac_import_missing": {
+    "message": "Mac uygulaması bulunamadı"
+  },
+  "mac_import_done": {
+    "message": "$1 hesap alındı"
+  },
+  "backup_label": {
+    "message": "Hesap yedeği"
+  },
+  "backup_note": {
+    "message": "Hesaplar chrome.storage.sync içine de yedeklenir: Chrome eşitlemesi açıksa Google hesabınızla eşitlenir ve eklentiyi yeniden kurunca geri gelir. Biz bu veriyi görmeyiz."
+  },
+  "grants_row_resets": {
+    "message": "Sıfırlama hakkı"
+  },
+  "grants_cell_weekly": {
+    "message": "Haftalık"
+  },
+  "grants_cell_fable": {
+    "message": "Fable"
+  }
 }

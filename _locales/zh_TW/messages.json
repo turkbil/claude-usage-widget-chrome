@@ -499,12 +499,6 @@
   "accounts_never_read": {
     "message": "未登入 · 從未讀取"
   },
-  "grants_row_weekly": {
-    "message": "每週重設"
-  },
-  "grants_row_fable": {
-    "message": "Fable 重設"
-  },
   "grants_row_api": {
     "message": "API 額度"
   },
@@ -567,5 +561,14 @@
   },
   "backup_note": {
     "message": "帳號也會備份到 chrome.storage.sync：若開啟 Chrome 同步，會與你的 Google 帳號同步，重新安裝後即可取回。我們看不到這些資料。"
+  },
+  "grants_row_resets": {
+    "message": "免費重設"
+  },
+  "grants_cell_weekly": {
+    "message": "每週"
+  },
+  "grants_cell_fable": {
+    "message": "Fable"
   }
 }

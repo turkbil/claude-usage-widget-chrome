@@ -499,12 +499,6 @@
   "accounts_never_read": {
     "message": "не выполнен вход · данные не читались"
   },
-  "grants_row_weekly": {
-    "message": "Недельные сбросы"
-  },
-  "grants_row_fable": {
-    "message": "Сбросы Fable"
-  },
   "grants_row_api": {
     "message": "Кредит API"
   },
@@ -567,5 +561,14 @@
   },
   "backup_note": {
     "message": "Аккаунты также сохраняются в chrome.storage.sync: при включённой синхронизации Chrome они синхронизируются с вашим аккаунтом Google и возвращаются после переустановки. Мы эти данные не видим."
+  },
+  "grants_row_resets": {
+    "message": "Бесплатные сбросы"
+  },
+  "grants_cell_weekly": {
+    "message": "Неделя"
+  },
+  "grants_cell_fable": {
+    "message": "Fable"
   }
 }

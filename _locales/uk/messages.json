@@ -499,12 +499,6 @@
   "accounts_never_read": {
     "message": "вхід не виконано · дані не читалися"
   },
-  "grants_row_weekly": {
-    "message": "Тижневі скидання"
-  },
-  "grants_row_fable": {
-    "message": "Скидання Fable"
-  },
   "grants_row_api": {
     "message": "Кредит API"
   },
@@ -567,5 +561,14 @@
   },
   "backup_note": {
     "message": "Акаунти також зберігаються в chrome.storage.sync: з увімкненою синхронізацією Chrome вони синхронізуються з вашим акаунтом Google і повертаються після перевстановлення. Ми цих даних не бачимо."
+  },
+  "grants_row_resets": {
+    "message": "Безкоштовні скидання"
+  },
+  "grants_cell_weekly": {
+    "message": "Тиждень"
+  },
+  "grants_cell_fable": {
+    "message": "Fable"
   }
 }

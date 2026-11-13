@@ -499,12 +499,6 @@
   "accounts_never_read": {
     "message": "niet ingelogd · nooit gelezen"
   },
-  "grants_row_weekly": {
-    "message": "Weekresets"
-  },
-  "grants_row_fable": {
-    "message": "Fable-resets"
-  },
   "grants_row_api": {
     "message": "API-tegoed"
   },
@@ -567,5 +561,14 @@
   },
   "backup_note": {
     "message": "Accounts worden ook bewaard in chrome.storage.sync: met Chrome-synchronisatie aan synchroniseren ze met je Google-account en komen ze terug na herinstallatie. Wij zien deze gegevens nooit."
+  },
+  "grants_row_resets": {
+    "message": "Gratis resets"
+  },
+  "grants_cell_weekly": {
+    "message": "Week"
+  },
+  "grants_cell_fable": {
+    "message": "Fable"
   }
 }

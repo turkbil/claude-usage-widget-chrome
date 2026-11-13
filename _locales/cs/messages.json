@@ -499,12 +499,6 @@
   "accounts_never_read": {
     "message": "nepřihlášen · nikdy nenačteno"
   },
-  "grants_row_weekly": {
-    "message": "Týdenní resety"
-  },
-  "grants_row_fable": {
-    "message": "Resety Fable"
-  },
   "grants_row_api": {
     "message": "Kredit API"
   },
@@ -567,5 +561,14 @@
   },
   "backup_note": {
     "message": "Účty se zálohují i do chrome.storage.sync: při zapnuté synchronizaci Chromu se synchronizují s vaším účtem Google a po přeinstalaci se vrátí. Tato data nevidíme."
+  },
+  "grants_row_resets": {
+    "message": "Resety zdarma"
+  },
+  "grants_cell_weekly": {
+    "message": "Týden"
+  },
+  "grants_cell_fable": {
+    "message": "Fable"
   }
 }

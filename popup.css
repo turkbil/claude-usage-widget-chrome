@@ -363,3 +363,7 @@ html { overflow-x: hidden; }
 
 /* «↺» yerine çizilen küçük ok: metinle aynı boy ve renk. */
 .reset-ico { width: 0.95em; height: 0.95em; vertical-align: -0.12em; margin-right: 0.08em; }
+
+/* Sıfırlama hakkı satırı iki hücre: haftalık HAFTA/FABLE altında, Fable SIFIRLAMA/AYLIK altında. */
+.g-line > .g-w { grid-column: 2 / 5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.g-line > .g-f { grid-column: 5 / -1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
