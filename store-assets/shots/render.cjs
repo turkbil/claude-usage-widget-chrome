@@ -26,7 +26,7 @@ const copy = JSON.parse(fs.readFileSync(path.join(__dirname, 'copy.json'), 'utf8
 const ago = h => new Date(NOW.getTime() - h * 3600e3).toISOString();
 const F = (pct, at) => [{ name: 'Fable', pct, resetsAt: at }];
 const accounts = [
-  { email: 'work@example.com', plan: 'Max 20x', weeklyPct: 40, weeklyResetsAt: '2026-11-16T13:00:00.000Z',
+  { email: 'work@example.com', apiTotal: 151.2, apiCredits: [{ name: 'API credit', remaining: 151.2, granted: 200, expiresAt: '2026-12-14T00:00:00Z' }], apiSeenAt: ago(0), apiToday: 12.34, apiTodayKey: '2026-11-12', plan: 'Max 20x', weeklyPct: 40, weeklyResetsAt: '2026-11-16T13:00:00.000Z',
     scoped: F(4, '2026-11-16T13:00:00.000Z'), planEndsAt: '2026-11-13T10:00:00.000Z', planRenews: false,
     grants: [{ kind: 'weekly', left: 1, total: 1, endsAt: '2026-12-11T10:00:00.000Z' },
              { kind: 'fable', left: 2, total: 2, endsAt: '2027-04-01T10:00:00.000Z' },
@@ -36,7 +36,7 @@ const accounts = [
     grants: [{ kind: 'weekly', left: 1, total: 1, endsAt: '2026-12-11T10:00:00.000Z' },
              { kind: 'fable', left: 2, total: 2, endsAt: '2027-04-01T10:00:00.000Z' },
              { kind: 'fable', left: 1, total: 1, endsAt: '2027-03-09T10:00:00.000Z' }], seenAt: ago(50), source: 'live' },
-  { email: 'team@example.com', plan: 'Max 5x', weeklyPct: 0, weeklyResetsAt: '2026-11-15T17:00:00.000Z',
+  { email: 'team@example.com', apiTotal: 25, apiCredits: [], apiSeenAt: ago(1), apiToday: 3.1, apiTodayKey: '2026-11-12', plan: 'Max 5x', weeklyPct: 0, weeklyResetsAt: '2026-11-15T17:00:00.000Z',
     scoped: [], planEndsAt: '2026-11-19T10:00:00.000Z',
     grants: [{ kind: 'fable', left: 1, total: 1, endsAt: '2026-11-01T00:00:00.000Z' }], seenAt: ago(5), source: 'live' },
   { email: 'studio@example.com', plan: 'Pro', weeklyPct: 85, weeklyResetsAt: '2026-11-04T10:59:59.900Z',
@@ -82,6 +82,7 @@ function mock({ data, locale, messages }) {
         return m.replace(/\$\$|\$(\d)/g, (s, n) => (s === '$$' ? '$' : (a[n - 1] ?? '')));
       },
     },
+    permissions: { contains: async () => true, request: async () => true, onAdded: { addListener() {} }, onRemoved: { addListener() {} } },
     runtime: { sendMessage: async () => ({}), openOptionsPage: () => {} },
     tabs: { create: () => {} },
   };
@@ -93,7 +94,7 @@ function measurePopup() {
   const vis = e => e && !e.closest('[hidden]') && e.offsetParent !== null;
   const texts = [...document.querySelectorAll('body *')].filter(e => !e.children.length && vis(e)).map(e => e.textContent).filter(Boolean);
   const titles = [...document.querySelectorAll('[title]')].map(e => e.title);
-  const rawRe = /\$\d|__MSG_|(^|\s)(accounts|section|time|detail|col|grant|grants|tip|label|notification|hide|sheet|value|forecast)_[a-z_]+/;
+  const rawRe = /\$\d(?![\d.,])|__MSG_|(^|\s)(accounts|section|time|detail|col|grant|grants|tip|label|notification|hide|sheet|value|forecast)_[a-z_]+/;
   const clipped = [...document.querySelectorAll('.nm, .grant-detail, .detail-l, .detail-v, .row-label, #grantsToggle, .sheet-title, .sheet-line, .sheet-actions button')]
     .filter(vis).filter(e => e.scrollWidth > e.clientWidth + 0.5).map(e => e.textContent);
   return {
@@ -162,7 +163,11 @@ function serve() {
     await page.waitForFunction(() => window.__shotReady === true);
     let frame = null, lay = null;
     if (sc.id !== 'tile') {
-      frame = page.frames().find(f => f.url().endsWith('/popup.html'));
+      // The popup iframe can attach a moment after __shotReady; wait for it.
+      for (let i = 0; i < 100 && !frame; i++) {
+        frame = page.frames().find(f => f.url().endsWith('/popup.html'));
+        if (!frame) await page.waitForTimeout(100);
+      }
       await frame.waitForSelector('.acct');
       await page.waitForTimeout(150);
       lay = await page.evaluate(() => window.layout());
